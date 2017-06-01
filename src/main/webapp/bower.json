@@ -1,0 +1,22 @@
+{
+  "name": "skupstina_ns",
+  "authors": [
+    "Sandra <aleksandra.milivojevic.94@gmail.com>"
+  ],
+  "description": "Projekat iz predmeta XML i WEB servisi",
+  "main": "index.html",
+  "keywords": [
+    "xml",
+    "skupstina"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "restangular": "^1.6.1",
+    "angular-route": "^1.6.4",
+    "angular-resource": "^1.6.4",
+    "angular-lodash-module": "^1.2.0",
+    "angular-bootstrap": "^2.5.0"
+  }
+}
