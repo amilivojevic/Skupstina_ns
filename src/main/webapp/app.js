@@ -4,6 +4,6 @@
 (function(angular){
 
     var app = angular.module("application", [])
-    app.controller("")
+
 
 })
