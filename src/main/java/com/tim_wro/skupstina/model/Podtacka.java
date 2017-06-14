@@ -1,10 +1,9 @@
 
-package model;
+package com.tim_wro.skupstina.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -19,11 +18,18 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
- *         &lt;sequence maxOccurs="unbounded" minOccurs="2">
- *           &lt;element ref="{}tacka"/>
+ *         &lt;sequence>
+ *           &lt;element ref="{}alineja"/>
  *         &lt;/sequence>
  *         &lt;element ref="{}sadrzaj"/>
  *       &lt;/choice>
+ *       &lt;attribute name="br" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}int">
+ *             &lt;minInclusive value="1"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -33,42 +39,39 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "tacka",
+    "alineja",
     "sadrzaj"
 })
-@XmlRootElement(name = "stav")
-public class Stav {
+@XmlRootElement(name = "podtacka")
+public class Podtacka {
 
-    protected List<Tacka> tacka;
+    protected Object alineja;
     protected String sadrzaj;
+    @XmlAttribute(name = "br", required = true)
+    protected int br;
 
     /**
-     * Gets the value of the tacka property.
+     * Gets the value of the alineja property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the tacka property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTacka().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Tacka }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link Object }
+     *     
      */
-    public List<Tacka> getTacka() {
-        if (tacka == null) {
-            tacka = new ArrayList<Tacka>();
-        }
-        return this.tacka;
+    public Object getAlineja() {
+        return alineja;
+    }
+
+    /**
+     * Sets the value of the alineja property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Object }
+     *     
+     */
+    public void setAlineja(Object value) {
+        this.alineja = value;
     }
 
     /**
@@ -93,6 +96,22 @@ public class Stav {
      */
     public void setSadrzaj(String value) {
         this.sadrzaj = value;
+    }
+
+    /**
+     * Gets the value of the br property.
+     * 
+     */
+    public int getBr() {
+        return br;
+    }
+
+    /**
+     * Sets the value of the br property.
+     * 
+     */
+    public void setBr(int value) {
+        this.br = value;
     }
 
 }

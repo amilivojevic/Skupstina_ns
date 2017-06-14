@@ -1,11 +1,11 @@
-package skupstina.services;
+package com.tim_wro.skupstina.services;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.JAXBHandle;
-import skupstina.model.Korisnik;
-import skupstina.util.Properties;
+import com.tim_wro.skupstina.model.Korisnik;
+import com.tim_wro.skupstina.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

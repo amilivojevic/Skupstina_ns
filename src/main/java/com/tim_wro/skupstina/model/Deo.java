@@ -1,5 +1,5 @@
 
-package model;
+package com.tim_wro.skupstina.model;
 
 import java.util.ArrayList;
 import java.util.List;

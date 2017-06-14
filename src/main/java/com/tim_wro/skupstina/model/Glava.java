@@ -1,5 +1,5 @@
 
-package model;
+package com.tim_wro.skupstina.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
- *         &lt;sequence maxOccurs="unbounded">
- *           &lt;element ref="{}pododeljak"/>
+ *         &lt;sequence maxOccurs="unbounded" minOccurs="0">
+ *           &lt;element ref="{}odeljak"/>
  *         &lt;/sequence>
  *         &lt;sequence maxOccurs="unbounded">
  *           &lt;element ref="{}clan"/>
@@ -44,13 +44,13 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pododeljak",
+    "odeljak",
     "clan"
 })
-@XmlRootElement(name = "odeljak")
-public class Odeljak {
+@XmlRootElement(name = "glava")
+public class Glava {
 
-    protected List<Pododeljak> pododeljak;
+    protected List<Odeljak> odeljak;
     protected List<Clan> clan;
     @XmlAttribute(name = "naziv", required = true)
     protected String naziv;
@@ -58,32 +58,32 @@ public class Odeljak {
     protected int br;
 
     /**
-     * Gets the value of the pododeljak property.
+     * Gets the value of the odeljak property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the pododeljak property.
+     * This is why there is not a <CODE>set</CODE> method for the odeljak property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPododeljak().add(newItem);
+     *    getOdeljak().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Pododeljak }
+     * {@link Odeljak }
      * 
      * 
      */
-    public List<Pododeljak> getPododeljak() {
-        if (pododeljak == null) {
-            pododeljak = new ArrayList<Pododeljak>();
+    public List<Odeljak> getOdeljak() {
+        if (odeljak == null) {
+            odeljak = new ArrayList<Odeljak>();
         }
-        return this.pododeljak;
+        return this.odeljak;
     }
 
     /**

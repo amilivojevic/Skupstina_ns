@@ -1,4 +1,4 @@
-package skupstina.util;
+package com.tim_wro.skupstina.util;
 
 import com.marklogic.client.DatabaseClientFactory;
 
