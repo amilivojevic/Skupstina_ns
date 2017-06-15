@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Skupstina Novog Sada</title>
 
-    <link rel="stylesheet" href="bower_components/angular-bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/angular-bootstrap/css/bootstrap-theme.css">
+<!--    <link rel="stylesheet" href="bower_components/angular-bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/css/bootstrap-theme.css">-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -14,17 +22,32 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-lodash-module/angular-lodash-module.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <script src="app.js"></script>
-    <script src="routes.js"></script>
-    <script src="app/user/login/login.js"></script>
+    <script src="app/auth/login/login.controller.js"></script>
+    <script src="app/auth/register/register.controller.js"></script>
+    <script src="app/user/user.controller.js"></script>
 
 </head>
-<body ng-app="application">
-
-    <button ng-if="isLoggedIn()" ng-click="logout()">log out</button>
-    <a ng-if="!isLoggedIn()&&getCurrentState()!=='login'" ui-sref="login"><button>log in</button></a>
-    <div ui-view></div>
+<body ng-app="skupstinaNS">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/#/profile">Profile</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href='/#!/register'>Prijava</a></li>
+            <li><a href='/#!/login'>Registracija</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li ><a href="/#/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<h1 class="text-center"><b>SKUPSTINA NOVOG SADA</b></h1>
+    <img src="images/grb2.png" align="center" class="img-responsive center-block img-circle" ></img>
+    <div ng-view></div>
 
 </body>
 </html>

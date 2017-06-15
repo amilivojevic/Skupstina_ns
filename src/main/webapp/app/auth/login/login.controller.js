@@ -2,7 +2,7 @@
  * Created by Korisnik on 6/2/2017.
  */
 (function() {
-    angular.module("myApp").controller("loginController", loginController);
+    angular.module("skupstinaNS").controller("LoginController", loginController);
 
     function loginController($http) {
         var vm = this;
