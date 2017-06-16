@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-horizontal">
+    <form class="form-horizontal" ng-submit="registerCtrl.register()" >
         <fieldset>
 
             <!-- Form Name -->
@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="username">Korisnicko ime:</label>
                 <div class="col-md-4">
-                    <input id="username" name="username" type="text" placeholder="unesite korisnicko ime" class="form-control input-md" required="">
+                    <input id="username" ng-model="registerCtrl.newUser.username" name="username" type="text" placeholder="unesite korisnicko ime" class="form-control input-md" required="">
 
                 </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Lozinka:</label>
                 <div class="col-md-4">
-                    <input id="password" name="password" type="password" placeholder="unesite lozinku" class="form-control input-md" required="">
+                    <input id="password" ng-model="registerCtrl.newUser.password" name="password" type="password" placeholder="unesite lozinku" class="form-control input-md" required="">
 
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="repeatpass">Ponovite lozinku:</label>
                 <div class="col-md-4">
-                    <input id="repeatpass" name="repeatpass" type="password" placeholder="ponovite lozinku" class="form-control input-md" required="">
+                    <input id="repeatpass" ng-model="registerCtrl.newUser.repeatpass" name="repeatpass" type="password" placeholder="ponovite lozinku" class="form-control input-md" required="">
 
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="name">Ime:</label>
                 <div class="col-md-4">
-                    <input id="name" name="name" type="text" placeholder="unesite ime..." class="form-control input-md" required="">
+                    <input id="name" ng-model="registerCtrl.newUser.name" name="name" type="text" placeholder="unesite ime..." class="form-control input-md" required="">
 
                 </div>
             </div>
@@ -45,19 +45,29 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="surname">Prezime:</label>
                 <div class="col-md-4">
-                    <input id="surname" name="surname" type="text" placeholder="unesite prezime..." class="form-control input-md" required="">
+                    <input id="surname" ng-model="registerCtrl.newUser.surname" name="surname" type="text" placeholder="unesite prezime..." class="form-control input-md" required="">
 
                 </div>
             </div>
+
 
             <!-- Select Basic -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="role">Uloga</label>
                 <div class="col-md-4">
-                    <select id="role" name="role" class="form-control">
-                        <option value="1">Poslanik</option>
-                        <option value="2">Predsednik</option>
+                    <select id="role" ng-model="registerCtrl.newUser.userType" name="role" class="form-control">
+                        <option value="Poslanik">Poslanik</option>
+                        <option value="Predsednik">Predsednik</option>
                     </select>
+                </div>
+            </div>
+
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-4">
+                    <button id="submit" name="submit" class="btn btn-primary">registrujte se</button>
                 </div>
             </div>
 
