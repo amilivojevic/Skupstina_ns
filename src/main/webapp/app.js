@@ -27,6 +27,11 @@ angular
                 controller: 'OwnerController',
                 controllerAs: 'ownerCtrl',
             })
+            .when('/addAct', {
+                templateUrl: 'app/act/addAct.html',
+                controller: 'AddActController',
+                controllerAs: 'addActCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

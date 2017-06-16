@@ -303,4 +303,19 @@ public class Akt {
         this.stanje = value;
     }
 
+    @Override
+    public String toString() {
+        return "Akt{" +
+                "preambula='" + preambula + '\'' +
+                ", deo='" + deo + '\'' +
+                ", clan='" + clan + '\'' +
+                ", id='" + id + '\'' +
+                ", naziv=" + naziv +
+                ", drzava='" + drzava + '\'' +
+                ", regija=" + regija +  '\'' +
+                ", grad=" + grad + '\'' +
+                ", stanje=" + stanje + '\'' +
+                '}';
+    }
+
 }

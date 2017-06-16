@@ -1,8 +1,7 @@
 package com.tim_wro.skupstina.controller.auth;
 
 import com.tim_wro.skupstina.dto.RegisterDTO;
-import com.tim_wro.skupstina.model.Korisnik;
-import com.tim_wro.skupstina.model.TipKorisnika;
+import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
