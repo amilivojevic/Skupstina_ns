@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID000" naziv="naziv0" drzava="drzava0" regija="regija0" grad="grad0" stanje="u_proceduri">
+    <preambula>preambula0</preambula>
+    <deo naziv="Deo prvi" br="1">
+        <glava naziv="Uvodne odredbe" br="1">
+            <clan naziv="Predmet" br="1">
+                <stav>
+                    <sadrzaj>Ovo je neki stav.</sadrzaj>
+                </stav>
+            </clan>
+            <clan naziv="Obim primene" br="2">
+                <stav>
+                    <sadrzaj>Ovo je neki drugi stav.</sadrzaj>
+                </stav>
+            </clan>
+        </glava>
+        <glava naziv="Sadrzaj propisa" br="2">
+            <odeljak naziv="Struktura i naziv propisa" br="1">
+                <clan naziv="Struktura propisa" br="3">
+                    <stav>
+                        <sadrzaj>Neki stav u vezi strukture propisa.</sadrzaj>
+                    </stav>
+                </clan>
+                <clan naziv="Naziv propisa" br="4">
+                    <stav>
+                        <sadrzaj>Neki stav u vezi naziva propisa.</sadrzaj>
+                    </stav>
+                </clan>
+                <clan naziv="Preambula propisa" br="3">
+                    <stav>
+                        <sadrzaj>Neki stav u vezi preambule propisa.</sadrzaj>
+                    </stav>
+                </clan>
+            </odeljak>
+            <odeljak naziv="Ovo je neki drugi odeljak" br="2">
+                <clan naziv="Neki naziv clana" br="3">
+                    <stav>
+                        <sadrzaj>Neki stav u ovom clanu.</sadrzaj>
+                    </stav>
+                </clan>
+            </odeljak>
+        </glava>
+    </deo>
+    <deo naziv="Deo drugi" br="2">
+        <glava naziv="Izmene i dopune propisa" br="3">
+            <clan naziv="naziv6" br="50">
+                <stav>
+                    <sadrzaj>sadrzaj0</sadrzaj>
+                </stav>
+                <stav>
+                    <sadrzaj>sadrzaj1</sadrzaj>
+                </stav>
+            </clan>
+            <clan naziv="naziv7" br="50">
+                <stav>
+                    <sadrzaj>sadrzaj2</sadrzaj>
+                </stav>
+                <stav>
+                    <sadrzaj>sadrzaj3</sadrzaj>
+                </stav>
+            </clan>
+        </glava>
+        <glava naziv="Poslednja glava" br="4">
+        </glava>
+    </deo>
+</akt>

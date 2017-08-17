@@ -36,8 +36,92 @@
                     <input id="grad" ng-model="addActCtrl.newAct.grad" name="grad" type="text" placeholder="unesite naziv grada" class="form-control input-md" required="">
                 </div>
             </div>
-
+            <!-- Page title -->
+            <legend  class="text-center"></legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="preambula">Preambula:</label>
+                <div class="col-md-4">
+                    <textarea id="preambula" ng-model="addActCtrl.newAct.preambula" name="preambula" type="text" placeholder="unesite preambulu" class="form-control input-md" required=""></textarea>
+                </div>
+            </div>
             <!-- Button -->
+            <div class="form-group">
+                <div  class="col-md-12" align = "Center" >
+                    <button name="button1id" class="btn btn-primary" ng-click="addActCtrl.dodajDeoNaFront()" ng-disabled="addActCtrl.disableDodajDeo">Dodaj deo</button>
+                    <button name="button2id" class="btn btn-primary" ng-click="addActCtrl.dodajClanNaFront()" ng-disabled="addActCtrl.disableDodajClan">Dodaj clan</button>
+                </div>
+            </div>
+
+            <!-- Page title -->
+            <legend  class="text-center" ng-hide="">{{naslov1}}</legend>
+
+
+
+            <!--                              C L A N O V I                                             -->
+
+
+            <div ng-repeat="clan in clanovi">
+                <div class="well">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Naziv:</label>
+                        <div class="col-md-4">
+                            <input  ng-model="clan.atributi.naziv" name="nazivClana" type="text" placeholder="unesite naziv clana" class="form-control input-md" required="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Broj:</label>
+                        <div class="col-md-4">
+                            <input ng-model="clan.atributi.br" name="brClana" type="text" placeholder="unesite broj clana" class="form-control input-md" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div  class="col-md-12" align = "Center" >
+                            <button id="button1id" name="button1id" class="btn btn-primary" ng-click="addActCtrl.dodajStav_clan($index)" ng-disabled="clan.disableDodajStav">Dodaj stav</button>
+                            <button id="button2id" name="button2id" class="btn btn-primary" ng-click="addActCtrl.dodajSadrzaj_clan($index)" ng-disabled="clan.disableDodajSadrzaj">Dodaj sadrzaj clana</button>
+                        </div>
+                    </div>
+
+
+                    <!--                              SADRZAJ                                            -->
+                    <div ng-repeat="s in clan.sadrzaj">
+                        <div class="form-group">
+                            <label class="col-md-5 control-label">Sadrzaj:</label>
+                            <div class="col-md-3">
+                                <textarea ng-model="addActCtrl.newAct.sadrzaj" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--                              STAVOVI                                            -->
+                    <div ng-repeat="s in clan.stavovi">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Stav:</label>
+                        </div>
+                        <div class="form-group">
+                            <div  class="col-md-12" align = "Center" >
+                                <button name="button1id" class="button" ng-click="addActCtrl.dodajTacku_stav_clan($parent.$index,$index)" ng-disabled="s.disableDodajTacku">Dodaj tacku</button>
+                                <button name="button2id" class="button " ng-click="addActCtrl.dodajSadrzaj_stav_clan($parent.$index,$index)" ng-disabled="s.disableDodajSadrzaj">Dodaj sadrzaj stava</button>
+                            </div>
+                        </div>
+
+                        <!--                              SADRZAJ STAVA                                           -->
+                        <div ng-repeat="sad in s.sadrzaj">
+                            <div class="form-group">
+                                <label class="col-md-5 control-label">Sadrzaj:</label>
+                                <div class="col-md-3">
+                                    <textarea name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+           <legend  class="text-center"></legend>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="submit"></label>
                 <div class="col-md-4" align = "Center" >

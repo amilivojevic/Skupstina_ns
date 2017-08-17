@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID000" naziv="naziv0" drzava="drzava0" regija="regija0" grad="grad0" stanje="u_proceduri">
+    <preambula>preambula0</preambula>
+    <deo br="50">
+        <glava naziv="naziv2" br="50">
+        </glava>
+        <glava naziv="naziv3" br="50">
+            <clan naziv="naziv4" br="50">
+                <stav>
+                    <sadrzaj>sadrzaj0</sadrzaj>
+                </stav>
+                <stav>
+                    <tacka br="50">
+                        <podtacka br="50">
+                            <alineja>
+                            </alineja>
+                        </podtacka>
+                        <podtacka br="50">
+                            <sadrzaj>sadrzaj1</sadrzaj>
+                        </podtacka>
+                    </tacka>
+                    <tacka br="50">
+                        <podtacka br="50">
+                            <sadrzaj>sadrzaj2</sadrzaj>
+                        </podtacka>
+                        <podtacka br="50">
+                            <alineja>
+                            </alineja>
+                        </podtacka>
+                    </tacka>
+                </stav>
+            </clan>
+            <clan naziv="naziv5" br="50">
+                <stav>
+                    <sadrzaj>sadrzaj3</sadrzaj>
+                </stav>
+                <stav>
+                    <sadrzaj>sadrzaj4</sadrzaj>
+                </stav>
+            </clan>
+        </glava>
+    </deo>
+    <deo br="50">
+        <glava naziv="naziv7" br="50">
+        </glava>
+        <glava naziv="naziv8" br="50">
+        </glava>
+    </deo>
+</akt>
