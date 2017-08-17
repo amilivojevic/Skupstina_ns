@@ -1,5 +1,6 @@
 package com.tim_wro.skupstina.controller.auth;
 
+import com.tim_wro.skupstina.dto.KorisnikDTO;
 import com.tim_wro.skupstina.dto.LoginDTO;
 import com.tim_wro.skupstina.dto.RegisterDTO;
 import com.tim_wro.skupstina.model.*;
@@ -19,10 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Korisnik on 6/15/2017.
@@ -75,6 +73,12 @@ public class RegisterController {
         }
     }
 
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    public ResponseEntity<KorisnikDTO> getData(@RequestHeader("X-Auth-Token") String token)
+    {
+        Korisnik user = userService.findByToken(token);
+        return new ResponseEntity<>(new KorisnikDTO(user), HttpStatus.OK);
+    }
 
     //registracija korisnika
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json")

@@ -68,8 +68,10 @@
             $http.post('/api/users/login', userData)
                 .then(function(token) {
 
-                    var t = token.data.response.split(" ")[0];
-                    var role = token.data.response.split(" ")[1];
+
+                    alert("test");
+                    var t = token.data.message.split(" ")[0];
+                    var role = token.data.message.split(" ")[1];
 
                     $window.localStorage.setItem("token",t);
                     console.log("token = " + $window.localStorage.getItem("token"));
@@ -99,6 +101,16 @@
                 }
             );
         };
+
+        // method for deleting user data - token
+        function logout() {
+            console.log("usao u logout");
+            $window.localStorage.removeItem("token");
+            $window.localStorage.removeItem("loggedUser");
+            checkIfLogged();
+            $location.path('/');
+        }
+        ;
 
 
     }

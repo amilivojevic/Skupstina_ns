@@ -9,7 +9,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="username">Korisnicko ime:</label>
             <div class="col-md-4">
-                <input id="username" name="username" type="text" placeholder="unesite korisnicko ime" class="form-control input-md" required="">
+                <input id="username" ng-model="loginCtrl.username"  type="text" placeholder="unesite korisnicko ime" class="form-control input-md" required="">
 
             </div>
         </div>
@@ -18,7 +18,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="password">Lozinka:</label>
             <div class="col-md-4">
-                <input id="password" name="password" type="password" placeholder="unesite lozinku" class="form-control input-md" required="">
+                <input id="password" ng-model="loginCtrl.password"  type="password" placeholder="unesite lozinku" class="form-control input-md" required="">
 
             </div>
         </div>
