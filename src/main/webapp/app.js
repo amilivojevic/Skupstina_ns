@@ -6,7 +6,7 @@ angular
         'ngResource',
         'ngRoute'
     ])
-    .config(function($routeProvider){
+    .config(function($routeProvider, $httpProvider){
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html'
@@ -35,5 +35,27 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
+
+        $httpProvider
+            .interceptors.push(['$q', '$window',
+            function($q, $window) {
+                return {
+                    'request': function(config) {
+                        config.headers = config.headers || {};
+                        if($window.localStorage.token) {
+                            config.headers["X-Auth-Token"] = $window.localStorage.token;
+                        }
+                        return config;
+                    },
+                    'responseError': function(response) {
+                        if (response.status === 401 || response.status === 403) {
+
+                            console.log("nesto kod interseptora je pogresno");
+                        }
+                        return $q.reject(response);
+                    }
+                };
+            }
+        ]);
 
     });

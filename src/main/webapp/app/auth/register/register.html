@@ -50,14 +50,13 @@
                 </div>
             </div>
 
-
-            <!-- Select Basic -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="role">Uloga</label>
                 <div class="col-md-4">
-                    <select id="role" ng-model="registerCtrl.newUser.userType" name="role" class="form-control">
-                        <option value="Poslanik">Poslanik</option>
-                        <option value="Predsednik">Predsednik</option>
+                    <select id="role" style="line-height: 44px;
+  							border: 1px solid #DAD8D8;
+  							width: 370px;" ng-model="registerCtrl.newUser.userType" class="form-control" required>
+                        <option style="color: #F94B4B;" ng-repeat="t in registerCtrl.types">{{t}}</option>
                     </select>
                 </div>
             </div>

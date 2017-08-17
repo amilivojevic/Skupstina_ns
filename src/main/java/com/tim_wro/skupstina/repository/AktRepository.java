@@ -1,4 +1,4 @@
-package com.tim_wro.skupstina.reporsitories;
+package com.tim_wro.skupstina.repository;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;

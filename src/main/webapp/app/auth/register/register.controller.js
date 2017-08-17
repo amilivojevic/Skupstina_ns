@@ -8,6 +8,7 @@
     function registerController(RegisterService) {
         var vm = this;
         vm.register = register;
+        vm.types = ['Poslanik', 'Predsednik'];
 
         function register(){
             vm.new_user = {

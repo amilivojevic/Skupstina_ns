@@ -14,6 +14,14 @@ public class RegisterDTO {
     public RegisterDTO() {
     }
 
+    public RegisterDTO(String type, String username, String password, String name, String surname) {
+        this.type = type;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+    }
+
     @Override
     public String toString() {
         return "RegisterDTO{" +
