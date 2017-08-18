@@ -4,6 +4,7 @@ import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.JAXBHandle;
+import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.util.Properties;
 import org.springframework.stereotype.Service;
 

@@ -59,6 +59,15 @@ public class Korisnik {
     @XmlSchemaType(name = "ID")
     protected String id;
 
+    public Korisnik(String ime, String prezime, String korisnickoIme, String lozinka, TipKorisnika tip, String id) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+        this.tip = tip;
+        this.id = id;
+    }
+
     /**
      * Gets the value of the ime property.
      * 

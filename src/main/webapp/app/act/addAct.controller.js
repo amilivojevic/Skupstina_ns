@@ -23,45 +23,22 @@
 
 
         function addAct() {
-            vm.new_act = {
 
-                naziv: vm.newAct.naziv,
-                drzava: vm.newAct.drzava,
-                regija: vm.newAct.regija,
-                grad: vm.newAct.grad,
-                stanje: vm.newAct.stanje
-            }
 
-            console.log("novi akt: " + JSON.stringify(vm.newAct));
             console.log("kreirani clanovi: " + JSON.stringify($scope.clanovi));
             console.log("transformisani clanovi: " + JSON.stringify(transformClanovi($scope)));
 
-            var clanoviREST = {
-                "clanovi" : transformClanovi($scope)
+            var noviAkt = {
+                "naziv": vm.naziv,
+                "drzava": vm.drzava,
+                "regija": vm.regija,
+                "grad": vm.grad,
+                "stanje": vm.stanje,
+                "preambula": vm.preambula,
+                "clan" : transformClanovi($scope)
             }
 
-
-
-            var proba = {
-                "clanovi" : [
-                    {
-                        "atributi" : {
-                            "naziv" : "neki naziv",
-                            "br" : "123"
-                        }
-                    },
-                    {
-                        "atributi" : {
-                            "naziv" : "neki naziv 222",
-                            "br" : "123 222"
-                        }
-                    }
-                ]
-            }
-
-
-
-            $http.post('/api/akt/novi', proba)
+            $http.post('/api/akt/novi', noviAkt)
                 .then(function (response) {
                     console.log("Sve je dobro");
                 })
@@ -219,19 +196,19 @@
                         clan.stav[j].tacka = [];
                         for(var k=0; k<$scope.clanovi[i].stavovi[j].tacke.length; k++) {
                             clan.stav[j].tacka.push({});
-                            clan.stav[j].tacka[k].atributi = $scope.clanovi[i].stavovi[j].tacke[k].atributi;
+                            clan.stav[j].tacka[k].br = $scope.clanovi[i].stavovi[j].tacke[k].atributi.br;
                             if ($scope.clanovi[i].stavovi[j].tacke[k].podtacke.length > 0) {
-                                clan.stav[j].tacka[k].podtacke = [];
+                                clan.stav[j].tacka[k].podtacka = [];
                                 for(var l=0; l<$scope.clanovi[i].stavovi[j].tacke[k].podtacke.length; l++) {
-                                    clan.stav[j].tacka[k].podtacke.push({});
-                                    clan.stav[j].tacka[k].podtacke[l].atributi = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].atributi;
+                                    clan.stav[j].tacka[k].podtacka.push({});
+                                    clan.stav[j].tacka[k].podtacka[l].br = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].atributi.br;
 
                                     if ($scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje.length > 0) {
-                                        clan.stav[j].tacka[k].podtacke[l].alineje = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje;
+                                        clan.stav[j].tacka[k].podtacka[l].alineja = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje;
                                     }
 
                                     if ($scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].sadrzaj.length > 0) {
-                                        clan.stav[j].tacka[k].podtacke[l].sadrzaj = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].sadrzaj[0];
+                                        clan.stav[j].tacka[k].podtacka[l].sadrzaj = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].sadrzaj[0];
                                     }
                                 }
                             }

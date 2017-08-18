@@ -1,5 +1,8 @@
 package com.tim_wro.skupstina.services;
 
+import com.tim_wro.skupstina.model.Akt;
+import com.tim_wro.skupstina.model.Korisnik;
+import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.reporsitories.AktRepository;
 import com.tim_wro.skupstina.util.DateConverter;
 import com.tim_wro.skupstina.util.MetadataExtractor;
@@ -40,6 +43,7 @@ public class AktService {
         this.aktRepository = aktRepository;
 
     }
+/*
 
     public Akt create(String rawAct, Korisnik korisnik) {
         try {
@@ -77,6 +81,7 @@ public class AktService {
         }
         return null;
     }
+*/
 
     private void populateIdFor(String tagName, Document doc) {
         final NodeList list = doc.getDocumentElement().getElementsByTagName(tagName);
