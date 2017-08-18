@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-horizontal" ng-submit="addActCtrl.addAct()" >
+    <form class="form-horizontal"  >
         <fieldset>
 
             <!-- Page title -->
@@ -54,7 +54,7 @@
             </div>
 
             <!-- Page title -->
-            <legend  class="text-center" ng-hide="">{{naslov1}}</legend>
+            <label  class="text-center" ng-hide="">{{naslov1}}</label>
 
 
 
@@ -66,14 +66,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Naziv:</label>
                         <div class="col-md-4">
-                            <input  ng-model="clan.atributi.naziv" name="nazivClana" type="text" placeholder="unesite naziv clana" class="form-control input-md" required="">
+                            <input  ng-model="clanovi[$index].atributi.naziv" name="nazivClana" type="text" placeholder="unesite naziv clana" class="form-control input-md" required="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Broj:</label>
                         <div class="col-md-4">
-                            <input ng-model="clan.atributi.br" name="brClana" type="text" placeholder="unesite broj clana" class="form-control input-md" required="">
+                            <input ng-model="clanovi[$index].atributi.br" name="brClana" type="text" placeholder="unesite broj clana" class="form-control input-md" required="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,9 +87,9 @@
                     <!--                              SADRZAJ                                            -->
                     <div ng-repeat="s in clan.sadrzaj">
                         <div class="form-group">
-                            <label class="col-md-5 control-label">Sadrzaj:</label>
+                            <label class="col-md-5 control-label">Sadrzaj clana:</label>
                             <div class="col-md-3">
-                                <textarea ng-model="addActCtrl.newAct.sadrzaj" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                <textarea ng-model="clan.sadrzaj[$index]" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
                             </div>
                         </div>
                     </div>
@@ -101,18 +101,85 @@
                         </div>
                         <div class="form-group">
                             <div  class="col-md-12" align = "Center" >
-                                <button name="button1id" class="button" ng-click="addActCtrl.dodajTacku_stav_clan($parent.$index,$index)" ng-disabled="s.disableDodajTacku">Dodaj tacku</button>
-                                <button name="button2id" class="button " ng-click="addActCtrl.dodajSadrzaj_stav_clan($parent.$index,$index)" ng-disabled="s.disableDodajSadrzaj">Dodaj sadrzaj stava</button>
+                                <button name="button1id" class="btn btn-warning" ng-click="addActCtrl.dodajTacku_stav_clan($parent.$index,$index)" ng-disabled="s.disableDodajTacku">Dodaj tacku (bar 2)</button>
+                                <button name="button2id" class="btn btn-warning " ng-click="addActCtrl.dodajSadrzaj_stav_clan($parent.$index,$index)" ng-disabled="s.disableDodajSadrzaj">Dodaj sadrzaj stava</button>
                             </div>
                         </div>
 
                         <!--                              SADRZAJ STAVA                                           -->
                         <div ng-repeat="sad in s.sadrzaj">
                             <div class="form-group">
-                                <label class="col-md-5 control-label">Sadrzaj:</label>
+                                <label class="col-md-5 control-label">Sadrzaj stava:</label>
                                 <div class="col-md-3">
-                                    <textarea name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                    <textarea ng-model="s.sadrzaj[$index]" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!--                              TACKA STAVA                                           -->
+                        <div ng-repeat="tacka in s.tacke" class="col-md-offset-1">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Tacka:</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Broj:</label>
+                                <div class="col-md-4">
+                                    <input  ng-model="s.tacke[$index].atributi.br" name="brClana" type="text" placeholder="unesite broj tacke" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div  class="col-md-12" align = "Center" >
+                                    <button name="button1id" class="btn-default" ng-click="addActCtrl.dodajPodtacku_tacka_stav_clan($parent.$parent.$index,$parent.$index,$index)" ng-disabled="tacka.disableDodajPodtacku">Dodaj podtacku  (bar 2)</button>
+                                    <button name="button2id" class="btn-default " ng-click="addActCtrl.dodajSadrzaj_tacka_stav_clan($parent.$parent.$index,$parent.$index,$index)" ng-disabled="tacka.disableDodajSadrzaj">Dodaj sadrzaj tacke</button>
+                                </div>
+                            </div>
+                            <!--                              SADRZAJ TACKE                                           -->
+                            <div ng-repeat="sad in tacka.sadrzaj">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Sadrzaj tacke:</label>
+                                    <div class="col-md-3">
+                                        <textarea ng-model="tacka.sadrzaj[$index]" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--                              PODTACKA TACKE                                           -->
+                            <div ng-repeat="podtacka in tacka.podtacke" class="col-md-offset-1">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Podtacka:</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Broj:</label>
+                                    <div class="col-md-4">
+                                        <input ng-model="tacka.podtacke[$index].atributi.br" name="brClana" type="text" placeholder="unesite broj podtacke" class="form-control input-md" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div  class="col-md-12" align = "Center" >
+                                        <button name="button1id" class="button" ng-click="addActCtrl.dodajAlineju_podtacku_tacka_stav_clan($parent.$parent.$parent.$index,$parent.$parent.$index,$parent.$index,$index)" ng-disabled="podtacka.disableDodajAlineju">Dodaj alineju</button>
+                                        <button name="button2id" class="button " ng-click="addActCtrl.dodajSadrzaj_podtacka_tacka_stav_clan($parent.$parent.$parent.$index,$parent.$parent.$index,$parent.$index,$index)" ng-disabled="podtacka.disableDodajSadrzaj">Dodaj sadrzaj podtacke</button>
+                                    </div>
+                                </div>
+
+                                <!--                              SADRZAJ PODTACKE                                           -->
+                                <div ng-repeat="sad in podtacka.sadrzaj" class="col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Sadrzaj podtacke:</label>
+                                        <div class="col-md-3">
+                                            <textarea ng-model="podtacka.sadrzaj[$index]"  name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                              SADRZAJ ALINEJE                                           -->
+                                <div ng-repeat="alineje in podtacka.alineje" class="col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Sadrzaj alineje:</label>
+                                        <div class="col-md-3">
+                                            <textarea ng-model="podtacka.alineje[$index]" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -125,7 +192,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="submit"></label>
                 <div class="col-md-4" align = "Center" >
-                    <button  id="submit" name="submit" class="btn btn-primary">Dodaj akt</button>
+                    <button  ng-click="addActCtrl.addAct()" id="submit" name="submit" class="btn btn-primary">Print akt</button>
                 </div>
             </div>
 
