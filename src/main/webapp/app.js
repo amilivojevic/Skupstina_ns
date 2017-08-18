@@ -1,6 +1,7 @@
 /**
  * Created by Korisnik on 6/2/2017.
  */
+'use strict';
 angular
     .module('skupstinaNS', [
         'ngResource',

@@ -5,7 +5,7 @@
     angular.module("skupstinaNS")
         .controller("AddActController", addActController);
 
-    function addActController(AddActService, $scope,$http) {
+    function addActController($http,$scope) {
         var vm = this;
         vm.addAct = addAct;
         vm.dodajDeoNaFront = dodajDeoNaFront;
