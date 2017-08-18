@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class ClanDTO {
 
     Atributi1DTO atributi;
-    ArrayList<StavDTO> stavovi;
+    ArrayList<StavDTO> stav;
 
     public ClanDTO(Atributi1DTO atributi, ArrayList<StavDTO> stavovi) {
         this.atributi = atributi;
-        this.stavovi = stavovi;
+        this.stav = stavovi;
     }
 
     public ClanDTO() {
@@ -24,18 +24,18 @@ public class ClanDTO {
     }
 
     public ArrayList<StavDTO> getStavovi() {
-        return stavovi;
+        return stav;
     }
 
     public void setStavovi(ArrayList<StavDTO> stavovi) {
-        this.stavovi = stavovi;
+        this.stav = stavovi;
     }
 
     @Override
     public String toString() {
         return "ClanDTO{" +
                 "atributi=" + atributi +
-                ", stavovi=" + stavovi +
+                ", stavovi=" + stav +
                 '}';
     }
 }

@@ -1,27 +1,40 @@
 package com.tim_wro.skupstina.dto.akt;
 
-public class StavDTO {
-    String nesto;
+import java.util.ArrayList;
 
-    public StavDTO(String nesto) {
-        this.nesto = nesto;
+public class StavDTO {
+    ArrayList<TackaDTO> tacke;
+    ArrayList<String> sadrzaj;
+
+    public StavDTO(ArrayList<TackaDTO> tacke, ArrayList<String> sadrzaj) {
+        this.tacke = tacke;
+        this.sadrzaj = sadrzaj;
     }
 
     public StavDTO() {
     }
 
-    public String getNesto() {
-        return nesto;
+    public ArrayList<TackaDTO> getTacke() {
+        return tacke;
     }
 
-    public void setNesto(String nesto) {
-        this.nesto = nesto;
+    public void setTacke(ArrayList<TackaDTO> tacke) {
+        this.tacke = tacke;
+    }
+
+    public ArrayList<String> getSadrzaj() {
+        return sadrzaj;
+    }
+
+    public void setSadrzaj(ArrayList<String> sadrzaj) {
+        this.sadrzaj = sadrzaj;
     }
 
     @Override
     public String toString() {
         return "StavDTO{" +
-                "nesto='" + nesto + '\'' +
+                "tacke=" + tacke +
+                ", sadrzaj=" + sadrzaj +
                 '}';
     }
 }

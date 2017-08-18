@@ -1,7 +1,6 @@
 package com.tim_wro.skupstina.controller.akt;
 
 import com.tim_wro.skupstina.dto.akt.AktDTO;
-import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;

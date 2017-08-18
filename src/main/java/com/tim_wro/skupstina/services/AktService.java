@@ -1,8 +1,5 @@
 package com.tim_wro.skupstina.services;
 
-import com.tim_wro.skupstina.model.Akt;
-import com.tim_wro.skupstina.model.Korisnik;
-import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.reporsitories.AktRepository;
 import com.tim_wro.skupstina.util.DateConverter;
 import com.tim_wro.skupstina.util.MetadataExtractor;
@@ -26,7 +23,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.util.Date;
-import java.util.Optional;
 import java.util.UUID;
 
 /**

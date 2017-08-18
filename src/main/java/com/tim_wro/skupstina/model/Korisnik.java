@@ -59,38 +59,6 @@ public class Korisnik {
     @XmlSchemaType(name = "ID")
     protected String id;
 
-    public Korisnik(String ime, String prezime, String korisnickoIme, String lozinka, TipKorisnika tip) {
-        this.ime = ime;
-        this.prezime = prezime;
-        this.korisnickoIme = korisnickoIme;
-        this.lozinka = lozinka;
-        this.tip = tip;
-    }
-
-    public Korisnik() {
-    }
-
-    @Override
-    public String toString() {
-        return "Korisnik{" +
-                "ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", korisnickoIme='" + korisnickoIme + '\'' +
-                ", lozinka='" + lozinka + '\'' +
-                ", tip=" + tip +
-                ", id='" + id + '\'' +
-                '}';
-    }
-
-    public Korisnik(String ime, String prezime, String korisnickoIme, String lozinka, TipKorisnika tip, String id) {
-        this.ime = ime;
-        this.prezime = prezime;
-        this.korisnickoIme = korisnickoIme;
-        this.lozinka = lozinka;
-        this.tip = tip;
-        this.id = id;
-    }
-
     /**
      * Gets the value of the ime property.
      * 
@@ -234,6 +202,5 @@ public class Korisnik {
     public void setId(String value) {
         this.id = value;
     }
-
 
 }
