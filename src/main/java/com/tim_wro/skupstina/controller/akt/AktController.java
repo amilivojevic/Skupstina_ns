@@ -1,5 +1,6 @@
 package com.tim_wro.skupstina.controller.akt;
 
+import com.tim_wro.skupstina.dto.akt.AktDTO;
 import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.util.ResponseMessage;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/api/acts")
+@RequestMapping("/api/akt")
 public class AktController {
 
     private final AktService aktService;
@@ -28,10 +29,10 @@ public class AktController {
 
     }
 
-    @PostMapping
-    public ResponseEntity create(@RequestBody String akt, Korisnik korisnik) {
+    @PostMapping("/novi")
+    public ResponseEntity create(@RequestBody AktDTO akt) {
 
-        aktService.create(akt, korisnik);
+        System.out.println("stigao akt!!!" + akt.toString());
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
 

@@ -5,7 +5,7 @@
     angular.module("skupstinaNS")
         .controller("AddActController", addActController);
 
-    function addActController(AddActService, $scope) {
+    function addActController(AddActService, $scope,$http) {
         var vm = this;
         vm.addAct = addAct;
         vm.dodajDeoNaFront = dodajDeoNaFront;
@@ -21,7 +21,7 @@
 
 
 
-        function addAct() {
+        function addAct($http) {
             vm.new_act = {
 
                 naziv: vm.newAct.naziv,
@@ -38,6 +38,37 @@
             var clanoviREST = {
                 "clanovi" : transformClanovi($scope)
             }
+
+
+
+            var proba = {
+                "clanovi" : [
+                    {
+                        "atributi" : {
+                            "naziv" : "neki naziv",
+                            "br" : "123"
+                        },
+                        "stavovi" : ["nesto1", "nesto2", "nesto3"]
+                    },
+                    {
+                        "atributi" : {
+                            "naziv" : "neki naziv 222",
+                            "br" : "123 222"
+                        },
+                        "stavovi" : ["nesto1222", "nesto2222", "nesto3222"]
+                    }
+                ]
+            }
+
+
+
+            $http.post('/api/akt/novi', proba)
+                .then(function (response) {
+                    Console.log("Sve je dobro");
+                })
+                .catch(function () {
+                    Console.log("Neka greska!");
+                });
 
         }
 

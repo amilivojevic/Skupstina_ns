@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <akt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID000" naziv="naziv0" drzava="drzava0" regija="regija0" grad="grad0" stanje="u_proceduri">
+ xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" 
+ id="ID000" naziv="naziv0" drzava="drzava0" regija="regija0" grad="grad0" stanje="u_proceduri">
     <preambula>preambula0</preambula>
     <deo naziv="Deo prvi" br="1">
         <glava naziv="Uvodne odredbe" br="1">
