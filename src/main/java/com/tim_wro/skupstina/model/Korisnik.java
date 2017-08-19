@@ -46,6 +46,8 @@ public class Korisnik {
         this.tip = tip;
     }
 
+
+
     public Long getId() {
         return id;
     }

@@ -43,6 +43,7 @@ public class AktService {
         this.aktRepository = aktRepository;
 
     }
+/*
 
     public Akt create(String rawAct, Korisnik korisnik) {
         try {
@@ -80,6 +81,7 @@ public class AktService {
         }
         return null;
     }
+*/
 
     private void populateIdFor(String tagName, Document doc) {
         final NodeList list = doc.getDocumentElement().getElementsByTagName(tagName);

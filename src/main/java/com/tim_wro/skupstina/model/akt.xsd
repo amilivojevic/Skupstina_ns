@@ -115,7 +115,7 @@
     <xs:element name="podtacka">
         <xs:complexType>
             <xs:choice>
-                <xs:sequence maxOccurs="unbounded">
+                <xs:sequence>
                     <xs:element ref="alineja"/>
                 </xs:sequence>
                 <xs:element ref="sadrzaj"/>

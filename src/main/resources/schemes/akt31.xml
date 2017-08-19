@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID000" naziv="naziv0" drzava="drzava0" regija="regija0" grad="grad0" stanje="u_proceduri">
+    <preambula>preambula0</preambula>
+    <clan naziv="naziv1" br="50">
+        <stav>
+            <tacka br="50">
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj0</sadrzaj>
+                </podtacka>
+                <podtacka br="50">
+                    <alineja>
+                    </alineja>
+                </podtacka>
+            </tacka>
+            <tacka br="50">
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj1</sadrzaj>
+                </podtacka>
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj2</sadrzaj>
+                </podtacka>
+            </tacka>
+        </stav>
+        <stav>
+            <tacka br="50">
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj3</sadrzaj>
+                </podtacka>
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj4</sadrzaj>
+                </podtacka>
+            </tacka>
+            <tacka br="50">
+                <podtacka br="50">
+                    <alineja>
+                    </alineja>
+                </podtacka>
+                <podtacka br="50">
+                    <alineja>
+                    </alineja>
+                </podtacka>
+            </tacka>
+        </stav>
+    </clan>
+    <clan naziv="naziv2" br="50">
+        <stav>
+            <tacka br="50">
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj5</sadrzaj>
+                </podtacka>
+                <podtacka br="50">
+                    <sadrzaj>sadrzaj6</sadrzaj>
+                </podtacka>
+            </tacka>
+            <tacka br="50">
+                <sadrzaj>sadrzaj7</sadrzaj>
+            </tacka>
+        </stav>
+        <stav>
+            <sadrzaj>sadrzaj8</sadrzaj>
+        </stav>
+    </clan>
+</akt>
