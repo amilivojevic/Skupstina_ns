@@ -33,6 +33,11 @@ angular
                 controller: 'AddActController',
                 controllerAs: 'addActCtrl'
             })
+            .when('/addSednica', {
+                templateUrl: 'app/sednica/addSednica.html',
+                controller: 'AddSednicaController',
+                controllerAs: 'addSednicaCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

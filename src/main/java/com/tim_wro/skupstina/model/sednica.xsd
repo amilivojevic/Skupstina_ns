@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="sednica">
+        <xs:complexType>
+            <xs:attribute name="datum"/>
+            <xs:attribute name="redniBroj"/>
+            <xs:attribute name="naziv"/>
+            <xs:attribute name="id" type="xs:ID"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="stanje_sednice">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="zakazana"/>
+            <xs:enumeration value="aktivna"/>
+            <xs:enumeration value="zavrsena"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
