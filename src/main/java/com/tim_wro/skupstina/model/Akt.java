@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="regija" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="grad" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="stanje" use="required" type="{}stanje_akta" />
+ *       &lt;attribute name="kreirao_poslanik" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -58,7 +59,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Akt {
 
     @XmlElement(required = true)
-    protected String preambula;
+    protected Preambula preambula;
     protected List<Deo> deo;
     protected List<Clan> clan;
     @XmlAttribute(name = "id", required = true)
@@ -76,16 +77,18 @@ public class Akt {
     protected String grad;
     @XmlAttribute(name = "stanje", required = true)
     protected StanjeAkta stanje;
+    @XmlAttribute(name = "kreirao_poslanik")
+    protected String kreiraoPoslanik;
 
     /**
      * Gets the value of the preambula property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Preambula }
      *     
      */
-    public String getPreambula() {
+    public Preambula getPreambula() {
         return preambula;
     }
 
@@ -94,10 +97,10 @@ public class Akt {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Preambula }
      *     
      */
-    public void setPreambula(String value) {
+    public void setPreambula(Preambula value) {
         this.preambula = value;
     }
 
@@ -301,6 +304,30 @@ public class Akt {
      */
     public void setStanje(StanjeAkta value) {
         this.stanje = value;
+    }
+
+    /**
+     * Gets the value of the kreiraoPoslanik property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getKreiraoPoslanik() {
+        return kreiraoPoslanik;
+    }
+
+    /**
+     * Sets the value of the kreiraoPoslanik property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setKreiraoPoslanik(String value) {
+        this.kreiraoPoslanik = value;
     }
 
 }

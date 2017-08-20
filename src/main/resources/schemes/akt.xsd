@@ -129,8 +129,27 @@
             </xs:attribute>
         </xs:complexType>
     </xs:element>
+    <xs:simpleType name="oblast">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Zdravstvo"/>
+            <xs:enumeration value="Skolstvo"/>
+            <xs:enumeration value="Vojska"/>
+            <xs:enumeration value="Policija"/>
+            <xs:enumeration value="Pravosudje"/>
+            <xs:enumeration value="Ostalo"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:element name="alineja" type="xs:string"/>
-    <xs:element name="preambula" type="xs:string"/>
+    <xs:element name="pravni_osnov" type="xs:string"/>
+    <xs:element name="preambula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="pravni_osnov"/>
+                <xs:element name="organ" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="oblast" type="oblast"/>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="sadrzaj" type="xs:string"/>
     <xs:simpleType name="stanje_akta">
         <xs:restriction base="xs:string">
@@ -158,6 +177,7 @@
             <xs:attribute name="regija" type="xs:string" use="required"/>
             <xs:attribute name="grad" type="xs:string" use="required"/>
             <xs:attribute name="stanje" type="stanje_akta" use="required"/>
+            <xs:attribute name="kreirao_poslanik" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

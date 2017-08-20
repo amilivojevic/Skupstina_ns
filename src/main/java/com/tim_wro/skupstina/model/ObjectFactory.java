@@ -1,7 +1,10 @@
 
 package com.tim_wro.skupstina.model;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -21,6 +24,9 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _PravniOsnov_QNAME = new QName("", "pravni_osnov");
+    private final static QName _Sadrzaj_QNAME = new QName("", "sadrzaj");
+    private final static QName _Alineja_QNAME = new QName("", "alineja");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.tim_wro.skupstina.model
@@ -30,11 +36,110 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Sednica }
+     * Create an instance of {@link Stav }
      * 
      */
-    public Sednica createSednica() {
-        return new Sednica();
+    public Stav createStav() {
+        return new Stav();
+    }
+
+    /**
+     * Create an instance of {@link Tacka }
+     * 
+     */
+    public Tacka createTacka() {
+        return new Tacka();
+    }
+
+    /**
+     * Create an instance of {@link Podtacka }
+     * 
+     */
+    public Podtacka createPodtacka() {
+        return new Podtacka();
+    }
+
+    /**
+     * Create an instance of {@link Odeljak }
+     * 
+     */
+    public Odeljak createOdeljak() {
+        return new Odeljak();
+    }
+
+    /**
+     * Create an instance of {@link Pododeljak }
+     * 
+     */
+    public Pododeljak createPododeljak() {
+        return new Pododeljak();
+    }
+
+    /**
+     * Create an instance of {@link Clan }
+     * 
+     */
+    public Clan createClan() {
+        return new Clan();
+    }
+
+    /**
+     * Create an instance of {@link Akt }
+     * 
+     */
+    public Akt createAkt() {
+        return new Akt();
+    }
+
+    /**
+     * Create an instance of {@link Preambula }
+     * 
+     */
+    public Preambula createPreambula() {
+        return new Preambula();
+    }
+
+    /**
+     * Create an instance of {@link Deo }
+     * 
+     */
+    public Deo createDeo() {
+        return new Deo();
+    }
+
+    /**
+     * Create an instance of {@link Glava }
+     * 
+     */
+    public Glava createGlava() {
+        return new Glava();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "pravni_osnov")
+    public JAXBElement<String> createPravniOsnov(String value) {
+        return new JAXBElement<String>(_PravniOsnov_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "sadrzaj")
+    public JAXBElement<String> createSadrzaj(String value) {
+        return new JAXBElement<String>(_Sadrzaj_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "alineja")
+    public JAXBElement<String> createAlineja(String value) {
+        return new JAXBElement<String>(_Alineja_QNAME, String.class, null, value);
     }
 
 }
