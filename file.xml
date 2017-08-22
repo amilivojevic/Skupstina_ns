@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<akt naziv="naziv" drzava="drzava" regija="regija" grad="grad" stanje="u_proceduri" kreirao="a">
+    <preambula>
+        <pravni_osnov>preambula</pravni_osnov>
+        <organ>preambula</organ>
+        <oblast>Zdravstvo</oblast>
+    </preambula>
+    <clan naziv="naziv" br="1">
+        <stav>
+            <sadrzaj>s</sadrzaj>
+        </stav>
+    </clan>
+</akt>

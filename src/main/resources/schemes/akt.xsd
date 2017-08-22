@@ -177,7 +177,7 @@
             <xs:attribute name="regija" type="xs:string" use="required"/>
             <xs:attribute name="grad" type="xs:string" use="required"/>
             <xs:attribute name="stanje" type="stanje_akta" use="required"/>
-            <xs:attribute name="kreirao_poslanik" type="xs:string"/>
+            <xs:attribute name="kreirao" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

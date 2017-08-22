@@ -77,8 +77,8 @@ public class Akt {
     protected String grad;
     @XmlAttribute(name = "stanje", required = true)
     protected StanjeAkta stanje;
-    @XmlAttribute(name = "kreirao_poslanik")
-    protected String kreiraoPoslanik;
+    @XmlAttribute(name = "kreirao", required = true)
+    protected String kreirao;
 
     /**
      * Gets the value of the preambula property.
@@ -307,27 +307,27 @@ public class Akt {
     }
 
     /**
-     * Gets the value of the kreiraoPoslanik property.
+     * Gets the value of the kreirao property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getKreiraoPoslanik() {
-        return kreiraoPoslanik;
+    public String getKreirao() {
+        return kreirao;
     }
 
     /**
-     * Sets the value of the kreiraoPoslanik property.
+     * Sets the value of the kreirao property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setKreiraoPoslanik(String value) {
-        this.kreiraoPoslanik = value;
+    public void setKreirao(String value) {
+        this.kreirao = value;
     }
 
 }

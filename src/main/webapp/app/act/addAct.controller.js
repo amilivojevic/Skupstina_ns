@@ -5,7 +5,7 @@
     angular.module("skupstinaNS")
         .controller("AddActController", addActController);
 
-    function addActController($scope,$http) {
+    function addActController($scope,$http,$window) {
         var vm = this;
         vm.addAct = addAct;
         vm.dodajDeoNaFront = dodajDeoNaFront;
@@ -19,22 +19,20 @@
         vm.dodajAlineju_podtacku_tacka_stav_clan = dodajAlineju_podtacku_tacka_stav_clan;
         vm.dodajSadrzaj_podtacka_tacka_stav_clan = dodajSadrzaj_podtacka_tacka_stav_clan;
 
-
-
-
         function addAct() {
 
-
-            //console.log("kreirani clanovi: " + JSON.stringify($scope.clanovi));
-            //console.log("transformisani clanovi: " + JSON.stringify(transformClanovi($scope)));
-
+            var ulogovani = $window.localStorage['loggedUser'];
+            console.log("ulogovani: " + ulogovani.korisnickoIme);
+            vm.sadrzaj_stava = "";
+            vm.stanje = "U_PROCEDURI";
+            vm.kreirao = angular.fromJson($window.localStorage['loggedUser']);;
             var noviAkt = {
                 "naziv": vm.naziv,
                 "drzava": vm.drzava,
                 "regija": vm.regija,
                 "grad": vm.grad,
                 "stanje": vm.stanje,
-                "kreiraoPoslanik " : "username_poslanika",
+                "kreirao" : vm.kreirao.korisnickoIme,
                 "preambula": vm.preambula,
                 "clan" : transformClanovi($scope)
             }
