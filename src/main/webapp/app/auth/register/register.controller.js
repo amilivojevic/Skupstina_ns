@@ -5,10 +5,15 @@
     angular.module("skupstinaNS")
         .controller("RegisterController", registerController);
 
-    function registerController(RegisterService) {
+    function registerController(RegisterService, $scope, $window) {
         var vm = this;
         vm.register = register;
         vm.types = ['Poslanik', 'Predsednik'];
+
+        $scope.redirect = function(){
+            $window.location.href = "http://" + $window.location.host + "/#!/login";
+
+        }
 
         function register(){
             vm.new_user = {
@@ -24,6 +29,7 @@
 
             RegisterService.register(vm.new_user).then(function (response) {
               console.log("valjda je kreiran: " + response.data.response)
+                $scope.redirect();
             },function(response){
                 alert(response.data);
             });

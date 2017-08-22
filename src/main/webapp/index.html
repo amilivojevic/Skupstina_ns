@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" ng-app="skupstinaNS">
+<head >
     <meta charset="UTF-8">
     <title>Skupstina Novog Sada</title>
 
@@ -15,6 +15,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
+
+    <!-- Bower include -->
+
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -22,6 +25,15 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-lodash-module/angular-lodash-module.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+
+
+
+
+  <!--  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+     <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script> -->
 
     <script src="app.js"></script>
     <script src="app/auth/login/login.controller.js"></script>
@@ -33,28 +45,16 @@
     <script src="app/act/addAct.service.js"></script>
     <script src="app/act/addAct.controller.js"></script>
     <script src="app/sednica/addSednica.controller.js"></script>
+    <script src="app/navbar/navbar.controller.js"></script>
 
 </head>
-<body ng-app="skupstinaNS">
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/#/profile">Profile</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href='/#!/login'>Prijava</a></li>
-            <li><a href='/#!/register'>Registracija</a></li>
-            <li><a href='/#!/addAct'>Dodaj akt</a></li>
-            <li><a href='/#!/addSednica'>Dodaj sednicu</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li ><a href="/#/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        </ul>
+<body class="ng-cloak">
+<div ui-view="navbar"></div>
+</br>
+    <div>
+        <h1 class="text-center"><b>SKUPSTINA NOVOG SADA</b></h1>
+        <img src="images/grb2.png" align="center" class="img-responsive center-block img-circle" > </img>
     </div>
-</nav>
-<h1 class="text-center"><b>SKUPSTINA NOVOG SADA</b></h1>
-    <img src="images/grb2.png" align="center" class="img-responsive center-block img-circle" ></img>
-    <div ng-view></div>
-
+<div ui-view="content"></div>
 </body>
 </html>

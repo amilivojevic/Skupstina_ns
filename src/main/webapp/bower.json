@@ -10,7 +10,7 @@
     "skupstina"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/amilivojevic/Skupstina_ns",
   "dependencies": {
     "angular": "^1.6.4",
     "restangular": "^1.6.1",
@@ -18,5 +18,12 @@
     "angular-resource": "^1.6.4",
     "angular-lodash-module": "^1.2.0",
     "angular-bootstrap": "^2.5.0"
-  }
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
