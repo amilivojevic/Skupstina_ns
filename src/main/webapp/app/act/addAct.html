@@ -46,6 +46,7 @@
                     <input id="preambula2" ng-model="addActCtrl.preambula.organ" name="preambula" type="text" placeholder="unesite naziv organa" class="form-control input-md" required="">
                 </div>
                 <div class="col-md-4">
+
                     <textarea id="preambula3" ng-model="addActCtrl.preambula.pravniOsnov" name="preambula" type="text" placeholder="unesite preambulu" class="form-control input-md" required=""></textarea>
                 </div>
                 <!-- Select Basic -->
@@ -75,7 +76,6 @@
             <label  class="text-center" ng-hide="">{{naslov1}}</label>
 
 
-
             <!--                              C L A N O V I                                             -->
 
 
@@ -100,17 +100,6 @@
                         </div>
                     </div>
 
-
-                    <!--                              SADRZAJ                                            -->
-                    <div ng-repeat="s in clan.sadrzaj">
-                        <div class="form-group">
-                            <label class="col-md-5 control-label">Sadrzaj clana:</label>
-                            <div class="col-md-3">
-                                <textarea ng-model="clan.sadrzaj[$index]" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
-                            </div>
-                        </div>
-                    </div>
-
                     <!--                              STAVOVI                                            -->
                     <div ng-repeat="s in clan.stavovi">
                         <div class="form-group">
@@ -128,7 +117,7 @@
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Sadrzaj stava:</label>
                                 <div class="col-md-3">
-                                    <textarea ng-model="s.sadrzaj[$index]" name="preambula" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
+                                    <textarea ng-model="s.sadrzaj[$index]" type="text" placeholder="unesite sadrzaj" class="form-control input-md" required=""></textarea>
                                 </div>
                             </div>
                         </div>
