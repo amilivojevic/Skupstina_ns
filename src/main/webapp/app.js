@@ -101,6 +101,21 @@
                         }
                     }
                 })
+                .state('izmeniProfilPredsednik', {
+                    url: '/izmeniProfilPredsednik',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/user/predsednik/izmeni_profil_predsednik.html',
+                            controller: 'PredsednikController',
+                            controllerAs: 'predsednikCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    }
+                })
                 .state('addAct', {
                     url: '/addAct',
                     views: {

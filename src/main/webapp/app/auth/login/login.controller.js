@@ -39,8 +39,8 @@
                         console.log("ucitan u funkciji window.localstorage: " + JSON.stringify($window.localStorage['loggedUser']));
                         $scope.loggedUser = loggedUser;
                         var user = angular.fromJson($window.localStorage['loggedUser']);
-
-                        switch (user.role){
+                        console.log("pre switcha" , $window.localStorage.getItem("role"));
+                        switch ($window.localStorage.getItem("role")){
                             case "PREDSEDNIK" :
                                 $window.location = "#!/predsednik"; break;
                             case "POSLANIK" :
@@ -73,9 +73,9 @@
             $http.post('/api/users/login', userData)
                 .then(function(token) {
 
-                    var t = token.data.message.split(" ")[0];
+                    var t= token.data.message.split(" ")[0];
                     var role = token.data.message.split(" ")[1];
-
+                    $window.localStorage.setItem("role",role);
                     $window.localStorage.setItem("token",t);
                     console.log("token = " + $window.localStorage.getItem("token"));
                     console.log("role = " + role);
