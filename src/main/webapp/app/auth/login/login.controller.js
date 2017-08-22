@@ -44,7 +44,7 @@
                             case "PREDSEDNIK" :
                                 $window.location = "#!/predsednik"; break;
                             case "POSLANIK" :
-                                $window.location = "#!/poslanik"; break;
+                                $window.location = "#!/profil"; break;
                         }
                     }
                 );
