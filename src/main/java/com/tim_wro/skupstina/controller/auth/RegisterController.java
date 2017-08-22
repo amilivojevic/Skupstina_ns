@@ -123,4 +123,5 @@ public class RegisterController {
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(korisnik.toString()), HttpStatus.OK);
     }
+
 }

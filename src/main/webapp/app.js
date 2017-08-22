@@ -71,6 +71,21 @@
                         }
                     }
                 })
+                .state('izmeniProfil', {
+                    url: '/izmeniProfil',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/user/izmeni_profil_poslanik.html',
+                            controller: 'PoslanikController',
+                            controllerAs: 'poslanikCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/navbar.html',
+                            controller: 'NavbarController',
+                            controllerAs: 'navbarCtrl'
+                        }
+                    }
+                })
                 .state('addAct', {
                     url: '/addAct',
                     views: {
@@ -126,7 +141,7 @@ angular
                 controllerAs: 'registerCtrl'
             })
             .when('/profile', {
-                templateUrl: 'app/user/profile.html',
+                templateUrl: 'app/user/profil_poslanik.html',
                 controller: 'OwnerController',
                 controllerAs: 'ownerCtrl',
             })
