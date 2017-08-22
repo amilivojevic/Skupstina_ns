@@ -14,6 +14,11 @@
         vm.getLoggedUserData = getLoggedUserData;
 
 
+        $scope.redirect = function(){
+            $window.location.href = "http://" + $window.location.host + "/#/profil";
+
+        }
+
         checkIfLogged();
 
         function checkIfLogged(){
@@ -68,8 +73,6 @@
             $http.post('/api/users/login', userData)
                 .then(function(token) {
 
-
-                    alert("test");
                     var t = token.data.message.split(" ")[0];
                     var role = token.data.message.split(" ")[1];
 
@@ -80,7 +83,7 @@
 
                     checkIfLogged();
 
-
+                    $scope.redirect();
                 }, function(response) {
                     alert(response.data.response);
                     console.log("Wrong username and password combination");

@@ -41,6 +41,10 @@ public class UserService {
         return userRepository.save(korisnik);
 
     }
+    public Korisnik save(Korisnik u){
+        return userRepository.save(u);
+    }
+
 
 
 }
