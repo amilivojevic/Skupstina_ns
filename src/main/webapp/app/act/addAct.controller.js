@@ -25,8 +25,8 @@
         function addAct() {
 
 
-            console.log("kreirani clanovi: " + JSON.stringify($scope.clanovi));
-            console.log("transformisani clanovi: " + JSON.stringify(transformClanovi($scope)));
+            //console.log("kreirani clanovi: " + JSON.stringify($scope.clanovi));
+            //console.log("transformisani clanovi: " + JSON.stringify(transformClanovi($scope)));
 
             var noviAkt = {
                 "naziv": vm.naziv,
@@ -34,10 +34,11 @@
                 "regija": vm.regija,
                 "grad": vm.grad,
                 "stanje": vm.stanje,
+                "kreiraoPoslanik " : "username_poslanika",
                 "preambula": vm.preambula,
                 "clan" : transformClanovi($scope)
             }
-
+            console.log("noviAKT: " + JSON.stringify(noviAkt));
             $http.post('/api/akt/novi', noviAkt)
                 .then(function (response) {
                     console.log("Sve je dobro");
@@ -47,9 +48,6 @@
                 });
 
         }
-
-
-
 
         $scope.delovi=[];
         $scope.clanovi=[];

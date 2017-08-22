@@ -3,9 +3,9 @@ package com.tim_wro.skupstina.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element ref="{}pravni_osnov"/>
  *         &lt;element name="organ" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="oblast" type="{}oblast"/>
  *       &lt;/sequence>
- *       &lt;attribute name="oblast" type="{}oblast" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "pravniOsnov",
-    "organ"
+    "organ",
+    "oblast"
 })
 @XmlRootElement(name = "preambula")
 public class Preambula {
@@ -42,7 +43,8 @@ public class Preambula {
     protected String pravniOsnov;
     @XmlElement(required = true)
     protected String organ;
-    @XmlAttribute(name = "oblast")
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "string")
     protected Oblast oblast;
 
     /**

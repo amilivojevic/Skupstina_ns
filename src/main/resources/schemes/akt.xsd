@@ -146,8 +146,8 @@
             <xs:sequence>
                 <xs:element ref="pravni_osnov"/>
                 <xs:element name="organ" type="xs:string"/>
+                <xs:element name="oblast" type="oblast"/>
             </xs:sequence>
-            <xs:attribute name="oblast" type="oblast"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="sadrzaj" type="xs:string"/>

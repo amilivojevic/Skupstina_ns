@@ -36,13 +36,31 @@
                     <input id="grad" ng-model="addActCtrl.grad" name="grad" type="text" placeholder="unesite naziv grada" class="form-control input-md" required="">
                 </div>
             </div>
+
             <!-- Page title -->
             <legend  class="text-center"></legend>
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="preambula">Preambula:</label>
+                <label class="col-md-4 control-label">Preambula:</label>
                 <div class="col-md-4">
-                    <textarea id="preambula" ng-model="addActCtrl.preambula" name="preambula" type="text" placeholder="unesite preambulu" class="form-control input-md" required=""></textarea>
+                    <input id="preambula2" ng-model="addActCtrl.preambula.organ" name="preambula" type="text" placeholder="unesite naziv organa" class="form-control input-md" required="">
+                </div>
+                <div class="col-md-4">
+                    <textarea id="preambula3" ng-model="addActCtrl.preambula.pravniOsnov" name="preambula" type="text" placeholder="unesite preambulu" class="form-control input-md" required=""></textarea>
+                </div>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectbasic">Oblast</label>
+                    <div class="col-md-4">
+                        <select ng-model="addActCtrl.preambula.oblast" id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="ZDRAVSTVO">Zdravstvo</option>
+                            <option value="SKOLSTVO">Skolstvo</option>
+                            <option value="VOJSKA">Vojska</option>
+                            <option value="POLICIJA">Policija</option>
+                            <option value="PRAVOSUDJE">Pravosudje</option>
+                            <option value="OSTALO">Ostalo</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <!-- Button -->
@@ -73,13 +91,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Broj:</label>
                         <div class="col-md-4">
-                            <input ng-model="clanovi[$index].atributi.br" name="brClana" type="text" placeholder="unesite broj clana" class="form-control input-md" required="">
+                            <input ng-model="clanovi[$index].atributi.br" name="brClana" type="Number" placeholder="unesite broj clana" class="form-control input-md" required="">
                         </div>
                     </div>
                     <div class="form-group">
                         <div  class="col-md-12" align = "Center" >
                             <button id="button1id" name="button1id" class="btn btn-primary" ng-click="addActCtrl.dodajStav_clan($index)" ng-disabled="clan.disableDodajStav">Dodaj stav</button>
-                            <button id="button2id" name="button2id" class="btn btn-primary" ng-click="addActCtrl.dodajSadrzaj_clan($index)" ng-disabled="clan.disableDodajSadrzaj">Dodaj sadrzaj clana</button>
                         </div>
                     </div>
 
@@ -124,7 +141,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Broj:</label>
                                 <div class="col-md-4">
-                                    <input  ng-model="s.tacke[$index].atributi.br" name="brClana" type="text" placeholder="unesite broj tacke" class="form-control input-md" required="">
+                                    <input  ng-model="s.tacke[$index].atributi.br" name="brClana" type="Number" placeholder="unesite broj tacke" class="form-control input-md" required="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -151,7 +168,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Broj:</label>
                                     <div class="col-md-4">
-                                        <input ng-model="tacka.podtacke[$index].atributi.br" name="brClana" type="text" placeholder="unesite broj podtacke" class="form-control input-md" required="">
+                                        <input ng-model="tacka.podtacke[$index].atributi.br" name="brClana" type="Number" placeholder="unesite broj podtacke" class="form-control input-md" required="">
                                     </div>
                                 </div>
                                 <div class="form-group">
