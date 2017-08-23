@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence maxOccurs="unbounded">
- *         &lt;element ref="{}clan"/>
+ *         &lt;element ref="{skupstinaNS}clan"/>
  *       &lt;/sequence>
  *       &lt;attribute name="naziv" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="id" use="required">
@@ -42,10 +42,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "clan"
 })
-@XmlRootElement(name = "pododeljak")
+@XmlRootElement(name = "pododeljak", namespace = "skupstinaNS")
 public class Pododeljak {
 
-    @XmlElement(required = true)
+    @XmlElement(namespace = "skupstinaNS", required = true)
     protected List<Clan> clan;
     @XmlAttribute(name = "naziv", required = true)
     protected String naziv;

@@ -19,9 +19,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}pravni_osnov"/>
+ *         &lt;element ref="{skupstinaNS}pravni_osnov"/>
  *         &lt;element name="organ" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="oblast" type="{}oblast"/>
+ *         &lt;element name="oblast" type="{skupstinaNS}oblast"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,14 +36,14 @@ import javax.xml.bind.annotation.XmlType;
     "organ",
     "oblast"
 })
-@XmlRootElement(name = "preambula")
+@XmlRootElement(name = "preambula", namespace = "skupstinaNS")
 public class Preambula {
 
-    @XmlElement(name = "pravni_osnov", required = true)
+    @XmlElement(name = "pravni_osnov", namespace = "skupstinaNS", required = true)
     protected String pravniOsnov;
-    @XmlElement(required = true)
+    @XmlElement(namespace = "skupstinaNS", required = true)
     protected String organ;
-    @XmlElement(required = true)
+    @XmlElement(namespace = "skupstinaNS", required = true)
     @XmlSchemaType(name = "string")
     protected Oblast oblast;
 

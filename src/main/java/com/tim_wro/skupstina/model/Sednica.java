@@ -1,15 +1,20 @@
 
 package com.tim_wro.skupstina.model;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -21,10 +26,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="datum" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="redniBroj" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="naziv" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *       &lt;sequence maxOccurs="unbounded">
+ *         &lt;element ref="{skupstinaNS}akt"/>
+ *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="datum" type="{http://www.w3.org/2001/XMLSchema}date" />
+ *       &lt;attribute name="redniBroj" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="naziv" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="brojPrisutnih" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="korisnickoIme" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="stanje" type="{skupstinaNS}stanje_sednice" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -33,34 +44,95 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "sednica")
+@XmlType(name = "", propOrder = {
+    "akt"
+})
+@XmlRootElement(name = "sednica", namespace = "skupstinaNS")
 public class Sednica {
 
-    @XmlAttribute(name = "datum")
-    @XmlSchemaType(name = "anySimpleType")
-    protected String datum;
-    @XmlAttribute(name = "redniBroj")
-    @XmlSchemaType(name = "anySimpleType")
-    protected String redniBroj;
-    @XmlAttribute(name = "naziv")
-    @XmlSchemaType(name = "anySimpleType")
-    protected String naziv;
+    @XmlElement(namespace = "skupstinaNS", required = true)
+    protected List<Akt> akt;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String id;
+    @XmlAttribute(name = "datum")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datum;
+    @XmlAttribute(name = "redniBroj")
+    protected String redniBroj;
+    @XmlAttribute(name = "naziv")
+    protected String naziv;
+    @XmlAttribute(name = "brojPrisutnih")
+    protected BigInteger brojPrisutnih;
+    @XmlAttribute(name = "korisnickoIme")
+    protected String korisnickoIme;
+    @XmlAttribute(name = "stanje")
+    protected StanjeSednice stanje;
 
     /**
-     * Gets the value of the datum property.
+     * Gets the value of the akt property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the akt property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAkt().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Akt }
+     * 
+     * 
+     */
+    public List<Akt> getAkt() {
+        if (akt == null) {
+            akt = new ArrayList<Akt>();
+        }
+        return this.akt;
+    }
+
+    /**
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getDatum() {
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
+
+    /**
+     * Gets the value of the datum property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatum() {
         return datum;
     }
 
@@ -69,10 +141,10 @@ public class Sednica {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDatum(String value) {
+    public void setDatum(XMLGregorianCalendar value) {
         this.datum = value;
     }
 
@@ -125,27 +197,75 @@ public class Sednica {
     }
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the brojPrisutnih property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getBrojPrisutnih() {
+        return brojPrisutnih;
+    }
+
+    /**
+     * Sets the value of the brojPrisutnih property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setBrojPrisutnih(BigInteger value) {
+        this.brojPrisutnih = value;
+    }
+
+    /**
+     * Gets the value of the korisnickoIme property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
+    public String getKorisnickoIme() {
+        return korisnickoIme;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the korisnickoIme property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
+    public void setKorisnickoIme(String value) {
+        this.korisnickoIme = value;
+    }
+
+    /**
+     * Gets the value of the stanje property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StanjeSednice }
+     *     
+     */
+    public StanjeSednice getStanje() {
+        return stanje;
+    }
+
+    /**
+     * Sets the value of the stanje property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StanjeSednice }
+     *     
+     */
+    public void setStanje(StanjeSednice value) {
+        this.stanje = value;
     }
 
 }

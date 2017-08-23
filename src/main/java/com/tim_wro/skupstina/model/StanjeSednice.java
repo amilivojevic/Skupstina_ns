@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "stanje_sednice")
+@XmlType(name = "stanje_sednice", namespace = "skupstinaNS")
 @XmlEnum
 public enum StanjeSednice {
 

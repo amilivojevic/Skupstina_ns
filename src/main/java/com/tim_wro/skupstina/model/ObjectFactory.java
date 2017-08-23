@@ -24,9 +24,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _PravniOsnov_QNAME = new QName("", "pravni_osnov");
-    private final static QName _Sadrzaj_QNAME = new QName("", "sadrzaj");
-    private final static QName _Alineja_QNAME = new QName("", "alineja");
+    private final static QName _Alineja_QNAME = new QName("skupstinaNS", "alineja");
+    private final static QName _Sadrzaj_QNAME = new QName("skupstinaNS", "sadrzaj");
+    private final static QName _PravniOsnov_QNAME = new QName("skupstinaNS", "pravni_osnov");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.tim_wro.skupstina.model
@@ -116,19 +116,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * Create an instance of {@link Sednica }
      * 
      */
-    @XmlElementDecl(namespace = "", name = "pravni_osnov")
-    public JAXBElement<String> createPravniOsnov(String value) {
-        return new JAXBElement<String>(_PravniOsnov_QNAME, String.class, null, value);
+    public Sednica createSednica() {
+        return new Sednica();
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "sadrzaj")
+    @XmlElementDecl(namespace = "skupstinaNS", name = "alineja")
+    public JAXBElement<String> createAlineja(String value) {
+        return new JAXBElement<String>(_Alineja_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "skupstinaNS", name = "sadrzaj")
     public JAXBElement<String> createSadrzaj(String value) {
         return new JAXBElement<String>(_Sadrzaj_QNAME, String.class, null, value);
     }
@@ -137,9 +145,9 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "alineja")
-    public JAXBElement<String> createAlineja(String value) {
-        return new JAXBElement<String>(_Alineja_QNAME, String.class, null, value);
+    @XmlElementDecl(namespace = "skupstinaNS", name = "pravni_osnov")
+    public JAXBElement<String> createPravniOsnov(String value) {
+        return new JAXBElement<String>(_PravniOsnov_QNAME, String.class, null, value);
     }
 
 }

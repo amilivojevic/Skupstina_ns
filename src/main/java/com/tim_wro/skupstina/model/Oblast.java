@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "oblast")
+@XmlType(name = "oblast", namespace = "skupstinaNS")
 @XmlEnum
 public enum Oblast {
 
