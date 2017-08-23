@@ -1,34 +1,77 @@
-<section layout="column" flex flex-gt-md="150">
-    <div flex-gt-md="120" layout="column" layout-align="center center">
-        <div>
-            <md-input-container>
-                <label>Pretražite dokumente po njihovom sadržaju...</label>
-                <input type="text" ng-model="vm.searchText"/>
-            </md-input-container>
-            <md-button class="md-raised" ng-click="vm.searchByText()">Traži</md-button>
+<legend></legend>
+<div class="row">
+    <div class="col-xs-3">
 
-            <md-input-container>
-                <label>Unesite ključne reči pretrage...</label>
-                <input type="text" ng-model="vm.searchTerm"/>
-            </md-input-container>
-            <md-button class="md-raised" ng-click="vm.searchByTerm()">Traži</md-button>
-        </div>
-        <div layout>
-            Prikaži: &nbsp
-            <md-radio-group layout ng-model="vm.statusTerm" ng-change="vm.onStatusChoice()">
-                <md-radio-button value="" aria-label="all">
-                    Sve akte
-                </md-radio-button>
-                <md-radio-button value="PENDING" aria-label="pending">
-                    Akte u proceduri
-                </md-radio-button>
-                <md-radio-button value="ACCEPTED" aria-label="accepted">
-                    Usvojene akte
-                </md-radio-button>
-            </md-radio-group>
+        <form class="form-horizontal">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Filtriranje:</legend>
+
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Po nazivu:</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input  name="buttondropdown" class="form-control" type="text">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">
+                                    trazi
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Appended Input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" >Po sadrzaju:</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input id="buttondropdown" name="buttondropdown" class="form-control" type="text">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">
+                                    trazi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" >Po stanju:</label>
+                    <div class="col-md-8">
+                        <select name="selectbasic" class="form-control">
+                            <option disabled selected value>-- izaberite stanje --</option>
+                            <option value="1">U PROCEDURI</option>
+                            <option value="2">U CELOSTI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" >Po oblasti:</label>
+                    <div class="col-md-8">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option disabled selected value>-- izaberite oblast --</option>
+                            <option value="1">ZDRAVSTVO</option>
+                            <option value="2">SKOLSTVO</option>
+                            <option value="1">VOJSKA</option>
+                            <option value="2">POLICIJA</option>
+                            <option value="1">PRAVOSUDJE</option>
+                            <option value="2">OSTALO</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+
+    </div>
+    <div class="col-xs-4">
+        <div ng-repeat="a in homeCtrl.akti">
+            {{a.naziv}}
+            </br>
         </div>
     </div>
-    <div id="allActs" flex-gt-md="120" layout="column" layout-align="center center">
-
-    </div>
-</section>
+</div>

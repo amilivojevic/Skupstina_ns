@@ -1,6 +1,8 @@
 
 package com.tim_wro.skupstina.model;
 
+import com.tim_wro.skupstina.model.enumerations.StanjeAkta;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -330,4 +332,19 @@ public class Akt {
         this.kreirao = value;
     }
 
+    @Override
+    public String toString() {
+        return "Akt{" +
+                "preambula=" + preambula +
+                ", deo=" + deo +
+                ", clan=" + clan +
+                ", id='" + id + '\'' +
+                ", naziv='" + naziv + '\'' +
+                ", drzava='" + drzava + '\'' +
+                ", regija='" + regija + '\'' +
+                ", grad='" + grad + '\'' +
+                ", stanje=" + stanje +
+                ", kreirao='" + kreirao + '\'' +
+                '}';
+    }
 }

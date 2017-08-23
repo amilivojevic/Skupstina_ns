@@ -3,20 +3,42 @@ package com.tim_wro.skupstina.services;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.EvalResultIterator;
+import com.marklogic.client.eval.ServerEvaluationCall;
+import com.marklogic.client.io.DOMHandle;
+import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
+import com.marklogic.client.io.JAXBHandle;
+import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.repository.AktRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.tim_wro.skupstina.util.*;
+import org.xml.sax.SAXException;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import javax.xml.XMLConstants;
+import javax.xml.bind.JAXB;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,11 +50,99 @@ public class AktService {
 
     private AktRepository aktRepository;
     public static final String RDF_XSL = "src/main/resources/schemes/akt.xsl";
+    private static TransformerFactory transformerFactory;
+
+    static {
+        transformerFactory = TransformerFactory.newInstance();
+    }
 
     @Autowired
     public AktService(AktRepository aktRepository) {
         this.aktRepository = aktRepository;
 
+    }
+
+    public Akt getOne(String imeAkta) throws JAXBException {
+        DatabaseClient client;
+        Util.ConnectionProperties props = null;
+        try {
+            props = Util.loadProperties();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password, props.authType);
+        final XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+        // A JAXB handle to receive the document's content.
+        JAXBContext context = JAXBContext.newInstance("com.tim_wro.skupstina.model");
+        JAXBHandle<Akt> handle = new JAXBHandle<Akt>(context);
+
+
+        // A metadata handle for metadata retrieval
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+
+        // A document URI identifier.
+        String docId = "/akt/akt1.xml";
+
+        // Write the document to the database
+        System.out.println("[INFO] Retrieving \"" + docId + "\" from "
+                + (props.database.equals("") ? "default" : props.database)
+                + " database.");
+
+        xmlManager.read(docId, handle);
+
+        // Retrieving a Bookstore instance
+        Akt akt = handle.get();
+
+        // Reading metadata
+        System.out.println("[INFO] Assigned collections: " + metadata.getCollections());
+
+        // Serializing DOM tree to standard output.
+        System.out.println("[INFO] Retrieved content:");
+        System.out.println(akt);
+
+        // Release the client
+        client.release();
+
+        System.out.println("[INFO] End.");
+
+        return akt;
+    }
+
+    /**
+     * Serializes DOM tree to an arbitrary OutputStream.
+     *
+     * @param node a node to be serialized
+     * @param out an output stream to write the serialized
+     * DOM representation to
+     *
+     */
+    public static void transform(Node node, OutputStream out) {
+        try {
+
+            // Kreiranje instance objekta zaduzenog za serijalizaciju DOM modela
+            Transformer transformer = transformerFactory.newTransformer();
+
+            // Indentacija serijalizovanog izlaza
+            transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            // Nad "source" objektom (DOM stablo) vrši se transformacija
+            DOMSource source = new DOMSource(node);
+
+            // Rezultujući stream (argument metode)
+            StreamResult result = new StreamResult(out);
+
+            // Poziv metode koja vrši opisanu transformaciju
+            transformer.transform(source, result);
+
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerFactoryConfigurationError e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 
     public void writeInMarkLogicDB(File file) throws FileNotFoundException {

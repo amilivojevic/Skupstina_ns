@@ -1,5 +1,5 @@
 
-package com.tim_wro.skupstina.model;
+package com.tim_wro.skupstina.model.enumerations;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -7,34 +7,34 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for stanje_akta.
+ * <p>Java class for stanje_sednice.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="stanje_akta">
+ * &lt;simpleType name="stanje_sednice">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="u_proceduri"/>
- *     &lt;enumeration value="u_nacelu"/>
- *     &lt;enumeration value="u_celosti"/>
+ *     &lt;enumeration value="zakazana"/>
+ *     &lt;enumeration value="aktivna"/>
+ *     &lt;enumeration value="zavrsena"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "stanje_akta")
+@XmlType(name = "stanje_sednice")
 @XmlEnum
-public enum StanjeAkta {
+public enum StanjeSednice {
 
-    @XmlEnumValue("u_proceduri")
-    U_PROCEDURI("u_proceduri"),
-    @XmlEnumValue("u_nacelu")
-    U_NACELU("u_nacelu"),
-    @XmlEnumValue("u_celosti")
-    U_CELOSTI("u_celosti");
+    @XmlEnumValue("zakazana")
+    ZAKAZANA("zakazana"),
+    @XmlEnumValue("aktivna")
+    AKTIVNA("aktivna"),
+    @XmlEnumValue("zavrsena")
+    ZAVRSENA("zavrsena");
     private final String value;
 
-    StanjeAkta(String v) {
+    StanjeSednice(String v) {
         value = v;
     }
 
@@ -42,8 +42,8 @@ public enum StanjeAkta {
         return value;
     }
 
-    public static StanjeAkta fromValue(String v) {
-        for (StanjeAkta c: StanjeAkta.values()) {
+    public static StanjeSednice fromValue(String v) {
+        for (StanjeSednice c: StanjeSednice.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
