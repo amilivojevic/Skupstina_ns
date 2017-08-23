@@ -62,7 +62,7 @@
                     url: '/profil',
                     views: {
                         'content': {
-                            templateUrl: 'app/user/profil_poslanik.html',
+                            templateUrl: 'app/user/poslanik/profil_poslanik.html',
                             controller: 'PoslanikController',
                             controllerAs: 'poslanikCtrl'
                         },
@@ -77,7 +77,7 @@
                     url: '/izmeniProfil',
                     views: {
                         'content': {
-                            templateUrl: 'app/user/izmeni_profil_poslanik.html',
+                            templateUrl: 'app/user/poslanik/izmeni_profil_poslanik.html',
                             controller: 'PoslanikController',
                             controllerAs: 'poslanikCtrl'
                         },
@@ -85,6 +85,36 @@
                             templateUrl: 'app/navbar/navbar.html',
                             controller: 'NavbarController',
                             controllerAs: 'navbarCtrl'
+                        }
+                    }
+                })
+                .state('predsednik', {
+                    url: '/predsednik',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/user/predsednik/profil_predsednik.html',
+                            controller: 'PredsednikController',
+                            controllerAs: 'predsednikCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    }
+                })
+                .state('izmeniProfilPredsednik', {
+                    url: '/izmeniProfilPredsednik',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/user/predsednik/izmeni_profil_predsednik.html',
+                            controller: 'PredsednikController',
+                            controllerAs: 'predsednikCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
                         }
                     }
                 })

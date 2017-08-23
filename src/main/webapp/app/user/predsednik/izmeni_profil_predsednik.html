@@ -1,0 +1,41 @@
+<div class="container">
+    <form class="form-horizontal" ng-submit="predsednikCtrl.modify()" >
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend  class="text-center">Profil korisnika</legend>
+            <center>
+                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+
+                </br></br>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="name">Ime:</label>
+                    <div class="col-md-4">
+                        <input id="name" ng-model="predsednikCtrl.userData.ime" name="name" type="text" class="form-control input-md" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="surname">Prezime:</label>
+                    <div class="col-md-4">
+                        <input id="surname" ng-model="predsednikCtrl.userData.prezime" name="surname" type="text" class="form-control input-md" >
+
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="submit"></label>
+                    <div class="col-md-4">
+                        <button id="submit" name="submit" class="btn btn-primary">Izmeni</button>
+                    </div>
+                </div>
+
+        </fieldset>
+    </form>
+
+</div>

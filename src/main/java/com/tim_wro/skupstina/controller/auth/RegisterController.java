@@ -66,6 +66,7 @@ public class RegisterController {
             Korisnik u = userService.findByToken(final_token);
             // vratimo 200 OK, klijennt MORA DA SACUVA TRAJNi O ovaj token, i da ga stalno salje u svaki sledeci request
             // X-Auth-Header
+            System.out.println(final_token + " " + u.getTip().name());
             return new ResponseEntity<>(new ResponseMessage(final_token + " " + u.getTip().name()), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(new ResponseMessage("Invalid login"),
