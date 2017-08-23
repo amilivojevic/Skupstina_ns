@@ -16,7 +16,9 @@
                     url: '/home',
                     views: {
                         'content': {
-                            templateUrl: 'app/static/notlogged_home.html',
+                            templateUrl: '/home.html',
+                            controller: 'HomeController',
+                            controllerAs: 'homeCtrl'
                         },
                         'navbar': {
                             templateUrl: 'app/navbar/navbar.html',
