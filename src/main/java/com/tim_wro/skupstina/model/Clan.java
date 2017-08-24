@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence maxOccurs="unbounded">
- *         &lt;element ref="{}stav"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}stav"/>
  *       &lt;/sequence>
  *       &lt;attribute name="naziv" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="br" use="required">
@@ -42,10 +42,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "stav"
 })
-@XmlRootElement(name = "clan")
+@XmlRootElement(name = "clan", namespace = "http://www.skustinans.rs/akti")
 public class Clan {
 
-    @XmlElement(required = true)
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected List<Stav> stav;
     @XmlAttribute(name = "naziv", required = true)
     protected String naziv;

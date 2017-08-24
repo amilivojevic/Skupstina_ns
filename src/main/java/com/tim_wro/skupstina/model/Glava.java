@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -21,10 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence maxOccurs="unbounded" minOccurs="0">
- *           &lt;element ref="{}odeljak"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}odeljak"/>
  *         &lt;/sequence>
  *         &lt;sequence maxOccurs="unbounded">
- *           &lt;element ref="{}clan"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}clan"/>
  *         &lt;/sequence>
  *       &lt;/choice>
  *       &lt;attribute name="naziv" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -47,10 +48,12 @@ import javax.xml.bind.annotation.XmlType;
     "odeljak",
     "clan"
 })
-@XmlRootElement(name = "glava")
+@XmlRootElement(name = "glava", namespace = "http://www.skustinans.rs/akti")
 public class Glava {
 
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Odeljak> odeljak;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Clan> clan;
     @XmlAttribute(name = "naziv", required = true)
     protected String naziv;

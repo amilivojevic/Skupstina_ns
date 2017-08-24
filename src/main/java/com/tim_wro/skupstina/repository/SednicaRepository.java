@@ -8,8 +8,6 @@ import com.marklogic.client.io.JAXBHandle;
 import com.marklogic.client.io.StringHandle;
 import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.client.semantics.RDFMimeTypes;
-import com.tim_wro.skupstina.model.Akt;
-import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.util.Properties;
 import org.springframework.stereotype.Component;
 

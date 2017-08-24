@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -20,9 +21,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence maxOccurs="unbounded" minOccurs="2">
- *           &lt;element ref="{}tacka"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}tacka"/>
  *         &lt;/sequence>
- *         &lt;element ref="{}sadrzaj"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}sadrzaj"/>
  *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,10 +37,12 @@ import javax.xml.bind.annotation.XmlType;
     "tacka",
     "sadrzaj"
 })
-@XmlRootElement(name = "stav")
+@XmlRootElement(name = "stav", namespace = "http://www.skustinans.rs/akti")
 public class Stav {
 
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Tacka> tacka;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected String sadrzaj;
 
     /**

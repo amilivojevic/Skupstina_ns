@@ -5,8 +5,8 @@
     angular.module("skupstinaNS")
         .controller("AddSednicaController", addSednicaController);
 
-    function addSednicaController($scope,$http) {
-        var vm = this;
+function addSednicaController($scope,$http, LoginFactory, $window) {
+    var vm = this;
         vm.addSednica = addSednica;
 
         function addSednica() {
@@ -15,11 +15,23 @@
        //     console.log("kreirani clanovi: " + JSON.stringify($scope.clanovi));
       //      console.log("transformisani clanovi: " + JSON.stringify(transformClanovi($scope)));
 
+            var logedUser = $window.localStorage['loggedUser'];
+
+            console.log("kreirani clanovi: " + JSON.stringify(logedUser));
+
+            vm.kreirao = angular.fromJson($window.localStorage['loggedUser']);;
+
             var novaSednica = {
+                "akt": [],
                 "datum": vm.datum,
                 "redniBroj": vm.redniBroj,
                 "naziv": vm.naziv,
-                "stanje": vm.stanje
+                "brojPrisutnih": 0,
+                "korisnickoIme": vm.kreirao.korisnickoIme,
+                "stanje": "ZAKAZANA"
+
+
+
             }
 
             $http.post('/api/sednica/novi', novaSednica)

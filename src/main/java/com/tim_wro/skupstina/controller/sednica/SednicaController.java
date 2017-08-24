@@ -1,6 +1,5 @@
 package com.tim_wro.skupstina.controller.sednica;
 
-import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 @RestController
 @RequestMapping("/api/sednica")
@@ -27,13 +27,12 @@ public class SednicaController {
         this.sednicaService = sednicaService;
     }
 
-    @PostMapping("/novi")
-    public ResponseEntity create(@RequestBody Sednica sednica) {
 
-        System.out.println("stigla sednica!!!");
+    @PostMapping("/novi")
+    public ResponseEntity create(@RequestBody Sednica sednica) throws FileNotFoundException {
 
         //marshalling
-        File file = new File("D:\\file.xml");
+        File file = new File("file1.xml");
         JAXBContext jaxbContext = null;
         try {
             jaxbContext = JAXBContext.newInstance(Sednica.class);
@@ -49,6 +48,10 @@ public class SednicaController {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+
+        //writing in marklogic db
+
+        sednicaService.writeInMarkLogicDB(file);
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
 

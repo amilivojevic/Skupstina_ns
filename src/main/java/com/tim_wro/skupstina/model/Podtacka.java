@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -21,9 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence maxOccurs="unbounded">
- *           &lt;element ref="{}alineja"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}alineja"/>
  *         &lt;/sequence>
- *         &lt;element ref="{}sadrzaj"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}sadrzaj"/>
  *       &lt;/choice>
  *       &lt;attribute name="br" use="required">
  *         &lt;simpleType>
@@ -44,10 +45,12 @@ import javax.xml.bind.annotation.XmlType;
     "alineja",
     "sadrzaj"
 })
-@XmlRootElement(name = "podtacka")
+@XmlRootElement(name = "podtacka", namespace = "http://www.skustinans.rs/akti")
 public class Podtacka {
 
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<String> alineja;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected String sadrzaj;
     @XmlAttribute(name = "br", required = true)
     protected int br;

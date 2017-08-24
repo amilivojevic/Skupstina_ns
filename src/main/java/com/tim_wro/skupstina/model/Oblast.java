@@ -1,5 +1,5 @@
 
-package com.tim_wro.skupstina.model.enumerations;
+package com.tim_wro.skupstina.model;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "oblast")
+@XmlType(name = "oblast", namespace = "http://www.skustinans.rs/akti")
 @XmlEnum
 public enum Oblast {
 
