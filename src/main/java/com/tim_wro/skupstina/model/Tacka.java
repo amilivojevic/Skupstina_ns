@@ -22,9 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence maxOccurs="unbounded" minOccurs="2">
- *           &lt;element ref="{skupstinaNS}podtacka"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}podtacka"/>
  *         &lt;/sequence>
- *         &lt;element ref="{skupstinaNS}sadrzaj"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}sadrzaj"/>
  *       &lt;/choice>
  *       &lt;attribute name="br" use="required">
  *         &lt;simpleType>
@@ -45,12 +45,12 @@ import javax.xml.bind.annotation.XmlType;
     "podtacka",
     "sadrzaj"
 })
-@XmlRootElement(name = "tacka", namespace = "skupstinaNS")
+@XmlRootElement(name = "tacka", namespace = "http://www.skustinans.rs/akti")
 public class Tacka {
 
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Podtacka> podtacka;
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected String sadrzaj;
     @XmlAttribute(name = "br", required = true)
     protected int br;

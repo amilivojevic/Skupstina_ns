@@ -3,10 +3,8 @@ package com.tim_wro.skupstina.controller.akt;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
-import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
-import com.marklogic.client.io.InputStreamHandle;
-import com.tim_wro.skupstina.dto.akt.AktDTO;
+import com.marklogic.client.io.JAXBHandle;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.util.ResponseMessage;
@@ -15,21 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 
-import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 
 /**
@@ -78,6 +70,7 @@ public class AktController {
 
     }
 
+    // hardcode-ovano da se ucita iz baze akt sa id-om /akt/akt1.xml!
     @RequestMapping(value = "/jedan", method = RequestMethod.GET)
     public ResponseEntity findByIdAct()
             throws JAXBException, IOException, SAXException {
@@ -96,8 +89,9 @@ public class AktController {
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
-        // A handle to receive the document's content.
-        DOMHandle content = new DOMHandle();
+        // A JAXB handle to receive the document's content.
+        JAXBContext context = JAXBContext.newInstance("com.tim_wro.skupstina.model");
+        JAXBHandle<Akt> handle = new JAXBHandle<Akt>(context);
 
         // A metadata handle for metadata retrieval
         DocumentMetadataHandle metadata = new DocumentMetadataHandle();
@@ -110,24 +104,17 @@ public class AktController {
                 + (props.database.equals("") ? "default" : props.database)
                 + " database.");
 
-        xmlManager.read(docId, metadata, content);
+        xmlManager.read(docId, metadata, handle);
 
-        // Retrieving a document node form DOM handle.
-        Document doc = content.get();
-
-		/*
-		 * A collection defines a set of documents in the database. You can set
-		 * documents to be in any number of collections either at the time the
-		 * document is created or by updating it.
-		 *
-		 */
+        // Retrieving a Act instance
+        Akt a = handle.get();
 
         // Reading metadata
         System.out.println("[INFO] Assigned collections: " + metadata.getCollections());
 
         // Serializing DOM tree to standard output.
         System.out.println("[INFO] Retrieved content:");
-        aktService.transform(doc, System.out);
+        System.out.println(a.toString());
 
         // Release the client
         client.release();
@@ -135,17 +122,12 @@ public class AktController {
         System.out.println("[INFO] End.");
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+/*
     @GetMapping("/svi")
     public ResponseEntity getAll() throws JAXBException {
 
-
-            //List<Akt> li = aktService.findAll();
-            aktService.getOne("akt1.xml");
-
-
         return new ResponseEntity<>(HttpStatus.OK);
-    }
+    }*/
 }
 
 

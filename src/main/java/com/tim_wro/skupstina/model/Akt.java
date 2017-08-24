@@ -1,8 +1,6 @@
 
 package com.tim_wro.skupstina.model;
 
-import com.tim_wro.skupstina.model.enumerations.StanjeAkta;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,13 +25,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{skupstinaNS}preambula"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}preambula"/>
  *         &lt;choice>
  *           &lt;sequence maxOccurs="unbounded" minOccurs="2">
- *             &lt;element ref="{skupstinaNS}deo"/>
+ *             &lt;element ref="{http://www.skustinans.rs/akti}deo"/>
  *           &lt;/sequence>
  *           &lt;sequence maxOccurs="unbounded">
- *             &lt;element ref="{skupstinaNS}clan"/>
+ *             &lt;element ref="{http://www.skustinans.rs/akti}clan"/>
  *           &lt;/sequence>
  *         &lt;/choice>
  *       &lt;/sequence>
@@ -42,7 +40,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="drzava" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="regija" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="grad" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="stanje" use="required" type="{skupstinaNS}stanje_akta" />
+ *       &lt;attribute name="stanje" use="required" type="{http://www.skustinans.rs/akti}stanje_akta" />
  *       &lt;attribute name="kreirao" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -57,14 +55,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "deo",
     "clan"
 })
-@XmlRootElement(name = "akt", namespace = "skupstinaNS")
+@XmlRootElement(name = "akt", namespace = "http://www.skustinans.rs/akti")
 public class Akt {
 
-    @XmlElement(namespace = "skupstinaNS", required = true)
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected Preambula preambula;
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Deo> deo;
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Clan> clan;
     @XmlAttribute(name = "id", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -334,19 +332,4 @@ public class Akt {
         this.kreirao = value;
     }
 
-    @Override
-    public String toString() {
-        return "Akt{" +
-                "preambula=" + preambula +
-                ", deo=" + deo +
-                ", clan=" + clan +
-                ", id='" + id + '\'' +
-                ", naziv='" + naziv + '\'' +
-                ", drzava='" + drzava + '\'' +
-                ", regija='" + regija + '\'' +
-                ", grad='" + grad + '\'' +
-                ", stanje=" + stanje +
-                ", kreirao='" + kreirao + '\'' +
-                '}';
-    }
 }

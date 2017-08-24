@@ -1,6 +1,5 @@
 package com.tim_wro.skupstina.controller.sednica;
 
-import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.util.ResponseMessage;

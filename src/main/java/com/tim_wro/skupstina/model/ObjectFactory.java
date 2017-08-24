@@ -24,9 +24,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Alineja_QNAME = new QName("skupstinaNS", "alineja");
-    private final static QName _Sadrzaj_QNAME = new QName("skupstinaNS", "sadrzaj");
-    private final static QName _PravniOsnov_QNAME = new QName("skupstinaNS", "pravni_osnov");
+    private final static QName _Sadrzaj_QNAME = new QName("http://www.skustinans.rs/akti", "sadrzaj");
+    private final static QName _Alineja_QNAME = new QName("http://www.skustinans.rs/akti", "alineja");
+    private final static QName _PravniOsnov_QNAME = new QName("http://www.skustinans.rs/akti", "pravni_osnov");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.tim_wro.skupstina.model
@@ -36,51 +36,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Stav }
+     * Create an instance of {@link Sednica }
      * 
      */
-    public Stav createStav() {
-        return new Stav();
-    }
-
-    /**
-     * Create an instance of {@link Tacka }
-     * 
-     */
-    public Tacka createTacka() {
-        return new Tacka();
-    }
-
-    /**
-     * Create an instance of {@link Podtacka }
-     * 
-     */
-    public Podtacka createPodtacka() {
-        return new Podtacka();
-    }
-
-    /**
-     * Create an instance of {@link Odeljak }
-     * 
-     */
-    public Odeljak createOdeljak() {
-        return new Odeljak();
-    }
-
-    /**
-     * Create an instance of {@link Pododeljak }
-     * 
-     */
-    public Pododeljak createPododeljak() {
-        return new Pododeljak();
-    }
-
-    /**
-     * Create an instance of {@link Clan }
-     * 
-     */
-    public Clan createClan() {
-        return new Clan();
+    public Sednica createSednica() {
+        return new Sednica();
     }
 
     /**
@@ -116,27 +76,58 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Sednica }
+     * Create an instance of {@link Odeljak }
      * 
      */
-    public Sednica createSednica() {
-        return new Sednica();
+    public Odeljak createOdeljak() {
+        return new Odeljak();
+    }
+
+    /**
+     * Create an instance of {@link Pododeljak }
+     * 
+     */
+    public Pododeljak createPododeljak() {
+        return new Pododeljak();
+    }
+
+    /**
+     * Create an instance of {@link Clan }
+     * 
+     */
+    public Clan createClan() {
+        return new Clan();
+    }
+
+    /**
+     * Create an instance of {@link Stav }
+     * 
+     */
+    public Stav createStav() {
+        return new Stav();
+    }
+
+    /**
+     * Create an instance of {@link Tacka }
+     * 
+     */
+    public Tacka createTacka() {
+        return new Tacka();
+    }
+
+    /**
+     * Create an instance of {@link Podtacka }
+     * 
+     */
+    public Podtacka createPodtacka() {
+        return new Podtacka();
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "skupstinaNS", name = "alineja")
-    public JAXBElement<String> createAlineja(String value) {
-        return new JAXBElement<String>(_Alineja_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "skupstinaNS", name = "sadrzaj")
+    @XmlElementDecl(namespace = "http://www.skustinans.rs/akti", name = "sadrzaj")
     public JAXBElement<String> createSadrzaj(String value) {
         return new JAXBElement<String>(_Sadrzaj_QNAME, String.class, null, value);
     }
@@ -145,7 +136,16 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "skupstinaNS", name = "pravni_osnov")
+    @XmlElementDecl(namespace = "http://www.skustinans.rs/akti", name = "alineja")
+    public JAXBElement<String> createAlineja(String value) {
+        return new JAXBElement<String>(_Alineja_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.skustinans.rs/akti", name = "pravni_osnov")
     public JAXBElement<String> createPravniOsnov(String value) {
         return new JAXBElement<String>(_PravniOsnov_QNAME, String.class, null, value);
     }

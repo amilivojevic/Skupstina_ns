@@ -22,9 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence maxOccurs="unbounded">
- *           &lt;element ref="{skupstinaNS}alineja"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}alineja"/>
  *         &lt;/sequence>
- *         &lt;element ref="{skupstinaNS}sadrzaj"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}sadrzaj"/>
  *       &lt;/choice>
  *       &lt;attribute name="br" use="required">
  *         &lt;simpleType>
@@ -45,12 +45,12 @@ import javax.xml.bind.annotation.XmlType;
     "alineja",
     "sadrzaj"
 })
-@XmlRootElement(name = "podtacka", namespace = "skupstinaNS")
+@XmlRootElement(name = "podtacka", namespace = "http://www.skustinans.rs/akti")
 public class Podtacka {
 
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<String> alineja;
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected String sadrzaj;
     @XmlAttribute(name = "br", required = true)
     protected int br;

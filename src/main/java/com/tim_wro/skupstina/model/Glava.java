@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence maxOccurs="unbounded" minOccurs="0">
- *           &lt;element ref="{skupstinaNS}odeljak"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}odeljak"/>
  *         &lt;/sequence>
  *         &lt;sequence maxOccurs="unbounded">
- *           &lt;element ref="{skupstinaNS}clan"/>
+ *           &lt;element ref="{http://www.skustinans.rs/akti}clan"/>
  *         &lt;/sequence>
  *       &lt;/choice>
  *       &lt;attribute name="naziv" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -48,12 +48,12 @@ import javax.xml.bind.annotation.XmlType;
     "odeljak",
     "clan"
 })
-@XmlRootElement(name = "glava", namespace = "skupstinaNS")
+@XmlRootElement(name = "glava", namespace = "http://www.skustinans.rs/akti")
 public class Glava {
 
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Odeljak> odeljak;
-    @XmlElement(namespace = "skupstinaNS")
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Clan> clan;
     @XmlAttribute(name = "naziv", required = true)
     protected String naziv;

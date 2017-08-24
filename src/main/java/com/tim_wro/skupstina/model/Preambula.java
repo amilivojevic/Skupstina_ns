@@ -1,8 +1,6 @@
 
 package com.tim_wro.skupstina.model;
 
-import com.tim_wro.skupstina.model.enumerations.Oblast;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -21,9 +19,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{skupstinaNS}pravni_osnov"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}pravni_osnov"/>
  *         &lt;element name="organ" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="oblast" type="{skupstinaNS}oblast"/>
+ *         &lt;element name="oblast" type="{http://www.skustinans.rs/akti}oblast"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,14 +36,14 @@ import javax.xml.bind.annotation.XmlType;
     "organ",
     "oblast"
 })
-@XmlRootElement(name = "preambula", namespace = "skupstinaNS")
+@XmlRootElement(name = "preambula", namespace = "http://www.skustinans.rs/akti")
 public class Preambula {
 
-    @XmlElement(name = "pravni_osnov", namespace = "skupstinaNS", required = true)
+    @XmlElement(name = "pravni_osnov", namespace = "http://www.skustinans.rs/akti", required = true)
     protected String pravniOsnov;
-    @XmlElement(namespace = "skupstinaNS", required = true)
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected String organ;
-    @XmlElement(namespace = "skupstinaNS", required = true)
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     @XmlSchemaType(name = "string")
     protected Oblast oblast;
 
