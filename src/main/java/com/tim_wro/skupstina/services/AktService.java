@@ -89,7 +89,7 @@ public class AktService {
                 + (props.database.equals("") ? "default" : props.database)
                 + " database.");
 
-        xmlManager.read(docId, handle);
+        xmlManager.read(docId, metadata,handle);
 
         // Retrieving a Bookstore instance
         Akt akt = handle.get();

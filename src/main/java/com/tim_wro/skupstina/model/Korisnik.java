@@ -1,4 +1,3 @@
-
 package com.tim_wro.skupstina.model;
 
 import com.sun.istack.internal.NotNull;

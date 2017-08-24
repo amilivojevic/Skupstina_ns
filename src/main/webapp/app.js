@@ -12,6 +12,22 @@
 
             $urlRouterProvider.otherwise("/home");
             $stateProvider
+                .state('pera', {
+                    url: '/pera',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/pera/pera.html',
+                            controller: 'Pera',
+                            controllerAs: 'pera'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/navbar.html',
+                            controller: 'NavbarController',
+                            controllerAs: 'navbarCtrl'
+                        }
+                    },
+
+                })
                 .state('notLoggedHome', {
                     url: '/home',
                     views: {
