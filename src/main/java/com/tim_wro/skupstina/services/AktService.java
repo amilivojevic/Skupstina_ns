@@ -48,7 +48,6 @@ public class AktService {
     }
 
     public int brojAkata(){
-
         DatabaseClient client = Connection.getConnection();
 
         final ServerEvaluationCall call = client.newServerEval();
@@ -129,8 +128,8 @@ public class AktService {
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
         // Define a URI value for a document.
-        String docId = "/akt/akt1.xml";
-        String testDocId = "/example/test/books.xml";
+        int br = brojAkata() + 1;
+        String docId = "/akt/akt" + br + ".xml";
 
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));

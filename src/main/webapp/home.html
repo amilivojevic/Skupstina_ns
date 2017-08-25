@@ -70,8 +70,15 @@
     </div>
     <div class="col-xs-4">
         <div ng-repeat="a in homeCtrl.akti">
-            {{a.naziv}}
-            </br>
+            <div class="well" ng-if="a.stanje=='U_PROCEDURI' || a.stanje=='U_CELOSTI'">
+                <b>{{a.naziv}}</b><br>
+                <i>kreirao: {{a.kreirao}}</i></br>
+                {{a.preambula.oblast}}</br>
+                    drzava: {{a.drzava}}</br>
+                    regija: {{a.regija}}</br>
+                    grad: {{a.grad}}
+            </div>
+
         </div>
     </div>
 </div>
