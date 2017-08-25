@@ -30,7 +30,7 @@ public class PeraController {
 
         //writing in marklogic db
 
-        writeInMarkLogicDB(new File("pera1.xml"));
+        writeInMarkLogicDB(new File("/data/pera1.xml"));
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(p.toString()), HttpStatus.CREATED);
 
@@ -41,13 +41,22 @@ public class PeraController {
 
         //writing in marklogic db
 
-        Pera p = readFromMarkLogicDB("pera/pera1.xml");
+        Pera p = readFromMarkLogicDB("/pera/pera1.xml");
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(p.toString()), HttpStatus.CREATED);
 
     }
 
     public Pera readFromMarkLogicDB(String uri) throws JAXBException {
+
+        try {
+            DatabaseClientFactory.getHandleRegistry().register(
+                    JAXBHandle.newFactory(Pera.class)
+            );
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
 
         DatabaseClient client;
         Util.ConnectionProperties props = null;
@@ -59,7 +68,7 @@ public class PeraController {
 
         // Initialize the database client
         System.out.println("[INFO] Using default database.");
-        client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password, props.authType);
+        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
 
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
@@ -73,30 +82,32 @@ public class PeraController {
         DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 
         // A document URI identifier.
-        String docId = "/pera/pera1.xml";
+        String docId = uri;
 
         // Write the document to the database
         System.out.println("[INFO] Retrieving \"" + docId + "\" from "
                 + (props.database.equals("") ? "default" : props.database)
                 + " database.");
 
-        xmlManager.read(docId, metadata, handle);
+        //	xmlManager.read(docId, metadata, handle);
+        Pera pera =xmlManager.readAs(docId, Pera.class);
 
         // Retrieving a Bookstore instance
-        Pera p = handle.get();
+        //Bookstore bookstore = handle.get();
 
         // Reading metadata
         System.out.println("[INFO] Assigned collections: " + metadata.getCollections());
 
         // Serializing DOM tree to standard output.
         System.out.println("[INFO] Retrieved content:");
-        System.out.println(p.toString());
+        System.out.println(pera);
 
         // Release the client
         client.release();
 
         System.out.println("[INFO] End.");
-        return p;
+
+        return pera;
     }
 
     public void writeInMarkLogicDB(File file) throws FileNotFoundException {
@@ -124,7 +135,7 @@ public class PeraController {
         String docId = "/pera/pera1.xml";
 
         // Create an input stream handle to hold XML content.
-        InputStreamHandle handle = new InputStreamHandle(new FileInputStream("data/instance1.xml"));
+        InputStreamHandle handle = new InputStreamHandle(new FileInputStream("data/pera1.xml"));
 
         // Write the document to the database
         System.out.println("[INFO] Inserting \"" + docId + "\" to \"" + props.database + "\" database.");
