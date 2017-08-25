@@ -22,6 +22,8 @@ import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -83,7 +85,7 @@ public class AktController {
             e.printStackTrace();
         }
         // Initialize the database client
-        client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password, props.authType);
+        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
 
 
         // Create a document manager to work with XML files.
@@ -122,12 +124,14 @@ public class AktController {
         System.out.println("[INFO] End.");
         return new ResponseEntity<>(HttpStatus.OK);
     }
-/*
+
     @GetMapping("/svi")
     public ResponseEntity getAll() throws JAXBException {
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }*/
+        System.out.println("pre aktService.getAll();");
+        List<Akt> lista = aktService.getAll();
+        System.out.println("posle aktService.getAll();");
+        return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
 }
 
 

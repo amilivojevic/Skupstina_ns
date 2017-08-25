@@ -82,6 +82,20 @@ public class Akt {
     @XmlAttribute(name = "kreirao", required = true)
     protected String kreirao;
 
+    @Override
+    public String toString() {
+        return "Akt{" +
+                "preambula=" + preambula.toString() +
+                ", id='" + id + '\'' +
+                ", naziv='" + naziv + '\'' +
+                ", drzava='" + drzava + '\'' +
+                ", regija='" + regija + '\'' +
+                ", grad='" + grad + '\'' +
+                ", stanje=" + stanje +
+                ", kreirao='" + kreirao + '\'' +
+                '}';
+    }
+
     /**
      * Gets the value of the preambula property.
      * 

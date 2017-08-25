@@ -3,17 +3,15 @@
         .controller("HomeController", homeController);
 
 
-    // hardcode-ovano da se ucita iz baze samo akt sa id-om /akt/akt1.xml!
     function homeController($scope,$http,$window) {
         var vm = this;
 
-        $http.get('/api/akt/jedan')
+        $http.get('/api/akt/svi')
             .then(function(akti) {
-                vm.akti = akti;
-                console.log(JSON.stringify(akti));
+                vm.akti = akti.data;
+                console.log(JSON.stringify(akti.data));
             }, function(response) {
                 alert(response.data.response);
-
             });
     }
 })();

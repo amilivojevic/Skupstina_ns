@@ -3,6 +3,9 @@ package com.tim_wro.skupstina.services;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.EvalResult;
+import com.marklogic.client.eval.EvalResultIterator;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
@@ -10,16 +13,17 @@ import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.repository.AktRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Node;
 
 import com.tim_wro.skupstina.util.*;
 
+import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -42,6 +46,35 @@ public class AktService {
         this.aktRepository = aktRepository;
 
     }
+
+    public List<Akt> getAll(){
+        DatabaseClient client;
+        Util.ConnectionProperties props = null;
+        try {
+            props = Util.loadProperties();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final List<Akt> akti = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt act = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+            System.out.println("Akt: " + act.toString());
+            akti.add(act);
+        }
+
+        return akti;
+    }
+
 
     public Akt getOne(String imeAkta) throws JAXBException {
         DatabaseClient client;
@@ -90,42 +123,6 @@ public class AktService {
         return akt;
     }
 
-    /**
-     * Serializes DOM tree to an arbitrary OutputStream.
-     *
-     * @param node a node to be serialized
-     * @param out an output stream to write the serialized
-     * DOM representation to
-     *
-     */
-    public static void transform(Node node, OutputStream out) {
-        try {
-
-            // Kreiranje instance objekta zaduzenog za serijalizaciju DOM modela
-            Transformer transformer = transformerFactory.newTransformer();
-
-            // Indentacija serijalizovanog izlaza
-            transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-            // Nad "source" objektom (DOM stablo) vrši se transformacija
-            DOMSource source = new DOMSource(node);
-
-            // Rezultujući stream (argument metode)
-            StreamResult result = new StreamResult(out);
-
-            // Poziv metode koja vrši opisanu transformaciju
-            transformer.transform(source, result);
-
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerFactoryConfigurationError e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void writeInMarkLogicDB(File file) throws FileNotFoundException {
         DatabaseClient client;
         Util.ConnectionProperties props = null;
@@ -136,13 +133,8 @@ public class AktService {
         }
 
         // Initialize the database client
-        if (props.database.equals("")) {
-            System.out.println("[INFO] Using default database.");
-            client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password, props.authType);
-        } else {
-            System.out.println("[INFO] Using \"" + props.database + "\" database.");
-            client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
-        }
+        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
+
 
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();

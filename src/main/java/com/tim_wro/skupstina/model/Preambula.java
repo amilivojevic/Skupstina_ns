@@ -47,6 +47,15 @@ public class Preambula {
     @XmlSchemaType(name = "string")
     protected Oblast oblast;
 
+    @Override
+    public String toString() {
+        return "Preambula{" +
+                "pravniOsnov='" + pravniOsnov + '\'' +
+                ", organ='" + organ + '\'' +
+                ", oblast=" + oblast +
+                '}';
+    }
+
     /**
      * Gets the value of the pravniOsnov property.
      * 

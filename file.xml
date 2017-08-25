@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<akt xmlns="http://www.skustinans.rs/akti" naziv="drugi akt" drzava="drugi akt" regija="drugi akt" grad="drugi akt" stanje="u_proceduri" kreirao="a">
+    <preambula>
+        <pravni_osnov>drugi akt</pravni_osnov>
+        <organ>drugi akt</organ>
+        <oblast>Skolstvo</oblast>
+    </preambula>
+    <clan naziv="drugi akt" br="3">
+        <stav>
+            <sadrzaj>drugi akt</sadrzaj>
+        </stav>
+    </clan>
+</akt>
