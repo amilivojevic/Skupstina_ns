@@ -47,15 +47,26 @@ public class AktService {
 
     }
 
-    public List<Akt> getAll(){
-        DatabaseClient client;
-        Util.ConnectionProperties props = null;
-        try {
-            props = Util.loadProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public int brojAkata(){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        int brojAkata = 0;
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            brojAkata++;
         }
-        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
+
+        return brojAkata;
+    }
+
+    public List<Akt> getAll(){
+        DatabaseClient client = Connection.getConnection();
 
         final ServerEvaluationCall call = client.newServerEval();
 
@@ -77,14 +88,7 @@ public class AktService {
 
 
     public Akt getOne(String imeAkta) throws JAXBException {
-        DatabaseClient client;
-        Util.ConnectionProperties props = null;
-        try {
-            props = Util.loadProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password, props.authType);
+        DatabaseClient client = Connection.getConnection();
         final XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
         // A JAXB handle to receive the document's content.
@@ -97,11 +101,6 @@ public class AktService {
 
         // A document URI identifier.
         String docId = "/akt/akt1.xml";
-
-        // Write the document to the database
-        System.out.println("[INFO] Retrieving \"" + docId + "\" from "
-                + (props.database.equals("") ? "default" : props.database)
-                + " database.");
 
         xmlManager.read(docId, metadata,handle);
 
@@ -124,17 +123,7 @@ public class AktService {
     }
 
     public void writeInMarkLogicDB(File file) throws FileNotFoundException {
-        DatabaseClient client;
-        Util.ConnectionProperties props = null;
-        try {
-            props = Util.loadProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Initialize the database client
-        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
-
+        DatabaseClient client = Connection.getConnection();
 
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
@@ -147,10 +136,9 @@ public class AktService {
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
 
         // Write the document to the database
-        System.out.println("[INFO] Inserting \"" + docId + "\" to \"" + props.database + "\" database.");
+        System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
         xmlManager.write(docId, handle);
 
-        System.out.println("[INFO] Verify the content at: http://" + props.host + ":8000/v1/documents?database=" + props.database + "&uri=" + docId);
         // Release the client
         client.release();
     }
