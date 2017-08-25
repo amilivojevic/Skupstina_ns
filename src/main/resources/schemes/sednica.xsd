@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="skupstinaNS" xmlns="skupstinaNS">
+           targetNamespace="http://www.skustinans.rs/akti"
+           xmlns="http://www.skustinans.rs/akti">
 
     <xs:import schemaLocation="akt.xsd"/>
     <xs:element name="preambula">

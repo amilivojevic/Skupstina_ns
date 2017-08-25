@@ -5,7 +5,7 @@ import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
-import com.tim_wro.skupstina.dto.akt.AktDTO;
+import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import com.tim_wro.skupstina.util.Util;
