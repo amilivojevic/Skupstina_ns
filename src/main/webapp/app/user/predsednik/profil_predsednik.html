@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-horizontal" ng-submit="predsednikCtrl.change()" >
+    <form class="form-horizontal"  >
         <fieldset>
 
             <!-- Form Name -->
@@ -40,10 +40,54 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="submit"></label>
                     <div class="col-md-4">
-                        <button id="submit" name="submit" type="submit" class="btn btn-primary">Izmeni</button>
+                        <button id="submit" ng-click="predsednikCtrl.redirect()" type="submit" class="btn btn-primary">Izmeni</button>
                     </div>
                 </div>
 
+
+
+                </br>
+                <legend  class="text-center">Kreirane sednice</legend>
+                <div class="col-md-9">
+
+
+
+                    <div ng-repeat="s in predsednikCtrl.sednice">
+
+                        <div class="form-group">
+                            <label class="col-md-7 control-label">Datum sednice:</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-md" value="{{s.datum | date : 'dd.MM.yyyy' }}"disabled>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-7 control-label">Redni broj:</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-md" value=" {{s.redniBroj }}"disabled>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-7 control-label">Naziv:</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-md" value="{{s.naziv }}"disabled>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div >
+                                <button id="submit" name="submit" type="submit" class="btn btn-primary">Detalji</button>
+                                <button id="submit" name="submit" ng-click="predsednikCtrl.aktiviraj()" class="btn btn-primary">Aktiviraj</button>
+                                <button id="submit" name="submit" type="submit" class="btn btn-primary">Obrisi</button>
+                            </div>
+                        </div>
+                        <legend> </legend>
+
+                    </div>
+                </div>
         </fieldset>
     </form>
 

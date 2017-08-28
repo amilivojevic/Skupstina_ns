@@ -1,10 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/pera.xsd">
-    <ime>
-        dasfa
-    </ime>
-    <prezime>
-        dsa
-    </prezime>
-</pera>
+<s:sednica xmlns:ns1="http://www.skustinans.rs/akti"
+ xmlns:s="http://www.skustinans.rs/sednica"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.skustinans.rs/sednica file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/resources/schemes/sednica.xsd" id="ID000" datum="2006-05-04" redniBroj="redniBroj0" naziv="naziv0" brojPrisutnih="0" korisnickoIme="korisnickoIme0"
+     stanje="zakazana">
+    <ns1:akt id="ID001" naziv="naziv1" drzava="drzava0" regija="regija0" grad="grad0" stanje="u_proceduri" kreirao="kreirao0">
+        <ns1:preambula>
+            <ns1:pravni_osnov>pravni_osnov0</ns1:pravni_osnov>
+            <ns1:organ>organ0</ns1:organ>
+            <ns1:oblast>Zdravstvo</ns1:oblast>
+        </ns1:preambula>
+        <ns1:clan naziv="naziv2" br="50">
+            <ns1:stav>
+                <ns1:tacka br="50">
+                    <ns1:podtacka br="50">
+                        <ns1:alineja>alineja0</ns1:alineja>
+                        <ns1:alineja>alineja1</ns1:alineja>
+                    </ns1:podtacka>
+                    <ns1:podtacka br="50">
+                        <ns1:sadrzaj>sadrzaj0</ns1:sadrzaj>
+                    </ns1:podtacka>
+                </ns1:tacka>
+                <ns1:tacka br="50">
+                    <ns1:podtacka br="50">
+                        <ns1:alineja>alineja2</ns1:alineja>
+                        <ns1:alineja>alineja3</ns1:alineja>
+                    </ns1:podtacka>
+                    <ns1:podtacka br="50">
+                        <ns1:sadrzaj>sadrzaj1</ns1:sadrzaj>
+                    </ns1:podtacka>
+                </ns1:tacka>
+            </ns1:stav>
+            <ns1:stav>
+                <ns1:sadrzaj>sadrzaj2</ns1:sadrzaj>
+            </ns1:stav>
+        </ns1:clan>
+        <ns1:clan naziv="naziv3" br="50">
+            <ns1:stav>
+                <ns1:sadrzaj>sadrzaj3</ns1:sadrzaj>
+            </ns1:stav>
+            <ns1:stav>
+                <ns1:tacka br="50">
+                    <ns1:sadrzaj>sadrzaj4</ns1:sadrzaj>
+                </ns1:tacka>
+                <ns1:tacka br="50">
+                    <ns1:podtacka br="50">
+                        <ns1:alineja>alineja4</ns1:alineja>
+                        <ns1:alineja>alineja5</ns1:alineja>
+                    </ns1:podtacka>
+                    <ns1:podtacka br="50">
+                        <ns1:alineja>alineja6</ns1:alineja>
+                        <ns1:alineja>alineja7</ns1:alineja>
+                    </ns1:podtacka>
+                </ns1:tacka>
+            </ns1:stav>
+        </ns1:clan>
+    </ns1:akt>
+    <ns1:akt id="ID002" naziv="naziv4" drzava="drzava1" regija="regija1" grad="grad1" stanje="u_proceduri" kreirao="kreirao1">
+        <ns1:preambula>
+            <ns1:pravni_osnov>pravni_osnov1</ns1:pravni_osnov>
+            <ns1:organ>organ1</ns1:organ>
+            <ns1:oblast>Zdravstvo</ns1:oblast>
+        </ns1:preambula>
+        <ns1:clan naziv="naziv5" br="50">
+            <ns1:stav>
+                <ns1:sadrzaj>sadrzaj5</ns1:sadrzaj>
+            </ns1:stav>
+            <ns1:stav>
+                <ns1:tacka br="50">
+                    <ns1:sadrzaj>sadrzaj6</ns1:sadrzaj>
+                </ns1:tacka>
+                <ns1:tacka br="50">
+                    <ns1:podtacka br="50">
+                        <ns1:sadrzaj>sadrzaj7</ns1:sadrzaj>
+                    </ns1:podtacka>
+                    <ns1:podtacka br="50">
+                        <ns1:sadrzaj>sadrzaj8</ns1:sadrzaj>
+                    </ns1:podtacka>
+                </ns1:tacka>
+            </ns1:stav>
+        </ns1:clan>
+        <ns1:clan naziv="naziv6" br="50">
+            <ns1:stav>
+                <ns1:tacka br="50">
+                    <ns1:sadrzaj>sadrzaj9</ns1:sadrzaj>
+                </ns1:tacka>
+                <ns1:tacka br="50">
+                    <ns1:sadrzaj>sadrzaj10</ns1:sadrzaj>
+                </ns1:tacka>
+            </ns1:stav>
+            <ns1:stav>
+                <ns1:tacka br="50">
+                    <ns1:sadrzaj>sadrzaj11</ns1:sadrzaj>
+                </ns1:tacka>
+                <ns1:tacka br="50">
+                    <ns1:sadrzaj>sadrzaj12</ns1:sadrzaj>
+                </ns1:tacka>
+            </ns1:stav>
+        </ns1:clan>
+    </ns1:akt>
+</s:sednica>

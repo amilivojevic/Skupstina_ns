@@ -26,7 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence maxOccurs="unbounded">
+ *       &lt;sequence maxOccurs="unbounded" minOccurs="0">
  *         &lt;element ref="{http://www.skustinans.rs/akti}akt"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" />
@@ -35,7 +35,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="naziv" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="brojPrisutnih" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="korisnickoIme" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="stanje" type="{http://www.skustinans.rs/sednica}stanje_sednice" />
+ *       &lt;attribute name="stanje" type="{http://www.skustinans.rs/sednice}stanje_sednice" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -47,10 +47,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "", propOrder = {
     "akt"
 })
-@XmlRootElement(name = "sednica", namespace = "http://www.skustinans.rs/sednica")
+@XmlRootElement(name = "sednica", namespace = "http://www.skustinans.rs/sednice")
 public class Sednica {
 
-    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Akt> akt;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

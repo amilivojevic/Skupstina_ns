@@ -164,6 +164,21 @@
                         }
                     }
                 })
+                .state('activateSednica', {
+                    url: '/activateSednica',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/sednica/aktivnaSednica.html',
+                            controller: 'ActivateSednicaController',
+                            controllerAs: 'activateSednicaCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    }
+                })
 
 
 /*'use strict';
