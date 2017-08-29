@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/pera.xsd">
-    <ime>
-        dasfa
-    </ime>
-    <prezime>
-        dsa
-    </prezime>
-</pera>
+<akt xmlns="http://www.skustinans.rs/akti"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.skustinans.rs/akti file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID001" naziv="naziv1" drzava="drzava1" regija="regija1" grad="grad1" stanje="u_proceduri" kreirao="kreirao1">
+    <preambula>
+        <pravni_osnov>pravni_osnov0</pravni_osnov>
+        <organ>organ0</organ>
+        <oblast>Zdravstvo</oblast>
+    </preambula>
+    <deo br="50">
+        <glava naziv="naziv5" br="50">
+        </glava>
+        <glava naziv="naziv7" br="50">
+            <clan naziv="naziv9" br="50">
+                <stav>
+                    <tacka br="50">
+                        <podtacka br="50">
+                            <alineja>alineja0</alineja>
+                            <alineja>alineja1</alineja>
+                        </podtacka>
+                        <podtacka br="50">
+                            <alineja>alineja2</alineja>
+                            <alineja>alineja3</alineja>
+                        </podtacka>
+                    </tacka>
+                    <tacka br="50">
+                        <sadrzaj>sadrzaj0</sadrzaj>
+                    </tacka>
+                </stav>
+                <stav>
+                    <tacka br="50">
+                        <podtacka br="50">
+                            <sadrzaj>sadrzaj1</sadrzaj>
+                        </podtacka>
+                        <podtacka br="50">
+                            <alineja>alineja4</alineja>
+                            <alineja>alineja5</alineja>
+                        </podtacka>
+                    </tacka>
+                    <tacka br="50">
+                        <podtacka br="50">
+                            <alineja>alineja6</alineja>
+                            <alineja>alineja7</alineja>
+                        </podtacka>
+                        <podtacka br="50">
+                            <alineja>alineja8</alineja>
+                            <alineja>alineja9</alineja>
+                        </podtacka>
+                    </tacka>
+                </stav>
+            </clan>
+            <clan naziv="naziv11" br="50">
+                <stav>
+                    <tacka br="50">
+                        <sadrzaj>sadrzaj2</sadrzaj>
+                    </tacka>
+                    <tacka br="50">
+                        <sadrzaj>sadrzaj3</sadrzaj>
+                    </tacka>
+                </stav>
+                <stav>
+                    <tacka br="50">
+                        <sadrzaj>sadrzaj4</sadrzaj>
+                    </tacka>
+                    <tacka br="50">
+                        <sadrzaj>sadrzaj5</sadrzaj>
+                    </tacka>
+                </stav>
+            </clan>
+        </glava>
+    </deo>
+    <deo br="50">
+        <glava naziv="naziv15" br="50">
+        </glava>
+        <glava naziv="naziv17" br="50">
+        </glava>
+    </deo>
+</akt>
