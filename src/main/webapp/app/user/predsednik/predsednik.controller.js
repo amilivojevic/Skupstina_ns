@@ -4,16 +4,23 @@
 
     function predsednikController($http, $window, $scope, LoginFactory) {
         var vm = this;
+        vm.sednice = [];
         vm.userData = angular.fromJson($window.localStorage['loggedUser']);
         console.log("vm.userData = " + JSON.stringify(vm.userData));
 
-        $scope.redirect = function(){
+        vm.redirect = function(){
             $window.location.href = "http://" + $window.location.host + "/#!/izmeniProfilPredsednik";
 
         }
 
-        vm.change = function () {
-            $scope.redirect();
+        vm.detalji = function(){
+            $window.location.href = "http://" + $window.location.host + "/#!/izmeniProfilPredsednik";
+
+        }
+
+        vm.aktiviraj = function(){
+            $window.location.href = "http://" + $window.location.host + "/#!/activateSednica";
+
         }
 
         vm.modify = function () {
@@ -45,5 +52,13 @@
                 alert(response.data.response);
             });
         }
+
+        $http.get('/api/sednica/sve')
+            .then(function(sednice) {
+                vm.sednice = sednice.data;
+          //      console.log(JSON.stringify(sednice.data));
+            }, function(response) {
+                alert(response.data.response);
+            });
     }
 })();

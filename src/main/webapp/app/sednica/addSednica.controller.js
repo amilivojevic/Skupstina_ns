@@ -9,6 +9,16 @@ function addSednicaController($scope,$http, LoginFactory, $window) {
     var vm = this;
         vm.addSednica = addSednica;
 
+
+        $scope.redirect = function(){
+            $window.location.href = "http://" + $window.location.host + "/#!/predsednik";
+
+         }
+
+        vm.change = function () {
+            $scope.redirect();
+        }
+
         function addSednica() {
 
 
@@ -34,9 +44,10 @@ function addSednicaController($scope,$http, LoginFactory, $window) {
 
             }
 
-            $http.post('/api/sednica/novi', novaSednica)
+            $http.post('/api/sednica/nova', novaSednica)
                 .then(function (response) {
                     console.log("Sve je dobro");
+                    $window.location.href = "#!/predsednik";
                 })
                 .catch(function () {
                     console.log("Neka greska!");
