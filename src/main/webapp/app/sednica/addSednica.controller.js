@@ -40,8 +40,6 @@ function addSednicaController($scope,$http, LoginFactory, $window) {
                 "korisnickoIme": vm.kreirao.korisnickoIme,
                 "stanje": "ZAKAZANA"
 
-
-
             }
 
             $http.post('/api/sednica/nova', novaSednica)

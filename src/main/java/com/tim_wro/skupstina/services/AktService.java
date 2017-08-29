@@ -85,6 +85,31 @@ public class AktService {
         return akti;
     }
 
+    public List<Akt> getBySednicaRedniBroj(String id){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final List<Akt> aktiOdSednice = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt act = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+
+            if(act.getRedniBrojSednice().toString().equals(id)){
+
+                aktiOdSednice.add(act);
+
+           }
+        }
+        return aktiOdSednice;
+    }
+
 
     public Akt getOne(String imeAkta) throws JAXBException {
         DatabaseClient client = Connection.getConnection();

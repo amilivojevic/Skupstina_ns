@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<akt xmlns="http://www.skustinans.rs/akti" naziv="222" drzava="asf" regija="afsf" grad="dfa" stanje="u_proceduri" kreirao="p" redniBrojSednice="1 - 2017">
+    <preambula>
+        <pravni_osnov>dfa</pravni_osnov>
+        <organ>f</organ>
+        <oblast>Zdravstvo</oblast>
+    </preambula>
+</akt>

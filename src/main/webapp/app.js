@@ -168,7 +168,7 @@
                     url: '/activateSednica',
                     views: {
                         'content': {
-                            templateUrl: 'app/sednica/aktivnaSednica.html',
+                            templateUrl: 'app/sednica/glasanje_prvo.html',
                             controller: 'ActivateSednicaController',
                             controllerAs: 'activateSednicaCtrl'
                         },
@@ -177,6 +177,10 @@
                             controller: 'NavbarPredsednikController',
                             controllerAs: 'navbarPredsednikCtrl'
                         }
+                    },  params: {
+                        'sednicaID': null,
+                        'aktNaziv': ""
+                     //   'skupstina': null
                     }
                 })
 

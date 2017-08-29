@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<sednica xmlns="skupstinaNS" datum="2017-08-23Z" redniBroj="1 - 2017" naziv="asdf" brojPrisutnih="0" korisnickoIme="a" stanje="zakazana"/>
+<ns2:sednica xmlns="http://www.skustinans.rs/akti" xmlns:ns2="http://www.skustinans.rs/sednice" datum="2017-08-25Z" redniBroj="1" naziv="adfas" brojPrisutnih="0" korisnickoIme="p" stanje="zakazana"/>

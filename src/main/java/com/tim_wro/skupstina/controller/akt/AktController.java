@@ -6,6 +6,7 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
 import com.tim_wro.skupstina.model.Akt;
+import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import com.tim_wro.skupstina.util.Util;
@@ -131,6 +132,19 @@ public class AktController {
         List<Akt> lista = aktService.getAll();
         System.out.println("posle aktService.getAll();");
         return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/svi_u_pripremi/{id}", method = RequestMethod.GET)
+    public ResponseEntity getAllPrepared(@PathVariable("id") String id) throws JAXBException {
+        List<Akt> lista = aktService.getBySednicaRedniBroj(id);
+        List<Akt> aktiUProceduri = new ArrayList<>();
+        for(Akt o : lista){
+            if(o.getStanje() == StanjeAkta.U_PROCEDURI){
+                aktiUProceduri.add(o);
+            }
+        }
+
+        return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
 }
 

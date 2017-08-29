@@ -35,7 +35,7 @@ public class SednicaService {
         this.sednicaRepository = sednicaRepository;
     }
 
-    public void writeInMarkLogicDB(File file) throws FileNotFoundException {
+ /*   public void writeInMarkLogicDB(File file) throws FileNotFoundException {
         DatabaseClient client;
         Util.ConnectionProperties props = null;
         try {
@@ -70,7 +70,7 @@ public class SednicaService {
         System.out.println("[INFO] Verify the content at: http://" + props.host + ":8000/v1/documents?database=" + props.database + "&uri=" + docId);
         // Release the client
         client.release();
-    }
+    } */
 
     public int brojSednice(){
 
@@ -78,7 +78,7 @@ public class SednicaService {
 
         final ServerEvaluationCall call = client.newServerEval();
 
-        call.xquery("declare namespace s = \"http://www.skustinans.rs/sednice\";\n//s:ns1:sednica");
+        call.xquery("declare namespace s = \"http://www.skustinans.rs/sednice\";\n//s:sednica");
 
         int brojSednice = 0;
         final EvalResultIterator eval = call.eval();
@@ -145,6 +145,27 @@ public class SednicaService {
         System.out.println("[INFO] End.");
 
         return sednica;
+    }
+
+    public void writeInMarkLogicDB(File file) throws FileNotFoundException {
+        DatabaseClient client = Connection.getConnection();
+
+        // Create a document manager to work with XML files.
+        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+        // Define a URI value for a document.
+        int br = brojSednice() + 1;
+        String docId = "/sednica/sednica" + br + ".xml";
+
+        // Create an input stream handle to hold XML content.
+        InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
+
+        // Write the document to the database
+        System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
+        xmlManager.write(docId, handle);
+
+        // Release the client
+        client.release();
     }
 
 }

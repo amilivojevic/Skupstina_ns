@@ -39,7 +39,7 @@ public class SednicaController {
     public ResponseEntity create(@RequestBody Sednica sednica) throws FileNotFoundException {
 
         //marshalling
-        File file = new File("file.xml");
+        File file = new File("file1.xml");
         JAXBContext jaxbContext = null;
         try {
             jaxbContext = JAXBContext.newInstance(Sednica.class);
@@ -61,6 +61,8 @@ public class SednicaController {
         sednicaService.writeInMarkLogicDB(file);
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+
+
     }
 
     // hardcode-ovano da se ucita iz baze akt sa id-om /akt/akt1.xml!
@@ -122,5 +124,35 @@ public class SednicaController {
         List<Sednica> lista = sednicaService.getAll();
         System.out.println("posle sednicaService.getAll();");
         return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
+    @PostMapping("cfirst_voting")
+    public ResponseEntity votingOne(@RequestBody Sednica sednica) throws FileNotFoundException {
+
+  /*      //marshalling
+        File file = new File("file1.xml");
+        JAXBContext jaxbContext = null;
+        try {
+            jaxbContext = JAXBContext.newInstance(Sednica.class);
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller.marshal(sednica, file);
+            jaxbMarshaller.marshal(sednica, System.out);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        //writing in marklogic db
+
+        sednicaService.writeInMarkLogicDB(file); */
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+
+
     }
 }

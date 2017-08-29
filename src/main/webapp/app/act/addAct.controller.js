@@ -34,7 +34,8 @@
                 "stanje": vm.stanje,
                 "kreirao" : vm.kreirao.korisnickoIme,
                 "preambula": vm.preambula,
-                "clan" : transformClanovi($scope)
+                "clan" : transformClanovi($scope),
+                "redniBrojSednice": "1 - 2017"
             }
             console.log("noviAKT: " + JSON.stringify(noviAkt));
             $http.post('/api/akt/novi', noviAkt)
