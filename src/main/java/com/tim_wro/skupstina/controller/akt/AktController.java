@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -45,6 +46,8 @@ public class AktController {
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Akt akt) throws FileNotFoundException {
 
+        akt.setId(UUID.randomUUID().toString());
+
         //marshalling
         File file = new File("file.xml");
         JAXBContext jaxbContext = null;
@@ -65,7 +68,7 @@ public class AktController {
 
         //writing in marklogic db
 
-        aktService.writeInMarkLogicDB(file);
+        aktService.writeInMarkLogicDB(file, akt.getId());
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
 

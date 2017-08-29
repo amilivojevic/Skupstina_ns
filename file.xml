@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<akt xmlns="http://www.skustinans.rs/akti" id="bcf96af4-e267-4957-9c53-6dd0e2728edd" naziv="Novi Akt" drzava="Srbija" regija="Vojvodina" grad="Novi Sad" stanje="u_proceduri" kreirao="a">
+    <preambula>
+        <pravni_osnov>preambula</pravni_osnov>
+        <organ>Skupstina Vojvodine</organ>
+        <oblast>Zdravstvo</oblast>
+    </preambula>
+    <clan naziv="naziv clana" br="1">
+        <stav>
+            <sadrzaj>a</sadrzaj>
+        </stav>
+    </clan>
+</akt>

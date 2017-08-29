@@ -6,34 +6,34 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for tipIzmene.
+ * <p>Java class for stanjeAmandmana.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="tipIzmene">
+ * &lt;simpleType name="stanjeAmandmana">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="DODAVANJE"/>
- *     &lt;enumeration value="IZMENA"/>
- *     &lt;enumeration value="BRISANJE"/>
+ *     &lt;enumeration value="PRIHVACEN"/>
+ *     &lt;enumeration value="ODBIJEN"/>
+ *     &lt;enumeration value="ZAKAZAN"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "tipIzmene", namespace = "http://www.skustinans.rs/amandmani")
+@XmlType(name = "stanjeAmandmana", namespace = "http://www.skustinans.rs/amandmani")
 @XmlEnum
-public enum TipIzmene {
+public enum StanjeAmandmana {
 
-    DODAVANJE,
-    IZMENA,
-    BRISANJE;
+    PRIHVACEN,
+    ODBIJEN,
+    ZAKAZAN;
 
     public String value() {
         return name();
     }
 
-    public static TipIzmene fromValue(String v) {
+    public static StanjeAmandmana fromValue(String v) {
         return valueOf(v);
     }
 

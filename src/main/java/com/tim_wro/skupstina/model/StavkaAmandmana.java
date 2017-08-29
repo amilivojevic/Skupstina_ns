@@ -5,12 +5,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -42,9 +38,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="tipIzmene" type="{}tipIzmene" />
+ *       &lt;attribute name="tipIzmene" type="{http://www.skustinans.rs/amandmani}tipIzmene" />
  *       &lt;attribute name="mestoIzmene" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="aktId" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -56,20 +51,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "novo"
 })
-@XmlRootElement(name = "stavkaAmandmana")
+@XmlRootElement(name = "stavkaAmandmana", namespace = "http://www.skustinans.rs/amandmani")
 public class StavkaAmandmana {
 
-    @XmlElement(required = true)
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
     protected StavkaAmandmana.Novo novo;
     @XmlAttribute(name = "tipIzmene")
     protected TipIzmene tipIzmene;
     @XmlAttribute(name = "mestoIzmene")
     protected Integer mestoIzmene;
-    @XmlAttribute(name = "aktId")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
-    protected String aktId;
 
     /**
      * Gets the value of the novo property.
@@ -141,30 +131,6 @@ public class StavkaAmandmana {
      */
     public void setMestoIzmene(Integer value) {
         this.mestoIzmene = value;
-    }
-
-    /**
-     * Gets the value of the aktId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAktId() {
-        return aktId;
-    }
-
-    /**
-     * Sets the value of the aktId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAktId(String value) {
-        this.aktId = value;
     }
 
 

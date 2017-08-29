@@ -1,0 +1,59 @@
+<div class="container">
+    <form class="form-horizontal"  >
+        <fieldset>
+
+            <!-- Page title -->
+            <legend  class="text-center">Dodavanje akta</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="naziv">Naziv:</label>
+                <div class="col-md-4">
+                    <input id="naziv" ng-model="addActCtrl.naziv" name="naziv" type="text" placeholder="unesite naziv akta" class="form-control input-md" required="">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="drzava">Broj:</label>
+                <div class="col-md-4">
+                    <input id="drzava" ng-model="addActCtrl.drzava" name="drzava" type="text" placeholder="unesite naziv drzave" class="form-control input-md" required="">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="regija">Pravni osnov:</label>
+                <div class="col-md-4">
+                    <input id="regija" ng-model="addActCtrl.regija" name="regija" type="text" placeholder="unesite naziv regije" class="form-control input-md" required="">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="akt">Izaberite akt</label>
+                <div class="col-md-4">
+                    <select id="akt" name="selectbasic" class="form-control" ng-model="addAmdCtrl.akt">
+                        <option  ng-repeat="a in addAmdCtrl.akti" value="{{a}}">{{a.naziv}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button id="singlebutton" ng-click="addAmdCtrl.dodajStavku()" name="singlebutton" class="btn btn-primary">dodaj stavku</button>
+                </div>
+            </div>
+
+
+
+
+            <legend  class="text-center"></legend>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-4" align = "Center" >
+                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print amandman</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>

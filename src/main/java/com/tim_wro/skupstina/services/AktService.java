@@ -121,7 +121,7 @@ public class AktService {
         return akt;
     }
 
-    public void writeInMarkLogicDB(File file) throws FileNotFoundException {
+    public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 
         // Create a document manager to work with XML files.
@@ -129,7 +129,8 @@ public class AktService {
 
         // Define a URI value for a document.
         int br = brojAkata() + 1;
-        String docId = "/akt/akt" + br + ".xml";
+        //String docId = "/akt/akt" + br + ".xml";
+        String docId = "/akt/" + id + ".xml";
 
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));

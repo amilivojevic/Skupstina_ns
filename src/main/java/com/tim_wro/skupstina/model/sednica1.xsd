@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.skustinans.rs/sednice" xmlns:ns1="http://www.skustinans.rs/akti"
+    xmlns:s="http://www.skustinans.rs/sednice">
+    <xs:import namespace="http://www.skustinans.rs/akti"
+        schemaLocation="../../java/com/tim_wro/skupstina/model/akt.xsd"/>
+    <xs:element name="sednica">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="ns1:akt"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+            <xs:attribute name="datum" type="xs:date"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="naziv" type="xs:string"/>
+            <xs:attribute name="brojPrisutnih" type="xs:integer"/>
+            <xs:attribute name="korisnickoIme" type="xs:string"/>
+            <xs:attribute name="stanje" type="s:stanje_sednice"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="stanje_sednice">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="zakazana"/>
+            <xs:enumeration value="aktivna"/>
+            <xs:enumeration value="zavrsena"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

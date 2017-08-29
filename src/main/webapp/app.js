@@ -12,22 +12,6 @@
 
             $urlRouterProvider.otherwise("/home");
             $stateProvider
-                .state('pera', {
-                    url: '/pera',
-                    views: {
-                        'content': {
-                            templateUrl: 'app/pera/pera.html',
-                            controller: 'Pera',
-                            controllerAs: 'pera'
-                        },
-                        'navbar': {
-                            templateUrl: 'app/navbar/navbar.html',
-                            controller: 'NavbarController',
-                            controllerAs: 'navbarCtrl'
-                        }
-                    },
-
-                })
                 .state('notLoggedHome', {
                     url: '/home',
                     views: {
@@ -149,6 +133,21 @@
                         }
                     }
                 })
+                .state('addAmandman', {
+                    url: '/addAmandman',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/amandman/addAmandman.html',
+                            controller: 'AddAmandmanController',
+                            controllerAs: 'addAmdCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/navbar.html',
+                            controller: 'NavbarController',
+                            controllerAs: 'navbarCtrl'
+                        }
+                    }
+                })
                 .state('addSednica', {
                     url: '/addSednica',
                     views: {
@@ -179,48 +178,6 @@
                         }
                     }
                 })
-
-
-/*'use strict';
-angular
-    .module('skupstinaNS', [
-        'ngResource',
-        'ngRoute'
-    ])
-    .config(function($routeProvider, $httpProvider){
-        $routeProvider
-            .when('/', {
-                templateUrl: 'home.html'
-
-            })
-            .when('/login', {
-                templateUrl: 'app/auth/login/login.html',
-                controller: 'LoginController',
-                controllerAs: 'loginCtrl'
-            })
-            .when('/register', {
-                templateUrl: 'app/auth/register/register.html',
-                controller: 'RegisterController',
-                controllerAs: 'registerCtrl'
-            })
-            .when('/profile', {
-                templateUrl: 'app/user/profil_poslanik.html',
-                controller: 'OwnerController',
-                controllerAs: 'ownerCtrl',
-            })
-            .when('/addAct', {
-                templateUrl: 'app/act/addAct.html',
-                controller: 'AddActController',
-                controllerAs: 'addActCtrl'
-            })
-            .when('/addSednica', {
-                templateUrl: 'app/sednica/addSednica.html',
-                controller: 'AddSednicaController',
-                controllerAs: 'addSednicaCtrl'
-            })
-            .otherwise({
-                redirectTo: '/'
-            }); */
 
         $httpProvider
             .interceptors.push(['$q', '$window',
