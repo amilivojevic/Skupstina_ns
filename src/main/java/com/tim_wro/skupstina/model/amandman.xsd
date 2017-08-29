@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    xmlns:a="http://www.skustinans.rs/akti" targetNamespace="http://www.skustinans.rs/amandmani"
-    xmlns:amd="http://www.skustinans.rs/amandmani">
+    xmlns:a="http://www.skustinans.rs/akti">
 
     <xs:import namespace="http://www.skustinans.rs/akti" schemaLocation="akt.xsd"/>
     <xs:element name="obrazlozenje" type="xs:string"/>
@@ -23,7 +22,7 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="tipIzmene" type="amd:tipIzmene"/>
+            <xs:attribute name="tipIzmene" type="tipIzmene"/>
             <xs:attribute name="mestoIzmene" type="xs:int"/>
             <xs:attribute name="aktId" type="xs:ID"/>
         </xs:complexType>
@@ -31,8 +30,8 @@
     <xs:element name="amandman">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded">
-                <xs:element ref="amd:obrazlozenje"/>
-                <xs:element ref="amd:stavkaAmandmana"/>
+                <xs:element ref="obrazlozenje"/>
+                <xs:element ref="stavkaAmandmana"/>
             </xs:sequence>
             <xs:attribute name="pravniOsnov"/>
             <xs:attribute name="broj"/>
