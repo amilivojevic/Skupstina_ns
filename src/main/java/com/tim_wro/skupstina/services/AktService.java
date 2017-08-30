@@ -85,31 +85,6 @@ public class AktService {
         return akti;
     }
 
-    public List<Akt> getBySednicaRedniBroj(String id){
-
-        DatabaseClient client = Connection.getConnection();
-
-        final ServerEvaluationCall call = client.newServerEval();
-
-        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
-
-        final List<Akt> aktiOdSednice = new ArrayList<>();
-        final EvalResultIterator eval = call.eval();
-
-        for (EvalResult evalResult : eval) {
-            final String s = evalResult.getAs(String.class);
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
-            final Akt act = JAXB.unmarshal(byteArrayInputStream, Akt.class);
-
-            if(act.getRedniBrojSednice().toString().equals(id)){
-
-                aktiOdSednice.add(act);
-
-           }
-        }
-        return aktiOdSednice;
-    }
-
 
     public Akt getOne(String imeAkta) throws JAXBException {
         DatabaseClient client = Connection.getConnection();
@@ -146,7 +121,7 @@ public class AktService {
         return akt;
     }
 
-    public void writeInMarkLogicDB(File file) throws FileNotFoundException {
+    public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 
         // Create a document manager to work with XML files.
@@ -154,7 +129,8 @@ public class AktService {
 
         // Define a URI value for a document.
         int br = brojAkata() + 1;
-        String docId = "/akt/akt" + br + ".xml";
+        //String docId = "/akt/akt" + br + ".xml";
+        String docId = "/akt/" + id + ".xml";
 
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
@@ -165,6 +141,57 @@ public class AktService {
 
         // Release the client
         client.release();
+    }
+
+    public List<Akt> getBySednicaRedniBroj(String id){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final List<Akt> aktiOdSednice = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt act = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+
+            if(act.getRedniBrojSednice().toString().equals(id)){
+
+                aktiOdSednice.add(act);
+
+            }
+        }
+        return aktiOdSednice;
+    }
+
+    // vraca listu sednica od odredjenog korisnika
+    public List<Akt> getByUser(String korisnickoIme){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final List<Akt> aktiUsera = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt akt = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+
+            if(akt.getKreirao().equals(korisnickoIme)){
+
+                aktiUsera.add(akt);
+
+            }
+        }
+        return aktiUsera;
     }
 
 }

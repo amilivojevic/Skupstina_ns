@@ -9,11 +9,13 @@ import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
+import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.repository.SednicaRepository;
 import com.tim_wro.skupstina.util.Connection;
 import com.tim_wro.skupstina.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXB;
@@ -34,6 +36,9 @@ public class SednicaService {
     public SednicaService(SednicaRepository sednicaRepository) {
         this.sednicaRepository = sednicaRepository;
     }
+
+    @Autowired
+    public UserService userService;
 
  /*   public void writeInMarkLogicDB(File file) throws FileNotFoundException {
         DatabaseClient client;
@@ -147,7 +152,7 @@ public class SednicaService {
         return sednica;
     }
 
-    public void writeInMarkLogicDB(File file) throws FileNotFoundException {
+    public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 
         // Create a document manager to work with XML files.
@@ -155,7 +160,7 @@ public class SednicaService {
 
         // Define a URI value for a document.
         int br = brojSednice() + 1;
-        String docId = "/sednica/sednica" + br + ".xml";
+        String docId = "/sednica/" + id + ".xml";
 
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
@@ -166,6 +171,35 @@ public class SednicaService {
 
         // Release the client
         client.release();
+    }
+
+    // vraca listu sednica od odredjenog predsednika
+    public List<Sednica> getByUser(String korisnickoIme){
+
+        DatabaseClient client = Connection.getConnection();
+
+        System.out.println("Korisnicko na backendu:" + korisnickoIme);
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace s = \"http://www.skustinans.rs/sednice\";\n//s:sednica");
+
+        final List<Sednica> sedniceUsera = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Sednica sednica = JAXB.unmarshal(byteArrayInputStream, Sednica.class);
+
+            System.out.println("korisnicko na sednici:" + sednica.getKorisnickoIme());
+            if(sednica.getKorisnickoIme().equals(korisnickoIme)){
+
+                sedniceUsera.add(sednica);
+
+            }
+        }
+        return sedniceUsera;
     }
 
 }

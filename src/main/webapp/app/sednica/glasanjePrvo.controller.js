@@ -58,7 +58,7 @@
             console.log("redni" + id);
 
             function getAktiUPripremi(id) {
-                $http.get('/api/akt/svi_u_pripremi/' + id)
+                $http.get('/api/akt/svi_u_proceduri/' + id)
                     .then(function (akti) {
                         console.log("svi akti u_pripremi za tu sednicu");
                         console.log(id);

@@ -28,8 +28,10 @@
 
         }
 
+        vm.korisnickoIme = vm.userData.korisnickoIme;
+        console.log("korisnicko ime" + vm.korisnickoIme);
         function getAllSednice() {
-            $http.get('/api/sednica/sve')
+            $http.get('/api/sednica/sve_od_usera')
                 .then(function (sednice) {
                     vm.sednice = sednice.data;
                     //      console.log(JSON.stringify(sednice.data));
@@ -37,7 +39,6 @@
                     alert(response.data.response);
                 });
         }
-
 
         vm.modify = function () {
             vm.changed_user = {

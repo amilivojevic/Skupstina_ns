@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<pera xmlns="bla/bla"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="bla/bla file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/pera.xsd">
-    <ime>
-    </ime>
-    <prezime>
-    </prezime>
-</pera>

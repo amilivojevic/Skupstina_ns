@@ -44,6 +44,45 @@
                 </div>
             </div>
 
+
+                </br>
+                <legend  class="text-center">Kreirani akti</legend>
+                <div class="col-xs-10"  align="Center" >
+                        <div class="col-xs-5" >
+                        </div>
+                    <div class="col-xs-4">
+                        <div ng-repeat="a in poslanikCtrl.akti">
+                            <div class="well" align="Center">
+                                <b>{{a.naziv}}</b><br>
+                                {{a.preambula.oblast}}</br>
+                                drzava: {{a.drzava}}</br>
+                                regija: {{a.regija}}</br>
+                                grad: {{a.grad}}
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="role">Sednica:</label>
+                                <div class="col-md-1">
+                                    <select id="role" style="line-height: 44px;
+  							border: 1px solid #DAD8D8;
+  							width: 200px;" ng-model="poslanikCtrl.noviPredlog.idSednice" class="form-control" required>
+                                        <option style="color: #F94B4B;" ng-repeat="t in poslanikCtrl.sednice" ng-if="t.stanje == 'ZAKAZANA'">{{t.datum | date: 'dd.MM.yyyy'}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  for="submit"></label>
+                                <div >
+
+
+                                    <button id="submit" name="submit" ng-click="poslanikCtrl.predlozi(a.id)" class="btn btn-primary">Predlozi</button>
+
+                                    <button id="submit" name="submit"  class="btn btn-primary">Otkazi predlog</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
         </fieldset>
     </form>
 

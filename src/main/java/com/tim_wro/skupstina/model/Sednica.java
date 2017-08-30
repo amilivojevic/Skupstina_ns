@@ -29,11 +29,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence maxOccurs="unbounded" minOccurs="0">
  *         &lt;element ref="{http://www.skustinans.rs/akti}akt"/>
  *       &lt;/sequence>
- *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" />
- *       &lt;attribute name="datum" type="{http://www.w3.org/2001/XMLSchema}date" />
- *       &lt;attribute name="redniBroj" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="datum" use="required" type="{http://www.w3.org/2001/XMLSchema}date" />
+ *       &lt;attribute name="redniBroj" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="naziv" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="brojPrisutnih" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="brojPrisutnih" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="korisnickoIme" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="stanje" type="{http://www.skustinans.rs/sednice}stanje_sednice" />
  *     &lt;/restriction>
@@ -52,19 +52,19 @@ public class Sednica {
 
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Akt> akt;
-    @XmlAttribute(name = "id")
+    @XmlAttribute(name = "id", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String id;
-    @XmlAttribute(name = "datum")
+    @XmlAttribute(name = "datum", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
-    @XmlAttribute(name = "redniBroj")
+    @XmlAttribute(name = "redniBroj", required = true)
     protected String redniBroj;
     @XmlAttribute(name = "naziv")
     protected String naziv;
-    @XmlAttribute(name = "brojPrisutnih")
+    @XmlAttribute(name = "brojPrisutnih", required = true)
     protected BigInteger brojPrisutnih;
     @XmlAttribute(name = "korisnickoIme")
     protected String korisnickoIme;
