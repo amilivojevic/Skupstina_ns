@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" id="bcf96af4-e267-4957-9c53-6dd0e2728edd" naziv="Novi Akt" drzava="Srbija" regija="Vojvodina" grad="Novi Sad" stanje="u_proceduri" kreirao="a">
+<akt xmlns="http://www.skustinans.rs/akti" id="47698d35-024c-47c5-8398-f7c2f337c41e" naziv="Akt o zasedanjima skupstine" drzava="Srbija" regija="VOjvodina" grad="Novi Sad" stanje="u_proceduri" kreirao="a">
     <preambula>
         <pravni_osnov>preambula</pravni_osnov>
         <organ>Skupstina Vojvodine</organ>
-        <oblast>Zdravstvo</oblast>
+        <oblast>Ostalo</oblast>
     </preambula>
-    <clan naziv="naziv clana" br="1">
+    <clan naziv="Clan o nedeljnim zasedanjima sadrzaj stava" br="1">
         <stav>
-            <sadrzaj>a</sadrzaj>
+            <sadrzaj>sadrzaj stava</sadrzaj>
+        </stav>
+        <stav>
+            <tacka br="1">
+                <sadrzaj>sadrzaj tacke</sadrzaj>
+            </tacka>
+            <tacka br="2">
+                <podtacka br="1">
+                    <sadrzaj>sadrzaj podtacke</sadrzaj>
+                </podtacka>
+                <podtacka br="2">
+                    <alineja>alineja</alineja>
+                </podtacka>
+            </tacka>
         </stav>
     </clan>
 </akt>

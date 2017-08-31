@@ -6,13 +6,21 @@
         var vm = this;
         vm.addAmandman = addAmandman;
         vm.dodajStavku = dodajStavku;
-        vm.akt = {};
+        vm.novi = novi;
+        vm.selektovan = false;
+        vm.aktSelected = null;
 
+
+
+        function novi(){
+            alert("JOS NE RADI DODAVANJE NICEGA!");
+        }
 
         $http.get('/api/akt/svi')
             .then(function(akti) {
                 vm.akti = akti.data;
-                console.log(JSON.stringify(akti.data));
+                vm.akti = JSON.parse(JSON.stringify(vm.akti));
+                //console.log(JSON.stringify(akti.data));
             }, function(response) {
                 alert(response.data.response);
             });
@@ -21,15 +29,21 @@
 
             var ulogovani = $window.localStorage['loggedUser'];
             //console.log("ulogovani: " + ulogovani.korisnickoIme);
-            console.log("izabrani akt: ",vm.akt);
+            console.log("izabrani akt: ",vm.aktSelected);
         }
 
         function dodajStavku(){
-            if(vm.akt.id === undefined){
+            if(vm.akt === null){
                 alert("Morate odabrati akt!")
             }
-            var glasanje = {};
-            
+            else{
+
+                vm.klik = true;
+                vm.akt = JSON.parse(vm.aktSelected);
+                console.log("izabran akt: " + JSON.stringify(vm.akt));
+            }
+
+
         }
 
 

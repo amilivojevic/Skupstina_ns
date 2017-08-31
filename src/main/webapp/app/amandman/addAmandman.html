@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container ">
     <form class="form-horizontal"  >
         <fieldset>
 
@@ -33,25 +33,227 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="akt">Izaberite akt</label>
                 <div class="col-md-4">
-                    <select id="akt" name="selectbasic" class="form-control" ng-model="addAmdCtrl.akt">
+                    <select id="akt" name="selectbasic" class="form-control" ng-disabled="addAmdCtrl.klik" ng-change="addAmdCtrl.dodajStavku()" ng-model="addAmdCtrl.aktSelected">
                         <option  ng-repeat="a in addAmdCtrl.akti" value="{{a}}">{{a.naziv}}</option>
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <button id="singlebutton" ng-click="addAmdCtrl.dodajStavku()" name="singlebutton" class="btn btn-primary">dodaj stavku</button>
+                    <button ng-show="addAmdCtrl.aktSelected!=null" data-toggle="modal" data-target="#myModal" id="singlebutton"  name="singlebutton" class="btn btn-primary">dodaj stavku</button>
+                </div>
+            </div>
+
+<!------------------------------------------------DELOVI----------------------------------------------------------------------->
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog  modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Stavka amandmana</h4>
+                            </div>
+
+                            <div  class="col-md-12 ">
+
+
+                                <div ng-if="addAmdCtrl.akt != null && addAmdCtrl.klik && addAmdCtrl.akt.deo.length>0">
+                                    OVO JE NEKI AKT KOJI IMA DELOVE!
+                                </div>
+                                <div ng-if="addAmdCtrl.akt != null && addAmdCtrl.klik && addAmdCtrl.akt.clan.length>0">
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="submit">
+                                            <div align = "Left" >
+                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                    <span class="glyphicon glyphicon-plus"></span>Dodavanje clana
+                                                </button>
+                                            </div>
+                                        </label>
+                                    </div>
+
+
+                                    <div ng-repeat="c in addAmdCtrl.akt.clan">
+
+
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">{{c.naziv}}
+
+                                                    <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </button>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <!--dugme za dodavanje stava-->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="submit">
+                                                        <div  align = "Center" >
+                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                <span class="glyphicon glyphicon-plus"></span>Dodavanje stava
+                                                            </button>
+                                                        </div>
+                                                    </label>
+                                                </div>
+
+                                                <!--prolazak kroz sve staove-->
+                                                <div class="col-md-offset-1" ng-repeat="s in c.stav" >
+
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <!--ispis Stav i dugme za brisanje stava-->
+                                                            <h3 class="panel-title">Stav
+
+                                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                                </button>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="panel-body">
+
+
+
+                                                            <div ng-if="s.tacka.length==0">
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <textarea rows="2" class="form-control" ng-model="s.sadrzaj"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--prolazak kroz tacke stava ako ih ima-->
+                                                            <div ng-if="s.tacka.length>0">
+
+                                                                <!--dugme za dodavanje stava-->
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 control-label" for="submit">
+                                                                        <div  align = "Center" >
+                                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                                <span class="glyphicon glyphicon-plus"></span>Dodavanje tacke
+                                                                            </button>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+
+                                                                <!--prolazak kroz sve tacke-->
+                                                                <div  ng-repeat="t in s.tacka">
+
+                                                                    <div class="well">
+
+                                                                        <!--ispis Tacka 1 i dugme za brisanje tacke-->
+                                                                        <div class="form-group">
+                                                                            <label class="col-md-1 control-label" for="submit">Tacka {{t.broj}}</label>
+                                                                            <div class="col-md-4" align = "Left" >
+                                                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!--ako ima podtacke ispisi ih-->
+                                                                        <div ng-if="t.podtacka.length>0">
+                                                                            <!--prolazak kroz sve podtacke-->
+                                                                            <div class="col-md-offset-1" ng-repeat="p in t.podtacka">
+
+                                                                                <!--ispis Podtacka 1 i dugme za brisanje tpodtacke-->
+                                                                                <div class="form-group">
+                                                                                    <label class=" control-label" for="submit">Podacka {{p.broj}}</label>
+                                                                                </div>
+
+                                                                                <!--ako ima alineje ispisi ih-->
+                                                                                <div ng-if="p.alineja.length>0">
+                                                                                    <!--prolazak kroz sve alineje-->
+                                                                                    <div class="col-md-offset-1" ng-repeat="aa in p.alineja">
+
+                                                                                        <!--ispis Alineja-->
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-1 control-label" for="submit">Alineja</label>
+                                                                                            <div class="col-md-12 ">
+                                                                                                <textarea rows="2" class="form-control" ng-disabled="true" ng-model="aa"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div ng-if="p.alineja.length==0">
+                                                                                    <div class="form-group">
+                                                                                        <div class="form-group">
+                                                                                            <div class="col-md-10 ">
+                                                                                                <textarea rows="2" class="form-control" ng-disabled="true" ng-model="p.sadrzaj"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div ng-if="t.podtacka.length==0">
+                                                                            <div class="form-group">
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-9 col-md-offset-1">
+                                                                                        <textarea rows="3" class="form-control" ng-model="t.sadrzaj"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="submit"></label>
+                                <div class="col-md-4" align = "Center" >
+                                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print amandman</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
 
 
 
-            <legend  class="text-center"></legend>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="submit"></label>
-                <div class="col-md-4" align = "Center" >
-                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print amandman</button>
-                </div>
-            </div>
+
+
+
+
+
+
+
+
 
         </fieldset>
     </form>
