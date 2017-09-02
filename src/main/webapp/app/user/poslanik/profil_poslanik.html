@@ -46,7 +46,7 @@
 
 
                 </br>
-                <legend  class="text-center">Kreirani akti</legend>
+                <legend  class="text-center">Moji akti</legend>
                 <div class="col-xs-10"  align="Center" >
                         <div class="col-xs-5" >
                         </div>
@@ -58,25 +58,26 @@
                                 drzava: {{a.drzava}}</br>
                                 regija: {{a.regija}}</br>
                                 grad: {{a.grad}}
+                                id: {{a.id}}
+                                predlozen: {{a.predlozen}}
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="role">Sednica:</label>
+                                <label class="col-md-3 control-label" >Sednica:</label>
                                 <div class="col-md-1">
-                                    <select id="role" style="line-height: 44px;
+                                    <select style="line-height: 44px;
   							border: 1px solid #DAD8D8;
-  							width: 200px;" ng-model="poslanikCtrl.noviPredlog.idSednice" class="form-control" required>
-                                        <option style="color: #F94B4B;" ng-repeat="t in poslanikCtrl.sednice" ng-if="t.stanje == 'ZAKAZANA'">{{t.datum | date: 'dd.MM.yyyy'}}</option>
+  							width: 200px;" ng-model="a.izabranaSednica" class="form-control" >
+                                        <option style="color: #F94B4B;" ng-repeat="t in a.sednice" ng-if="t.stanje == 'ZAKAZANA'" required value="{{t.redniBroj}}">{{t.redniBroj + ", "}}{{t.datum | date: 'dd.MM.yyyy'}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  for="submit"></label>
-                                <div >
-
-
-                                    <button id="submit" name="submit" ng-click="poslanikCtrl.predlozi(a.id)" class="btn btn-primary">Predlozi</button>
-
-                                    <button id="submit" name="submit"  class="btn btn-primary">Otkazi predlog</button>
+                                <div ng-if="!a.predlozen">
+                                    <button id="submit" name="submit" ng-click="poslanikCtrl.predlozi(a)" class="btn btn-primary">Predlozi</button>
+                                </div>
+                                <div ng-if="a.predlozen">
+                                    <button id="submit" name="submit" ng-click="poslanikCtrl.otkaziPredlog(a)" class="btn btn-primary">Otkazi predlog</button>
                                 </div>
                             </div>
 

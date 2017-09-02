@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" id="4108b8fc-fbfe-466a-9fa1-798cc4d3341c" naziv="fffff" drzava="ff" regija="fff" grad="ff" stanje="u_proceduri" kreirao="k" redniBrojSednice="1 - 2017">
+<akt xmlns="http://www.skustinans.rs/akti" id="7a7d97ec-4094-485a-b6dc-cb4d49e0efaa" naziv="sdf" drzava="af" regija="fsd" grad="df" stanje="u_proceduri" kreirao="a">
     <preambula>
-        <pravni_osnov>ff</pravni_osnov>
-        <organ>ff</organ>
-        <oblast>Zdravstvo</oblast>
+        <pravni_osnov>fs</pravni_osnov>
+        <organ>af</organ>
+        <oblast>Policija</oblast>
     </preambula>
+    <predlozen>false</predlozen>
 </akt>

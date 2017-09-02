@@ -157,9 +157,9 @@
                             controllerAs: 'addSednicaCtrl'
                         },
                         'navbar': {
-                            templateUrl: 'app/navbar/navbar.html',
-                            controller: 'NavbarController',
-                            controllerAs: 'navbarCtrl'
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
                         }
                     }
                 })

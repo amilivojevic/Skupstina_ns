@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:sednica xmlns="http://www.skustinans.rs/akti" xmlns:ns2="http://www.skustinans.rs/sednice" id="89c14d2e-5664-4b8a-bd6e-a43337b0d579" datum="2017-07-31Z" redniBroj="fh" naziv="txyj" brojPrisutnih="0" korisnickoIme="p" stanje="aktivna"/>
+<sednica xmlns="http://www.skustinans.rs/sednice" xmlns:ns2="http://www.skustinans.rs/akti" id="7b2b894f-353c-46ad-ab2d-07b780eedac5" datum="2017-09-08Z" redniBroj="sdf" naziv="asf" brojPrisutnih="0" korisnickoIme="p">
+    <stanje>zakazana</stanje>
+</sednica>

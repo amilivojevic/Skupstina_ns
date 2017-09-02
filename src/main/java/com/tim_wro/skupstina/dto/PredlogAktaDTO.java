@@ -6,14 +6,14 @@ public class PredlogAktaDTO {
 
     private String aktID;
 
-    private Date datumSednice;
+    private String sednicaRB;
 
     public PredlogAktaDTO() {
     }
 
-    public PredlogAktaDTO(String aktID, Date datumSednice) {
+    public PredlogAktaDTO(String aktID, String sednicaRB) {
         this.aktID = aktID;
-        this.datumSednice = datumSednice;
+        this.sednicaRB = sednicaRB;
     }
 
     public String getAktID() {
@@ -24,19 +24,19 @@ public class PredlogAktaDTO {
         this.aktID = aktID;
     }
 
-    public Date getDatumSednice() {
-        return datumSednice;
+    public String getSednicaRB() {
+        return sednicaRB;
     }
 
-    public void setDatumSednice(Date datumSednice) {
-        this.datumSednice = datumSednice;
+    public void setSednicaRB(String sednicaRB) {
+        this.sednicaRB = sednicaRB;
     }
 
     @Override
     public String toString() {
         return "PredlogAktaDTO{" +
                 "aktID='" + aktID + '\'' +
-                ", datumSednice=" + datumSednice +
+                ", sednicaRB='" + sednicaRB + '\'' +
                 '}';
     }
 }

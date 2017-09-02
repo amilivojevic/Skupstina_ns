@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.skustinans.rs/akti}preambula"/>
- *         &lt;element ref="{http://www.skustinans.rs/akti}redniBrSednice"/>
+ *         &lt;element name="predlozen" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;choice>
  *           &lt;sequence maxOccurs="unbounded" minOccurs="2">
  *             &lt;element ref="{http://www.skustinans.rs/akti}deo"/>
@@ -47,7 +47,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="za" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="redniBrojSednice" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -58,7 +57,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "preambula",
-    "redniBrSednice",
+    "predlozen",
     "deo",
     "clan"
 })
@@ -67,8 +66,8 @@ public class Akt {
 
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected Preambula preambula;
-    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
-    protected String redniBrSednice;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
+    protected boolean predlozen;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Deo> deo;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
@@ -96,8 +95,6 @@ public class Akt {
     protected BigInteger protiv;
     @XmlAttribute(name = "suzdrzani")
     protected BigInteger suzdrzani;
-    @XmlAttribute(name = "redniBrojSednice")
-    protected String redniBrojSednice;
 
     /**
      * Gets the value of the preambula property.
@@ -124,27 +121,19 @@ public class Akt {
     }
 
     /**
-     * Gets the value of the redniBrSednice property.
+     * Gets the value of the predlozen property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getRedniBrSednice() {
-        return redniBrSednice;
+    public boolean isPredlozen() {
+        return predlozen;
     }
 
     /**
-     * Sets the value of the redniBrSednice property.
+     * Sets the value of the predlozen property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setRedniBrSednice(String value) {
-        this.redniBrSednice = value;
+    public void setPredlozen(boolean value) {
+        this.predlozen = value;
     }
 
     /**
@@ -443,30 +432,6 @@ public class Akt {
      */
     public void setSuzdrzani(BigInteger value) {
         this.suzdrzani = value;
-    }
-
-    /**
-     * Gets the value of the redniBrojSednice property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRedniBrojSednice() {
-        return redniBrojSednice;
-    }
-
-    /**
-     * Sets the value of the redniBrojSednice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRedniBrojSednice(String value) {
-        this.redniBrojSednice = value;
     }
 
 }

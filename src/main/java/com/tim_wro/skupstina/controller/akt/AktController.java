@@ -46,6 +46,7 @@ public class AktController {
 
     }
 
+
     @Autowired
     private UserService userService;
 
@@ -145,7 +146,7 @@ public class AktController {
     // vraca listu akata zakacenu na odredjenu sednicu
     @RequestMapping(value = "/svi_u_proceduri/{id}", method = RequestMethod.GET)
     public ResponseEntity getAllPrepared(@PathVariable("id") String id) throws JAXBException {
-        List<Akt> lista = aktService.getBySednicaRedniBroj(id);
+     List<Akt> lista = aktService.getBySednicaRedniBroj(id);
         List<Akt> aktiUProceduri = new ArrayList<>();
         for(Akt o : lista){
             if(o.getStanje() == StanjeAkta.U_PROCEDURI){

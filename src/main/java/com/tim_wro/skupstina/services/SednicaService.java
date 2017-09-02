@@ -117,38 +117,25 @@ public class SednicaService {
     }
 
 
-    public Sednica getOne(String imeSednice) throws JAXBException {
+    public Sednica findById(String redniBroj) throws JAXBException {
+
         DatabaseClient client = Connection.getConnection();
-        final XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
-        // A JAXB handle to receive the document's content.
-        JAXBContext context = JAXBContext.newInstance("com.tim_wro.skupstina.model");
-        JAXBHandle<Sednica> handle = new JAXBHandle<Sednica>(context);
+        final ServerEvaluationCall call = client.newServerEval();
 
+        call.xquery("declare namespace s = \"http://www.skustinans.rs/sednice\";\n//s:sednica");
 
-        // A metadata handle for metadata retrieval
-        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+        Sednica sednica = null;
+        final EvalResultIterator eval = call.eval();
 
-        // A document URI identifier.
-        String docId = "/sednica/sednica1.xml";
-
-        xmlManager.read(docId, metadata,handle);
-
-        // Retrieving a Bookstore instance
-        Sednica sednica = handle.get();
-
-        // Reading metadata
-        System.out.println("[INFO] Assigned collections: " + metadata.getCollections());
-
-        // Serializing DOM tree to standard output.
-        System.out.println("[INFO] Retrieved content:");
-        System.out.println(sednica);
-
-        // Release the client
-        client.release();
-
-        System.out.println("[INFO] End.");
-
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            sednica = JAXB.unmarshal(byteArrayInputStream, Sednica.class);
+            System.out.println("Sendica: " + sednica.toString());
+            if(redniBroj.equals(sednica.getRedniBroj()))
+            return sednica;
+        }
         return sednica;
     }
 
@@ -178,7 +165,7 @@ public class SednicaService {
 
         DatabaseClient client = Connection.getConnection();
 
-        System.out.println("Korisnicko na backendu:" + korisnickoIme);
+     //   System.out.println("Korisnicko na backendu:" + korisnickoIme);
 
         final ServerEvaluationCall call = client.newServerEval();
 
@@ -192,7 +179,7 @@ public class SednicaService {
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
             final Sednica sednica = JAXB.unmarshal(byteArrayInputStream, Sednica.class);
 
-            System.out.println("korisnicko na sednici:" + sednica.getKorisnickoIme());
+         //   System.out.println("korisnicko na sednici:" + sednica.getKorisnickoIme());
             if(sednica.getKorisnickoIme().equals(korisnickoIme)){
 
                 sedniceUsera.add(sednica);

@@ -26,8 +26,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence maxOccurs="unbounded" minOccurs="0">
- *         &lt;element ref="{http://www.skustinans.rs/akti}akt"/>
+ *       &lt;sequence>
+ *         &lt;element name="stanje" type="{http://www.skustinans.rs/sednice}stanje_sednice"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}akt" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *       &lt;attribute name="datum" use="required" type="{http://www.w3.org/2001/XMLSchema}date" />
@@ -35,7 +36,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="naziv" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="brojPrisutnih" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="korisnickoIme" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="stanje" type="{http://www.skustinans.rs/sednice}stanje_sednice" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -45,12 +45,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "stanje",
     "akt"
 })
 @XmlRootElement(name = "sednica", namespace = "http://www.skustinans.rs/sednice")
 public class Sednica {
 
-    @XmlElement(namespace = "http://www.skustinans.rs/akti")
+    @XmlElement(namespace = "http://www.skustinans.rs/sednice", required = true)
+    @XmlSchemaType(name = "string")
+    protected StanjeSednice stanje;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected List<Akt> akt;
     @XmlAttribute(name = "id", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -68,8 +72,30 @@ public class Sednica {
     protected BigInteger brojPrisutnih;
     @XmlAttribute(name = "korisnickoIme")
     protected String korisnickoIme;
-    @XmlAttribute(name = "stanje")
-    protected StanjeSednice stanje;
+
+    /**
+     * Gets the value of the stanje property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StanjeSednice }
+     *     
+     */
+    public StanjeSednice getStanje() {
+        return stanje;
+    }
+
+    /**
+     * Sets the value of the stanje property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StanjeSednice }
+     *     
+     */
+    public void setStanje(StanjeSednice value) {
+        this.stanje = value;
+    }
 
     /**
      * Gets the value of the akt property.
@@ -242,30 +268,6 @@ public class Sednica {
      */
     public void setKorisnickoIme(String value) {
         this.korisnickoIme = value;
-    }
-
-    /**
-     * Gets the value of the stanje property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link StanjeSednice }
-     *     
-     */
-    public StanjeSednice getStanje() {
-        return stanje;
-    }
-
-    /**
-     * Sets the value of the stanje property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StanjeSednice }
-     *     
-     */
-    public void setStanje(StanjeSednice value) {
-        this.stanje = value;
     }
 
 }

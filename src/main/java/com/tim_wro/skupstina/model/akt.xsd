@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://www.skustinans.rs/akti" xmlns="http://www.skustinans.rs/akti"
-    elementFormDefault="qualified">
+    targetNamespace="http://www.skustinans.rs/akti" elementFormDefault="qualified"
+    xmlns:a="http://www.skustinans.rs/akti">
     <xs:element name="deo">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded" minOccurs="2">
-                <xs:element ref="glava"/>
+                <xs:element ref="a:glava"/>
             </xs:sequence>
             <xs:attribute name="naziv" type="xs:string"/>
             <xs:attribute name="br" use="required">
@@ -21,10 +21,10 @@
         <xs:complexType>
             <xs:choice>
                 <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                    <xs:element ref="odeljak"/>
+                    <xs:element ref="a:odeljak"/>
                 </xs:sequence>
                 <xs:sequence maxOccurs="unbounded" minOccurs="1">
-                    <xs:element ref="clan"/>
+                    <xs:element ref="a:clan"/>
                 </xs:sequence>
             </xs:choice>
             <xs:attribute name="naziv" type="xs:string" use="required"/>
@@ -41,10 +41,10 @@
         <xs:complexType>
             <xs:choice>
                 <xs:sequence maxOccurs="unbounded">
-                    <xs:element ref="pododeljak"/>
+                    <xs:element ref="a:pododeljak"/>
                 </xs:sequence>
                 <xs:sequence maxOccurs="unbounded">
-                    <xs:element ref="clan"/>
+                    <xs:element ref="a:clan"/>
                 </xs:sequence>
             </xs:choice>
             <xs:attribute name="naziv" type="xs:string" use="required"/>
@@ -60,7 +60,7 @@
     <xs:element name="pododeljak">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded">
-                <xs:element ref="clan"/>
+                <xs:element ref="a:clan"/>
             </xs:sequence>
             <xs:attribute name="naziv" type="xs:string" use="required"/>
             <xs:attribute name="id" use="required">
@@ -75,7 +75,7 @@
     <xs:element name="clan">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded">
-                <xs:element ref="stav"/>
+                <xs:element ref="a:stav"/>
             </xs:sequence>
             <xs:attribute name="naziv" type="xs:string" use="required"/>
             <xs:attribute name="br" use="required">
@@ -91,9 +91,9 @@
         <xs:complexType>
             <xs:choice>
                 <xs:sequence maxOccurs="unbounded" minOccurs="2">
-                    <xs:element ref="tacka"/>
+                    <xs:element ref="a:tacka"/>
                 </xs:sequence>
-                <xs:element ref="sadrzaj"/>
+                <xs:element ref="a:sadrzaj"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
@@ -101,9 +101,9 @@
         <xs:complexType>
             <xs:choice>
                 <xs:sequence maxOccurs="unbounded" minOccurs="2">
-                    <xs:element ref="podtacka"/>
+                    <xs:element ref="a:podtacka"/>
                 </xs:sequence>
-                <xs:element ref="sadrzaj"/>
+                <xs:element ref="a:sadrzaj"/>
             </xs:choice>
             <xs:attribute name="br" use="required">
                 <xs:simpleType>
@@ -118,9 +118,9 @@
         <xs:complexType>
             <xs:choice>
                 <xs:sequence maxOccurs="unbounded">
-                    <xs:element ref="alineja"/>
+                    <xs:element ref="a:alineja"/>
                 </xs:sequence>
-                <xs:element ref="sadrzaj"/>
+                <xs:element ref="a:sadrzaj"/>
             </xs:choice>
             <xs:attribute name="br" use="required">
                 <xs:simpleType>
@@ -146,13 +146,12 @@
     <xs:element name="preambula">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="pravni_osnov"/>
+                <xs:element ref="a:pravni_osnov"/>
                 <xs:element name="organ" type="xs:string"/>
-                <xs:element name="oblast" type="oblast"/>
+                <xs:element name="oblast" type="a:oblast"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="redniBrSednice" type="xs:string"/>
     <xs:element name="sadrzaj" type="xs:string"/>
     <xs:simpleType name="stanje_akta">
         <xs:restriction base="xs:string">
@@ -164,14 +163,14 @@
     <xs:element name="akt">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="preambula"/>
-                <xs:element ref="redniBrSednice"/>
+                <xs:element ref="a:preambula"/>
+                <xs:element name="predlozen" type="xs:boolean"/>
                 <xs:choice>
                     <xs:sequence maxOccurs="unbounded" minOccurs="2">
-                        <xs:element ref="deo"/>
+                        <xs:element ref="a:deo"/>
                     </xs:sequence>
                     <xs:sequence maxOccurs="unbounded">
-                        <xs:element ref="clan"/>
+                        <xs:element ref="a:clan"/>
                     </xs:sequence>
                 </xs:choice>
             </xs:sequence>
@@ -180,12 +179,11 @@
             <xs:attribute name="drzava" type="xs:string" use="required"/>
             <xs:attribute name="regija" type="xs:string" use="required"/>
             <xs:attribute name="grad" type="xs:string" use="required"/>
-            <xs:attribute name="stanje" type="stanje_akta" use="required"/>
+            <xs:attribute name="stanje" type="a:stanje_akta" use="required"/>
             <xs:attribute name="kreirao" type="xs:string" use="required"/>
             <xs:attribute name="za" type="xs:integer"/>
             <xs:attribute name="protiv" type="xs:integer"/>
             <xs:attribute name="suzdrzani" type="xs:integer"/>
-            <xs:attribute form="unqualified" name="redniBrojSednice" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

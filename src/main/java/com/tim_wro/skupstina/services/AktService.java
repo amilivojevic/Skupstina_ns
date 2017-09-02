@@ -10,6 +10,7 @@ import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
 import com.tim_wro.skupstina.model.Akt;
+import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.repository.AktRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,11 +42,15 @@ public class AktService {
         transformerFactory = TransformerFactory.newInstance();
     }
 
+
     @Autowired
     public AktService(AktRepository aktRepository) {
         this.aktRepository = aktRepository;
 
     }
+
+    @Autowired
+    private SednicaService sednicaService;
 
     public int brojAkata(){
         DatabaseClient client = Connection.getConnection();
@@ -143,28 +148,14 @@ public class AktService {
         client.release();
     }
 
-    public List<Akt> getBySednicaRedniBroj(String id){
+    public List<Akt> getBySednicaRedniBroj(String id) throws JAXBException{
 
-        DatabaseClient client = Connection.getConnection();
+        Sednica sednica = sednicaService.findById(id);
+        System.out.println("glupa sednica " + sednica.toString());
 
-        final ServerEvaluationCall call = client.newServerEval();
+        List<Akt> aktiOdSednice = sednica.getAkt();
+        System.out.println("akti od te sednice " + aktiOdSednice);
 
-        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
-
-        final List<Akt> aktiOdSednice = new ArrayList<>();
-        final EvalResultIterator eval = call.eval();
-
-        for (EvalResult evalResult : eval) {
-            final String s = evalResult.getAs(String.class);
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
-            final Akt act = JAXB.unmarshal(byteArrayInputStream, Akt.class);
-
-            if(act.getRedniBrojSednice().toString().equals(id)){
-
-                aktiOdSednice.add(act);
-
-            }
-        }
         return aktiOdSednice;
     }
 
@@ -186,12 +177,35 @@ public class AktService {
             final Akt akt = JAXB.unmarshal(byteArrayInputStream, Akt.class);
 
             if(akt.getKreirao().equals(korisnickoIme)){
-
                 aktiUsera.add(akt);
-
             }
         }
+        System.out.println("Akti usera " + aktiUsera);
         return aktiUsera;
+    }
+
+    // vraca akt na osnovu ida
+    public Akt getById(String id){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt akt = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+
+            if(akt.getId().equals(id)){
+                return akt;
+            }
+        }
+        return null;
+
     }
 
 }

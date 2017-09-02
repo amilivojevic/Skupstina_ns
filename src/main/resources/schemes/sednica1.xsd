@@ -5,9 +5,8 @@
     <xs:import namespace="http://www.skustinans.rs/akti" schemaLocation="akt.xsd"/>
     <xs:element name="sednica">
         <xs:complexType>
-            <xs:sequence maxOccurs="1">
-                <xs:element name="stanje" type="s:stanje_sednice"/>
-                <xs:element ref="ns1:akt" maxOccurs="unbounded"/>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="ns1:akt"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID" use="required"/>
             <xs:attribute name="datum" type="xs:date" use="required"/>
@@ -15,6 +14,7 @@
             <xs:attribute name="naziv" type="xs:string"/>
             <xs:attribute name="brojPrisutnih" type="xs:integer" use="required"/>
             <xs:attribute name="korisnickoIme" type="xs:string"/>
+            <xs:attribute name="stanje" type="s:stanje_sednice"/>
         </xs:complexType>
     </xs:element>
     <xs:simpleType name="stanje_sednice">

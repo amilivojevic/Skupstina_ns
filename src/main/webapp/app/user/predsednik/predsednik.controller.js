@@ -6,15 +6,21 @@
         var vm = this;
         vm.getAllSednice = getAllSednice;
 
-        getAllSednice();
+
         vm.userData = angular.fromJson($window.localStorage['loggedUser']);
         console.log("vm.userData = " + JSON.stringify(vm.userData));
 
-
+        getAllSednice();
 
         vm.redirect = function(){
-            $window.location.href = "http://" + $window.location.host + "/#!/izmeniProfilPredsednik";
+            $state.go('izmeniProfilPredsednik');
+       //     $window.location.href = "http://" + $window.location.host + "/#!/izmeniProfilPredsednik";
 
+        }
+
+        function redirect2(){
+            $state.go('predsednik');
+        //    $window.location.href = "http://" + $window.location.host + "/#!/predsednik";
         }
 
         vm.detalji = function(){
@@ -24,8 +30,14 @@
 
         vm.aktiviraj = function(redniBroj){
             //$window.location.href = "http://" + $window.location.host + "/#!/activateSednica";
-            $state.go('activateSednica', {sednicaID:redniBroj});
+            $http.post('/api/sednica/aktiviraj/'+redniBroj).then(function (response) {
 
+                console.log("Sednica je sada aktivna!");
+                $state.go('activateSednica', {sednicaID:redniBroj});
+            })
+                .catch(function () {
+                    console.log("Neka greska!");
+                });
         }
 
         vm.korisnickoIme = vm.userData.korisnickoIme;
@@ -34,7 +46,7 @@
             $http.get('/api/sednica/sve_od_usera')
                 .then(function (sednice) {
                     vm.sednice = sednice.data;
-                    //      console.log(JSON.stringify(sednice.data));
+                    console.log("lista sednica " + JSON.stringify(sednice.data));
                 }, function (response) {
                     alert(response.data.response);
                 });
@@ -60,7 +72,7 @@
                         console.log("ucitan u funkciji: " + JSON.stringify(loggedUser));
                         $window.localStorage['loggedUser'] = angular.toJson(loggedUser);
                         $scope.userData = loggedUser;
-                        $window.location.href = "#!/predsednik";
+                        redirect2();
                     }
                 );
 

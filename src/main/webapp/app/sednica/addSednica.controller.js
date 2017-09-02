@@ -38,14 +38,14 @@ function addSednicaController($scope,$http, LoginFactory, $window) {
                 "naziv": vm.naziv,
                 "brojPrisutnih": 0,
                 "korisnickoIme": vm.kreirao.korisnickoIme,
-                "stanje": "AKTIVNA"
+                "stanje": "ZAKAZANA"
 
             }
 
             $http.post('/api/sednica/nova', novaSednica)
                 .then(function (response) {
                     console.log("Sve je dobro");
-                    $window.location.href = "#!/predsednik";
+                    $scope.redirect();
                 })
                 .catch(function () {
                     console.log("Neka greska!");
