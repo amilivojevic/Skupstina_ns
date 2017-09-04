@@ -25,6 +25,7 @@
             </xs:sequence>
             <xs:attribute name="tipIzmene" type="amd:tipIzmene"/>
             <xs:attribute name="mestoIzmene" type="xs:int"/>
+            <xs:attribute name="putanja" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="amandman">
