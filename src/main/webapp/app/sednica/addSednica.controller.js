@@ -38,9 +38,7 @@ function addSednicaController($scope,$http, LoginFactory, $window) {
                 "naziv": vm.naziv,
                 "brojPrisutnih": 0,
                 "korisnickoIme": vm.kreirao.korisnickoIme,
-                "stanje": "ZAKAZANA"
-
-
+                "stanje": "AKTIVNA"
 
             }
 

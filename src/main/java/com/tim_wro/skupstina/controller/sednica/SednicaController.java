@@ -5,8 +5,12 @@ import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
+import com.tim_wro.skupstina.dto.PredlogAktaDTO;
+import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.model.Sednica;
+import com.tim_wro.skupstina.model.StanjeSednice;
 import com.tim_wro.skupstina.services.SednicaService;
+import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import com.tim_wro.skupstina.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +25,18 @@ import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/sednica")
 public class SednicaController {
 
     private final SednicaService sednicaService;
+
+    @Autowired
+    public UserService userService;
 
     @Autowired
     public SednicaController(SednicaService sednicaService){
@@ -38,8 +47,10 @@ public class SednicaController {
     @PostMapping("/nova")
     public ResponseEntity create(@RequestBody Sednica sednica) throws FileNotFoundException {
 
+        sednica.setId(UUID.randomUUID().toString());
+
         //marshalling
-        File file = new File("file.xml");
+        File file = new File("file1.xml");
         JAXBContext jaxbContext = null;
         try {
             jaxbContext = JAXBContext.newInstance(Sednica.class);
@@ -58,9 +69,11 @@ public class SednicaController {
 
         //writing in marklogic db
 
-        sednicaService.writeInMarkLogicDB(file);
+        sednicaService.writeInMarkLogicDB(file, sednica.getId());
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+
+
     }
 
     // hardcode-ovano da se ucita iz baze akt sa id-om /akt/akt1.xml!
@@ -122,5 +135,63 @@ public class SednicaController {
         List<Sednica> lista = sednicaService.getAll();
         System.out.println("posle sednicaService.getAll();");
         return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
+    // vraca sve zakazane sednice od odredjenog usera
+    @RequestMapping(value = "/sve_od_usera", method = RequestMethod.GET)
+    public ResponseEntity getAllForUser( @RequestHeader("X-Auth-Token") String token) throws JAXBException {
+
+        Korisnik k = userService.findByToken(token);
+
+        List<Sednica> sedniceUsera = sednicaService.getByUser(k.getKorisnickoIme());
+        List<Sednica> zakazaneSednice = new ArrayList<>();
+        for(Sednica s : sedniceUsera){
+            if(s.getStanje() == StanjeSednice.ZAKAZANA){
+                zakazaneSednice.add(s);
+            }
+        }
+
+        return new ResponseEntity<>(zakazaneSednice,HttpStatus.OK);
+    }
+
+    // kaci akt na sednicu
+    @RequestMapping(value = "/predlozen", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<ResponseMessage> predloziAkt(@RequestBody PredlogAktaDTO predlogAktaDTO) {
+
+        System.out.println("predlog akta: " + predlogAktaDTO.toString());
+
+
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(predlogAktaDTO.toString()), HttpStatus.OK);
+    }
+
+    @PostMapping("cfirst_voting")
+    public ResponseEntity votingOne(@RequestBody Sednica sednica) throws FileNotFoundException {
+
+  /*      //marshalling
+        File file = new File("file1.xml");
+        JAXBContext jaxbContext = null;
+        try {
+            jaxbContext = JAXBContext.newInstance(Sednica.class);
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller.marshal(sednica, file);
+            jaxbMarshaller.marshal(sednica, System.out);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        //writing in marklogic db
+
+        sednicaService.writeInMarkLogicDB(file); */
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+
+
     }
 }

@@ -167,7 +167,7 @@
                     url: '/activateSednica',
                     views: {
                         'content': {
-                            templateUrl: 'app/sednica/aktivnaSednica.html',
+                            templateUrl: 'app/sednica/glasanje_prvo.html',
                             controller: 'ActivateSednicaController',
                             controllerAs: 'activateSednicaCtrl'
                         },
@@ -176,8 +176,32 @@
                             controller: 'NavbarPredsednikController',
                             controllerAs: 'navbarPredsednikCtrl'
                         }
+                    },  params: {
+                        'sednicaID': null,
+                        'aktNaziv': ""
+                     //   'skupstina' null
                     }
                 })
+                .state('exportToPDF', {
+                    url: '/exportToPDF',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/pdf/export_to_pdf.html',
+                            controller: 'ExportPDFController',
+                            controllerAs: 'exportPDFCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    },  params: {
+
+                        //   'skupstina': null
+                    }
+                })
+
+
 
         $httpProvider
             .interceptors.push(['$q', '$window',

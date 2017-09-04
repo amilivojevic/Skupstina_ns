@@ -6,7 +6,10 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
 import com.tim_wro.skupstina.model.Akt;
+import com.tim_wro.skupstina.model.Korisnik;
+import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.services.AktService;
+import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import com.tim_wro.skupstina.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,9 @@ public class AktController {
         this.aktService = aktService;
 
     }
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Akt akt) throws FileNotFoundException {
@@ -134,6 +140,37 @@ public class AktController {
         List<Akt> lista = aktService.getAll();
         System.out.println("posle aktService.getAll();");
         return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
+    // vraca listu akata zakacenu na odredjenu sednicu
+    @RequestMapping(value = "/svi_u_proceduri/{id}", method = RequestMethod.GET)
+    public ResponseEntity getAllPrepared(@PathVariable("id") String id) throws JAXBException {
+        List<Akt> lista = aktService.getBySednicaRedniBroj(id);
+        List<Akt> aktiUProceduri = new ArrayList<>();
+        for(Akt o : lista){
+            if(o.getStanje() == StanjeAkta.U_PROCEDURI){
+                aktiUProceduri.add(o);
+            }
+        }
+
+        return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
+    }
+
+    // vraca listu akata u proceduri odredjenog usera
+    @RequestMapping(value = "/svi_u_proceduri", method = RequestMethod.GET)
+    public ResponseEntity getAllByUser(@RequestHeader("X-Auth-Token") String token) throws JAXBException {
+
+        Korisnik k = userService.findByToken(token);
+
+        List<Akt> aktiUsera = aktService.getByUser(k.getKorisnickoIme());
+        List<Akt> aktiUProceduri = new ArrayList<>();
+        for(Akt a : aktiUsera){
+            if(a.getStanje() == StanjeAkta.U_PROCEDURI){
+                aktiUProceduri.add(a);
+            }
+        }
+
+        return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
 }
 

@@ -143,4 +143,55 @@ public class AktService {
         client.release();
     }
 
+    public List<Akt> getBySednicaRedniBroj(String id){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final List<Akt> aktiOdSednice = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt act = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+
+            if(act.getRedniBrojSednice().toString().equals(id)){
+
+                aktiOdSednice.add(act);
+
+            }
+        }
+        return aktiOdSednice;
+    }
+
+    // vraca listu sednica od odredjenog korisnika
+    public List<Akt> getByUser(String korisnickoIme){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
+
+        final List<Akt> aktiUsera = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Akt akt = JAXB.unmarshal(byteArrayInputStream, Akt.class);
+
+            if(akt.getKreirao().equals(korisnickoIme)){
+
+                aktiUsera.add(akt);
+
+            }
+        }
+        return aktiUsera;
+    }
+
 }

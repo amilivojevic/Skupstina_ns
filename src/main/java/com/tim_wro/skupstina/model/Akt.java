@@ -1,6 +1,7 @@
 
 package com.tim_wro.skupstina.model;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.skustinans.rs/akti}preambula"/>
+ *         &lt;element ref="{http://www.skustinans.rs/akti}redniBrSednice"/>
  *         &lt;choice>
  *           &lt;sequence maxOccurs="unbounded" minOccurs="2">
  *             &lt;element ref="{http://www.skustinans.rs/akti}deo"/>
@@ -42,6 +44,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="grad" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="stanje" use="required" type="{http://www.skustinans.rs/akti}stanje_akta" />
  *       &lt;attribute name="kreirao" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="za" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="redniBrojSednice" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -52,6 +58,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "preambula",
+    "redniBrSednice",
     "deo",
     "clan"
 })
@@ -60,6 +67,8 @@ public class Akt {
 
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected Preambula preambula;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
+    protected String redniBrSednice;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Deo> deo;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
@@ -81,6 +90,14 @@ public class Akt {
     protected StanjeAkta stanje;
     @XmlAttribute(name = "kreirao", required = true)
     protected String kreirao;
+    @XmlAttribute(name = "za")
+    protected BigInteger za;
+    @XmlAttribute(name = "protiv")
+    protected BigInteger protiv;
+    @XmlAttribute(name = "suzdrzani")
+    protected BigInteger suzdrzani;
+    @XmlAttribute(name = "redniBrojSednice")
+    protected String redniBrojSednice;
 
     /**
      * Gets the value of the preambula property.
@@ -104,6 +121,30 @@ public class Akt {
      */
     public void setPreambula(Preambula value) {
         this.preambula = value;
+    }
+
+    /**
+     * Gets the value of the redniBrSednice property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRedniBrSednice() {
+        return redniBrSednice;
+    }
+
+    /**
+     * Sets the value of the redniBrSednice property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRedniBrSednice(String value) {
+        this.redniBrSednice = value;
     }
 
     /**
@@ -330,6 +371,102 @@ public class Akt {
      */
     public void setKreirao(String value) {
         this.kreirao = value;
+    }
+
+    /**
+     * Gets the value of the za property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getZa() {
+        return za;
+    }
+
+    /**
+     * Sets the value of the za property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setZa(BigInteger value) {
+        this.za = value;
+    }
+
+    /**
+     * Gets the value of the protiv property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getProtiv() {
+        return protiv;
+    }
+
+    /**
+     * Sets the value of the protiv property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setProtiv(BigInteger value) {
+        this.protiv = value;
+    }
+
+    /**
+     * Gets the value of the suzdrzani property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getSuzdrzani() {
+        return suzdrzani;
+    }
+
+    /**
+     * Sets the value of the suzdrzani property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setSuzdrzani(BigInteger value) {
+        this.suzdrzani = value;
+    }
+
+    /**
+     * Gets the value of the redniBrojSednice property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRedniBrojSednice() {
+        return redniBrojSednice;
+    }
+
+    /**
+     * Sets the value of the redniBrojSednice property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRedniBrojSednice(String value) {
+        this.redniBrojSednice = value;
     }
 
 }

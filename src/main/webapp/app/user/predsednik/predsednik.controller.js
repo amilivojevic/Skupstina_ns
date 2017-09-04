@@ -2,11 +2,15 @@
 (function() {
     angular.module("skupstinaNS").controller("PredsednikController", predsednikController);
 
-    function predsednikController($http, $window, $scope, LoginFactory) {
+    function predsednikController($http, $window, $scope, LoginFactory, $state) {
         var vm = this;
-        vm.sednice = [];
+        vm.getAllSednice = getAllSednice;
+
+        getAllSednice();
         vm.userData = angular.fromJson($window.localStorage['loggedUser']);
         console.log("vm.userData = " + JSON.stringify(vm.userData));
+
+
 
         vm.redirect = function(){
             $window.location.href = "http://" + $window.location.host + "/#!/izmeniProfilPredsednik";
@@ -18,9 +22,22 @@
 
         }
 
-        vm.aktiviraj = function(){
-            $window.location.href = "http://" + $window.location.host + "/#!/activateSednica";
+        vm.aktiviraj = function(redniBroj){
+            //$window.location.href = "http://" + $window.location.host + "/#!/activateSednica";
+            $state.go('activateSednica', {sednicaID:redniBroj});
 
+        }
+
+        vm.korisnickoIme = vm.userData.korisnickoIme;
+        console.log("korisnicko ime" + vm.korisnickoIme);
+        function getAllSednice() {
+            $http.get('/api/sednica/sve_od_usera')
+                .then(function (sednice) {
+                    vm.sednice = sednice.data;
+                    //      console.log(JSON.stringify(sednice.data));
+                }, function (response) {
+                    alert(response.data.response);
+                });
         }
 
         vm.modify = function () {
@@ -53,12 +70,6 @@
             });
         }
 
-        $http.get('/api/sednica/sve')
-            .then(function(sednice) {
-                vm.sednice = sednice.data;
-          //      console.log(JSON.stringify(sednice.data));
-            }, function(response) {
-                alert(response.data.response);
-            });
+
     }
 })();

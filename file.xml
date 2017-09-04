@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" id="47698d35-024c-47c5-8398-f7c2f337c41e" naziv="Akt o zasedanjima skupstine" drzava="Srbija" regija="VOjvodina" grad="Novi Sad" stanje="u_proceduri" kreirao="a">
+
+<akt xmlns="http://www.skustinans.rs/akti" id="a47698d35-024c-47c5-8398-f7c2f337c41ep" naziv="Akt o zasedanjima skupstine" drzava="Srbija" regija="VOjvodina" grad="Novi Sad" stanje="u_proceduri" kreirao="a">
     <preambula>
         <pravni_osnov>preambula</pravni_osnov>
         <organ>Skupstina Vojvodine</organ>
@@ -23,4 +24,5 @@
             </tacka>
         </stav>
     </clan>
+
 </akt>
