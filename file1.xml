@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<sednica xmlns="http://www.skustinans.rs/sednice" xmlns:ns2="http://www.skustinans.rs/akti" id="7b2b894f-353c-46ad-ab2d-07b780eedac5" datum="2017-09-08Z" redniBroj="sdf" naziv="asf" brojPrisutnih="0" korisnickoIme="p">
+<sednica xmlns="http://www.skustinans.rs/sednice" xmlns:ns2="http://www.skustinans.rs/akti" id="8ae5ffbf-488f-4b66-9e58-6d2515118029" datum="2017-09-20Z" redniBroj="a" naziv="a" korisnickoIme="p">
     <stanje>zakazana</stanje>
+    <brojPrisutnih>0</brojPrisutnih>
 </sednica>

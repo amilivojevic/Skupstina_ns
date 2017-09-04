@@ -8,39 +8,39 @@
     function activateSednicaController($scope,$http, $window,  $stateParams) {
         var vm = this;
         vm.getAktiUPripremi = getAktiUPripremi;
-        var id = $stateParams.sednicaID;
+        vm.id = $stateParams.sednicaID;
 
         var nazivAkta = $stateParams.naziv;
 
-        getAktiUPripremi(id);
+        getAktiUPripremi(vm.id);
 
         $scope.redirect = function () {
             $window.location.href = "http://" + $window.location.host + "/#!/predsednik";
 
-        }
+        };
 
-        vm.voteFirstTime = function (naziv) {
+        vm.voteFirstTime = function (a) {
             vm.voting1 = {
+                sednicaID : vm.id,
+                aktID : a.id,
+                brojPrisutnih: parseInt(vm.sednicaData.brojPrisutnih),
+                za: parseInt(a.za),
+                protiv: parseInt(a.protiv),
+                suzdrzani: parse(a.suzdrzani)
 
-                brojPrisutnih: vm.sednicaData.brojPrisutnih,
-                za: vm.sednicaData.za,
-                protiv: vm.sednicaData.protiv,
-                suzdrzani: vm.sednicaData.suzdrzani
-
-
-            }
+            };
 
             console.log("salje na backend" + JSON.stringify(vm.voting1) );
 
             $http.post('/api/sednica/voting/first_voting', vm.voting1
             ).then(function (response) {
 
-                $scope.redirect();
+           //     $scope.redirect();
 
             }, function (response) {
                 alert("Registration failed");
             });
-        }
+        };
 
 
 
@@ -54,11 +54,10 @@
                       }); */
 
 
-            vm.id = vm.sednicaID;
-            console.log("redni" + id);
+            console.log("redni" + vm.id);
 
             function getAktiUPripremi(id) {
-                $http.get('/api/akt/svi_u_proceduri/' + id)
+                $http.get('/api/akt/svi_u_proceduri/' + vm.id)
                     .then(function (akti) {
                         console.log("svi akti u_pripremi za tu sednicu");
                         console.log(id);

@@ -8,6 +8,9 @@ import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
 import com.marklogic.client.util.EditableNamespaceContext;
+import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
+import com.tim_wro.skupstina.controller.akt.AktController;
+import com.tim_wro.skupstina.dto.FirstVotingDTO;
 import com.tim_wro.skupstina.dto.PredlogAktaDTO;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Korisnik;
@@ -24,6 +27,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
+import sun.misc.FloatingDecimal;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -31,6 +35,8 @@ import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -46,6 +52,9 @@ public class SednicaController {
 
     @Autowired
     private AktService aktService;
+
+    @Autowired
+    private AktController aktController;
 
     @Autowired
     public SednicaController(SednicaService sednicaService){
@@ -172,285 +181,81 @@ public class SednicaController {
         ///// menjanje elementa akta predlozen na true
         Akt akt = aktService.getById(predlogAktaDTO.getAktID());
 
-        // menjanje elementa akta predlozen na true
-        DatabaseClient client = Connection.getConnection();
-
-        // Create a document manager to work with XML files.
-        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
-
-        // Define a URI value for a document.
-        String docId = "/akt/" + akt.getId() + ".xml";
-
-        // Defining namespace mappings
-        EditableNamespaceContext namespaces = new EditableNamespaceContext();
-        namespaces.put("a", "http://www.skustinans.rs/akti");
-        namespaces.put("fn", "http://www.w3.org/2005/xpath-functions");
-
-        // Assigning namespaces to patch builder
-        DocumentPatchBuilder patchBuilder = xmlManager.newPatchBuilder();
-        patchBuilder.setNamespaces(namespaces);
-
-        // Creating an XML patch
         akt.setPredlozen(true);
-        Boolean patch = akt.isPredlozen();
+     //   aktService.updateAkt(akt);
 
-        // Defining XPath context
-        String contextXPath1 = "/a:akt/a:predlozen";
-
-        DocumentPatchHandle patchHandle;
-
-        // Replace fragment
-        patchBuilder.replaceFragment(contextXPath1, patch);
-
-        patchHandle = patchBuilder.build();
-
-        xmlManager.patch(docId, patchHandle);
-
-        client.release();
 
         ////////////////////////////////////////////////////////////////
         ///// dodavanje tog akta u listu akata sednice
         Sednica sednica = sednicaService.findById(predlogAktaDTO.getSednicaRB());
 
-        System.out.println("lista akata za tu sednicu " + sednica.getAkt());
-
-        ///////////////////////////////////////////////////////////////
-        // kacenje selektovanog akta na sednicu
-        // !!!!!! izmeniti jednom kada sema bude gotoga
-        client = Connection.getConnection();
-
-        // Create a document manager to work with XML files.
-        xmlManager = client.newXMLDocumentManager();
-
-        // Define a URI value for a document.
-        docId = "/sednica/" + sednica.getId() + ".xml";
-
-        // Defining namespace mappings
-        namespaces.put("s", "http://www.skustinans.rs/sednice");
-
-        // Assigning namespaces to patch builder
-        patchBuilder = xmlManager.newPatchBuilder();
-        patchBuilder.setNamespaces(namespaces);
-
-        // Creating an XML patch
-        String patch2 = "\t<akt id=\"" + akt.getId() + "\" naziv=\"" + akt.getNaziv() + "\" drzava=\"" +
-                akt.getDrzava() + "\" regija=\"" + akt.getRegija() + "\" grad=\"" + akt.getGrad() + "\" stanje=\"" +
-                akt.getStanje() + "\" kreirao=\"" + akt.getKreirao() + "\">\n" +
-
-                "\t\t<preambula>\n" +
-                "\t\t\t<pravni_osnov>" + akt.getPreambula().getPravniOsnov() + "</pravni_osnov>\n" +
-                "\t\t\t<organ>" + akt.getPreambula().getOrgan() + "</organ>\n" +
-                "\t\t\t<oblast>" + akt.getPreambula().getOblast() + "</oblast>\n" +
-                "\t\t</preambula>\n" +
-                "\t\t<predlozen>" + akt.isPredlozen() + "</predlozen>\n" +
-                "\t</akt>\n";
-
         sednica.getAkt().add(akt);
-        List<Akt> aktiSednice =  sednica.getAkt();
-        System.out.println("akti sednice " + aktiSednice);
-     //   List<Akt> patch2 = aktiSednice ;
+        System.out.println("Akti sednice posle dodavanja: " + sednica.getAkt());
+        sednicaService.updateSednica(sednica);
+        try {
+            aktService.deleteFromDB(akt);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        // Defining XPath context
-        String contextXPath2 = "/s:sednica/s:stanje";
-
-        // insert fragment
-        patchBuilder.insertFragment(contextXPath2, DocumentPatchBuilder.Position.BEFORE, patch2);
-
-        patchHandle = patchBuilder.build();
-
-        xmlManager.patch(docId, patchHandle);
-
-        client.release();
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
     }
 
-    // dodaje akt na sednicu i stavlja mu status predlozen
+    // uklanja akt sa sednice i stavlja mu status na false
     @RequestMapping(value = "/otkazi", method = RequestMethod.POST)
     public ResponseEntity otkaziAkt(@RequestBody PredlogAktaDTO predlogAktaDTO) throws JAXBException {
 
+        /////////////////////////////////////////////////////////////////
+        ///// menjanje elementa akta predlozen na true
         Akt akt = aktService.getById(predlogAktaDTO.getAktID());
         akt.setPredlozen(false);
 
-        List<Sednica> sednice = sednicaService.getAll();
-        List<Akt> aktiSednice;
-        Sednica sednica = new Sednica();
-        for(Sednica s : sednice){
-            System.out.println("usao u for");
-            aktiSednice = s.getAkt();
-            System.out.println("akti od trenutne sednice");
-            for(Akt a : aktiSednice){
-                if(a.getId().equals(akt.getId())){
-                    System.out.println("nasao sednicu!");
-                    sednica = s;
-                }
+        ////////////////////////////////////////////////////////////////
+        ///// uklanjanje tog akta iz listu akata sednice
+        Sednica sednica = sednicaService.findById(predlogAktaDTO.getSednicaRB());
+        List<Akt> aktiSednice = sednica.getAkt();
+
+        System.out.println("Pre remove akt " + aktiSednice);
+        // ne radi remove glupi!
+        for(int i = 0; i<aktiSednice.size(); i++){
+            if(aktiSednice.get(i).getId().equals(akt.getId())){
+                aktiSednice.remove(i);
             }
         }
 
-        sednica.getAkt().remove(akt);
-        System.out.println("lista akata za tu sednicu " + sednica.getAkt());
 
-        //marshalling
-        File file = new File("file.xml");
-        JAXBContext jaxbContext = null;
-        try {
-            jaxbContext = JAXBContext.newInstance(Akt.class);
-
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(akt, file);
-            jaxbMarshaller.marshal(akt, System.out);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-        //writing in marklogic db
+        System.out.println("Posle remove akt " + aktiSednice);
+        System.out.println("Akti sednice posle uklanjanja" + sednica.getAkt());
+        sednicaService.updateSednica(sednica);
 
         try {
-            aktService.writeInMarkLogicDB(file, akt.getId());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        File file1 = new File("file1.xml");
-        JAXBContext jaxbContext1 = null;
-        try {
-            jaxbContext1 = JAXBContext.newInstance(Sednica.class);
-
-            Marshaller jaxbMarshaller1 = jaxbContext1.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller1.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller1.marshal(sednica, file1);
-            jaxbMarshaller1.marshal(sednica, System.out);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        try {
-            sednicaService.writeInMarkLogicDB(file1, sednica.getId());
+            aktController.create(akt);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
+
     }
 
-  /*  @RequestMapping(value = "/aktiviraj/{redniBroj}", method = RequestMethod.POST)
-    public ResponseEntity aktivirajSednicu(@PathVariable("redniBroj") String redniBroj) throws JAXBException {
+ /*   @PostMapping("first_voting")
+    public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
 
-        Sednica sednica = sednicaService.findById(redniBroj);
 
-        sednica.setStanje(StanjeSednice.AKTIVNA);
+        sednicaService.checkIfIzglasan(firstVotingDTO);
 
-        //marshalling
-        File file = new File("file1.xml");
-
-        JAXBContext jaxbContext = null;
-        try {
-            jaxbContext = JAXBContext.newInstance(Sednica.class);
-
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(sednica, file);
-            jaxbMarshaller.marshal(sednica, System.out);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-        //writing in marklogic db
-        try {
-            sednicaService.writeInMarkLogicDB(file, sednica.getId());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
-    } */
-
-    @PostMapping("cfirst_voting")
-    public ResponseEntity votingOne(@RequestBody Sednica sednica) throws FileNotFoundException {
-
-  /*      //marshalling
-        File file = new File("file1.xml");
-        JAXBContext jaxbContext = null;
-        try {
-            jaxbContext = JAXBContext.newInstance(Sednica.class);
-
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(sednica, file);
-            jaxbMarshaller.marshal(sednica, System.out);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-        //writing in marklogic db
-
-        sednicaService.writeInMarkLogicDB(file); */
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
 
-
-    }
+    }*/
 
 
     @PostMapping("/aktiviraj/{redniBroj}")
     public ResponseEntity aktiviraj(@PathVariable("redniBroj") String redniBroj) throws JAXBException {
 
-
-        DatabaseClient client = Connection.getConnection();
-
         Sednica sednica = sednicaService.findById(redniBroj);
-        System.out.println("sednica je " + sednica.toString());
-
-        // Create a document manager to work with XML files.
-        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
-
-        // Define a URI value for a document.
-        String docId = "/sednica/" + sednica.getId() + ".xml";
-        System.out.println("uzeo sednicu " + sednica.getId());
-
-        // Defining namespace mappings
-        EditableNamespaceContext namespaces = new EditableNamespaceContext();
-        namespaces.put("s", "http://www.skustinans.rs/sednice");
-        namespaces.put("fn", "http://www.w3.org/2005/xpath-functions");
-
-        // Assigning namespaces to patch builder
-        DocumentPatchBuilder patchBuilder = xmlManager.newPatchBuilder();
-        patchBuilder.setNamespaces(namespaces);
-
-        // Creating an XML patch
-        String patch2 = "aktivna";
-
-        // Defining XPath context
-        String contextXPath1 = "/s:sednica/s:stanje";
-
-        DocumentPatchHandle patchHandle;
-
-        // Replace fragment
-        patchBuilder.replaceFragment(contextXPath1, patch2);
-
-        // Remove fragment
-        //patchBuilder.delete(contextXPath1);
-
-        patchHandle = patchBuilder.build();
-
-        xmlManager.patch(docId, patchHandle);
-
-        client.release();
+        sednica.setStanje(StanjeSednice.AKTIVNA);
+        sednicaService.updateSednica(sednica);
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
 

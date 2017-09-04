@@ -3,7 +3,7 @@
     targetNamespace="http://www.skustinans.rs/sednice" xmlns:ns1="http://www.skustinans.rs/akti"
     xmlns:s="http://www.skustinans.rs/sednice">
     <xs:import namespace="http://www.skustinans.rs/akti"
-        schemaLocation="../../java/com/tim_wro/skupstina/model/akt.xsd"/>
+        schemaLocation="../../java/com/tim_wro/skupstina/model/akt_backup.xsd"/>
     <xs:element name="sednica">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded" minOccurs="0">

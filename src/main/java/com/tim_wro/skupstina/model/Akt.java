@@ -28,6 +28,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.skustinans.rs/akti}preambula"/>
  *         &lt;element name="predlozen" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="za" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;choice>
  *           &lt;sequence maxOccurs="unbounded" minOccurs="2">
  *             &lt;element ref="{http://www.skustinans.rs/akti}deo"/>
@@ -44,9 +47,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *       &lt;attribute name="grad" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="stanje" use="required" type="{http://www.skustinans.rs/akti}stanje_akta" />
  *       &lt;attribute name="kreirao" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="za" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *       &lt;attribute name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -58,6 +58,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "", propOrder = {
     "preambula",
     "predlozen",
+    "za",
+    "protiv",
+    "suzdrzani",
     "deo",
     "clan"
 })
@@ -68,6 +71,12 @@ public class Akt {
     protected Preambula preambula;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected boolean predlozen;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
+    protected BigInteger za;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
+    protected BigInteger protiv;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
+    protected BigInteger suzdrzani;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Deo> deo;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
@@ -89,12 +98,6 @@ public class Akt {
     protected StanjeAkta stanje;
     @XmlAttribute(name = "kreirao", required = true)
     protected String kreirao;
-    @XmlAttribute(name = "za")
-    protected BigInteger za;
-    @XmlAttribute(name = "protiv")
-    protected BigInteger protiv;
-    @XmlAttribute(name = "suzdrzani")
-    protected BigInteger suzdrzani;
 
     /**
      * Gets the value of the preambula property.
@@ -134,6 +137,78 @@ public class Akt {
      */
     public void setPredlozen(boolean value) {
         this.predlozen = value;
+    }
+
+    /**
+     * Gets the value of the za property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getZa() {
+        return za;
+    }
+
+    /**
+     * Sets the value of the za property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setZa(BigInteger value) {
+        this.za = value;
+    }
+
+    /**
+     * Gets the value of the protiv property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getProtiv() {
+        return protiv;
+    }
+
+    /**
+     * Sets the value of the protiv property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setProtiv(BigInteger value) {
+        this.protiv = value;
+    }
+
+    /**
+     * Gets the value of the suzdrzani property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getSuzdrzani() {
+        return suzdrzani;
+    }
+
+    /**
+     * Sets the value of the suzdrzani property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setSuzdrzani(BigInteger value) {
+        this.suzdrzani = value;
     }
 
     /**
@@ -360,78 +435,6 @@ public class Akt {
      */
     public void setKreirao(String value) {
         this.kreirao = value;
-    }
-
-    /**
-     * Gets the value of the za property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getZa() {
-        return za;
-    }
-
-    /**
-     * Sets the value of the za property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setZa(BigInteger value) {
-        this.za = value;
-    }
-
-    /**
-     * Gets the value of the protiv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getProtiv() {
-        return protiv;
-    }
-
-    /**
-     * Sets the value of the protiv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setProtiv(BigInteger value) {
-        this.protiv = value;
-    }
-
-    /**
-     * Gets the value of the suzdrzani property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getSuzdrzani() {
-        return suzdrzani;
-    }
-
-    /**
-     * Sets the value of the suzdrzani property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setSuzdrzani(BigInteger value) {
-        this.suzdrzani = value;
     }
 
 }

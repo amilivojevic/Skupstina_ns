@@ -66,8 +66,8 @@
                                 <div class="col-md-1">
                                     <select style="line-height: 44px;
   							border: 1px solid #DAD8D8;
-  							width: 200px;" ng-model="a.izabranaSednica" class="form-control" >
-                                        <option style="color: #F94B4B;" ng-repeat="t in a.sednice" ng-if="t.stanje == 'ZAKAZANA'" required value="{{t.redniBroj}}">{{t.redniBroj + ", "}}{{t.datum | date: 'dd.MM.yyyy'}}</option>
+  							width: 200px;" ng-model="a.izabranaSednica" class="form-control" ng-disabled="a.predlozen">
+                                        <option  style="color: #F94B4B;" ng-repeat="t in a.sednice" ng-if="t.stanje == 'ZAKAZANA'" required value="{{t.redniBroj}}">{{t.redniBroj + ", "}}{{t.datum | date: 'dd.MM.yyyy'}}</option>
                                     </select>
                                 </div>
                             </div>

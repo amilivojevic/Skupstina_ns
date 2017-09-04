@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-horizontal"   >
+  <!--  <form class="form-horizontal"   > -->
         <fieldset>
 
             <!-- Page title -->
@@ -18,25 +18,28 @@
             </br>
             <div class="col-md-12" >
                 <div ng-repeat="a in activateSednicaCtrl.akti">
-                    <div class="form-group">
-                        <label class="col-md-1 control-label">Naziv akta:</label>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control input-md" value="{{a.naziv}}"  ng-model="activateSednicaCtrl.sednicaData.a" disabled>
+                    <form>
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Naziv akta:</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control input-md" value="{{a.naziv}}" disabled>
+                            </div>
+                            <label class="col-xs-1 control-label">Za:</label>
+                            <div class="col-xs-2">
+                                <input  type="number" ng-model="a.za" required class="form-control input-md" >
+                            </div>
+                            <label class="col-md-1 control-label" >Protiv:</label>
+                            <div class="col-md-2">
+                                <input type="number" ng-model="a.protiv" required class="form-control input-md" >
+                            </div>
+                            <label class="col-md-1 control-label">Uzdrzani:</label>
+                            <div class="col-md-2">
+                                <input type="number" ng-model="a.suzdrzani" required class="form-control input-md">
+                                <button ng-click="activateSednicaCtrl.voteFirstTime(a)" id="submit" name="submit" class="btn btn-primary">Zavrsi unos rezultata</button>
+                            </div>
                         </div>
-                        <label class="col-xs-1 control-label">Za:</label>
-                        <div class="col-xs-2">
-                            <input  type="text" ng-model="activateSednicaCtrl.sednicaData.a.za" class="form-control input-md" required>
-                        </div>
-                        <label class="col-md-1 control-label" >Protiv:</label>
-                        <div class="col-md-2">
-                            <input type="text" ng-model="activateSednicaCtrl.sednicaData.protiv" class="form-control input-md" required>
-                        </div>
-                        <label class="col-md-1 control-label">Uzdrzani:</label>
-                        <div class="col-md-2">
-                            <input type="text" ng-model="activateSednicaCtrl.sednicaData.suzdrzani" class="form-control input-md"required>
-                            <button ng-submit="activateSednicaCtrl.voteFirstTime(a.naziv)" id="submit" name="submit" class="btn btn-primary">Zavrsi unos rezultata</button>
-                        </div>
-                    </div>
+                    </form>
+
                     <legend  class="text-center">&nbsp</legend>
                     </br>
                 </div>
@@ -45,6 +48,6 @@
     <!--    <div align = "Center">
             <button  id="submit" name="submit" class="btn btn-primary">Zavrsi unos rezultata</button>
         </div> -->
-    </form>
+<!--    </form> -->
 
 </div>

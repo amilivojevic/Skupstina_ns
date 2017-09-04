@@ -70,6 +70,24 @@
                 });
         }
 
+        function daliAktPripadaSednici(sednica, aktId){
+
+        }
+
+        function pronadjiSednicu(sednice, aktId) {
+
+            for (var i = 0; i < sednice.length; i++) {
+                for (var j = 0; j < sednice[i].akt.length; j++) {
+                    if (sednice[i].akt[j].id == aktId) {
+                        return sednice[i].redniBroj;
+                    }
+                }
+            }
+            return null;
+        }
+
+
+
         // svi zakazane sednice
         function getSednice() {
             $http.get('/api/sednica/sve')
@@ -77,7 +95,10 @@
                     vm.sednice = sednice.data;
 
                     for(var i = 0; i < vm.akti.length; i++){
-                        vm.akti[i].izabranaSednica = null;
+                        // za svaku sednicu proveriti da li je ona nasa sedica?
+
+
+                        vm.akti[i].izabranaSednica = pronadjiSednicu(vm.sednice, vm.akti[i].id);
                         vm.akti[i].sednice = [];
                         vm.akti[i].sednice=vm.sednice.concat(vm.akti[i].sednice);
                     }

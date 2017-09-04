@@ -5,6 +5,7 @@ import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
+import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.model.StanjeAkta;
@@ -58,6 +59,8 @@ public class AktController {
         //marshalling
         File file = new File("file.xml");
         JAXBContext jaxbContext = null;
+        // Defining namespace mappings
+
         try {
             jaxbContext = JAXBContext.newInstance(Akt.class);
 
@@ -65,6 +68,7 @@ public class AktController {
 
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd");
 
             jaxbMarshaller.marshal(akt, file);
             jaxbMarshaller.marshal(akt, System.out);
@@ -76,6 +80,17 @@ public class AktController {
         //writing in marklogic db
 
         aktService.writeInMarkLogicDB(file, akt.getId());
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
+
+
+    }
+
+    @PostMapping("/obrisi")
+    public ResponseEntity delete(@RequestBody Akt akt) throws FileNotFoundException {
+
+        aktService.deleteFromDB(akt);
+
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
 

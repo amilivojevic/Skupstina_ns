@@ -2,6 +2,7 @@ package com.tim_wro.skupstina.services;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
+import com.marklogic.client.document.DocumentPatchBuilder;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.eval.EvalResult;
 import com.marklogic.client.eval.EvalResultIterator;
@@ -9,6 +10,8 @@ import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
+import com.marklogic.client.io.marker.DocumentPatchHandle;
+import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.repository.AktRepository;
@@ -20,11 +23,14 @@ import com.tim_wro.skupstina.util.*;
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.transform.*;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -51,6 +57,70 @@ public class AktService {
 
     @Autowired
     private SednicaService sednicaService;
+
+
+    public void updateAkt(Akt akt) throws JAXBException {
+
+        DatabaseClient client = Connection.getConnection();
+
+        // Create a document manager to work with XML files.
+        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+        // Define a URI value for a document.
+        String docId = "/akt/" + akt.getId() + ".xml";
+
+        // Defining namespace mappings
+        EditableNamespaceContext namespaces = new EditableNamespaceContext();
+     //   namespaces.put("a", "http://www.skustinans.rs/akti");
+      //  namespaces.put("fn", "http://www.w3.org/2005/xpath-functions");
+
+        // Assigning namespaces to patch builder
+        DocumentPatchBuilder patchBuilder = xmlManager.newPatchBuilder();
+        patchBuilder.setNamespaces(namespaces);
+
+        String patch = "";
+
+        //marshalling
+        JAXBContext jaxbContext = null;
+        try {
+
+            jaxbContext = JAXBContext.newInstance(Akt.class);
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(akt, sw);
+
+            patch = sw.toString();
+            System.out.println("patch " + patch);
+
+            patch = patch.substring(patch.indexOf("<akt"));
+
+            try {
+                sw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        // Defining XPath context
+        String contextXPath = "/a:akt";
+        DocumentPatchHandle patchHandle;
+
+        // insert fragment
+        patchBuilder.replaceFragment(contextXPath, patch);
+
+        patchHandle = patchBuilder.build();
+
+        xmlManager.patch(docId, patchHandle);
+
+        client.release();
+
+    }
 
     public int brojAkata(){
         DatabaseClient client = Connection.getConnection();
@@ -147,6 +217,30 @@ public class AktService {
         // Release the client
         client.release();
     }
+    public void deleteFromDB(Akt akt) throws FileNotFoundException {
+        DatabaseClient client = Connection.getConnection();
+
+        // Create a document manager to work with XML files.
+        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+
+        String docId = "/akt/" + akt.getId() + ".xml";
+
+        // Create an input stream handle to hold XML content.
+     //   InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
+
+        // Write the document to the database
+   //     System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
+     //   xmlManager.write(docId, handle);
+        // Document deletion
+      //  System.out.println("[INFO] Removing \"" + docId + "\" from \"" + docId.database + "\" database.");
+        xmlManager.delete(docId);
+
+//
+        // Release the client
+        client.release();
+    }
+
 
     public List<Akt> getBySednicaRedniBroj(String id) throws JAXBException{
 
@@ -159,7 +253,7 @@ public class AktService {
         return aktiOdSednice;
     }
 
-    // vraca listu sednica od odredjenog korisnika
+    // vraca listu akata od odredjenog korisnika
     public List<Akt> getByUser(String korisnickoIme){
 
         DatabaseClient client = Connection.getConnection();
@@ -168,7 +262,7 @@ public class AktService {
 
         call.xquery("declare namespace a = \"http://www.skustinans.rs/akti\";\n//a:akt");
 
-        final List<Akt> aktiUsera = new ArrayList<>();
+        final Set<Akt> aktiUsera = new HashSet<>();
         final EvalResultIterator eval = call.eval();
 
         for (EvalResult evalResult : eval) {
@@ -181,7 +275,7 @@ public class AktService {
             }
         }
         System.out.println("Akti usera " + aktiUsera);
-        return aktiUsera;
+        return new ArrayList<Akt>(aktiUsera);
     }
 
     // vraca akt na osnovu ida
