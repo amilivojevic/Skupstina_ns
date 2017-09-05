@@ -44,6 +44,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Amandman.Stavke }
+     * 
+     */
+    public Amandman.Stavke createAmandmanStavke() {
+        return new Amandman.Stavke();
+    }
+
+    /**
      * Create an instance of {@link StavkaAmandmana }
      * 
      */

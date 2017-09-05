@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="pravni osnov prvog amandmana" datumObjave="Tue Sep 05 2017 13:15:39 GMT+0200 (Central Europe Daylight Time)" broj="1" naziv="prvi amandmanad" kreirao="a" sednicaID="" aktID="8ee4fe0c-530d-47d9-814e-efad9564aba4" id="7291ddc5-b088-427c-adbc-80d018c1eee1">
+<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="pravni osnov prvog amd" datumObjave="Tue Sep 05 2017 13:31:18 GMT+0200 (Central Europe Daylight Time)" broj="1" naziv="prvi amd" kreirao="a" sednicaID="" aktID="8ee4fe0c-530d-47d9-814e-efad9564aba4" id="amd7c7e38b8-1a12-4df0-aaf1-46fea9f455df">
     <stanje>ZAKAZAN</stanje>
-    <obrazlozenje>obrazlozenje prvog amandmana</obrazlozenje>
+    <obrazlozenje>obraz prvog amd</obrazlozenje>
+    <stavke>
+        <stavkaAmandmana tipIzmene="BRISANJE" idPodakta="stav1"/>
+        <stavkaAmandmana tipIzmene="BRISANJE" idPodakta="clan1"/>
+    </stavke>
 </amandman>
