@@ -29,6 +29,13 @@
                 </div>
             </div>
 
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Obrazlozenje:</label>
+                <div class="col-md-4">
+                    <textarea ng-model="addAmdCtrl.amandman.obrazlozenje"  type="text" placeholder="unesite pravni osnov" class="form-control input-md" required=""></textarea>
+                </div>
+            </div>
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="akt">Izaberite akt</label>
@@ -43,13 +50,7 @@
             </div>
 
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label">Obrazlozenje:</label>
-                <div class="col-md-4">
-                    <textarea ng-model="addAmdCtrl.amandman.obrazlozenje"  type="text" placeholder="unesite pravni osnov" class="form-control input-md" required="">
-                </div>
-            </div>
+
 
 <!------------------------------------------------DELOVI----------------------------------------------------------------------->
             <!-- Modal -->
@@ -243,7 +244,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="submit"></label>
                                 <div class="col-md-4" align = "Center" >
-                                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print amandman</button>
+                                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print </button>
                                 </div>
                             </div>
                         </div>

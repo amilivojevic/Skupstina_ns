@@ -52,19 +52,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Amandman.Stavke }
+     * Create an instance of {@link Deo }
      * 
      */
-    public Amandman.Stavke createAmandmanStavke() {
-        return new Amandman.Stavke();
+    public Deo createDeo() {
+        return new Deo();
     }
 
     /**
-     * Create an instance of {@link StavkaAmandmana.Novo }
+     * Create an instance of {@link Glava }
      * 
      */
-    public StavkaAmandmana.Novo createStavkaAmandmanaNovo() {
-        return new StavkaAmandmana.Novo();
+    public Glava createGlava() {
+        return new Glava();
+    }
+
+    /**
+     * Create an instance of {@link Odeljak }
+     * 
+     */
+    public Odeljak createOdeljak() {
+        return new Odeljak();
+    }
+
+    /**
+     * Create an instance of {@link Pododeljak }
+     * 
+     */
+    public Pododeljak createPododeljak() {
+        return new Pododeljak();
+    }
+
+    /**
+     * Create an instance of {@link Clan }
+     * 
+     */
+    public Clan createClan() {
+        return new Clan();
     }
 
     /**
@@ -100,30 +124,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Odeljak }
-     * 
-     */
-    public Odeljak createOdeljak() {
-        return new Odeljak();
-    }
-
-    /**
-     * Create an instance of {@link Pododeljak }
-     * 
-     */
-    public Pododeljak createPododeljak() {
-        return new Pododeljak();
-    }
-
-    /**
-     * Create an instance of {@link Clan }
-     * 
-     */
-    public Clan createClan() {
-        return new Clan();
-    }
-
-    /**
      * Create an instance of {@link Akt }
      * 
      */
@@ -137,22 +137,6 @@ public class ObjectFactory {
      */
     public Preambula createPreambula() {
         return new Preambula();
-    }
-
-    /**
-     * Create an instance of {@link Deo }
-     * 
-     */
-    public Deo createDeo() {
-        return new Deo();
-    }
-
-    /**
-     * Create an instance of {@link Glava }
-     * 
-     */
-    public Glava createGlava() {
-        return new Glava();
     }
 
     /**

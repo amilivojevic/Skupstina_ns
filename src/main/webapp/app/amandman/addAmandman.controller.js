@@ -20,7 +20,8 @@
             "aktID" : "",
             "id" : "",
             "stanje" : "ZAKAZAN",
-            "obrazlozenje" : ""
+            "obrazlozenje" : "",
+            "stavke" : []
         };
 
 
