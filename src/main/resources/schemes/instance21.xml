@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<amd:amandman xmlns:amd="http://www.skustinans.rs/amandmani"
+ xmlns:a="http://www.skustinans.rs/akti"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.skustinans.rs/amandmani file:/D:/Fakultet/4.godina/XML/Skupstina_ns/src/main/resources/schemes/amandman.xsd" pravniOsnov="pravniOsnov0" datumObjave="datumObjave0" broj="broj0" naziv="naziv0" kreirao="kreirao0"
+     sednicaID="sednicaID0" aktID="aktID0" id="ID000">
+    <amd:stanje>PRIHVACEN</amd:stanje>
+    <amd:obrazlozenje>obrazlozenje0</amd:obrazlozenje>
+    <amd:stavke>
+        <amd:stavkaAmandmana tipIzmene="DODAVANJE" mestoIzmene="0" putanja="putanja0"/>
+    </amd:stavke>
+</amd:amandman>

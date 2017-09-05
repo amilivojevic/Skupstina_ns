@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -25,10 +24,20 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence maxOccurs="unbounded">
+ *       &lt;sequence>
  *         &lt;element name="stanje" type="{http://www.skustinans.rs/amandmani}stanjeAmandmana"/>
  *         &lt;element ref="{http://www.skustinans.rs/amandmani}obrazlozenje"/>
- *         &lt;element ref="{http://www.skustinans.rs/amandmani}stavkaAmandmana"/>
+ *         &lt;element name="stavke">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence maxOccurs="unbounded">
+ *                   &lt;element ref="{http://www.skustinans.rs/amandmani}stavkaAmandmana"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *       &lt;attribute name="pravniOsnov" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *       &lt;attribute name="datumObjave" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
@@ -47,17 +56,20 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "stanjeAndObrazlozenjeAndStavkaAmandmana"
+    "stanje",
+    "obrazlozenje",
+    "stavke"
 })
 @XmlRootElement(name = "amandman", namespace = "http://www.skustinans.rs/amandmani")
 public class Amandman {
 
-    @XmlElements({
-        @XmlElement(name = "stanje", namespace = "http://www.skustinans.rs/amandmani", required = true, type = StanjeAmandmana.class),
-        @XmlElement(name = "obrazlozenje", namespace = "http://www.skustinans.rs/amandmani", required = true, type = String.class),
-        @XmlElement(name = "stavkaAmandmana", namespace = "http://www.skustinans.rs/amandmani", required = true, type = StavkaAmandmana.class)
-    })
-    protected List<Object> stanjeAndObrazlozenjeAndStavkaAmandmana;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+    @XmlSchemaType(name = "token")
+    protected StanjeAmandmana stanje;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+    protected String obrazlozenje;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+    protected Amandman.Stavke stavke;
     @XmlAttribute(name = "pravniOsnov")
     @XmlSchemaType(name = "anySimpleType")
     protected String pravniOsnov;
@@ -83,34 +95,75 @@ public class Amandman {
     protected String id;
 
     /**
-     * Gets the value of the stanjeAndObrazlozenjeAndStavkaAmandmana property.
+     * Gets the value of the stanje property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the stanjeAndObrazlozenjeAndStavkaAmandmana property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getStanjeAndObrazlozenjeAndStavkaAmandmana().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link StanjeAmandmana }
-     * {@link String }
-     * {@link StavkaAmandmana }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link StanjeAmandmana }
+     *     
      */
-    public List<Object> getStanjeAndObrazlozenjeAndStavkaAmandmana() {
-        if (stanjeAndObrazlozenjeAndStavkaAmandmana == null) {
-            stanjeAndObrazlozenjeAndStavkaAmandmana = new ArrayList<Object>();
-        }
-        return this.stanjeAndObrazlozenjeAndStavkaAmandmana;
+    public StanjeAmandmana getStanje() {
+        return stanje;
+    }
+
+    /**
+     * Sets the value of the stanje property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StanjeAmandmana }
+     *     
+     */
+    public void setStanje(StanjeAmandmana value) {
+        this.stanje = value;
+    }
+
+    /**
+     * Gets the value of the obrazlozenje property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getObrazlozenje() {
+        return obrazlozenje;
+    }
+
+    /**
+     * Sets the value of the obrazlozenje property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setObrazlozenje(String value) {
+        this.obrazlozenje = value;
+    }
+
+    /**
+     * Gets the value of the stavke property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Amandman.Stavke }
+     *     
+     */
+    public Amandman.Stavke getStavke() {
+        return stavke;
+    }
+
+    /**
+     * Sets the value of the stavke property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Amandman.Stavke }
+     *     
+     */
+    public void setStavke(Amandman.Stavke value) {
+        this.stavke = value;
     }
 
     /**
@@ -303,6 +356,66 @@ public class Amandman {
      */
     public void setId(String value) {
         this.id = value;
+    }
+
+
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence maxOccurs="unbounded">
+     *         &lt;element ref="{http://www.skustinans.rs/amandmani}stavkaAmandmana"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "stavkaAmandmana"
+    })
+    public static class Stavke {
+
+        @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+        protected List<StavkaAmandmana> stavkaAmandmana;
+
+        /**
+         * Gets the value of the stavkaAmandmana property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the stavkaAmandmana property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getStavkaAmandmana().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link StavkaAmandmana }
+         * 
+         * 
+         */
+        public List<StavkaAmandmana> getStavkaAmandmana() {
+            if (stavkaAmandmana == null) {
+                stavkaAmandmana = new ArrayList<StavkaAmandmana>();
+            }
+            return this.stavkaAmandmana;
+        }
+
     }
 
 }

@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence>
  *       &lt;attribute name="tipIzmene" type="{http://www.skustinans.rs/amandmani}tipIzmene" />
  *       &lt;attribute name="mestoIzmene" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *       &lt;attribute name="putanja" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -60,6 +61,8 @@ public class StavkaAmandmana {
     protected TipIzmene tipIzmene;
     @XmlAttribute(name = "mestoIzmene")
     protected Integer mestoIzmene;
+    @XmlAttribute(name = "putanja")
+    protected String putanja;
 
     /**
      * Gets the value of the novo property.
@@ -131,6 +134,30 @@ public class StavkaAmandmana {
      */
     public void setMestoIzmene(Integer value) {
         this.mestoIzmene = value;
+    }
+
+    /**
+     * Gets the value of the putanja property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPutanja() {
+        return putanja;
+    }
+
+    /**
+     * Sets the value of the putanja property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPutanja(String value) {
+        this.putanja = value;
     }
 
 

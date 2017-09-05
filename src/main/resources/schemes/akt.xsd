@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://www.skustinans.rs/akti" 
-    elementFormDefault="qualified"
+    targetNamespace="http://www.skustinans.rs/akti" elementFormDefault="qualified"
     xmlns:a="http://www.skustinans.rs/akti">
     <xs:element name="deo">
         <xs:complexType>
@@ -9,6 +8,7 @@
                 <xs:element ref="a:glava"/>
             </xs:sequence>
             <xs:attribute name="naziv" type="xs:string"/>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
             <xs:attribute name="br" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:int">
@@ -36,6 +36,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="odeljak">
@@ -56,6 +57,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="pododeljak">
@@ -64,13 +66,7 @@
                 <xs:element ref="a:clan"/>
             </xs:sequence>
             <xs:attribute name="naziv" type="xs:string" use="required"/>
-            <xs:attribute name="id" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="[a-z]"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="clan">
@@ -86,6 +82,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="stav">
@@ -96,6 +93,7 @@
                 </xs:sequence>
                 <xs:element ref="a:sadrzaj"/>
             </xs:choice>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="tacka">
@@ -113,6 +111,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="podtacka">
@@ -130,6 +129,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:simpleType name="oblast">
@@ -142,7 +142,15 @@
             <xs:enumeration value="Ostalo"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:element name="alineja" type="xs:string"/>
+    <xs:element name="alineja">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="id" type="xs:ID"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="pravni_osnov" type="xs:string"/>
     <xs:element name="preambula">
         <xs:complexType>
@@ -165,6 +173,10 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="a:preambula"/>
+                <xs:element name="predlozen" type="xs:boolean"/>
+                <xs:element name="za" type="xs:integer"/>
+                <xs:element name="protiv" type="xs:integer"/>
+                <xs:element name="suzdrzani" type="xs:integer"/>
                 <xs:choice>
                     <xs:sequence maxOccurs="unbounded" minOccurs="2">
                         <xs:element ref="a:deo"/>

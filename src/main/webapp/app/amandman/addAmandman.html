@@ -9,23 +9,23 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="naziv">Naziv:</label>
                 <div class="col-md-4">
-                    <input id="naziv" ng-model="addActCtrl.naziv" name="naziv" type="text" placeholder="unesite naziv akta" class="form-control input-md" required="">
+                    <input id="naziv" ng-model="addAmdCtrl.amandman.naziv" name="naziv" type="text" placeholder="unesite naziv akta" class="form-control input-md" required="">
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="drzava">Broj:</label>
+                <label class="col-md-4 control-label">Broj:</label>
                 <div class="col-md-4">
-                    <input id="drzava" ng-model="addActCtrl.drzava" name="drzava" type="text" placeholder="unesite naziv drzave" class="form-control input-md" required="">
+                    <input  ng-model="addAmdCtrl.amandman.broj"  type="text" placeholder="unesite broj" class="form-control input-md" required="">
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="regija">Pravni osnov:</label>
+                <label class="col-md-4 control-label">Pravni osnov:</label>
                 <div class="col-md-4">
-                    <input id="regija" ng-model="addActCtrl.regija" name="regija" type="text" placeholder="unesite naziv regije" class="form-control input-md" required="">
+                    <input ng-model="addAmdCtrl.amandman.pravniOsnov"  type="text" placeholder="unesite pravni osnov" class="form-control input-md" required="">
                 </div>
             </div>
 
@@ -39,6 +39,15 @@
                 </div>
                 <div class="col-md-4">
                     <button ng-show="addAmdCtrl.aktSelected!=null" data-toggle="modal" data-target="#myModal" id="singlebutton"  name="singlebutton" class="btn btn-primary">dodaj stavku</button>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Obrazlozenje:</label>
+                <div class="col-md-4">
+                    <textarea ng-model="addAmdCtrl.amandman.obrazlozenje"  type="text" placeholder="unesite pravni osnov" class="form-control input-md" required="">
                 </div>
             </div>
 

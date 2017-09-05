@@ -25,7 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Sadrzaj_QNAME = new QName("http://www.skustinans.rs/akti", "sadrzaj");
-    private final static QName _Alineja_QNAME = new QName("http://www.skustinans.rs/akti", "alineja");
+    private final static QName _Obrazlozenje_QNAME = new QName("http://www.skustinans.rs/amandmani", "obrazlozenje");
     private final static QName _PravniOsnov_QNAME = new QName("http://www.skustinans.rs/akti", "pravni_osnov");
 
     /**
@@ -36,11 +36,91 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Sednica }
+     * Create an instance of {@link Amandman }
      * 
      */
-    public Sednica createSednica() {
-        return new Sednica();
+    public Amandman createAmandman() {
+        return new Amandman();
+    }
+
+    /**
+     * Create an instance of {@link StavkaAmandmana }
+     * 
+     */
+    public StavkaAmandmana createStavkaAmandmana() {
+        return new StavkaAmandmana();
+    }
+
+    /**
+     * Create an instance of {@link Amandman.Stavke }
+     * 
+     */
+    public Amandman.Stavke createAmandmanStavke() {
+        return new Amandman.Stavke();
+    }
+
+    /**
+     * Create an instance of {@link StavkaAmandmana.Novo }
+     * 
+     */
+    public StavkaAmandmana.Novo createStavkaAmandmanaNovo() {
+        return new StavkaAmandmana.Novo();
+    }
+
+    /**
+     * Create an instance of {@link Stav }
+     * 
+     */
+    public Stav createStav() {
+        return new Stav();
+    }
+
+    /**
+     * Create an instance of {@link Tacka }
+     * 
+     */
+    public Tacka createTacka() {
+        return new Tacka();
+    }
+
+    /**
+     * Create an instance of {@link Podtacka }
+     * 
+     */
+    public Podtacka createPodtacka() {
+        return new Podtacka();
+    }
+
+    /**
+     * Create an instance of {@link Alineja }
+     * 
+     */
+    public Alineja createAlineja() {
+        return new Alineja();
+    }
+
+    /**
+     * Create an instance of {@link Odeljak }
+     * 
+     */
+    public Odeljak createOdeljak() {
+        return new Odeljak();
+    }
+
+    /**
+     * Create an instance of {@link Pododeljak }
+     * 
+     */
+    public Pododeljak createPododeljak() {
+        return new Pododeljak();
+    }
+
+    /**
+     * Create an instance of {@link Clan }
+     * 
+     */
+    public Clan createClan() {
+        return new Clan();
     }
 
     /**
@@ -76,54 +156,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Odeljak }
-     * 
-     */
-    public Odeljak createOdeljak() {
-        return new Odeljak();
-    }
-
-    /**
-     * Create an instance of {@link Pododeljak }
-     * 
-     */
-    public Pododeljak createPododeljak() {
-        return new Pododeljak();
-    }
-
-    /**
-     * Create an instance of {@link Clan }
-     * 
-     */
-    public Clan createClan() {
-        return new Clan();
-    }
-
-    /**
-     * Create an instance of {@link Stav }
-     * 
-     */
-    public Stav createStav() {
-        return new Stav();
-    }
-
-    /**
-     * Create an instance of {@link Tacka }
-     * 
-     */
-    public Tacka createTacka() {
-        return new Tacka();
-    }
-
-    /**
-     * Create an instance of {@link Podtacka }
-     * 
-     */
-    public Podtacka createPodtacka() {
-        return new Podtacka();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
@@ -136,9 +168,9 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.skustinans.rs/akti", name = "alineja")
-    public JAXBElement<String> createAlineja(String value) {
-        return new JAXBElement<String>(_Alineja_QNAME, String.class, null, value);
+    @XmlElementDecl(namespace = "http://www.skustinans.rs/amandmani", name = "obrazlozenje")
+    public JAXBElement<String> createObrazlozenje(String value) {
+        return new JAXBElement<String>(_Obrazlozenje_QNAME, String.class, null, value);
     }
 
     /**

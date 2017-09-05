@@ -10,6 +10,19 @@
         vm.selektovan = false;
         vm.aktSelected = null;
 
+        vm.amandman = {
+            "pravniOsnov" : "",
+            "datumObjave" : Date(),
+            "broj" : "",
+            "naziv" : "",
+            "kreirao" : JSON.parse($window.localStorage['loggedUser']).korisnickoIme,
+            "sednicaID" : "",
+            "aktID" : "",
+            "id" : "",
+            "stanje" : "ZAKAZAN",
+            "obrazlozenje" : ""
+        };
+
 
 
         function novi(){
@@ -28,16 +41,18 @@
         function addAmandman() {
 
             var ulogovani = $window.localStorage['loggedUser'];
-            //console.log("ulogovani: " + ulogovani.korisnickoIme);
-            console.log("izabrani akt: ",vm.aktSelected);
+
+            vm.amandman.aktID = JSON.parse(vm.aktSelected).id;
+            console.log("NOVI AMANDMAN: ",vm.amandman);
         }
 
         function dodajStavku(){
+
             if(vm.akt === null){
                 alert("Morate odabrati akt!")
             }
             else{
-
+                vm.novaStavka = {};
                 vm.klik = true;
                 vm.akt = JSON.parse(vm.aktSelected);
                 console.log("izabran akt: " + JSON.stringify(vm.akt));
