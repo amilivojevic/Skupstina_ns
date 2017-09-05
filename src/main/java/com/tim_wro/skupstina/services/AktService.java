@@ -39,20 +39,11 @@ import java.util.Set;
 @Service
 public class AktService {
 
-    private AktRepository aktRepository;
+
     public static final String RDF_XSL = "src/main/resources/schemes/akt.xsl";
     private static TransformerFactory transformerFactory;
 
-    static {
-        transformerFactory = TransformerFactory.newInstance();
-    }
 
-
-    @Autowired
-    public AktService(AktRepository aktRepository) {
-        this.aktRepository = aktRepository;
-
-    }
 
     @Autowired
     private SednicaService sednicaService;

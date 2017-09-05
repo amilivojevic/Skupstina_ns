@@ -3,7 +3,7 @@
         <fieldset>
 
             <!-- Page title -->
-            <legend  class="text-center">Dodavanje akta</legend>
+            <legend  class="text-center">Dodavanje amandmana</legend>
 
             <!-- Text input-->
             <div class="form-group">
@@ -93,7 +93,7 @@
                                             <div class="panel-heading">
                                                 <h3 class="panel-title">{{c.naziv}}
 
-                                                    <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                    <button ng-click="addAmdCtrl.brisanje(c.id)" class="btn btn-danger btn-xs">
                                                         <span class="glyphicon glyphicon-remove"></span>
                                                     </button>
                                                 </h3>
@@ -119,7 +119,7 @@
                                                             <!--ispis Stav i dugme za brisanje stava-->
                                                             <h3 class="panel-title">Stav
 
-                                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                                <button ng-click="addAmdCtrl.brisanje(s.id)" class="btn btn-danger btn-xs">
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </button>
                                                             </h3>
@@ -160,7 +160,7 @@
                                                                         <div class="form-group">
                                                                             <label class="col-md-1 control-label" for="submit">Tacka {{t.broj}}</label>
                                                                             <div class="col-md-4" align = "Left" >
-                                                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                                                <button ng-click="addAmdCtrl.brisanje(t.id)" class="btn btn-danger btn-xs">
                                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                                 </button>
                                                                             </div>
@@ -241,12 +241,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="submit"></label>
-                                <div class="col-md-4" align = "Center" >
-                                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print </button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -256,9 +251,23 @@
 
 
 
+            <div>
+                <div ng-if="addAmdCtrl.amandman.stavke.length > 0"><legend  class="text-center">Stavke amandmana</legend></div>
 
 
+                <div class="well " ng-repeat="s in addAmdCtrl.amandman.stavke">
+                    {{s.tipIzmene}}         {{s.idPodakta}}
+                </div>
 
+                <div ng-if="addAmdCtrl.amandman.stavke.length > 0">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" ></label>
+                        <div class="col-md-4" align = "Center" >
+                            <button  ng-click="addAmdCtrl.addAmandman()" name="submit" class="btn btn-primary">Kreiraj amandman </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 

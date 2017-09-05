@@ -7,6 +7,7 @@
         vm.addAmandman = addAmandman;
         vm.dodajStavku = dodajStavku;
         vm.novi = novi;
+        vm.brisanje = brisanje;
         vm.selektovan = false;
         vm.aktSelected = null;
 
@@ -30,6 +31,17 @@
             alert("JOS NE RADI DODAVANJE NICEGA!");
         }
 
+        function brisanje(id){
+            vm.novaStavka = {
+                "tipIzmene" : "BRISANJE",
+                "idPodakta" : id
+            }
+
+            vm.amandman.stavke.push(vm.novaStavka);
+
+            console.log("NAPRAVLJENA NOVA STAVKA AMANDMANA: ",vm.novaStavka);
+        }
+
         $http.get('/api/akt/svi')
             .then(function(akti) {
                 vm.akti = akti.data;
@@ -41,10 +53,15 @@
 
         function addAmandman() {
 
-            var ulogovani = $window.localStorage['loggedUser'];
-
             vm.amandman.aktID = JSON.parse(vm.aktSelected).id;
             console.log("NOVI AMANDMAN: ",vm.amandman);
+            $http.post('/api/amandman/novi', vm.amandman)
+                .then(function (response) {
+                    console.log("Amandman uspesno dodat");
+                })
+                .catch(function () {
+                    console.log("Neka greska kod kreiranja amandmana!");
+                });
         }
 
         function dodajStavku(){
@@ -53,7 +70,11 @@
                 alert("Morate odabrati akt!")
             }
             else{
-                vm.novaStavka = {};
+                vm.novaStavka = {
+                    "tipIzmene" : "",
+                    "mestoIzmene" : "", //OVO TREBA SAMO ZA DODAVANJE!!!
+                    "idPodakta" : ""
+                };
                 vm.klik = true;
                 vm.akt = JSON.parse(vm.aktSelected);
                 console.log("izabran akt: " + JSON.stringify(vm.akt));
