@@ -31,14 +31,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *           &lt;element ref="{http://www.skustinans.rs/amandmani}stavkaAmandmana"/>
  *         &lt;/sequence>
  *       &lt;/sequence>
- *       &lt;attribute name="pravniOsnov" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="datumObjave" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="broj" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="naziv" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="kreirao" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="sednicaID" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="aktID" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="pravniOsnov" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *       &lt;attribute name="datumObjave" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *       &lt;attribute name="broj" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *       &lt;attribute name="naziv" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *       &lt;attribute name="kreirao" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="sednicaID" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="aktID" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -62,25 +62,25 @@ public class Amandman {
     protected String obrazlozenje;
     @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
     protected List<StavkaAmandmana> stavkaAmandmana;
-    @XmlAttribute(name = "pravniOsnov")
+    @XmlAttribute(name = "pravniOsnov", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String pravniOsnov;
-    @XmlAttribute(name = "datumObjave")
+    @XmlAttribute(name = "datumObjave", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String datumObjave;
-    @XmlAttribute(name = "broj")
+    @XmlAttribute(name = "broj", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String broj;
-    @XmlAttribute(name = "naziv")
+    @XmlAttribute(name = "naziv", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String naziv;
-    @XmlAttribute(name = "kreirao")
-    protected Integer kreirao;
-    @XmlAttribute(name = "sednicaID")
-    protected Integer sednicaID;
-    @XmlAttribute(name = "aktID")
-    protected Integer aktID;
-    @XmlAttribute(name = "id")
+    @XmlAttribute(name = "kreirao", required = true)
+    protected String kreirao;
+    @XmlAttribute(name = "sednicaID", required = true)
+    protected String sednicaID;
+    @XmlAttribute(name = "aktID", required = true)
+    protected String aktID;
+    @XmlAttribute(name = "id", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")
@@ -264,10 +264,10 @@ public class Amandman {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getKreirao() {
+    public String getKreirao() {
         return kreirao;
     }
 
@@ -276,10 +276,10 @@ public class Amandman {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setKreirao(Integer value) {
+    public void setKreirao(String value) {
         this.kreirao = value;
     }
 
@@ -288,10 +288,10 @@ public class Amandman {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getSednicaID() {
+    public String getSednicaID() {
         return sednicaID;
     }
 
@@ -300,10 +300,10 @@ public class Amandman {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setSednicaID(Integer value) {
+    public void setSednicaID(String value) {
         this.sednicaID = value;
     }
 
@@ -312,10 +312,10 @@ public class Amandman {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getAktID() {
+    public String getAktID() {
         return aktID;
     }
 
@@ -324,10 +324,10 @@ public class Amandman {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setAktID(Integer value) {
+    public void setAktID(String value) {
         this.aktID = value;
     }
 

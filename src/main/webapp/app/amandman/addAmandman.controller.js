@@ -22,7 +22,7 @@
             "id" : "",
             "stanje" : "ZAKAZAN",
             "obrazlozenje" : "",
-            "stavke" : []
+            "stavkaAmandmana" : []
         };
 
 
@@ -37,7 +37,7 @@
                 "idPodakta" : id
             }
 
-            vm.amandman.stavke.push(vm.novaStavka);
+            vm.amandman.stavkaAmandmana.push(vm.novaStavka);
 
             console.log("NAPRAVLJENA NOVA STAVKA AMANDMANA: ",vm.novaStavka);
         }

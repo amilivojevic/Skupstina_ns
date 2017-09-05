@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="8ee4fe0c-530d-47d9-814e-efad9564aba4" naziv="w" drzava="w" regija="w" grad="w" stanje="u_proceduri" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
-    <preambula>
-        <pravni_osnov>w</pravni_osnov>
-        <organ>w</organ>
-        <oblast>Zdravstvo</oblast>
-    </preambula>
-    <predlozen>false</predlozen>
-    <za>0</za>
-    <protiv>0</protiv>
-    <suzdrzani>0</suzdrzani>
-    <clan naziv="w" br="1" id="clan1">
-        <stav id="stav1">
-            <sadrzaj>w</sadrzaj>
-        </stav>
-    </clan>
-</akt>
+<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="pravni osnov prvog amandmana" datumObjave="Tue Sep 05 2017 13:15:39 GMT+0200 (Central Europe Daylight Time)" broj="1" naziv="prvi amandmanad" kreirao="a" sednicaID="" aktID="8ee4fe0c-530d-47d9-814e-efad9564aba4" id="7291ddc5-b088-427c-adbc-80d018c1eee1">
+    <stanje>ZAKAZAN</stanje>
+    <obrazlozenje>obrazlozenje prvog amandmana</obrazlozenje>
+</amandman>
