@@ -55,6 +55,7 @@ public class AktController {
     public ResponseEntity create(@RequestBody Akt akt) throws FileNotFoundException {
 
         akt.setId(UUID.randomUUID().toString());
+        aktService.updateIdAndBroj(akt);
 
         //marshalling
         File file = new File("file.xml");
