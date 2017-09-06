@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.skustinans.rs/sednice" xmlns:s="http://www.skustinans.rs/sednice"
-    xmlns:a="http://www.skustinans.rs/akti">
+    xmlns:a="http://www.skustinans.rs/akti" xmlns:amandman="http://www.skustinans.rs/amandmani">
     <xs:import namespace="http://www.skustinans.rs/akti" schemaLocation="akt.xsd"/>
     <xs:element name="sednica">
         <xs:complexType>

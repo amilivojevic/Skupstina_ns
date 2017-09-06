@@ -8,6 +8,7 @@
     function activateSednicaController($scope,$http, $window,  $stateParams) {
         var vm = this;
         vm.getAktiUPripremi = getAktiUPripremi;
+        vm.goToSecondVoting = goToSecondVoting;
         vm.id = $stateParams.sednicaID;
         console.log("Dosao id sednice u prvo glasanje" + vm.id);
 

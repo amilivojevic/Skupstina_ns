@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *         &lt;element name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="stanje" type="{http://www.skustinans.rs/akti}stanje_akta"/>
+ *         &lt;element ref="{http://www.skustinans.rs/amandmani}amandman" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;choice>
  *           &lt;sequence maxOccurs="unbounded" minOccurs="2">
  *             &lt;element ref="{http://www.skustinans.rs/akti}deo"/>
@@ -62,6 +63,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "protiv",
     "suzdrzani",
     "stanje",
+    "amandman",
     "deo",
     "clan"
 })
@@ -81,6 +83,8 @@ public class Akt {
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     @XmlSchemaType(name = "string")
     protected StanjeAkta stanje;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani")
+    protected List<Amandman> amandman;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Deo> deo;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
@@ -235,6 +239,35 @@ public class Akt {
      */
     public void setStanje(StanjeAkta value) {
         this.stanje = value;
+    }
+
+    /**
+     * Gets the value of the amandman property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the amandman property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAmandman().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Amandman }
+     * 
+     * 
+     */
+    public List<Amandman> getAmandman() {
+        if (amandman == null) {
+            amandman = new ArrayList<Amandman>();
+        }
+        return this.amandman;
     }
 
     /**

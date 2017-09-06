@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Sadrzaj_QNAME = new QName("http://www.skustinans.rs/akti", "sadrzaj");
+    private final static QName _Obrazlozenje_QNAME = new QName("http://www.skustinans.rs/amandmani", "obrazlozenje");
     private final static QName _PravniOsnov_QNAME = new QName("http://www.skustinans.rs/akti", "pravni_osnov");
 
     /**
@@ -107,6 +108,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Amandman }
+     * 
+     */
+    public Amandman createAmandman() {
+        return new Amandman();
+    }
+
+    /**
+     * Create an instance of {@link StavkaAmandmana }
+     * 
+     */
+    public StavkaAmandmana createStavkaAmandmana() {
+        return new StavkaAmandmana();
+    }
+
+    /**
      * Create an instance of {@link Deo }
      * 
      */
@@ -129,6 +146,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.skustinans.rs/akti", name = "sadrzaj")
     public JAXBElement<String> createSadrzaj(String value) {
         return new JAXBElement<String>(_Sadrzaj_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.skustinans.rs/amandmani", name = "obrazlozenje")
+    public JAXBElement<String> createObrazlozenje(String value) {
+        return new JAXBElement<String>(_Obrazlozenje_QNAME, String.class, null, value);
     }
 
     /**

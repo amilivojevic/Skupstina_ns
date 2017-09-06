@@ -1,21 +1,21 @@
 package com.tim_wro.skupstina.controller.amandman;
 
 import com.tim_wro.skupstina.model.Amandman;
+import com.tim_wro.skupstina.model.StanjeAmandmana;
 import com.tim_wro.skupstina.services.AmandmanService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -55,5 +55,19 @@ public class AmandmanController {
         amandmanService.writeInMarkLogicDB(file, amd.getId());
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(amd.toString()), HttpStatus.CREATED);
+    }
+
+    // vraca listu amandmana zakacenih za odredjeni akt koji je na ovoj sednici
+    @RequestMapping(value = "/svi_zakazani/{id}", method = RequestMethod.GET)
+    public ResponseEntity getAllPrepared(@PathVariable("id") String id) throws JAXBException {
+        List<Amandman> lista = amandmanService.getBySednicaRedniBroj(id);
+        List<Amandman> zakazaniAmandmani = new ArrayList<>();
+        for(Amandman o : lista){
+            if(o.getStanje() == StanjeAmandmana.ZAKAZAN){
+                zakazaniAmandmani.add(o);
+            }
+        }
+
+        return new ResponseEntity<>(zakazaniAmandmani,HttpStatus.OK);
     }
 }

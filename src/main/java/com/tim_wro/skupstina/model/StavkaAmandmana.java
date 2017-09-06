@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;/sequence>
  *       &lt;attribute name="tipIzmene" type="{http://www.skustinans.rs/amandmani}tipIzmene" />
  *       &lt;attribute name="mestoIzmene" type="{http://www.w3.org/2001/XMLSchema}int" />
- *       &lt;attribute name="idPodakta" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="putanja" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -74,8 +74,8 @@ public class StavkaAmandmana {
     protected TipIzmene tipIzmene;
     @XmlAttribute(name = "mestoIzmene")
     protected Integer mestoIzmene;
-    @XmlAttribute(name = "idPodakta")
-    protected String idPodakta;
+    @XmlAttribute(name = "putanja")
+    protected String putanja;
 
     /**
      * Gets the value of the sadrzaj property.
@@ -318,27 +318,27 @@ public class StavkaAmandmana {
     }
 
     /**
-     * Gets the value of the idPodakta property.
+     * Gets the value of the putanja property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getIdPodakta() {
-        return idPodakta;
+    public String getPutanja() {
+        return putanja;
     }
 
     /**
-     * Sets the value of the idPodakta property.
+     * Sets the value of the putanja property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setIdPodakta(String value) {
-        this.idPodakta = value;
+    public void setPutanja(String value) {
+        this.putanja = value;
     }
 
 }

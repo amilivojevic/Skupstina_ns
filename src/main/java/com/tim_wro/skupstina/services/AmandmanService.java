@@ -4,16 +4,25 @@ package com.tim_wro.skupstina.services;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.InputStreamHandle;
+import com.tim_wro.skupstina.model.Akt;
+import com.tim_wro.skupstina.model.Amandman;
+import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.util.Connection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AmandmanService {
+
+    @Autowired
+    private SednicaService sednicaService;
 
     public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
@@ -32,5 +41,23 @@ public class AmandmanService {
 
         // Release the client
         client.release();
+    }
+
+    public List<Amandman> getBySednicaRedniBroj(String id) throws JAXBException {
+
+        Sednica sednica = sednicaService.findById(id);
+        System.out.println("glupa sednica " + sednica.toString());
+
+        List<Akt> aktiSednice = sednica.getAkt();
+
+        List<Amandman> amandmaniOdSednice = new ArrayList<>();
+
+        for(Akt a : aktiSednice){
+            amandmaniOdSednice.addAll(a.getAmandman());
+        }
+
+        System.out.println("amandmani od te sednice " + amandmaniOdSednice);
+
+        return amandmaniOdSednice;
     }
 }
