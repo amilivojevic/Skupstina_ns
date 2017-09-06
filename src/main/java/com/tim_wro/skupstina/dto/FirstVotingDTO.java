@@ -14,16 +14,11 @@ public class FirstVotingDTO {
 
     private int suzdrzani;
 
-    public FirstVotingDTO(String sednicaID, String aktID, int brojPrisutnih, int za, int protiv, int suzdrzani) {
-        this.sednicaID = sednicaID;
-        this.aktID = aktID;
-        this.brojPrisutnih = brojPrisutnih;
-        this.za = za;
-        this.protiv = protiv;
-        this.suzdrzani = suzdrzani;
+    public FirstVotingDTO() {
     }
 
-    public FirstVotingDTO(String aktID, int brojPrisutnih, int za, int protiv, int suzdrzani) {
+    public FirstVotingDTO(String sednicaID, String aktID, int brojPrisutnih, int za, int protiv, int suzdrzani) {
+        this.sednicaID = sednicaID;
         this.aktID = aktID;
         this.brojPrisutnih = brojPrisutnih;
         this.za = za;

@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label" for="brojPrisutnih">Broj prisutnih poslanika:</label>
                 <div class="col-md-2">
-                    <input id="brojPrisutnih" ng-model="activateSednicaCtrl.sednicaData.brojPrisutnih" type="text"  class="form-control input-md" required>
+                    <input id="brojPrisutnih" ng-model="activateSednicaCtrl.sednicaData.brojPrisutnih" type="number"  class="form-control input-md" required>
                 </div>
             </div>
 
@@ -43,8 +43,12 @@
                     <legend  class="text-center">&nbsp</legend>
                     </br>
                 </div>
+                <div class="col-md-2">
+                    <button ng-click="activateSednicaCtrl.goToSecondVoting()" id="submit" name="submit" class="btn btn-primary">Gotovo glasanje</button>
+                </div>
             </div>
         </fieldset>
+
     <!--    <div align = "Center">
             <button  id="submit" name="submit" class="btn btn-primary">Zavrsi unos rezultata</button>
         </div> -->

@@ -32,7 +32,7 @@
             //$window.location.href = "http://" + $window.location.host + "/#!/activateSednica";
             $http.post('/api/sednica/aktiviraj/'+redniBroj).then(function (response) {
 
-                console.log("Sednica je sada aktivna!");
+                console.log("Sa prof predsednika salje id sednice prilikom aktiviranja: !" + redniBroj);
                 $state.go('activateSednica', {sednicaID:redniBroj});
             })
                 .catch(function () {

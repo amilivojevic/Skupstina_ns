@@ -35,11 +35,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Sednica }
+     * Create an instance of {@link Stav }
      * 
      */
-    public Sednica createSednica() {
-        return new Sednica();
+    public Stav createStav() {
+        return new Stav();
+    }
+
+    /**
+     * Create an instance of {@link Tacka }
+     * 
+     */
+    public Tacka createTacka() {
+        return new Tacka();
+    }
+
+    /**
+     * Create an instance of {@link Podtacka }
+     * 
+     */
+    public Podtacka createPodtacka() {
+        return new Podtacka();
+    }
+
+    /**
+     * Create an instance of {@link Alineja }
+     * 
+     */
+    public Alineja createAlineja() {
+        return new Alineja();
+    }
+
+    /**
+     * Create an instance of {@link Odeljak }
+     * 
+     */
+    public Odeljak createOdeljak() {
+        return new Odeljak();
+    }
+
+    /**
+     * Create an instance of {@link Pododeljak }
+     * 
+     */
+    public Pododeljak createPododeljak() {
+        return new Pododeljak();
+    }
+
+    /**
+     * Create an instance of {@link Clan }
+     * 
+     */
+    public Clan createClan() {
+        return new Clan();
     }
 
     /**
@@ -72,62 +120,6 @@ public class ObjectFactory {
      */
     public Glava createGlava() {
         return new Glava();
-    }
-
-    /**
-     * Create an instance of {@link Odeljak }
-     * 
-     */
-    public Odeljak createOdeljak() {
-        return new Odeljak();
-    }
-
-    /**
-     * Create an instance of {@link Pododeljak }
-     * 
-     */
-    public Pododeljak createPododeljak() {
-        return new Pododeljak();
-    }
-
-    /**
-     * Create an instance of {@link Clan }
-     * 
-     */
-    public Clan createClan() {
-        return new Clan();
-    }
-
-    /**
-     * Create an instance of {@link Stav }
-     * 
-     */
-    public Stav createStav() {
-        return new Stav();
-    }
-
-    /**
-     * Create an instance of {@link Tacka }
-     * 
-     */
-    public Tacka createTacka() {
-        return new Tacka();
-    }
-
-    /**
-     * Create an instance of {@link Podtacka }
-     * 
-     */
-    public Podtacka createPodtacka() {
-        return new Podtacka();
-    }
-
-    /**
-     * Create an instance of {@link Alineja }
-     * 
-     */
-    public Alineja createAlineja() {
-        return new Alineja();
     }
 
     /**

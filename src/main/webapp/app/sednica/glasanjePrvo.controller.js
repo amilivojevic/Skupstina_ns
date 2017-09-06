@@ -9,6 +9,7 @@
         var vm = this;
         vm.getAktiUPripremi = getAktiUPripremi;
         vm.id = $stateParams.sednicaID;
+        console.log("Dosao id sednice u prvo glasanje" + vm.id);
 
         var nazivAkta = $stateParams.naziv;
 
@@ -19,6 +20,8 @@
 
         };
 
+
+
         vm.voteFirstTime = function (a) {
             vm.voting1 = {
                 sednicaID : vm.id,
@@ -26,9 +29,11 @@
                 brojPrisutnih: parseInt(vm.sednicaData.brojPrisutnih),
                 za: parseInt(a.za),
                 protiv: parseInt(a.protiv),
-                suzdrzani: parse(a.suzdrzani)
+                suzdrzani: parseInt(a.suzdrzani)
 
             };
+            console.log("sednicaID " + vm.id);
+            console.log("sednicaID " + vm.voting1.za);
 
             console.log("salje na backend" + JSON.stringify(vm.voting1) );
 
@@ -67,6 +72,10 @@
                         alert(response.data.response);
                     });
             }
+
+        function goToSecondVoting() {
+            $state.go('secondVoting', {sednicaID:vm.id}, {brojPrisutnih:parseInt(vm.sednicaData.brojPrisutnih)});
+        }
         }
 
 })();

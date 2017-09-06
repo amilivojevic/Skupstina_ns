@@ -12,10 +12,7 @@ import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 import com.tim_wro.skupstina.controller.akt.AktController;
 import com.tim_wro.skupstina.dto.FirstVotingDTO;
 import com.tim_wro.skupstina.dto.PredlogAktaDTO;
-import com.tim_wro.skupstina.model.Akt;
-import com.tim_wro.skupstina.model.Korisnik;
-import com.tim_wro.skupstina.model.Sednica;
-import com.tim_wro.skupstina.model.StanjeSednice;
+import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.services.UserService;
@@ -238,16 +235,36 @@ public class SednicaController {
 
     }
 
- /*   @PostMapping("first_voting")
+    @RequestMapping(value = "/voting/first_voting", method = RequestMethod.POST)
     public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
 
 
-        sednicaService.checkIfIzglasan(firstVotingDTO);
+        boolean izglasanAkt = sednicaService.checkIfIzglasan(firstVotingDTO);
 
+        Akt akt = aktService.getById(firstVotingDTO.getAktID());
+        Sednica s = sednicaService.findById(firstVotingDTO.getSednicaID());
+        List<Akt> aktiSednice = s.getAkt();
 
-        return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+        if(izglasanAkt){
+            for(Akt a : aktiSednice) {
+                if (a.getId().equals(akt.getId())) {
 
-    }*/
+                    a.setStanje(StanjeAkta.U_NACELU);
+                }
+            }
+        }else{
+            for(int i = 0; i<aktiSednice.size(); i++){
+                if(aktiSednice.get(i).getId().equals(akt.getId())){
+                    aktiSednice.remove(i);
+                }
+            }
+        }
+
+        sednicaService.updateSednica(s);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
+
+    }
 
 
     @PostMapping("/aktiviraj/{redniBroj}")

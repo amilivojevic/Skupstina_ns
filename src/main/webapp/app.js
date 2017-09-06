@@ -182,6 +182,24 @@
                      //   'skupstina' null
                     }
                 })
+                .state('secondVoting', {
+                    url: '/secondVoting',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/sednica/glasanje_drugo.html',
+                            controller: 'SecondVotingController',
+                            controllerAs: 'secondVotingCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    },  params: {
+                        'sednicaID': null,
+                        'brojPrisutnih': 0
+                    }
+                })
                 .state('exportToPDF', {
                     url: '/exportToPDF',
                     views: {

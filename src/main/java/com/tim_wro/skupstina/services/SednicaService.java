@@ -236,37 +236,41 @@ public class SednicaService {
     }
 
     // vraca true ako je akt izglasan, false ako ne
-    public Boolean checkIfIzglasan(FirstVotingDTO firstVotingDTO) {
+    public boolean checkIfIzglasan(FirstVotingDTO firstVotingDTO) {
 
         try {
 
             Akt akt = aktService.getById(firstVotingDTO.getAktID());
-
-            akt.setZa(BigInteger.valueOf(firstVotingDTO.getZa()));
-            akt.setProtiv(BigInteger.valueOf(firstVotingDTO.getProtiv()));
-            akt.setSuzdrzani(BigInteger.valueOf(firstVotingDTO.getSuzdrzani()));
-            aktService.updateAkt(akt);
-
             Sednica sednica = null;
 
             sednica = findById(firstVotingDTO.getSednicaID());
-            sednica.setBrojPrisutnih(BigInteger.valueOf(firstVotingDTO.getBrojPrisutnih()));
-            updateSednica(sednica);
+            List<Akt> aktiSednice = sednica.getAkt();
+            for(Akt a : aktiSednice){
+                if(a.getId().equals(akt.getId())){
+                    a.setZa(BigInteger.valueOf(firstVotingDTO.getZa()));
+                    a.setProtiv(BigInteger.valueOf(firstVotingDTO.getProtiv()));
+                    a.setSuzdrzani(BigInteger.valueOf(firstVotingDTO.getSuzdrzani()));
+                    sednica.setBrojPrisutnih(BigInteger.valueOf(firstVotingDTO.getBrojPrisutnih()));
 
-            int kvalifikovanaVecinaInt = sednica.getBrojPrisutnih().intValue();
-            int za = akt.getZa().intValue();
+                    int kvalifikovanaVecinaInt = sednica.getBrojPrisutnih().intValue();
+                    int za = a.getZa().intValue();
+
+                    updateSednica(sednica);
 
 
-            if (za < (kvalifikovanaVecinaInt / 2)) {
-                return false;
+                   return ((double)za) > ((double) kvalifikovanaVecinaInt / 2.0);
 
+                }
             }
-            return true;
+
+            throw new IllegalArgumentException("Los akt id");
+
 
         } catch (JAXBException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
+
     }
 
 }

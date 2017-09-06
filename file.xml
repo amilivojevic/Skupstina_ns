@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akte2d4aa2f-5f4a-42ee-9fc2-f4a97754f414" naziv="sadf" drzava="asf" regija="asf" grad="afs" stanje="u_proceduri" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt6864c928-1103-4e25-a978-671af2cfd73e" naziv="1" drzava="sdf" regija="sdf" grad="sf" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
     <preambula>
-        <pravni_osnov>asf</pravni_osnov>
-        <organ>asf</organ>
-        <oblast>Vojska</oblast>
+        <pravni_osnov>safd</pravni_osnov>
+        <organ>daf</organ>
+        <oblast>Zdravstvo</oblast>
     </preambula>
     <predlozen>false</predlozen>
     <za>0</za>
     <protiv>0</protiv>
     <suzdrzani>0</suzdrzani>
+    <stanje>u_proceduri</stanje>
 </akt>
