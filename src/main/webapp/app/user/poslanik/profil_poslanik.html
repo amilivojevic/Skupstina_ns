@@ -6,7 +6,7 @@
             <legend  class="text-center">Profil korisnika</legend>
             <center>
                 <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
-
+            </center>
                 </br></br>
 
                 <!-- Text input-->
@@ -46,6 +46,102 @@
 
 
                 </br>
+
+            <ul class="nav nav-tabs col-xs-10 col-xs-offset-1" align="Center" >
+                <li class="active"><a data-toggle="tab" data-target="#mojiakti">Moji akti</a></li>
+                <li><a data-toggle="tab"  data-target="#mojiamd">Moji amandmani</a></li>
+            </ul>
+
+            <div class="tab-content" >
+                </br>
+
+                <div id="mojiakti" class="tab-pane fade in active">
+                    <div align="Center" >
+
+                        <div class="col-xs-6  col-xs-offset-3" align="Center" >
+                            <div style="padding-bottom: 5%" ></div>
+                            <div ng-repeat="a in poslanikCtrl.akti">
+                                <div class="well" align="Center">
+                                    <b>{{a.naziv}}</b><br>
+                                    {{a.preambula.oblast}}</br>
+                                    drzava: {{a.drzava}}</br>
+                                    regija: {{a.regija}}</br>
+                                    grad: {{a.grad}}
+                                    id: {{a.id}}
+                                    predlozen: {{a.predlozen}}
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >Sednica:</label>
+                                    <div class="col-md-1">
+                                        <select style="line-height: 44px;
+  							border: 1px solid #DAD8D8;
+  							width: 200px;" ng-model="a.izabranaSednica" class="form-control" ng-disabled="a.predlozen">
+                                            <option  style="color: #F94B4B;" ng-repeat="t in a.sednice" ng-if="t.stanje == 'ZAKAZANA'" required value="{{t.redniBroj}}">{{t.redniBroj + ", "}}{{t.datum | date: 'dd.MM.yyyy'}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  for="submit"></label>
+                                    <div ng-if="!a.predlozen">
+                                        <button name="submit" ng-click="poslanikCtrl.predlozi(a)" class="btn btn-primary">Predlozi</button>
+                                    </div>
+                                    <div ng-if="a.predlozen">
+                                        <button  name="submit" ng-click="poslanikCtrl.otkaziPredlog(a)" class="btn btn-primary">Otkazi predlog</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="mojiamd" class="tab-pane fade">
+
+
+                    <div align="Center" >
+
+                        <div class="col-xs-6  col-xs-offset-3" align="Center" >
+                            <div style="padding-bottom: 5%" ></div>
+                            <div ng-repeat="a in poslanikCtrl.amandmani">
+                                <div class="well" align="Center">
+                                    <b>{{a.naziv}}</b><br>
+                                    Pravni osnov: {{a.pravniOsnov}}</br>
+                                    Obrazlozenje: {{a.obrazlozenje}}</br>
+                                    <b>AKT:</b> {{a.aktID}}</br>
+                                    predlozen: {{a.predlozen}}
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >Sednica:</label>
+                                    <div class="col-md-1">
+                                        <select style="line-height: 44px;
+  							border: 1px solid #DAD8D8;
+  							width: 200px;" ng-model="a.izabranaSednica" class="form-control" ng-disabled="a.predlozen">
+                                            <option  style="color: #F94B4B;" ng-repeat="t in a.sednice" ng-if="t.stanje == 'ZAKAZANA'" required value="{{t.redniBroj}}">{{t.redniBroj + ", "}}{{t.datum | date: 'dd.MM.yyyy'}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  for="submit"></label>
+                                    <div ng-if="!a.predlozen">
+                                        <button name="submit" ng-click="poslanikCtrl.predlozi(a)" class="btn btn-primary">Predlozi</button>
+                                    </div>
+                                    <div ng-if="a.predlozen">
+                                        <button  name="submit" ng-click="poslanikCtrl.otkaziPredlog(a)" class="btn btn-primary">Otkazi predlog</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <!--
                 <legend  class="text-center">Moji akti</legend>
                 <div class="col-xs-10"  align="Center" >
                         <div class="col-xs-5" >
@@ -74,16 +170,18 @@
                             <div class="form-group">
                                 <label  for="submit"></label>
                                 <div ng-if="!a.predlozen">
-                                    <button id="submit" name="submit" ng-click="poslanikCtrl.predlozi(a)" class="btn btn-primary">Predlozi</button>
+                                    <button name="submit" ng-click="poslanikCtrl.predlozi(a)" class="btn btn-primary">Predlozi</button>
                                 </div>
                                 <div ng-if="a.predlozen">
-                                    <button id="submit" name="submit" ng-click="poslanikCtrl.otkaziPredlog(a)" class="btn btn-primary">Otkazi predlog</button>
+                                    <button  name="submit" ng-click="poslanikCtrl.otkaziPredlog(a)" class="btn btn-primary">Otkazi predlog</button>
                                 </div>
                             </div>
 
                         </div>
                     </div>
             </div>
+            -->
+
         </fieldset>
     </form>
 

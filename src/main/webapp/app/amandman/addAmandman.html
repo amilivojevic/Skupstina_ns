@@ -45,7 +45,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <button ng-show="addAmdCtrl.aktSelected!=null" data-toggle="modal" data-target="#myModal" id="singlebutton"  name="singlebutton" class="btn btn-primary">dodaj stavku</button>
+                    <button ng-show="addAmdCtrl.aktSelected!=null" data-backdrop="static" data-toggle="modal" data-target="#myModal" id="singlebutton"  name="singlebutton" class="btn btn-primary">dodaj stavku</button>
                 </div>
             </div>
 
@@ -135,6 +135,15 @@
                                                                         <textarea rows="2" class="form-control" ng-model="s.sadrzaj"></textarea>
                                                                     </div>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 control-label">
+                                                                        <div  align = "Center" >
+                                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                                <span class="glyphicon glyphicon-plus"></span>Menjanje sadrzaja
+                                                                            </button>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
                                                             </div>
 
                                                             <!--prolazak kroz tacke stava ako ih ima-->
@@ -217,6 +226,16 @@
                                                                                         <textarea rows="3" class="form-control" ng-model="t.sadrzaj"></textarea>
                                                                                     </div>
                                                                                 </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">
+                                                                                    <div  align = "Center" >
+                                                                                        <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                                            <span class="glyphicon glyphicon-plus"></span>Menjanje sadrzaja
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
