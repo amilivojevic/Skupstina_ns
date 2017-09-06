@@ -61,7 +61,7 @@ public class AktService {
 
         // Defining namespace mappings
         EditableNamespaceContext namespaces = new EditableNamespaceContext();
-     //   namespaces.put("a", "http://www.skustinans.rs/akti");
+        namespaces.put("a", "http://www.skustinans.rs/akti");
       //  namespaces.put("fn", "http://www.w3.org/2005/xpath-functions");
 
         // Assigning namespaces to patch builder

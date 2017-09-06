@@ -5,7 +5,7 @@
     angular.module("skupstinaNS")
         .controller("ActivateSednicaController", activateSednicaController);
 
-    function activateSednicaController($scope,$http, $window,  $stateParams) {
+    function activateSednicaController($scope,$http , $state, $window,  $stateParams) {
         var vm = this;
         vm.getAktiUPripremi = getAktiUPripremi;
         vm.goToSecondVoting = goToSecondVoting;

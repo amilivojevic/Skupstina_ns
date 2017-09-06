@@ -197,7 +197,7 @@
                         }
                     },  params: {
                         'sednicaID': null,
-                        'brojPrisutnih': 0
+                        'brojPrisutnih': null
                     }
                 })
                 .state('exportToPDF', {

@@ -26,7 +26,11 @@
 
 
 	<dependencies>
-
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>fop</artifactId>
+			<version>0.93</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

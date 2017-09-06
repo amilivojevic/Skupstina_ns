@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.skustinans.rs/akti" elementFormDefault="qualified"
-    xmlns:a="http://www.skustinans.rs/akti" xmlns:aman="http://www.skustinans.rs/amandmani"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
-    <xs:import namespace="http://www.skustinans.rs/amandmani" schemaLocation="amandman.xsd"/>
+    xmlns:a="http://www.skustinans.rs/akti" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="deo">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded" minOccurs="2">
@@ -180,7 +178,8 @@
                 <xs:element name="protiv" type="xs:integer"/>
                 <xs:element name="suzdrzani" type="xs:integer"/>
                 <xs:element name="stanje" type="a:stanje_akta"/>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="aman:amandman"/>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="amandmanID"
+                    type="xs:string"/>
                 <xs:choice>
                     <xs:sequence maxOccurs="unbounded" minOccurs="2">
                         <xs:element ref="a:deo"/>

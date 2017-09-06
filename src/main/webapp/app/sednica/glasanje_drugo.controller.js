@@ -5,7 +5,7 @@
     angular.module("skupstinaNS")
         .controller("SecondVotingController", secondVotingController);
 
-    function secondVotingController($scope,$http, $window,  $stateParams) {
+    function secondVotingController($scope,$http, $window, $state, $stateParams) {
         var vm = this;
         vm.getZakazaniAmandmani = getZakazaniAmandmani;
         vm.goToThirdVoting = goToThirdVoting;

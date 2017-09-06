@@ -1,7 +1,9 @@
 package com.tim_wro.skupstina.controller.amandman;
 
+import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Amandman;
 import com.tim_wro.skupstina.model.StanjeAmandmana;
+import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.AmandmanService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +27,23 @@ public class AmandmanController {
     @Autowired
     private AmandmanService amandmanService;
 
+    @Autowired
+    private AktService aktService;
+
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Amandman amd) throws FileNotFoundException {
 
         amd.setId("amd"+UUID.randomUUID().toString());
+
+        String aktID = amd.getAktID();
+        Akt akt = aktService.getById(aktID);
+
+        akt.getAmandmanID().add(amd.getId());
+        try {
+            aktService.updateAkt(akt);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
 
 
         //marshalling

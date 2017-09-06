@@ -28,6 +28,9 @@
         <xs:complexType>
             <xs:sequence maxOccurs="1">
                 <xs:element name="stanje" type="amd:stanjeAmandmana"/>
+                <xs:element minOccurs="1" name="za" type="xs:integer"/>
+                <xs:element name="protiv" type="xs:integer"/>
+                <xs:element form="qualified" name="suzdrzani" type="xs:integer"/>
                 <xs:element ref="amd:obrazlozenje"/>
                 <xs:element name="stavke">
                     <xs:complexType>

@@ -13,7 +13,9 @@ import com.marklogic.client.io.JAXBHandle;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.dto.FirstVotingDTO;
+import com.tim_wro.skupstina.dto.SecondVotingDTO;
 import com.tim_wro.skupstina.model.Akt;
+import com.tim_wro.skupstina.model.Amandman;
 import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.repository.SednicaRepository;
@@ -49,6 +51,9 @@ public class SednicaService {
 
     @Autowired
     public AktService aktService;
+
+    @Autowired
+    public AmandmanService amandmanService;
 
     public void updateSednica(Sednica sednica) throws JAXBException {
 
@@ -264,6 +269,32 @@ public class SednicaService {
             }
 
             throw new IllegalArgumentException("Los akt id");
+
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    // vraca true ako je amandman izglasan, false ako ne
+    public boolean checkIfIzglasanAmandman(SecondVotingDTO secondVotingDTO) {
+
+        try {
+
+            Amandman amandman = amandmanService.findById(secondVotingDTO.getAmandmanID());
+
+            amandman.setZa(BigInteger.valueOf(secondVotingDTO.getZa()));
+            amandman.setProtiv(BigInteger.valueOf(secondVotingDTO.getProtiv()));
+            amandman.setSuzdrzani(BigInteger.valueOf(secondVotingDTO.getSuzdrzani()));
+
+            amandmanService.updateAmandman(amandman);
+            Sednica sednica = findById(secondVotingDTO.getSednicaID());
+            int kvalifikovanaVecinaInt = sednica.getBrojPrisutnih().intValue();
+            int za = amandman.getZa().intValue();
+
+            return ((double)za) > ((double) kvalifikovanaVecinaInt / 2.0);
 
 
         } catch (JAXBException e) {

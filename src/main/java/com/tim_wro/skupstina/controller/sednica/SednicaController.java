@@ -12,8 +12,10 @@ import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 import com.tim_wro.skupstina.controller.akt.AktController;
 import com.tim_wro.skupstina.dto.FirstVotingDTO;
 import com.tim_wro.skupstina.dto.PredlogAktaDTO;
+import com.tim_wro.skupstina.dto.SecondVotingDTO;
 import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.services.AktService;
+import com.tim_wro.skupstina.services.AmandmanService;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.Connection;
@@ -52,6 +54,9 @@ public class SednicaController {
 
     @Autowired
     private AktController aktController;
+
+    @Autowired
+    private AmandmanService amandmanService;
 
     @Autowired
     public SednicaController(SednicaService sednicaService){
@@ -235,6 +240,7 @@ public class SednicaController {
 
     }
 
+
     @RequestMapping(value = "/voting/first_voting", method = RequestMethod.POST)
     public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
 
@@ -266,6 +272,25 @@ public class SednicaController {
 
     }
 
+    @RequestMapping(value = "/voting/second_voting", method = RequestMethod.POST)
+    public ResponseEntity votingSecond(@RequestBody SecondVotingDTO secondVotingDTO) throws JAXBException {
+
+
+        boolean izglasanAmandman = sednicaService.checkIfIzglasanAmandman(secondVotingDTO);
+
+        Amandman amandman = amandmanService.findById(secondVotingDTO.getAmandmanID());
+
+        if(izglasanAmandman){
+            amandman.setStanje(StanjeAmandmana.PRIHVACEN);
+        }else{
+            amandman.setStanje(StanjeAmandmana.ODBIJEN);
+        }
+
+        amandmanService.updateAmandman(amandman);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
+
+    }
 
     @PostMapping("/aktiviraj/{redniBroj}")
     public ResponseEntity aktiviraj(@PathVariable("redniBroj") String redniBroj) throws JAXBException {
