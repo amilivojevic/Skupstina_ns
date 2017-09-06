@@ -36,6 +36,70 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Amandman }
+     * 
+     */
+    public Amandman createAmandman() {
+        return new Amandman();
+    }
+
+    /**
+     * Create an instance of {@link Amandman.Stavke }
+     * 
+     */
+    public Amandman.Stavke createAmandmanStavke() {
+        return new Amandman.Stavke();
+    }
+
+    /**
+     * Create an instance of {@link StavkaAmandmana }
+     * 
+     */
+    public StavkaAmandmana createStavkaAmandmana() {
+        return new StavkaAmandmana();
+    }
+
+    /**
+     * Create an instance of {@link Deo }
+     * 
+     */
+    public Deo createDeo() {
+        return new Deo();
+    }
+
+    /**
+     * Create an instance of {@link Glava }
+     * 
+     */
+    public Glava createGlava() {
+        return new Glava();
+    }
+
+    /**
+     * Create an instance of {@link Odeljak }
+     * 
+     */
+    public Odeljak createOdeljak() {
+        return new Odeljak();
+    }
+
+    /**
+     * Create an instance of {@link Pododeljak }
+     * 
+     */
+    public Pododeljak createPododeljak() {
+        return new Pododeljak();
+    }
+
+    /**
+     * Create an instance of {@link Clan }
+     * 
+     */
+    public Clan createClan() {
+        return new Clan();
+    }
+
+    /**
      * Create an instance of {@link Stav }
      * 
      */
@@ -68,30 +132,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Odeljak }
-     * 
-     */
-    public Odeljak createOdeljak() {
-        return new Odeljak();
-    }
-
-    /**
-     * Create an instance of {@link Pododeljak }
-     * 
-     */
-    public Pododeljak createPododeljak() {
-        return new Pododeljak();
-    }
-
-    /**
-     * Create an instance of {@link Clan }
-     * 
-     */
-    public Clan createClan() {
-        return new Clan();
-    }
-
-    /**
      * Create an instance of {@link Akt }
      * 
      */
@@ -105,38 +145,6 @@ public class ObjectFactory {
      */
     public Preambula createPreambula() {
         return new Preambula();
-    }
-
-    /**
-     * Create an instance of {@link Amandman }
-     * 
-     */
-    public Amandman createAmandman() {
-        return new Amandman();
-    }
-
-    /**
-     * Create an instance of {@link StavkaAmandmana }
-     * 
-     */
-    public StavkaAmandmana createStavkaAmandmana() {
-        return new StavkaAmandmana();
-    }
-
-    /**
-     * Create an instance of {@link Deo }
-     * 
-     */
-    public Deo createDeo() {
-        return new Deo();
-    }
-
-    /**
-     * Create an instance of {@link Glava }
-     * 
-     */
-    public Glava createGlava() {
-        return new Glava();
     }
 
     /**
