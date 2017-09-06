@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <s:sednica xmlns:s="http://www.skustinans.rs/sednice"
- xmlns:a="http://www.skustinans.rs/akti"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.skustinans.rs/sednice file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/sednica2.xsd" id="ID000" datum="2017-12-01" redniBroj="OIUKu3mkXJDcorshW" naziv="Whe0wkGbyF4iSFE_JYyq" korisnickoIme="MCANT0">
+           xmlns:a="http://www.skustinans.rs/akti"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.skustinans.rs/sednice sednica.xsd" id="ID000" datum="2017-12-01" redniBroj="OIUKu3mkXJDcorshW" naziv="Whe0wkGbyF4iSFE_JYyq" korisnickoIme="MCANT0">
     <s:stanje>zavrsena</s:stanje>
     <s:brojPrisutnih>-1024088435</s:brojPrisutnih>
     <a:akt id="ID001" naziv="_Ou12mCmQU5K.F" drzava="ioq_WQZ_bDdgPHFbSC" regija="bNrJI_4iDjuz6yo7w1Lr" grad="m2c6uqbxyzeIga"
