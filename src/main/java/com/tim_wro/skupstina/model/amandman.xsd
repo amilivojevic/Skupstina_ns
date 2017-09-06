@@ -21,7 +21,7 @@
             </xs:sequence>
             <xs:attribute name="tipIzmene" type="amd:tipIzmene"/>
             <xs:attribute name="mestoIzmene" type="xs:int"/>
-            <xs:attribute name="idPodakta" type="xs:string"/>
+            <xs:attribute name="putanja" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="amandman">
@@ -29,22 +29,18 @@
             <xs:sequence maxOccurs="1">
                 <xs:element name="stanje" type="amd:stanjeAmandmana"/>
                 <xs:element ref="amd:obrazlozenje"/>
-                <xs:element name="stavke">
-                    <xs:complexType>
-                        <xs:sequence maxOccurs="unbounded">
-                            <xs:element ref="amd:stavkaAmandmana"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:sequence maxOccurs="unbounded">
+                    <xs:element ref="amd:stavkaAmandmana"/>
+                </xs:sequence>
             </xs:sequence>
-            <xs:attribute name="pravniOsnov" use="required"/>
-            <xs:attribute name="datumObjave" use="required"/>
-            <xs:attribute name="broj" use="required"/>
-            <xs:attribute name="naziv" use="required"/>
-            <xs:attribute name="kreirao" type="xs:string" use="required"/>
-            <xs:attribute name="sednicaID" type="xs:string" use="required"/>
-            <xs:attribute name="aktID" type="xs:string" use="required"/>
-            <xs:attribute name="id" type="xs:ID" use="required"/>
+            <xs:attribute name="pravniOsnov"/>
+            <xs:attribute name="datumObjave"/>
+            <xs:attribute name="broj"/>
+            <xs:attribute name="naziv"/>
+            <xs:attribute name="kreirao" type="xs:int"/>
+            <xs:attribute name="sednicaID" type="xs:int"/>
+            <xs:attribute name="aktID" type="xs:int"/>
+            <xs:attribute name="id" type="xs:ID"/>
         </xs:complexType>
     </xs:element>
     <xs:simpleType name="stanjeAmandmana">

@@ -54,7 +54,8 @@ public class AktController {
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Akt akt) throws FileNotFoundException {
 
-        akt.setId(UUID.randomUUID().toString());
+        akt.setId("akt"+UUID.randomUUID().toString());
+        aktService.updateIdAndBroj(akt);
 
         //marshalling
         File file = new File("file.xml");

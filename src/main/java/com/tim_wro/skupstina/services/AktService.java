@@ -12,8 +12,7 @@ import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
 import com.marklogic.client.util.EditableNamespaceContext;
-import com.tim_wro.skupstina.model.Akt;
-import com.tim_wro.skupstina.model.Sednica;
+import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.repository.AktRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,20 +39,11 @@ import java.util.Set;
 @Service
 public class AktService {
 
-    private AktRepository aktRepository;
+
     public static final String RDF_XSL = "src/main/resources/schemes/akt.xsl";
     private static TransformerFactory transformerFactory;
 
-    static {
-        transformerFactory = TransformerFactory.newInstance();
-    }
 
-
-    @Autowired
-    public AktService(AktRepository aktRepository) {
-        this.aktRepository = aktRepository;
-
-    }
 
     @Autowired
     private SednicaService sednicaService;
@@ -301,5 +291,86 @@ public class AktService {
         return null;
 
     }
+
+    private void updateIdAndBrojCLAN(Clan c){
+        if(c.getStav() != null){
+            int stavBr =0;
+            for(Stav s : c.getStav()){
+                s.setId("stav" + (++stavBr));
+
+                if(s.getTacka() != null){
+                    int tackaBr = 0;
+                    for(Tacka t : s.getTacka()){
+                        t.setBr(++tackaBr);
+                        t.setId("tacka" + (++tackaBr));
+
+                        if(t.getPodtacka() != null){
+                            int podtackaBr = 0;
+                            for(Podtacka pt : t.getPodtacka()){
+                                pt.setBr(++podtackaBr);
+                                pt.setId("podtacka" + (++podtackaBr));
+
+                                if(pt.getAlineja() != null){
+                                    int alinejaBr = 0;
+                                    for(Alineja a : pt.getAlineja()){
+                                        a.setId("alineja" + alinejaBr);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void updateIdAndBroj(Akt akt){
+
+        if(akt.getClan() != null){
+            int clanId = 0;
+            for(Clan c : akt.getClan()){
+                c.setBr(clanId+1);
+                c.setId("clan" + (++clanId));
+
+                updateIdAndBrojCLAN(c);
+            }
+        }
+
+        if(akt.getDeo() != null){
+            int deoBr = 0;
+            for(Deo d : akt.getDeo()){
+                d.setBr(++deoBr);
+                d.setId("deo" + (++deoBr));
+
+                if(d.getGlava() != null){
+                    int glavaBr = 0;
+                    for(Glava g : d.getGlava()){
+                        g.setBr(++glavaBr);
+                        g.setId("glava" + (++glavaBr));
+
+                        //*******
+                        if(g.getClan() != null){
+                            int clanId = 0;
+                            for(Clan c : g.getClan()){
+                                c.setBr(clanId+1);
+                                c.setId("clan" + (++clanId));
+
+                                updateIdAndBrojCLAN(c);
+                            }
+                        }
+                        //*******
+
+
+                        if(g.getOdeljak() != null){
+
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 
 }

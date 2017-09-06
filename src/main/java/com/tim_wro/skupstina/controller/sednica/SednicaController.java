@@ -65,7 +65,7 @@ public class SednicaController {
     @PostMapping("/nova")
     public ResponseEntity create(@RequestBody Sednica sednica) throws FileNotFoundException {
 
-        sednica.setId(UUID.randomUUID().toString());
+        sednica.setId("sedn"+UUID.randomUUID().toString());
 
         //marshalling
         File file = new File("file1.xml");

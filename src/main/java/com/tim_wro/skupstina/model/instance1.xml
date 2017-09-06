@@ -1,432 +1,620 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <s:sednica xmlns:s="http://www.skustinans.rs/sednice"
-           xmlns:a="http://www.skustinans.rs/akti"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.skustinans.rs/sednice sednica.xsd" id="ID000" datum="2017-12-01" redniBroj="OIUKu3mkXJDcorshW" naziv="Whe0wkGbyF4iSFE_JYyq" korisnickoIme="MCANT0">
-    <s:stanje>zavrsena</s:stanje>
-    <s:brojPrisutnih>-1024088435</s:brojPrisutnih>
-    <a:akt id="ID001" naziv="_Ou12mCmQU5K.F" drzava="ioq_WQZ_bDdgPHFbSC" regija="bNrJI_4iDjuz6yo7w1Lr" grad="m2c6uqbxyzeIga"
-         stanje="u_celosti" kreirao="gsyc.a4NtUb.">
+ xmlns:a="http://www.skustinans.rs/akti"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.skustinans.rs/sednice file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/sednica.xsd" id="ID000" datum="2018-08-16Z" redniBroj="oy1quHG0X7Xyil-pmGhshLWm" naziv="yiFXBq-WGRfpTXEf" brojPrisutnih="1113619390"
+     korisnickoIme="aNh" stanje="aktivna">
+    <a:akt id="ID001" naziv="hcs0tnMLMWS2l35MRe92wxCUoCD9t" drzava="b-MQur7t.VCPxLLj1eU3FgGQg.pxSe" regija="kRBB.kGgOTnyD6UIEYT"
+         grad="VAa" stanje="u_celosti" kreirao="nTfO8UMGtB">
         <a:preambula>
-            <a:pravni_osnov>TyXISQBH</a:pravni_osnov>
-            <a:organ>gV5X0Qv5fhKfWb3Uzc4QY-1h3s</a:organ>
+            <a:pravni_osnov>Lvq</a:pravni_osnov>
+            <a:organ>o5YvHmA_bi10juwN7s0WAt05ncSjzf</a:organ>
             <a:oblast>Vojska</a:oblast>
         </a:preambula>
-        <a:predlozen>0</a:predlozen>
-        <a:za>-882472900</a:za>
-        <a:protiv>-562483472</a:protiv>
-        <a:suzdrzani>1526942506</a:suzdrzani>
-        <a:clan naziv="timDBYiQa1Nu-a" br="1707221556">
-            <a:stav>
-                <a:sadrzaj>o7_36qfyUswmycrSECu3e9Qf</a:sadrzaj>
-            </a:stav>
-            <a:stav>
-                <a:tacka br="144522579">
-                    <a:podtacka br="2052273791">
-                        <a:sadrzaj>t0l.dSrbQVJfU46H2</a:sadrzaj>
-                    </a:podtacka>
-                    <a:podtacka br="1716786114">
-                        <a:alineja>uL_yW9xrkYWiwFsdWDfE2</a:alineja>
-                        <a:alineja>y1gOswDIB5Q</a:alineja>
-                    </a:podtacka>
-                </a:tacka>
-                <a:tacka br="1157293635">
-                    <a:sadrzaj>ZnNp2Es</a:sadrzaj>
-                </a:tacka>
-            </a:stav>
-        </a:clan>
-        <a:clan naziv="HVE8q1dkf2" br="1937047178">
-            <a:stav>
-                <a:tacka br="1558824694">
-                    <a:sadrzaj>SnraMxGRcg</a:sadrzaj>
-                </a:tacka>
-                <a:tacka br="531510886">
-                    <a:podtacka br="1931474877">
-                        <a:sadrzaj>TSjOoIk10VP87SQYD7.H4Q4W</a:sadrzaj>
-                    </a:podtacka>
-                    <a:podtacka br="1122715255">
-                        <a:sadrzaj>egWZhlb3KNRMj_</a:sadrzaj>
-                    </a:podtacka>
-                </a:tacka>
-            </a:stav>
-            <a:stav>
-                <a:tacka br="592118209">
-                    <a:sadrzaj>Qs</a:sadrzaj>
-                </a:tacka>
-                <a:tacka br="1049991520">
-                    <a:podtacka br="1844370903">
-                        <a:alineja>HAk_X9bYK-7ond.</a:alineja>
-                        <a:alineja>B</a:alineja>
-                    </a:podtacka>
-                    <a:podtacka br="2054520923">
-                        <a:alineja>zyV65Z</a:alineja>
-                        <a:alineja>WNZUH1-tt3YsPcEJ</a:alineja>
-                    </a:podtacka>
-                </a:tacka>
-            </a:stav>
-        </a:clan>
+        <a:predlozen>true</a:predlozen>
+        <a:za>-1621124378</a:za>
+        <a:protiv>205187218</a:protiv>
+        <a:suzdrzani>152700552</a:suzdrzani>
+        <a:deo naziv="PtQ7isaihcC-LUCtycj" id="ID002" br="1509319619">
+            <a:glava naziv="pQWuF7TaR" br="376852755" id="ID003">
+                <a:odeljak naziv="bis2Ds6pTrQNleeJFFyMmr9e" br="942605855" id="ID004">
+                    <a:pododeljak naziv="Z6KBTaW3mVe97QnvVNsxREzl" id="ID005">
+                        <a:clan naziv="LefZZQBtgCiGTbN5.6Xy9ZvC.8oG" br="389371683" id="ID006">
+                            <a:stav id="ID007">
+                                <a:sadrzaj>K0uVFjTx</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID008">
+                                <a:sadrzaj>VNt0s42AFgQkvDM8vOPSrL</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="KO5Bw" br="342959505" id="ID009">
+                            <a:stav id="ID010">
+                                <a:tacka br="723435015" id="ID011">
+                                    <a:podtacka br="1621355261" id="ID012">
+                                        <a:alineja id="ID013">NO</a:alineja>
+                                        <a:alineja id="ID014">Udb2xxE2</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="1071786906" id="ID015">
+                                        <a:sadrzaj>KGg11LrcyVwhpRZpPK2P</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="1941128230" id="ID016">
+                                    <a:sadrzaj>gQ4VZq0gxvc</a:sadrzaj>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID017">
+                                <a:sadrzaj>VjX2yWWmXcb4NO.UxV.w</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                    <a:pododeljak naziv="SmRTYAWljEbRem_W" id="ID018">
+                        <a:clan naziv="Dh" br="32946182" id="ID019">
+                            <a:stav id="ID020">
+                                <a:sadrzaj>dSunyOt</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID021">
+                                <a:sadrzaj>rG6ySvqM5BzbgrtaCmCwojUT</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="gcs3hOBI42fg" br="1014168205" id="ID022">
+                            <a:stav id="ID023">
+                                <a:sadrzaj>f5PRAsgf3UGsw</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID024">
+                                <a:tacka br="2147141436" id="ID025">
+                                    <a:sadrzaj>CoCwuzEv9j8jeCEvRGLG_GT</a:sadrzaj>
+                                </a:tacka>
+                                <a:tacka br="874546753" id="ID026">
+                                    <a:sadrzaj>zERFMf67P0StA1mk</a:sadrzaj>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                </a:odeljak>
+                <a:odeljak naziv="EVEEK1FsAQbEfeCZEJ8SeSPJM-." br="1831457836" id="ID027">
+                    <a:pododeljak naziv="BC3R" id="ID028">
+                        <a:clan naziv="t" br="1058955101" id="ID029">
+                            <a:stav id="ID030">
+                                <a:sadrzaj>nVkn-ZtQxiZz</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID031">
+                                <a:tacka br="263913273" id="ID032">
+                                    <a:podtacka br="315599575" id="ID033">
+                                        <a:alineja id="ID034">TV-TTCLpbAQAQPsVjv5T78gG2un</a:alineja>
+                                        <a:alineja id="ID035">aaXCCZufs4qR2.n70P2Ly</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="935077900" id="ID036">
+                                        <a:alineja id="ID037">Rli2nasia6C4T</a:alineja>
+                                        <a:alineja id="ID038">i6</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="519676305" id="ID039">
+                                    <a:podtacka br="1317103987" id="ID040">
+                                        <a:alineja id="ID041">_T_usHPkIe-QF1sGbipQ</a:alineja>
+                                        <a:alineja id="ID042">tKrbMhdgQih8as</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="500737102" id="ID043">
+                                        <a:sadrzaj>yfwz3g.qDQSIcU.4HH-WvW0DF06B</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="STCmTu6NitB" br="27374194" id="ID044">
+                            <a:stav id="ID045">
+                                <a:sadrzaj>V0UoeBfEGGuQEIa2rZwX5C1ZfPf</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID046">
+                                <a:tacka br="1452733174" id="ID047">
+                                    <a:podtacka br="587709680" id="ID048">
+                                        <a:alineja id="ID049">t5BY_9F1</a:alineja>
+                                        <a:alineja id="ID050">g</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="73628856" id="ID051">
+                                        <a:alineja id="ID052">MF.GvbniFWPnWncUx9</a:alineja>
+                                        <a:alineja id="ID053">fTl0x</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="1679346695" id="ID054">
+                                    <a:podtacka br="1925535755" id="ID055">
+                                        <a:sadrzaj>g3RCehdhPcy</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="114829065" id="ID056">
+                                        <a:alineja id="ID057">W</a:alineja>
+                                        <a:alineja id="ID058">Eg71NWZQP68VbF5m8iyfLMszWM</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                    <a:pododeljak naziv="yKHV4hX0QgKPG7vrGFephqb" id="ID059">
+                        <a:clan naziv="Cnyjzoiw9B_8I" br="164002832" id="ID060">
+                            <a:stav id="ID061">
+                                <a:tacka br="1629222518" id="ID062">
+                                    <a:podtacka br="1084352353" id="ID063">
+                                        <a:sadrzaj>LHMEdu-MJj.Mau</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="523812479" id="ID064">
+                                        <a:alineja id="ID065">AsgOM0p</a:alineja>
+                                        <a:alineja id="ID066">ZSU8K</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="1055732944" id="ID067">
+                                    <a:podtacka br="119920760" id="ID068">
+                                        <a:alineja id="ID069">qWneuIz</a:alineja>
+                                        <a:alineja id="ID070">LfLmHASY7L96ZN</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="19664480" id="ID071">
+                                        <a:sadrzaj>p6ku2jL_</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID072">
+                                <a:tacka br="1701373693" id="ID073">
+                                    <a:sadrzaj>L1zlBnvR7z5Lq2</a:sadrzaj>
+                                </a:tacka>
+                                <a:tacka br="2146370872" id="ID074">
+                                    <a:podtacka br="1108245769" id="ID075">
+                                        <a:sadrzaj>Voso</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="1716093768" id="ID076">
+                                        <a:alineja id="ID077">zkeAXq_j3kKsIGAre1S</a:alineja>
+                                        <a:alineja id="ID078">FNT53Jml12blE12n.z1CaM43at4gIF</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="nwT" br="1923361589" id="ID079">
+                            <a:stav id="ID080">
+                                <a:tacka br="503498259" id="ID081">
+                                    <a:podtacka br="989149377" id="ID082">
+                                        <a:alineja id="ID083">F73zF6ebrS299uE91i5zL</a:alineja>
+                                        <a:alineja id="ID084">MEw9k2EiIb.3G</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="2127520961" id="ID085">
+                                        <a:alineja id="ID086">FrUzTDVL5y</a:alineja>
+                                        <a:alineja id="ID087">bO9zDtkb6rI5</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="501517632" id="ID088">
+                                    <a:podtacka br="1084519402" id="ID089">
+                                        <a:alineja id="ID090">UzErZo2jye</a:alineja>
+                                        <a:alineja id="ID091">SU_8nJHUeUfwzs8RFI._</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="720902649" id="ID092">
+                                        <a:alineja id="ID093">B5wz5ms2U8L4zRwuGFJNuXZ</a:alineja>
+                                        <a:alineja id="ID094">sEWpJPp3Ae1muYD8kPxhrZgtDU</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID095">
+                                <a:sadrzaj>XcNEe87EWOLpaGRPZ9JPEafQz98wEG</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                </a:odeljak>
+            </a:glava>
+            <a:glava naziv="g8L7brhH.P-wB-qZXN7FGnnT" br="1050412157" id="ID096">
+                <a:odeljak naziv="tlY8.Q8Kz7AJErlzFUCgeg" br="253571398" id="ID097">
+                    <a:clan naziv="Dso_PXsH.kifcmBai4xgf4" br="757204848" id="ID098">
+                        <a:stav id="ID099">
+                            <a:tacka br="2093477415" id="ID100">
+                                <a:sadrzaj>avumYX4N3bwZzwg3TDEyJskovQF</a:sadrzaj>
+                            </a:tacka>
+                            <a:tacka br="1214243938" id="ID101">
+                                <a:sadrzaj>nkjb8ru3nd_GKOYDV</a:sadrzaj>
+                            </a:tacka>
+                        </a:stav>
+                        <a:stav id="ID102">
+                            <a:tacka br="331957762" id="ID103">
+                                <a:podtacka br="1054460008" id="ID104">
+                                    <a:alineja id="ID105">NEBCli</a:alineja>
+                                    <a:alineja id="ID106">ZX_7Pi</a:alineja>
+                                </a:podtacka>
+                                <a:podtacka br="292419096" id="ID107">
+                                    <a:sadrzaj>h09BjwfrB</a:sadrzaj>
+                                </a:podtacka>
+                            </a:tacka>
+                            <a:tacka br="1988471883" id="ID108">
+                                <a:sadrzaj>UyHtzfO_pGQ3xTT0GPm-</a:sadrzaj>
+                            </a:tacka>
+                        </a:stav>
+                    </a:clan>
+                    <a:clan naziv="pKXvuvpM2siAWX.IajnSOKU" br="1005934451" id="ID109">
+                        <a:stav id="ID110">
+                            <a:sadrzaj>AVDwzH_YFQT2I057XM7hK</a:sadrzaj>
+                        </a:stav>
+                        <a:stav id="ID111">
+                            <a:tacka br="347555537" id="ID112">
+                                <a:podtacka br="847197207" id="ID113">
+                                    <a:sadrzaj>MmOLnpnMDIpn</a:sadrzaj>
+                                </a:podtacka>
+                                <a:podtacka br="791650180" id="ID114">
+                                    <a:alineja id="ID115">j44R-GGmTV2waY</a:alineja>
+                                    <a:alineja id="ID116">OXWW7IGr6k-t7A9B641izMZxvpm6</a:alineja>
+                                </a:podtacka>
+                            </a:tacka>
+                            <a:tacka br="968037408" id="ID117">
+                                <a:podtacka br="2080561949" id="ID118">
+                                    <a:alineja id="ID119">onFbUYI70PlziUw_d4ZBK</a:alineja>
+                                    <a:alineja id="ID120">iaLus5</a:alineja>
+                                </a:podtacka>
+                                <a:podtacka br="1855511668" id="ID121">
+                                    <a:alineja id="ID122">d3j4qlIYAqClBIFGA4LS</a:alineja>
+                                    <a:alineja id="ID123">QDEcd24g7Y2pK79</a:alineja>
+                                </a:podtacka>
+                            </a:tacka>
+                        </a:stav>
+                    </a:clan>
+                </a:odeljak>
+                <a:odeljak naziv="h7YF" br="100690742" id="ID124">
+                    <a:clan naziv="u8AupXrwj4VAoXeq7qc5tP0O0Ks" br="60136866" id="ID125">
+                        <a:stav id="ID126">
+                            <a:sadrzaj>UJC1xM</a:sadrzaj>
+                        </a:stav>
+                        <a:stav id="ID127">
+                            <a:tacka br="501459672" id="ID128">
+                                <a:sadrzaj>j3.SUXMzzrLi.wf2</a:sadrzaj>
+                            </a:tacka>
+                            <a:tacka br="588838835" id="ID129">
+                                <a:sadrzaj>Tj_dIElvMcz9MmoZU9PW02oRy2W</a:sadrzaj>
+                            </a:tacka>
+                        </a:stav>
+                    </a:clan>
+                    <a:clan naziv="zvkXN.8QwNUzbN_Qrdp" br="2049427111" id="ID130">
+                        <a:stav id="ID131">
+                            <a:tacka br="1618976884" id="ID132">
+                                <a:podtacka br="2098286232" id="ID133">
+                                    <a:sadrzaj>v0R</a:sadrzaj>
+                                </a:podtacka>
+                                <a:podtacka br="1253779909" id="ID134">
+                                    <a:sadrzaj>PdlGqG</a:sadrzaj>
+                                </a:podtacka>
+                            </a:tacka>
+                            <a:tacka br="185997382" id="ID135">
+                                <a:podtacka br="1962743386" id="ID136">
+                                    <a:sadrzaj>Rw1uQ1L6Y_meKFAcahXvOhxCLah6kX</a:sadrzaj>
+                                </a:podtacka>
+                                <a:podtacka br="597154696" id="ID137">
+                                    <a:alineja id="ID138">WRHCV</a:alineja>
+                                    <a:alineja id="ID139">Oekp1EorLgjtw</a:alineja>
+                                </a:podtacka>
+                            </a:tacka>
+                        </a:stav>
+                        <a:stav id="ID140">
+                            <a:tacka br="226940315" id="ID141">
+                                <a:sadrzaj>fMM.Mfls2uU27zd</a:sadrzaj>
+                            </a:tacka>
+                            <a:tacka br="377303623" id="ID142">
+                                <a:sadrzaj>boih..70w09uRbFhX_TLQVJ3W</a:sadrzaj>
+                            </a:tacka>
+                        </a:stav>
+                    </a:clan>
+                </a:odeljak>
+            </a:glava>
+        </a:deo>
+        <a:deo naziv="BLROJUilEv9WX00WVJF3sFE7L6OmbP" id="ID143" br="121756185">
+            <a:glava naziv="fOJnaGWasi6OUqKSHpEQfVUgPq" br="780139285" id="ID144">
+                <a:odeljak naziv="y" br="1642807078" id="ID145">
+                    <a:pododeljak naziv="s6lH" id="ID146">
+                        <a:clan naziv="aEMEdMfLt18XU.id5wE" br="1385539326" id="ID147">
+                            <a:stav id="ID148">
+                                <a:sadrzaj>DwwwFiHwDWEwAW265</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID149">
+                                <a:sadrzaj>cBkRfEz-spyP2mPTYgih4Km-L3q</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="Vbdt7szXO4P4SnT0GQ2VW208d.j" br="61551916" id="ID150">
+                            <a:stav id="ID151">
+                                <a:tacka br="165572775" id="ID152">
+                                    <a:sadrzaj>uRq.4TQTCxZhI5yRdjQTgoQ8RZb</a:sadrzaj>
+                                </a:tacka>
+                                <a:tacka br="1946719469" id="ID153">
+                                    <a:sadrzaj>NeR-Q6YX9hhJp</a:sadrzaj>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID154">
+                                <a:sadrzaj>Ey4331hW7hCDZmWKbUGZjj</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                    <a:pododeljak naziv="ui" id="ID155">
+                        <a:clan naziv="UMPz8QLUyjtmVmUiuV-jCldKaJ" br="1198018450" id="ID156">
+                            <a:stav id="ID157">
+                                <a:tacka br="329737140" id="ID158">
+                                    <a:podtacka br="1392115449" id="ID159">
+                                        <a:sadrzaj>mvm._DOYM5</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="584381032" id="ID160">
+                                        <a:alineja id="ID161">tJIUv.0FwR.rBbm-ud</a:alineja>
+                                        <a:alineja id="ID162">hFX03s</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="668690942" id="ID163">
+                                    <a:podtacka br="1210643195" id="ID164">
+                                        <a:sadrzaj>wP-V9LM9bK-hK-lZKOw8F</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="1861986592" id="ID165">
+                                        <a:sadrzaj>L6jes5HBSvL</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID166">
+                                <a:sadrzaj>aY</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="pLdzlkXoh" br="1972460934" id="ID167">
+                            <a:stav id="ID168">
+                                <a:sadrzaj>cXzMYVNBqJJ9vQWGc0lpXzYJM37SCW</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID169">
+                                <a:tacka br="207038065" id="ID170">
+                                    <a:podtacka br="515842349" id="ID171">
+                                        <a:sadrzaj>GvwC</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="580717487" id="ID172">
+                                        <a:alineja id="ID173">wG5sGvsSRU-5R.QAeYGt</a:alineja>
+                                        <a:alineja id="ID174">EAFbgK8gneuo4_rNvClPJ7ejcnm</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="565849495" id="ID175">
+                                    <a:podtacka br="2017272964" id="ID176">
+                                        <a:alineja id="ID177">niGhPxf_4rE_taO_lg0N3XsyFrmqVv</a:alineja>
+                                        <a:alineja id="ID178">haYk2qgma00p2WlTgjH.NAg</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="894992908" id="ID179">
+                                        <a:alineja id="ID180">kiTuwdxHld3gp_</a:alineja>
+                                        <a:alineja id="ID181">gysDxtAdyQnSd7I</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                </a:odeljak>
+                <a:odeljak naziv="vw8GR" br="349499603" id="ID182">
+                    <a:pododeljak naziv="n8Pj" id="ID183">
+                        <a:clan naziv="ffItSdZK8jb" br="444268684" id="ID184">
+                            <a:stav id="ID185">
+                                <a:sadrzaj>LL</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID186">
+                                <a:sadrzaj>YsjW8_I4T2HIAfrhrlJ8-8Z4</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="U3qMZCQgSLsQ8uv" br="484579852" id="ID187">
+                            <a:stav id="ID188">
+                                <a:sadrzaj>BOMFlpc2T</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID189">
+                                <a:tacka br="847195820" id="ID190">
+                                    <a:podtacka br="401110342" id="ID191">
+                                        <a:sadrzaj>z8bsEtlNVitdjsiYC8Nj</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="1198358078" id="ID192">
+                                        <a:alineja id="ID193">E6Ez</a:alineja>
+                                        <a:alineja id="ID194">fe</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="850324255" id="ID195">
+                                    <a:podtacka br="322528474" id="ID196">
+                                        <a:alineja id="ID197">AHBqgbHjUQE1a_3b</a:alineja>
+                                        <a:alineja id="ID198">rNR3q0WD.wTyfdtUBxo</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="112493264" id="ID199">
+                                        <a:sadrzaj>DLIPoiA3etOEyG.MQHxrEKwI</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                    <a:pododeljak naziv="lzfTQkb9.G-" id="ID200">
+                        <a:clan naziv="WtxzBAqEXuoxiiYeTOAX8LH" br="1753364032" id="ID201">
+                            <a:stav id="ID202">
+                                <a:tacka br="5553278" id="ID203">
+                                    <a:podtacka br="145394667" id="ID204">
+                                        <a:alineja id="ID205">oM7</a:alineja>
+                                        <a:alineja id="ID206">Lfj1-kicdIgxJTMa</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="2047851709" id="ID207">
+                                        <a:sadrzaj>G-T</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="598129448" id="ID208">
+                                    <a:podtacka br="2128180505" id="ID209">
+                                        <a:alineja id="ID210">cvRdzh0Vrz3HNXYfut3.E9W5Uob</a:alineja>
+                                        <a:alineja id="ID211">o4seQLN5ZlX3m</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="1091861299" id="ID212">
+                                        <a:sadrzaj>DGD0J9</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID213">
+                                <a:tacka br="133060654" id="ID214">
+                                    <a:podtacka br="1108625607" id="ID215">
+                                        <a:sadrzaj>N.Y_ZZfrekmoBOl_</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="269245119" id="ID216">
+                                        <a:sadrzaj>ZJQODaA4_Y</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                                <a:tacka br="416976130" id="ID217">
+                                    <a:podtacka br="1525583037" id="ID218">
+                                        <a:sadrzaj>Uy4</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="2106240542" id="ID219">
+                                        <a:sadrzaj>Ps9S4QNt_AXi4.580mVSPI-qFo6_3y</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="ABqBoICJrWC" br="648196722" id="ID220">
+                            <a:stav id="ID221">
+                                <a:tacka br="190769596" id="ID222">
+                                    <a:sadrzaj>qfv9l_EBnqOb2RurUsbHWJL2y4nc</a:sadrzaj>
+                                </a:tacka>
+                                <a:tacka br="525994039" id="ID223">
+                                    <a:podtacka br="1132185977" id="ID224">
+                                        <a:alineja id="ID225">sO4nHiNuU</a:alineja>
+                                        <a:alineja id="ID226">yC85_OiRVH7VH-hQSNkC_2K</a:alineja>
+                                    </a:podtacka>
+                                    <a:podtacka br="1209694260" id="ID227">
+                                        <a:alineja id="ID228">kFo</a:alineja>
+                                        <a:alineja id="ID229">PDEFrNNxI_pYQkp</a:alineja>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID230">
+                                <a:sadrzaj>x.1TyMLHhh</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                </a:odeljak>
+            </a:glava>
+            <a:glava naziv="RVjDeTGfH40ItLRVrXWpVe0" br="998737952" id="ID231">
+                <a:odeljak naziv="bvRP3Sco5DIcqc5fure" br="1236717551" id="ID232">
+                    <a:clan naziv="k030vuRQinNbyVedTqn71" br="1683557688" id="ID233">
+                        <a:stav id="ID234">
+                            <a:sadrzaj>jm</a:sadrzaj>
+                        </a:stav>
+                        <a:stav id="ID235">
+                            <a:tacka br="1670078106" id="ID236">
+                                <a:sadrzaj>BDffYwC9gxHGQC8jW2QKRQ0K5D</a:sadrzaj>
+                            </a:tacka>
+                            <a:tacka br="181627246" id="ID237">
+                                <a:podtacka br="1065951179" id="ID238">
+                                    <a:sadrzaj>mQ9NrZ1HJer</a:sadrzaj>
+                                </a:podtacka>
+                                <a:podtacka br="6935463" id="ID239">
+                                    <a:alineja id="ID240">TntzEeSBezGHv4-eUECz</a:alineja>
+                                    <a:alineja id="ID241">u87ohkIscZxW08G6iBT</a:alineja>
+                                </a:podtacka>
+                            </a:tacka>
+                        </a:stav>
+                    </a:clan>
+                    <a:clan naziv="Iqv4CP" br="1501022551" id="ID242">
+                        <a:stav id="ID243">
+                            <a:sadrzaj>enV_7FG3Sd8OZVZt</a:sadrzaj>
+                        </a:stav>
+                        <a:stav id="ID244">
+                            <a:sadrzaj>WgqdHbf15y6tgAq69pjAw.</a:sadrzaj>
+                        </a:stav>
+                    </a:clan>
+                </a:odeljak>
+                <a:odeljak naziv="TC8qpOquR86QZSbK-iPeFYpZc2" br="591445754" id="ID245">
+                    <a:pododeljak naziv="mpmci5YhWrY.V9q1T3MzCMG4PYx" id="ID246">
+                        <a:clan naziv="wK33Jzvi2z" br="341331887" id="ID247">
+                            <a:stav id="ID248">
+                                <a:sadrzaj>LHzTxiQLJGxPH9X</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID249">
+                                <a:sadrzaj>n5KZv.Czxjg821ig4ASkJV27CJSF</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="qrZv9-xfVbUOC0U9QWZaiYbHlm9VJT" br="1425671100" id="ID250">
+                            <a:stav id="ID251">
+                                <a:sadrzaj>Skv1QB</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID252">
+                                <a:sadrzaj>c</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                    <a:pododeljak naziv="lDSB_" id="ID253">
+                        <a:clan naziv="lHn" br="545375465" id="ID254">
+                            <a:stav id="ID255">
+                                <a:tacka br="768679830" id="ID256">
+                                    <a:sadrzaj>ivsmUF</a:sadrzaj>
+                                </a:tacka>
+                                <a:tacka br="1851559939" id="ID257">
+                                    <a:sadrzaj>oU6kj6rT6AH</a:sadrzaj>
+                                </a:tacka>
+                            </a:stav>
+                            <a:stav id="ID258">
+                                <a:tacka br="1784499597" id="ID259">
+                                    <a:sadrzaj>k</a:sadrzaj>
+                                </a:tacka>
+                                <a:tacka br="2065540229" id="ID260">
+                                    <a:podtacka br="1053920754" id="ID261">
+                                        <a:sadrzaj>ch_KvKKJ78Mpm8g</a:sadrzaj>
+                                    </a:podtacka>
+                                    <a:podtacka br="44459517" id="ID262">
+                                        <a:sadrzaj>PhJnW</a:sadrzaj>
+                                    </a:podtacka>
+                                </a:tacka>
+                            </a:stav>
+                        </a:clan>
+                        <a:clan naziv="NY3D8k.PeF8Flvs" br="816518879" id="ID263">
+                            <a:stav id="ID264">
+                                <a:sadrzaj>PkfvXl_DE6gMBZh.rpVbdW</a:sadrzaj>
+                            </a:stav>
+                            <a:stav id="ID265">
+                                <a:sadrzaj>TeCg6fv7pLxz1tZM</a:sadrzaj>
+                            </a:stav>
+                        </a:clan>
+                    </a:pododeljak>
+                </a:odeljak>
+            </a:glava>
+        </a:deo>
     </a:akt>
-    <a:akt id="ID002" naziv="hqeVc7qtU1f8-bpt1XYL9Vx8A0" drzava="xf4dh3sCxceh4De-pXjX" regija="ikvgG1KeRzm91qF.kLOJ03g9hC6Ch"
-         grad="mNt3dkOt36-sFy" stanje="u_nacelu" kreirao="p1UF5L9zgYiv1ZaOT">
+    <a:akt id="ID266" naziv="BUoS6l_ja" drzava="LTl3I.VxDI" regija="pBIHJ.t6wd" grad="FgB8Sg61mo" stanje="u_celosti"
+         kreirao="beP7HIMt1BWWGj">
         <a:preambula>
-            <a:pravni_osnov>tCgyU5-OUIC_</a:pravni_osnov>
-            <a:organ>jWTrBBZ</a:organ>
-            <a:oblast>Pravosudje</a:oblast>
+            <a:pravni_osnov>xchAtZxYPURYcE6dp1iR</a:pravni_osnov>
+            <a:organ>B.NZn</a:organ>
+            <a:oblast>Policija</a:oblast>
         </a:preambula>
         <a:predlozen>0</a:predlozen>
-        <a:za>-1336583006</a:za>
-        <a:protiv>-49337196</a:protiv>
-        <a:suzdrzani>1612714065</a:suzdrzani>
-        <a:deo naziv="VTLaHdL47N6I__wLEjYGljVL" br="2081884882">
-            <a:glava naziv="e1cGvVw.8QCoFKNtg_YpZx" br="2062845757">
-                <a:odeljak naziv="sqtH.ynbysP3Xd" br="1254510544">
-                    <a:pododeljak naziv="Bf" id="y">
-                        <a:clan naziv="jg.JX1ty4qhwYVKMozrF2l_jVnxH" br="162683233">
-                            <a:stav>
-                                <a:tacka br="367054519">
-                                    <a:sadrzaj>TYW4-wF2D23QiN0WKxM64u1vYgRr</a:sadrzaj>
-                                </a:tacka>
-                                <a:tacka br="1129681150">
-                                    <a:sadrzaj>W</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                            <a:stav>
-                                <a:tacka br="1525891997">
-                                    <a:podtacka br="1204286611">
-                                        <a:sadrzaj>MbDc</a:sadrzaj>
-                                    </a:podtacka>
-                                    <a:podtacka br="202339176">
-                                        <a:sadrzaj>Igl.WCnXJ9yA3LJhhzW1Vez</a:sadrzaj>
-                                    </a:podtacka>
-                                </a:tacka>
-                                <a:tacka br="3927910">
-                                    <a:sadrzaj>uOfLUDYP4</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                        </a:clan>
-                        <a:clan naziv="pCawZ9ro" br="453098372">
-                            <a:stav>
-                                <a:tacka br="53660949">
-                                    <a:sadrzaj>y-7AANFYdBuYFQ</a:sadrzaj>
-                                </a:tacka>
-                                <a:tacka br="650876354">
-                                    <a:podtacka br="923601937">
-                                        <a:sadrzaj>NlDyWXOIOi3AX7WG5c9QAiLZ3Lqi</a:sadrzaj>
-                                    </a:podtacka>
-                                    <a:podtacka br="1413938173">
-                                        <a:alineja>LkpviV2i61xjNn_B</a:alineja>
-                                        <a:alineja>deukti0-tjMmp5iUz</a:alineja>
-                                    </a:podtacka>
-                                </a:tacka>
-                            </a:stav>
-                            <a:stav>
-                                <a:tacka br="1319674227">
-                                    <a:sadrzaj>pN.qG.4u49HFLeb3w</a:sadrzaj>
-                                </a:tacka>
-                                <a:tacka br="1051816344">
-                                    <a:podtacka br="1161146874">
-                                        <a:sadrzaj>wdVj-YubXilZu4o1tb0n</a:sadrzaj>
-                                    </a:podtacka>
-                                    <a:podtacka br="1070109899">
-                                        <a:sadrzaj>wwnm</a:sadrzaj>
-                                    </a:podtacka>
-                                </a:tacka>
-                            </a:stav>
-                        </a:clan>
-                    </a:pododeljak>
-                    <a:pododeljak naziv="bYLMGPleTL86DmdZXIET1Qx" id="v">
-                        <a:clan naziv="g7UXB1rgQtMCB" br="3896725">
-                            <a:stav>
-                                <a:tacka br="487465817">
-                                    <a:podtacka br="2061632062">
-                                        <a:sadrzaj>X2zEWxv-khhTk.7Ul</a:sadrzaj>
-                                    </a:podtacka>
-                                    <a:podtacka br="1233156048">
-                                        <a:sadrzaj>Ocu</a:sadrzaj>
-                                    </a:podtacka>
-                                </a:tacka>
-                                <a:tacka br="1806617868">
-                                    <a:sadrzaj>yA</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                            <a:stav>
-                                <a:tacka br="61046137">
-                                    <a:sadrzaj>HEw969RWoCURM</a:sadrzaj>
-                                </a:tacka>
-                                <a:tacka br="791962504">
-                                    <a:sadrzaj>v</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                        </a:clan>
-                        <a:clan naziv="gunEkpP" br="313979331">
-                            <a:stav>
-                                <a:sadrzaj>WnH.gorHt</a:sadrzaj>
-                            </a:stav>
-                            <a:stav>
-                                <a:tacka br="1545170484">
-                                    <a:podtacka br="770530463">
-                                        <a:alineja>B</a:alineja>
-                                        <a:alineja>XoZnujEuz3Yug</a:alineja>
-                                    </a:podtacka>
-                                    <a:podtacka br="1172463468">
-                                        <a:sadrzaj>Iusbe1MzmTlPfxnCcxzGT_t7U</a:sadrzaj>
-                                    </a:podtacka>
-                                </a:tacka>
-                                <a:tacka br="959076892">
-                                    <a:sadrzaj>dIT2EHeg422</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                        </a:clan>
-                    </a:pododeljak>
-                </a:odeljak>
-                <a:odeljak naziv="Z0EUC9PccjpPbTa6HJfOox" br="242733690">
-                    <a:pododeljak naziv="z2UYzZoYJd9DG39cNTLCwDTroUEWXZ" id="y">
-                        <a:clan naziv="VxLVTJ9Eoje.trjU" br="1595271417">
-                            <a:stav>
-                                <a:sadrzaj>T</a:sadrzaj>
-                            </a:stav>
-                            <a:stav>
-                                <a:sadrzaj>uQiajmxwtsn8tOCUMM4bdB</a:sadrzaj>
-                            </a:stav>
-                        </a:clan>
-                        <a:clan naziv="y" br="1636066000">
-                            <a:stav>
-                                <a:tacka br="1024872598">
-                                    <a:sadrzaj>L8z.6_Ji</a:sadrzaj>
-                                </a:tacka>
-                                <a:tacka br="339162778">
-                                    <a:sadrzaj>OITsvfnywH_C</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                            <a:stav>
-                                <a:sadrzaj>EKFJCimqRHnVYNKzOhv-_Dcou</a:sadrzaj>
-                            </a:stav>
-                        </a:clan>
-                    </a:pododeljak>
-                    <a:pododeljak naziv="ok3XrvBZ6M0r" id="s">
-                        <a:clan naziv="u09FNI6wYIX39A" br="107711765">
-                            <a:stav>
-                                <a:tacka br="73513705">
-                                    <a:podtacka br="798377229">
-                                        <a:alineja>mGTIDa73VYLD1</a:alineja>
-                                        <a:alineja>j5JxnGXFTS5jojKKUQgPXxWN</a:alineja>
-                                    </a:podtacka>
-                                    <a:podtacka br="1423044052">
-                                        <a:alineja>jBN0XKFy</a:alineja>
-                                        <a:alineja>G8JGa-Hg</a:alineja>
-                                    </a:podtacka>
-                                </a:tacka>
-                                <a:tacka br="358285123">
-                                    <a:sadrzaj>fkHKEXw0n7sSEi4uO</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                            <a:stav>
-                                <a:sadrzaj>N</a:sadrzaj>
-                            </a:stav>
-                        </a:clan>
-                        <a:clan naziv="LOoqUkM0" br="2056505081">
-                            <a:stav>
-                                <a:sadrzaj>vKuOxv-oTRzpoQH</a:sadrzaj>
-                            </a:stav>
-                            <a:stav>
-                                <a:tacka br="2125578524">
-                                    <a:sadrzaj>kbSUc2d6sSq5eGnVknSbGCOWun</a:sadrzaj>
-                                </a:tacka>
-                                <a:tacka br="720641543">
-                                    <a:sadrzaj>GgP0LOo-XYxADQcSZ35CdYw-</a:sadrzaj>
-                                </a:tacka>
-                            </a:stav>
-                        </a:clan>
-                    </a:pododeljak>
-                </a:odeljak>
-            </a:glava>
-            <a:glava naziv="XvBZlwoKF" br="192675358">
-                <a:odeljak naziv="jQOIyO" br="1717554545">
-                    <a:clan naziv="jAB8WYyj28MtRj19Ms360" br="1682995386">
-                        <a:stav>
-                            <a:tacka br="609715583">
-                                <a:podtacka br="1715955537">
-                                    <a:sadrzaj>XRP.lEhpWRBQBlc8N-XfvAzT6g</a:sadrzaj>
-                                </a:podtacka>
-                                <a:podtacka br="792336776">
-                                    <a:sadrzaj>xPE.iQ2z_mK4Ubrx.w8ExMerAy</a:sadrzaj>
-                                </a:podtacka>
-                            </a:tacka>
-                            <a:tacka br="1607982811">
-                                <a:sadrzaj>uk</a:sadrzaj>
-                            </a:tacka>
-                        </a:stav>
-                        <a:stav>
-                            <a:sadrzaj>mQ</a:sadrzaj>
-                        </a:stav>
-                    </a:clan>
-                    <a:clan naziv="FE6S2" br="694180911">
-                        <a:stav>
-                            <a:sadrzaj>jE3eghF.</a:sadrzaj>
-                        </a:stav>
-                        <a:stav>
-                            <a:tacka br="1603204277">
-                                <a:podtacka br="1210960262">
-                                    <a:alineja>ZVb83vfNnx9MtY2JaL-h6I</a:alineja>
-                                    <a:alineja>E</a:alineja>
-                                </a:podtacka>
-                                <a:podtacka br="1586612331">
-                                    <a:alineja>GXPnItKmtt</a:alineja>
-                                    <a:alineja>J6m0ePbHIKVJssAmAGh4JTctx</a:alineja>
-                                </a:podtacka>
-                            </a:tacka>
-                            <a:tacka br="707583283">
-                                <a:podtacka br="213772959">
-                                    <a:sadrzaj>D</a:sadrzaj>
-                                </a:podtacka>
-                                <a:podtacka br="680246198">
-                                    <a:sadrzaj>C_FBXOVKVclmAhyOdn6c</a:sadrzaj>
-                                </a:podtacka>
-                            </a:tacka>
-                        </a:stav>
-                    </a:clan>
-                </a:odeljak>
-                <a:odeljak naziv="zF1qfTAKoqp" br="1137685022">
-                    <a:clan naziv="TcgJ5wNoZPgFj_1YjFixlq-srQF5Gk" br="901715081">
-                        <a:stav>
-                            <a:sadrzaj>ZiEAAzpg0</a:sadrzaj>
-                        </a:stav>
-                        <a:stav>
-                            <a:sadrzaj>kFz4z7NgPoq-q9j60R</a:sadrzaj>
-                        </a:stav>
-                    </a:clan>
-                    <a:clan naziv="llCGrwA.PA5OJIe" br="1583952645">
-                        <a:stav>
-                            <a:tacka br="992222624">
-                                <a:sadrzaj>Lz.WdkpOp.Sax-cxBtUdG-4</a:sadrzaj>
-                            </a:tacka>
-                            <a:tacka br="1455971963">
-                                <a:sadrzaj>TiBfdLv</a:sadrzaj>
-                            </a:tacka>
-                        </a:stav>
-                        <a:stav>
-                            <a:sadrzaj>stddrcTHbqTXIZvPe8j9z0</a:sadrzaj>
-                        </a:stav>
-                    </a:clan>
-                </a:odeljak>
-            </a:glava>
-        </a:deo>
-        <a:deo naziv="ggJlps-PtrB5B8" br="474839209">
-            <a:glava naziv="S7MYPor" br="1896360757">
-                <a:clan naziv="LU" br="1386213373">
-                    <a:stav>
-                        <a:tacka br="1866662095">
-                            <a:podtacka br="1895834556">
-                                <a:sadrzaj>Zy</a:sadrzaj>
-                            </a:podtacka>
-                            <a:podtacka br="1933170909">
-                                <a:alineja>VCRg1_XkL-ABkt9u-UMf3PJT</a:alineja>
-                                <a:alineja>qVj4.ZWm3SxmD12CJ_JRjF</a:alineja>
-                            </a:podtacka>
-                        </a:tacka>
-                        <a:tacka br="1922491243">
-                            <a:sadrzaj>VAG-4flV_2</a:sadrzaj>
-                        </a:tacka>
-                    </a:stav>
-                    <a:stav>
-                        <a:tacka br="548152360">
-                            <a:sadrzaj>upDkJPB2Xr41.MpWIyvH-</a:sadrzaj>
-                        </a:tacka>
-                        <a:tacka br="95777366">
-                            <a:podtacka br="621642290">
-                                <a:alineja>XwzwYaJa</a:alineja>
-                                <a:alineja>FB3Sv</a:alineja>
-                            </a:podtacka>
-                            <a:podtacka br="918237223">
-                                <a:sadrzaj>U_Wket0JPlbPlv</a:sadrzaj>
-                            </a:podtacka>
-                        </a:tacka>
-                    </a:stav>
-                </a:clan>
-                <a:clan naziv="mM2eSQR9HmbaesBTrKoEM" br="2006224856">
-                    <a:stav>
-                        <a:tacka br="1909000356">
-                            <a:sadrzaj>JhhaYcDPYwZiWjD71IRNKAoO4</a:sadrzaj>
-                        </a:tacka>
-                        <a:tacka br="187616521">
-                            <a:podtacka br="1635465258">
-                                <a:alineja>SfSYvzo</a:alineja>
-                                <a:alineja>Ba_y</a:alineja>
-                            </a:podtacka>
-                            <a:podtacka br="305591458">
-                                <a:sadrzaj>MeYSOEZUv.CaVhUFABm16bN0Ql0</a:sadrzaj>
-                            </a:podtacka>
-                        </a:tacka>
-                    </a:stav>
-                    <a:stav>
-                        <a:tacka br="314583817">
-                            <a:podtacka br="2071645185">
-                                <a:alineja>lrkYhAW0stMCtYa6</a:alineja>
-                                <a:alineja>D8I35o3-y6F1qlmrWCGwOQmbVS5s</a:alineja>
-                            </a:podtacka>
-                            <a:podtacka br="1138520785">
-                                <a:sadrzaj>W3</a:sadrzaj>
-                            </a:podtacka>
-                        </a:tacka>
-                        <a:tacka br="952557404">
-                            <a:sadrzaj>LQ</a:sadrzaj>
-                        </a:tacka>
-                    </a:stav>
-                </a:clan>
-            </a:glava>
-            <a:glava naziv="pPO0U4VYans" br="660711125">
-                <a:clan naziv="g-" br="1251429698">
-                    <a:stav>
-                        <a:tacka br="1877484889">
-                            <a:podtacka br="609484855">
-                                <a:alineja>rNqcy8Wz8r2nqHhsbxX9KJ9M</a:alineja>
-                                <a:alineja>ZZt7UYN16H.LlU_v1q.TD</a:alineja>
-                            </a:podtacka>
-                            <a:podtacka br="90210389">
-                                <a:sadrzaj>TuUY2HqEnou84x</a:sadrzaj>
-                            </a:podtacka>
-                        </a:tacka>
-                        <a:tacka br="1785821972">
-                            <a:podtacka br="304854455">
-                                <a:alineja>UqB8p5V</a:alineja>
-                                <a:alineja>bFrgsz</a:alineja>
-                            </a:podtacka>
-                            <a:podtacka br="899902350">
-                                <a:alineja>_PLnBB</a:alineja>
-                                <a:alineja>IFijbBCkrF31Xu4m</a:alineja>
-                            </a:podtacka>
-                        </a:tacka>
-                    </a:stav>
-                    <a:stav>
-                        <a:sadrzaj>RIKQjP5xGsOQHI2dYoGF4Xw</a:sadrzaj>
-                    </a:stav>
-                </a:clan>
-                <a:clan naziv="xI" br="147699474">
-                    <a:stav>
-                        <a:tacka br="1032149852">
-                            <a:podtacka br="1572366231">
-                                <a:sadrzaj>yUnLEcM</a:sadrzaj>
-                            </a:podtacka>
-                            <a:podtacka br="1715268473">
-                                <a:sadrzaj>ThTRbZtLyj</a:sadrzaj>
-                            </a:podtacka>
-                        </a:tacka>
-                        <a:tacka br="96273892">
-                            <a:podtacka br="320792071">
-                                <a:alineja>U7EboV</a:alineja>
-                                <a:alineja>zG</a:alineja>
-                            </a:podtacka>
-                            <a:podtacka br="1151615366">
-                                <a:alineja>qdPOO</a:alineja>
-                                <a:alineja>cwCI5E8EFyNNh7IWLBD3.cPeoO-p</a:alineja>
-                            </a:podtacka>
-                        </a:tacka>
-                    </a:stav>
-                    <a:stav>
-                        <a:sadrzaj>h9bnNE4wSRDq76NAEe9KxEktmzQivT</a:sadrzaj>
-                    </a:stav>
-                </a:clan>
-            </a:glava>
-        </a:deo>
+        <a:za>479646012</a:za>
+        <a:protiv>2037457253</a:protiv>
+        <a:suzdrzani>1143630051</a:suzdrzani>
+        <a:clan naziv="ZN0MahRm0el8JZNrVSdnm" br="1021927680" id="ID267">
+            <a:stav id="ID268">
+                <a:tacka br="262485063" id="ID269">
+                    <a:sadrzaj>DUZdc.N</a:sadrzaj>
+                </a:tacka>
+                <a:tacka br="1123206241" id="ID270">
+                    <a:podtacka br="1653419061" id="ID271">
+                        <a:alineja id="ID272">b-tWpeTmqbEP0JVXgCOjq</a:alineja>
+                        <a:alineja id="ID273">bR1tgJLlLTOE6K1GF2WR2xr_</a:alineja>
+                    </a:podtacka>
+                    <a:podtacka br="1482392542" id="ID274">
+                        <a:sadrzaj>MyJWWSZcOQDNYvZZe3hMEu</a:sadrzaj>
+                    </a:podtacka>
+                </a:tacka>
+            </a:stav>
+            <a:stav id="ID275">
+                <a:tacka br="850394697" id="ID276">
+                    <a:podtacka br="1776361899" id="ID277">
+                        <a:sadrzaj>_apHKa.b-q49tn2K</a:sadrzaj>
+                    </a:podtacka>
+                    <a:podtacka br="456954465" id="ID278">
+                        <a:sadrzaj>hkZ1AyFR5PxKuFc</a:sadrzaj>
+                    </a:podtacka>
+                </a:tacka>
+                <a:tacka br="2002817231" id="ID279">
+                    <a:podtacka br="1649508520" id="ID280">
+                        <a:alineja id="ID281">vsPQd.yn32aI.EWhwLGJmJAugU3Ev</a:alineja>
+                        <a:alineja id="ID282">HKsi0rdnvD4JF</a:alineja>
+                    </a:podtacka>
+                    <a:podtacka br="1965783148" id="ID283">
+                        <a:sadrzaj>IPFKGgRB6Ca4fOIqZ1b</a:sadrzaj>
+                    </a:podtacka>
+                </a:tacka>
+            </a:stav>
+        </a:clan>
+        <a:clan naziv="SZ" br="978152942" id="ID284">
+            <a:stav id="ID285">
+                <a:tacka br="103534758" id="ID286">
+                    <a:sadrzaj>XDW2hZCGj.7</a:sadrzaj>
+                </a:tacka>
+                <a:tacka br="1985145921" id="ID287">
+                    <a:sadrzaj>bc0fEKTShJ</a:sadrzaj>
+                </a:tacka>
+            </a:stav>
+            <a:stav id="ID288">
+                <a:sadrzaj>gZa1wwh_sa0k</a:sadrzaj>
+            </a:stav>
+        </a:clan>
     </a:akt>
 </s:sednica>

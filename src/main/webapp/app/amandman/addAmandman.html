@@ -3,32 +3,39 @@
         <fieldset>
 
             <!-- Page title -->
-            <legend  class="text-center">Dodavanje akta</legend>
+            <legend  class="text-center">Dodavanje amandmana</legend>
 
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="naziv">Naziv:</label>
                 <div class="col-md-4">
-                    <input id="naziv" ng-model="addActCtrl.naziv" name="naziv" type="text" placeholder="unesite naziv akta" class="form-control input-md" required="">
+                    <input id="naziv" ng-model="addAmdCtrl.amandman.naziv" name="naziv" type="text" placeholder="unesite naziv akta" class="form-control input-md" required="">
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="drzava">Broj:</label>
+                <label class="col-md-4 control-label">Broj:</label>
                 <div class="col-md-4">
-                    <input id="drzava" ng-model="addActCtrl.drzava" name="drzava" type="text" placeholder="unesite naziv drzave" class="form-control input-md" required="">
+                    <input  ng-model="addAmdCtrl.amandman.broj"  type="text" placeholder="unesite broj" class="form-control input-md" required="">
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="regija">Pravni osnov:</label>
+                <label class="col-md-4 control-label">Pravni osnov:</label>
                 <div class="col-md-4">
-                    <input id="regija" ng-model="addActCtrl.regija" name="regija" type="text" placeholder="unesite naziv regije" class="form-control input-md" required="">
+                    <input ng-model="addAmdCtrl.amandman.pravniOsnov"  type="text" placeholder="unesite pravni osnov" class="form-control input-md" required="">
                 </div>
             </div>
 
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Obrazlozenje:</label>
+                <div class="col-md-4">
+                    <textarea ng-model="addAmdCtrl.amandman.obrazlozenje"  type="text" placeholder="unesite pravni osnov" class="form-control input-md" required=""></textarea>
+                </div>
+            </div>
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="akt">Izaberite akt</label>
@@ -38,9 +45,12 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <button ng-show="addAmdCtrl.aktSelected!=null" data-toggle="modal" data-target="#myModal" id="singlebutton"  name="singlebutton" class="btn btn-primary">dodaj stavku</button>
+                    <button ng-show="addAmdCtrl.aktSelected!=null" data-backdrop="static" data-toggle="modal" data-target="#myModal" id="singlebutton"  name="singlebutton" class="btn btn-primary">dodaj stavku</button>
                 </div>
             </div>
+
+
+
 
 <!------------------------------------------------DELOVI----------------------------------------------------------------------->
             <!-- Modal -->
@@ -66,7 +76,7 @@
                                 <div ng-if="addAmdCtrl.akt != null && addAmdCtrl.klik && addAmdCtrl.akt.clan.length>0">
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="submit">
+                                        <label class="col-md-4 control-label">
                                             <div align = "Left" >
                                                 <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
                                                     <span class="glyphicon glyphicon-plus"></span>Dodavanje clana
@@ -83,7 +93,7 @@
                                             <div class="panel-heading">
                                                 <h3 class="panel-title">{{c.naziv}}
 
-                                                    <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                    <button ng-click="addAmdCtrl.brisanje(c.id)" data-dismiss="modal" class="btn btn-danger btn-xs">
                                                         <span class="glyphicon glyphicon-remove"></span>
                                                     </button>
                                                 </h3>
@@ -109,7 +119,7 @@
                                                             <!--ispis Stav i dugme za brisanje stava-->
                                                             <h3 class="panel-title">Stav
 
-                                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                                <button ng-click="addAmdCtrl.brisanje(s.id)"  data-dismiss="modal"  class="btn btn-danger btn-xs">
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </button>
                                                             </h3>
@@ -124,6 +134,15 @@
                                                                     <div class="col-md-12">
                                                                         <textarea rows="2" class="form-control" ng-model="s.sadrzaj"></textarea>
                                                                     </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 control-label">
+                                                                        <div  align = "Center" >
+                                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                                <span class="glyphicon glyphicon-plus"></span>Menjanje sadrzaja
+                                                                            </button>
+                                                                        </div>
+                                                                    </label>
                                                                 </div>
                                                             </div>
 
@@ -148,9 +167,9 @@
 
                                                                         <!--ispis Tacka 1 i dugme za brisanje tacke-->
                                                                         <div class="form-group">
-                                                                            <label class="col-md-1 control-label" for="submit">Tacka {{t.broj}}</label>
+                                                                            <label class="col-md-1 control-label">Tacka {{t.broj}}</label>
                                                                             <div class="col-md-4" align = "Left" >
-                                                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-danger btn-xs">
+                                                                                <button ng-click="addAmdCtrl.brisanje(t.id)"  data-dismiss="modal"  class="btn btn-danger btn-xs">
                                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                                 </button>
                                                                             </div>
@@ -163,7 +182,7 @@
 
                                                                                 <!--ispis Podtacka 1 i dugme za brisanje tpodtacke-->
                                                                                 <div class="form-group">
-                                                                                    <label class=" control-label" for="submit">Podacka {{p.broj}}</label>
+                                                                                    <label class=" control-label">Podacka {{p.broj}}</label>
                                                                                 </div>
 
                                                                                 <!--ako ima alineje ispisi ih-->
@@ -173,7 +192,7 @@
 
                                                                                         <!--ispis Alineja-->
                                                                                         <div class="form-group">
-                                                                                            <label class="col-md-1 control-label" for="submit">Alineja</label>
+                                                                                            <label class="col-md-1 control-label" >Alineja</label>
                                                                                             <div class="col-md-12 ">
                                                                                                 <textarea rows="2" class="form-control" ng-disabled="true" ng-model="aa"></textarea>
                                                                                             </div>
@@ -208,6 +227,16 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-4 control-label">
+                                                                                    <div  align = "Center" >
+                                                                                        <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                                            <span class="glyphicon glyphicon-plus"></span>Menjanje sadrzaja
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -231,12 +260,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="submit"></label>
-                                <div class="col-md-4" align = "Center" >
-                                    <button  ng-click="addAmdCtrl.addAmandman()" id="submit" name="submit" class="btn btn-primary">Print amandman</button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -246,9 +270,23 @@
 
 
 
+            <div>
+                <div ng-if="addAmdCtrl.amandman.stavke.stavkaAmandmana.length > 0"><legend  class="text-center">Stavke amandmana</legend></div>
 
 
+                <div class="well " ng-repeat="s in addAmdCtrl.amandman.stavke.stavkaAmandmana">
+                    {{s.tipIzmene}}         {{s.idPodakta}}
+                </div>
 
+                <div ng-if="addAmdCtrl.amandman.stavke.stavkaAmandmana.length > 0">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" ></label>
+                        <div class="col-md-4" align = "Center" >
+                            <button  ng-click="addAmdCtrl.addAmandman()" name="submit" class="btn btn-primary">Kreiraj amandman </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
