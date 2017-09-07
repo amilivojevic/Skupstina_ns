@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -27,6 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.skustinans.rs/akti}preambula"/>
+ *         &lt;element name="datum_izglasan" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="predlozen" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="za" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer"/>
@@ -58,6 +60,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "preambula",
+    "datumIzglasan",
     "predlozen",
     "za",
     "protiv",
@@ -72,6 +75,9 @@ public class Akt {
 
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected Preambula preambula;
+    @XmlElement(name = "datum_izglasan", namespace = "http://www.skustinans.rs/akti", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datumIzglasan;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected boolean predlozen;
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
@@ -127,6 +133,30 @@ public class Akt {
      */
     public void setPreambula(Preambula value) {
         this.preambula = value;
+    }
+
+    /**
+     * Gets the value of the datumIzglasan property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatumIzglasan() {
+        return datumIzglasan;
+    }
+
+    /**
+     * Sets the value of the datumIzglasan property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDatumIzglasan(XMLGregorianCalendar value) {
+        this.datumIzglasan = value;
     }
 
     /**
