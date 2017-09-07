@@ -25,6 +25,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AmandmanService {
@@ -158,6 +159,42 @@ public class AmandmanService {
         return amandman;
     }
 
+    // vraca listu amandamana od odredjenog korisnika
+    public List<Amandman> getByUser(String korisnickoIme){
+
+        DatabaseClient client = Connection.getConnection();
+
+        final ServerEvaluationCall call = client.newServerEval();
+
+        call.xquery("declare namespace amd = \"http://www.skustinans.rs/amandmani\";\n//amd:amandman");
+
+        final List<Amandman> amandmaniUsera = new ArrayList<>();
+        final EvalResultIterator eval = call.eval();
+
+        for (EvalResult evalResult : eval) {
+            final String s = evalResult.getAs(String.class);
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(s.getBytes(Charset.defaultCharset()));
+            final Amandman amandman = JAXB.unmarshal(byteArrayInputStream, Amandman.class);
+
+            if(amandman.getKreirao().equals(korisnickoIme)){
+                amandmaniUsera.add(amandman);
+            }
+        }
+        System.out.println("Amandmani usera " + amandmaniUsera);
+        return new ArrayList<Amandman>(amandmaniUsera);
+    }
 
 
+    public void deleteFromDB(Amandman amandman) throws FileNotFoundException {
+
+        DatabaseClient client = Connection.getConnection();
+
+        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+        String docId = "/amandman/" + amandman.getId() + ".xml";
+
+        xmlManager.delete(docId);
+
+        client.release();
+    }
 }
