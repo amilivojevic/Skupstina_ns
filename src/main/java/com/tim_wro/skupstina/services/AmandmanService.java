@@ -6,19 +6,31 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.InputStreamHandle;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Amandman;
+<<<<<<< HEAD
 import com.tim_wro.skupstina.model.StavkaAmandmana;
 import com.tim_wro.skupstina.model.TipIzmene;
+=======
+import com.tim_wro.skupstina.model.Sednica;
+>>>>>>> 5310968a9c8066b9c5e3ebf53dbf4135f7adc791
 import com.tim_wro.skupstina.util.Connection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AmandmanService {
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private SednicaService sednicaService;
+>>>>>>> 5310968a9c8066b9c5e3ebf53dbf4135f7adc791
 
     public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
@@ -39,6 +51,7 @@ public class AmandmanService {
         client.release();
     }
 
+<<<<<<< HEAD
     public void applyAmandman(Amandman amd, Akt akt){
         for(StavkaAmandmana stavka : amd.getStavke().getStavkaAmandmana()){
             if(stavka.getTipIzmene() == TipIzmene.BRISANJE){
@@ -52,5 +65,23 @@ public class AmandmanService {
             }
 
         }
+=======
+    public List<Amandman> getBySednicaRedniBroj(String id) throws JAXBException {
+
+        Sednica sednica = sednicaService.findById(id);
+        System.out.println("glupa sednica " + sednica.toString());
+
+        List<Akt> aktiSednice = sednica.getAkt();
+
+        List<Amandman> amandmaniOdSednice = new ArrayList<>();
+
+        for(Akt a : aktiSednice){
+            amandmaniOdSednice.addAll(a.getAmandman());
+        }
+
+        System.out.println("amandmani od te sednice " + amandmaniOdSednice);
+
+        return amandmaniOdSednice;
+>>>>>>> 5310968a9c8066b9c5e3ebf53dbf4135f7adc791
     }
 }
