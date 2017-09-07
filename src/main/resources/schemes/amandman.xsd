@@ -19,6 +19,7 @@
                     <xs:element ref="a:glava"/>
                 </xs:choice>
             </xs:sequence>
+            <xs:attribute name="tagIzmene" type="xs:string"/>
             <xs:attribute name="tipIzmene" type="amd:tipIzmene"/>
             <xs:attribute name="mestoIzmene" type="xs:int"/>
             <xs:attribute name="idPodakta" type="xs:string"/>

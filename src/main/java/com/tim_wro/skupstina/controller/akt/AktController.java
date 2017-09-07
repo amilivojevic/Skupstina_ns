@@ -189,6 +189,8 @@ public class AktController {
 
         return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
+
+
 }
 
 

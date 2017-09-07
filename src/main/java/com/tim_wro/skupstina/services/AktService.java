@@ -7,6 +7,7 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.eval.EvalResult;
 import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
+import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tim_wro.skupstina.util.*;
+import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
@@ -184,6 +186,22 @@ public class AktService {
         System.out.println("[INFO] End.");
 
         return akt;
+    }
+
+    public Document getAktDocument(String aktID){
+        DatabaseClient client = Connection.getConnection();
+        final XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+        DOMHandle content = new DOMHandle();
+
+        // A metadata handle for metadata retrieval
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+
+        xmlManager.read(aktID, metadata, content);
+
+        // Retrieving a document node form DOM handle.
+        Document doc = content.get();
+        return doc;
     }
 
     public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {

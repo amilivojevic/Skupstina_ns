@@ -7,6 +7,8 @@
         vm.getAllAkti = getAllAkti;
         vm.getSednice = getSednice;
 
+        getAllAmandmani();
+
         getAllAkti();
 
         vm.userData = angular.fromJson($window.localStorage['loggedUser']);
@@ -65,6 +67,17 @@
                     vm.akti = akti.data;
                     getSednice();
                     //      console.log(JSON.stringify(sednice.data));
+                }, function (response) {
+                    alert(response.data.response);
+                });
+        }
+
+        function getAllAmandmani() {
+            $http.get('/api/amandman/svi/'+JSON.parse($window.localStorage['loggedUser']).korisnickoIme)
+                .then(function (amd) {
+
+                    vm.amandmani = amd.data;
+
                 }, function (response) {
                     alert(response.data.response);
                 });

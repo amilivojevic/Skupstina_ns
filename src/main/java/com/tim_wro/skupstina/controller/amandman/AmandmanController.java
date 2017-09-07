@@ -2,12 +2,14 @@ package com.tim_wro.skupstina.controller.amandman;
 
 import com.tim_wro.skupstina.model.Amandman;
 import com.tim_wro.skupstina.model.StanjeAmandmana;
+import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.AmandmanService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -24,6 +26,9 @@ public class AmandmanController {
 
     @Autowired
     private AmandmanService amandmanService;
+
+    @Autowired
+    private AktService aktService;
 
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Amandman amd) throws FileNotFoundException {
@@ -69,5 +74,35 @@ public class AmandmanController {
         }
 
         return new ResponseEntity<>(zakazaniAmandmani,HttpStatus.OK);
+    }
+
+    @GetMapping("/svi")
+    public ResponseEntity getAll() throws JAXBException {
+        System.out.println("pre aktService.getAll();");
+        List<Amandman> lista = amandmanService.getAll();
+        System.out.println("posle aktService.getAll();");
+        return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
+    @GetMapping("/svi/{korisnickoIme}")
+    public ResponseEntity getAllFormUser(@PathVariable String korisnickoIme){
+        List<Amandman> lista = amandmanService.getAll();
+        List<Amandman> retVal = new ArrayList<>();
+        for(Amandman a : lista){
+            if(a.getKreirao().equals(korisnickoIme)){
+                retVal.add(a);
+            }
+        }
+        return new ResponseEntity<>(retVal, HttpStatus.OK);
+    }
+
+    @GetMapping("/primeni")
+    public ResponseEntity applyAmandman(@PathVariable String amdID) throws JAXBException {
+
+        Amandman amd = amandmanService.getOne(amdID);
+        Document aktDoc = aktService.getAktDocument(amd.getAktID());
+        amandmanService.applyAmandman(amd,aktDoc);
+
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 }
