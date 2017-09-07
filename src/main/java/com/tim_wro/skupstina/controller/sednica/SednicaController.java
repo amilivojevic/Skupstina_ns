@@ -242,7 +242,7 @@ public class SednicaController {
 
 
     @RequestMapping(value = "/voting/first_voting", method = RequestMethod.POST)
-    public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
+    public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException, FileNotFoundException {
 
 
         boolean izglasanAkt = sednicaService.checkIfIzglasan(firstVotingDTO);
@@ -261,6 +261,13 @@ public class SednicaController {
         }else{
             for(int i = 0; i<aktiSednice.size(); i++){
                 if(aktiSednice.get(i).getId().equals(akt.getId())){
+
+                    // pobrisi amandmane nakacene na taj akt
+                    List<String> amandmaniAkta = akt.getAmandmanID();
+                    for(String amandmanID : amandmaniAkta){
+                        Amandman a = amandmanService.findById(amandmanID);
+                        amandmanService.deleteFromDB(a);
+                    }
                     aktiSednice.remove(i);
                 }
             }
@@ -279,17 +286,76 @@ public class SednicaController {
 
         Amandman amandman = amandmanService.findById(secondVotingDTO.getAmandmanID());
 
+        Akt akt = aktService.getById(amandman.getAktID());
+
+        Sednica s = sednicaService.findById(secondVotingDTO.getSednicaID());
+        List<Akt> listaAkata = s.getAkt();
+
+
         if(izglasanAmandman){
             amandman.setStanje(StanjeAmandmana.PRIHVACEN);
         }else{
+
             amandman.setStanje(StanjeAmandmana.ODBIJEN);
+            // obrisi je iz liste sednica
+            for(int i = 0; i < listaAkata.size(); i++)
+            {
+                if(listaAkata.get(i).getId().equals(akt.getId())){
+                    listaAkata.remove(i);
+                    sednicaService.updateSednica(s);
+                }
+
+            }
+
+            List<String> amandmaniAkta = akt.getAmandmanID();
+            for(int i = 0; i < amandmaniAkta.size(); i++){
+                if(amandmaniAkta.get(i).equals(amandman.getId())){
+                    amandmaniAkta.remove(i);
+                    System.out.println("amandmani akt " + akt.getId() + amandmaniAkta);
+                    s.getAkt().add(akt);
+                    break;
+                }
+            }
         }
 
         amandmanService.updateAmandman(amandman);
+        sednicaService.updateSednica(s);
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
 
     }
+
+    @RequestMapping(value = "/voting/third_voting", method = RequestMethod.POST)
+    public ResponseEntity votingThird(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
+
+
+        boolean izglasanAkt = sednicaService.checkIfIzglasan(firstVotingDTO);
+
+        Akt akt = aktService.getById(firstVotingDTO.getAktID());
+        Sednica s = sednicaService.findById(firstVotingDTO.getSednicaID());
+        List<Akt> aktiSednice = s.getAkt();
+
+        if(izglasanAkt){
+            for(Akt a : aktiSednice) {
+                if (a.getId().equals(akt.getId())) {
+
+                    a.setStanje(StanjeAkta.U_CELOSTI);
+                }
+            }
+        }else{
+            for(int i = 0; i<aktiSednice.size(); i++){
+                if(aktiSednice.get(i).getId().equals(akt.getId())){
+                    aktiSednice.remove(i);
+                }
+            }
+        }
+
+        sednicaService.updateSednica(s);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
+
+    }
+
 
     @PostMapping("/aktiviraj/{redniBroj}")
     public ResponseEntity aktiviraj(@PathVariable("redniBroj") String redniBroj) throws JAXBException {

@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="u_proceduri"/>
  *     &lt;enumeration value="u_nacelu"/>
  *     &lt;enumeration value="u_celosti"/>
+ *     &lt;enumeration value="odbijen"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -31,7 +32,9 @@ public enum StanjeAkta {
     @XmlEnumValue("u_nacelu")
     U_NACELU("u_nacelu"),
     @XmlEnumValue("u_celosti")
-    U_CELOSTI("u_celosti");
+    U_CELOSTI("u_celosti"),
+    @XmlEnumValue("odbijen")
+    ODBIJEN("odbijen");
     private final String value;
 
     StanjeAkta(String v) {

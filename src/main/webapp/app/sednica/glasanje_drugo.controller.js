@@ -50,7 +50,7 @@
         }
 
         function goToThirdVoting() {
-            $state.go('thirdVoting', {sednicaID:vm.id}, {brojPrisutnih:parseInt(vm.sednicaData.brojPrisutnih)});
+            $state.go('thirdVoting', {sednicaID:vm.id});
         }
     }
 

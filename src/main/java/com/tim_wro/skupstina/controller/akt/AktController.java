@@ -177,6 +177,20 @@ public class AktController {
         return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
 
+    // vraca listu akata zakacenu na odredjenu sednicu
+    @RequestMapping(value = "/svi_u_nacelu/{id}", method = RequestMethod.GET)
+    public ResponseEntity getAllUNacelu(@PathVariable("id") String id) throws JAXBException {
+        List<Akt> lista = aktService.getBySednicaRedniBroj(id);
+        List<Akt> aktiUNacelu = new ArrayList<>();
+        for(Akt o : lista){
+            if(o.getStanje() == StanjeAkta.U_NACELU){
+                aktiUNacelu.add(o);
+            }
+        }
+
+        return new ResponseEntity<>(aktiUNacelu,HttpStatus.OK);
+    }
+
     // vraca listu akata u proceduri odredjenog usera
     @RequestMapping(value = "/svi_u_proceduri", method = RequestMethod.GET)
     public ResponseEntity getAllByUser(@RequestHeader("X-Auth-Token") String token) throws JAXBException {

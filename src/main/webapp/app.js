@@ -200,6 +200,24 @@
               //          'brojPrisutnih': null
                     }
                 })
+                .state('thirdVoting', {
+                    url: '/thirdVoting',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/sednica/glasanje_trece.html',
+                            controller: 'ThirdVotingController',
+                            controllerAs: 'thirdVotingCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    },  params: {
+                        'sednicaID': null
+                        //          'brojPrisutnih': null
+                    }
+                })
                 .state('exportToPDF', {
                     url: '/exportToPDF',
                     views: {

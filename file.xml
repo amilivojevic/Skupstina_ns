@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="afs" datumObjave="Thu Sep 07 2017 18:35:59 GMT+0200 (Central Europe Daylight Time)" broj="asdf" naziv="af" kreirao="a" sednicaID="" aktID="aktfdc94858-c4fb-4ebd-8d77-cba678c5b473" id="amd4cc02c06-0b0a-409c-ad53-f03e88e0b231">
+<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="dsf" datumObjave="Thu Sep 07 2017 23:01:04 GMT+0200 (Central Europe Daylight Time)" broj="asfd" naziv="a2" kreirao="a" sednicaID="" aktID="akta8f5faf3-1df8-45ad-9d14-3016adb40840" id="amdc141077f-c6fb-474b-9d5e-a19d6366cbe1">
     <stanje>ZAKAZAN</stanje>
     <za>0</za>
     <protiv>0</protiv>
     <suzdrzani>0</suzdrzani>
-    <obrazlozenje>asf</obrazlozenje>
+    <obrazlozenje>fd</obrazlozenje>
     <stavke>
         <stavkaAmandmana tagIzmene="clan" tipIzmene="BRISANJE" idPodakta="clan1"/>
     </stavke>

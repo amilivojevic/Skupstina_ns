@@ -119,7 +119,7 @@ public class AmandmanController {
         List<String> amandmaniAkta = akt.getAmandmanID();
 
         for(int i = 0; i<amandmaniAkta.size(); i++){
-            if(amandmaniAkta.get(i).equals(akt.getId())){
+            if(amandmaniAkta.get(i).equals(predlogAmandmanaDTO.getAmandmanID())){
                 amandmaniAkta.remove(i);
             }
         }
@@ -150,7 +150,7 @@ public class AmandmanController {
         }
 
         amandmanService.deleteFromDB(amandman);
-        
+
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(amandman.toString()), HttpStatus.CREATED);
 
     }

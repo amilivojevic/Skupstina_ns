@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://www.skustinans.rs/akti" elementFormDefault="qualified"
-    xmlns:a="http://www.skustinans.rs/akti" xmlns:aman="http://www.skustinans.rs/amandmani"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    xmlns:a="http://www.skustinans.rs/akti" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="deo">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded" minOccurs="2">
@@ -168,6 +167,7 @@
             <xs:enumeration value="u_proceduri"/>
             <xs:enumeration value="u_nacelu"/>
             <xs:enumeration value="u_celosti"/>
+            <xs:enumeration value="odbijen"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:element name="akt">
