@@ -6,6 +6,7 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.eval.EvalResult;
 import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
+import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
@@ -24,10 +25,10 @@ import org.w3c.dom.Node;
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,12 @@ public class AmandmanService {
 
     @Autowired
     private SednicaService sednicaService;
+
+    private static TransformerFactory transformerFactory;
+
+    static {
+        transformerFactory = TransformerFactory.newInstance();
+    }
 
     public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
@@ -90,7 +97,7 @@ public class AmandmanService {
         DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 
         // A document URI identifier.
-        String docId = "/amandman/" + imeAmandmana;
+        String docId = "/amandman/" + imeAmandmana + ".xml";
 
         xmlManager.read(docId, metadata,handle);
 
@@ -102,22 +109,36 @@ public class AmandmanService {
         return amd;
     }
 
-    public void applyAmandman(Amandman amd, Document aktDoc) {
+    public void applyAmandman(Amandman amd) throws FileNotFoundException {
+
+        //dobavljanje akt Document objekta
+        DatabaseClient client = Connection.getConnection();
+        final XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+        DOMHandle content = new DOMHandle();
+
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+        String sednicaID = sednicaService.getSednicaIDByAktID(amd.getAktID());
+        xmlManager.read("/sednica/"+sednicaID+".xml", metadata, content);
+        Document sednicaDoc = content.get();
+
+
 
         for (StavkaAmandmana stavka : amd.getStavke().getStavkaAmandmana()) {
             if (stavka.getTipIzmene() == TipIzmene.BRISANJE) {
 
-/*
-                for ( int br=0; br< aktDoc.getElementsByTagName("b:book").getLength(); br++) {
-                    NamedNodeMap attributes = doc.getElementsByTagName("b:book").item(br).getAttributes();
-                    Node attr = attributes.getNamedItem("category");
-                    if(attr != null && attr.getTextContent().equals("CHILDREN")) {
-                        System.out.println("****** " + attr.getTextContent());
-                        doc.getElementsByTagName("b:book").item(br).removeChild(
-                                doc.getElementsByTagName("b:title").item(1)
+
+                for ( int br=0; br< sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).getLength(); br++) {
+                    NamedNodeMap attributes = sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br).getAttributes();
+                    Node attr = attributes.getNamedItem("id");
+                    if(attr != null && attr.getTextContent().equals(stavka.getIdPodakta())) {
+                        System.out.println("****** " + attr.getTextContent() + "   br = " + br);
+
+                        //transform(sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br), System.out);
+                        sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br).getParentNode().removeChild(
+                                sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br)
                         );
                     }
-                }*/
+                }
 
 
 
@@ -128,7 +149,72 @@ public class AmandmanService {
             }
 
         }
+
+        //prikaz nove sednice (promenjen akt) na System.out
+        transform(sednicaDoc.getElementsByTagName("sednica").item(0), System.out);
+
+        //kreiranje novog xml-a
+        Transformer transformer = null;
+        try {
+            transformer = TransformerFactory.newInstance().newTransformer();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        }
+        File updated = new File("file.xml");
+        Result output = new StreamResult(updated);
+        Source input = new DOMSource(sednicaDoc);
+
+        try {
+            transformer.transform(input, output);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+        //overwrite
+        sednicaService.writeInMarkLogicDB(updated,sednicaID);
+
+        client.release();
+
+
+        System.out.println("[INFO] End.");
     }
+
+    /**
+     * Serializes DOM tree to an arbitrary OutputStream.
+     *
+     * @param node a node to be serialized
+     * @param out an output stream to write the serialized
+     * DOM representation to
+     *
+     */
+    private static void transform(Node node, OutputStream out) {
+        try {
+
+            // Kreiranje instance objekta zaduzenog za serijalizaciju DOM modela
+            Transformer transformer = transformerFactory.newTransformer();
+
+            // Indentacija serijalizovanog izlaza
+            transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            // Nad "source" objektom (DOM stablo) vrši se transformacija
+            DOMSource source = new DOMSource(node);
+
+            // Rezultujući stream (argument metode)
+            StreamResult result = new StreamResult(out);
+
+            // Poziv metode koja vrši opisanu transformaciju
+            transformer.transform(source, result);
+
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerFactoryConfigurationError e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public List<Amandman> getBySednicaRedniBroj(String id) throws JAXBException {
 
@@ -148,4 +234,5 @@ public class AmandmanService {
         return amandmaniOdSednice;
 
     }
+
 }

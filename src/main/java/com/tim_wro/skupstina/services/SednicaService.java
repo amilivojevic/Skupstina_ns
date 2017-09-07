@@ -162,6 +162,18 @@ public class SednicaService {
         return sednice;
     }
 
+    public String getSednicaIDByAktID(String aktID){
+        List<Sednica> lista = getAll();
+        for(Sednica s : lista){
+            for(Akt a : s.getAkt()){
+                if (a.getId().equals(aktID)) {
+                    return s.getId();
+                }
+            }
+        }
+        return null;
+    }
+
 
     public Sednica findById(String redniBroj) throws JAXBException {
 

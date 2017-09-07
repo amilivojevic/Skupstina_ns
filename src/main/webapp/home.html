@@ -68,6 +68,29 @@
 
 
     </div>
+
+
+
+
+
+    <div class="col-xs-4" style="background-color: #0000FF">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="akt">Izaberite amandman za izvrsavanje (privremeno)</label>
+            <div class="col-md-4">
+                <select id="akt" name="selectbasic" class="form-control"  ng-model="homeCtrl.amdSelected">
+                    <option  ng-repeat="a in homeCtrl.amandmani" value="{{a}}">{{a.naziv}}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button ng-click="homeCtrl.applyAmandam()" class="btn btn-primary">dodaj stavku</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <div class="col-xs-4">
         <div ng-repeat="a in homeCtrl.akti">
             <div class="well" ng-if="a.stanje=='U_PROCEDURI' || a.stanje=='U_CELOSTI'">

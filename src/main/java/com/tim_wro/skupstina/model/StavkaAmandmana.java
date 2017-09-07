@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element ref="{http://www.skustinans.rs/akti}glava"/>
  *         &lt;/choice>
  *       &lt;/sequence>
+ *       &lt;attribute name="tagIzmene" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="tipIzmene" type="{http://www.skustinans.rs/amandmani}tipIzmene" />
  *       &lt;attribute name="mestoIzmene" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="idPodakta" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -70,6 +71,8 @@ public class StavkaAmandmana {
     protected Pododeljak pododeljak;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected Glava glava;
+    @XmlAttribute(name = "tagIzmene")
+    protected String tagIzmene;
     @XmlAttribute(name = "tipIzmene")
     protected TipIzmene tipIzmene;
     @XmlAttribute(name = "mestoIzmene")
@@ -267,6 +270,30 @@ public class StavkaAmandmana {
      */
     public void setGlava(Glava value) {
         this.glava = value;
+    }
+
+    /**
+     * Gets the value of the tagIzmene property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTagIzmene() {
+        return tagIzmene;
+    }
+
+    /**
+     * Sets the value of the tagIzmene property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTagIzmene(String value) {
+        this.tagIzmene = value;
     }
 
     /**

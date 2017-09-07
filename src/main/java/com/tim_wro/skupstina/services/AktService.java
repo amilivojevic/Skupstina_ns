@@ -197,7 +197,7 @@ public class AktService {
         // A metadata handle for metadata retrieval
         DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 
-        xmlManager.read(aktID, metadata, content);
+        xmlManager.read("/amandman/"+aktID+".xml", metadata, content);
 
         // Retrieving a document node form DOM handle.
         Document doc = content.get();

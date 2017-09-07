@@ -33,10 +33,11 @@
             alert("JOS NE RADI DODAVANJE NICEGA!");
         }
 
-        function brisanje(id){
+        function brisanje(id,tag){
             vm.novaStavka = {
                 "tipIzmene" : "BRISANJE",
-                "idPodakta" : id
+                "idPodakta" : id,
+                "tagIzmene" : tag
             }
 
             vm.amandman.stavke.stavkaAmandmana.push(vm.novaStavka);
