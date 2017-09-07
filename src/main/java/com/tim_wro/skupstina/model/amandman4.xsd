@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.skustinans.rs/amandmani"
+    xmlns:amd="http://www.skustinans.rs/amandmani" xmlns:a="http://www.skustinans.rs/akti">
+
+    <xs:import namespace="http://www.skustinans.rs/akti" schemaLocation="akt.xsd"/>
+    <xs:element name="obrazlozenje" type="xs:string"/>
+    <xs:element name="stavkaAmandmana">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="a:sadrzaj"/>
+                    <xs:element ref="a:deo"/>
+                    <xs:element ref="a:tacka"/>
+                    <xs:element ref="a:odeljak"/>
+                    <xs:element ref="a:stav"/>
+                    <xs:element ref="a:clan"/>
+                    <xs:element ref="a:pododeljak"/>
+                    <xs:element ref="a:glava"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="tipIzmene" type="amd:tipIzmene"/>
+            <xs:attribute name="mestoIzmene" type="xs:int"/>
+            <xs:attribute name="idPodakta" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="amandman">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="stanje" type="amd:stanjeAmandmana"/>
+                <xs:element ref="amd:obrazlozenje"/>
+                <xs:element name="stavke">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded">
+                            <xs:element ref="amd:stavkaAmandmana"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="pravniOsnov" use="required"/>
+            <xs:attribute name="datumObjave" use="required"/>
+            <xs:attribute name="broj" use="required"/>
+            <xs:attribute name="naziv" use="required"/>
+            <xs:attribute name="kreirao" type="xs:string" use="required"/>
+            <xs:attribute name="sednicaID" type="xs:string" use="required"/>
+            <xs:attribute name="aktID" type="xs:string" use="required"/>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="stanjeAmandmana">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="PRIHVACEN"/>
+            <xs:enumeration value="ODBIJEN"/>
+            <xs:enumeration value="ZAKAZAN"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType final="" name="tipIzmene">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="DODAVANJE"/>
+            <xs:enumeration value="IZMENA"/>
+            <xs:enumeration value="BRISANJE"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
