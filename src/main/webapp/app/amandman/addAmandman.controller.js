@@ -21,6 +21,9 @@
             "aktID" : "",
             "id" : "",
             "stanje" : "ZAKAZAN",
+            "za" : 0,
+            "protiv" : 0,
+            "suzdrzani" : 0,
             "obrazlozenje" : "",
             "stavke" : {
                 "stavkaAmandmana" : []

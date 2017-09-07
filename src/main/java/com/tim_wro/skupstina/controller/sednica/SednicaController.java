@@ -275,7 +275,6 @@ public class SednicaController {
     @RequestMapping(value = "/voting/second_voting", method = RequestMethod.POST)
     public ResponseEntity votingSecond(@RequestBody SecondVotingDTO secondVotingDTO) throws JAXBException {
 
-
         boolean izglasanAmandman = sednicaService.checkIfIzglasanAmandman(secondVotingDTO);
 
         Amandman amandman = amandmanService.findById(secondVotingDTO.getAmandmanID());

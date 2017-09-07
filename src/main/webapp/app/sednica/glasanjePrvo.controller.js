@@ -75,7 +75,7 @@
             }
 
         function goToSecondVoting() {
-            $state.go('secondVoting', {sednicaID:vm.id}, {brojPrisutnih:parseInt(vm.sednicaData.brojPrisutnih)});
+            $state.go('secondVoting', {sednicaID:vm.id});
         }
         }
 

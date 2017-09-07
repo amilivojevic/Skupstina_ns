@@ -40,7 +40,7 @@ public class AmandmanService {
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
         // Define a URI value for a document.
-        String docId = "/akt/" + amandman.getId() + ".xml";
+        String docId = "/amandman/" + amandman.getId() + ".xml";
 
         // Defining namespace mappings
         EditableNamespaceContext namespaces = new EditableNamespaceContext();

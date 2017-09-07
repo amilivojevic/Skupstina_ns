@@ -196,8 +196,8 @@
                             controllerAs: 'navbarPredsednikCtrl'
                         }
                     },  params: {
-                        'sednicaID': null,
-                        'brojPrisutnih': null
+                        'sednicaID': null
+              //          'brojPrisutnih': null
                     }
                 })
                 .state('exportToPDF', {

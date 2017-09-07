@@ -6,8 +6,6 @@ public class SecondVotingDTO {
 
     private String amandmanID;
 
-    private int brojPrisutnih;
-
     private int za;
 
     private int protiv;
@@ -17,10 +15,9 @@ public class SecondVotingDTO {
     public SecondVotingDTO() {
     }
 
-    public SecondVotingDTO(String sednicaID, String amandmanID, int brojPrisutnih, int za, int protiv, int suzdrzani) {
+    public SecondVotingDTO(String sednicaID, String amandmanID, int za, int protiv, int suzdrzani) {
         this.sednicaID = sednicaID;
         this.amandmanID = amandmanID;
-        this.brojPrisutnih = brojPrisutnih;
         this.za = za;
         this.protiv = protiv;
         this.suzdrzani = suzdrzani;
@@ -40,14 +37,6 @@ public class SecondVotingDTO {
 
     public void setAmandmanID(String amandmanID) {
         this.amandmanID = amandmanID;
-    }
-
-    public int getBrojPrisutnih() {
-        return brojPrisutnih;
-    }
-
-    public void setBrojPrisutnih(int brojPrisutnih) {
-        this.brojPrisutnih = brojPrisutnih;
     }
 
     public int getZa() {
