@@ -204,7 +204,15 @@
                                     clan.stav[j].tacka[k].podtacka[l].br = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].atributi.br;
 
                                     if ($scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje.length > 0) {
-                                        clan.stav[j].tacka[k].podtacka[l].alineja = $scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje;
+                                        clan.stav[j].tacka[k].podtacka[l].alineja = [];
+                                        for(var brojac=0; brojac<$scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje.length; brojac++){
+                                            var novaalineja = {
+                                                "id":"",
+                                                "value":$scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].alineje[brojac]
+                                            };
+                                            clan.stav[j].tacka[k].podtacka[l].alineja.push(novaalineja);
+                                        }
+
                                     }
 
                                     if ($scope.clanovi[i].stavovi[j].tacke[k].podtacke[l].sadrzaj.length > 0) {

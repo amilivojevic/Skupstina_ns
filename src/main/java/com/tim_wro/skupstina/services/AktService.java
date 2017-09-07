@@ -314,23 +314,27 @@ public class AktService {
         if(c.getStav() != null){
             int stavBr =0;
             for(Stav s : c.getStav()){
-                s.setId("stav" + (++stavBr));
+                stavBr += 1;
+                s.setId("stav" + (stavBr));
 
                 if(s.getTacka() != null){
                     int tackaBr = 0;
                     for(Tacka t : s.getTacka()){
-                        t.setBr(++tackaBr);
-                        t.setId("tacka" + (++tackaBr));
+                        tackaBr += 1;
+                        t.setBr(tackaBr);
+                        t.setId("tacka" + (tackaBr));
 
                         if(t.getPodtacka() != null){
                             int podtackaBr = 0;
                             for(Podtacka pt : t.getPodtacka()){
-                                pt.setBr(++podtackaBr);
-                                pt.setId("podtacka" + (++podtackaBr));
+                                podtackaBr += 1;
+                                pt.setBr(podtackaBr);
+                                pt.setId("podtacka" + (podtackaBr));
 
                                 if(pt.getAlineja() != null){
                                     int alinejaBr = 0;
                                     for(Alineja a : pt.getAlineja()){
+                                        alinejaBr +=1;
                                         a.setId("alineja" + alinejaBr);
                                     }
                                 }
@@ -348,8 +352,9 @@ public class AktService {
         if(akt.getClan() != null){
             int clanId = 0;
             for(Clan c : akt.getClan()){
-                c.setBr(clanId+1);
-                c.setId("clan" + (++clanId));
+                clanId += 1;
+                c.setBr(clanId);
+                c.setId("clan" + (clanId));
 
                 updateIdAndBrojCLAN(c);
             }
@@ -358,21 +363,24 @@ public class AktService {
         if(akt.getDeo() != null){
             int deoBr = 0;
             for(Deo d : akt.getDeo()){
-                d.setBr(++deoBr);
-                d.setId("deo" + (++deoBr));
+                deoBr += 1;
+                d.setBr(deoBr);
+                d.setId("deo" + (deoBr));
 
                 if(d.getGlava() != null){
                     int glavaBr = 0;
                     for(Glava g : d.getGlava()){
-                        g.setBr(++glavaBr);
-                        g.setId("glava" + (++glavaBr));
+                        glavaBr += 1;
+                        g.setBr(glavaBr);
+                        g.setId("glava" + (glavaBr));
 
                         //*******
                         if(g.getClan() != null){
                             int clanId = 0;
                             for(Clan c : g.getClan()){
-                                c.setBr(clanId+1);
-                                c.setId("clan" + (++clanId));
+                                clanId +=1;
+                                c.setBr(clanId);
+                                c.setId("clan" + (clanId));
 
                                 updateIdAndBrojCLAN(c);
                             }
@@ -382,6 +390,42 @@ public class AktService {
 
                         if(g.getOdeljak() != null){
 
+                            int odeljakId = 0;
+                            for(Odeljak odeljak : g.getOdeljak()){
+                                odeljakId += 1;
+                                odeljak.setBr(odeljakId);
+                                odeljak.setId("odeljak" + odeljakId);
+
+                                if(odeljak.getClan() != null){
+                                    int clanId = 0;
+                                    for(Clan c : odeljak.getClan()){
+                                        clanId +=1;
+                                        c.setBr(clanId);
+                                        c.setId("clan" + (clanId));
+
+                                        updateIdAndBrojCLAN(c);
+                                    }
+                                }
+
+                                if(odeljak.getPododeljak() != null){
+                                    int pododeljakId = 0;
+                                    for(Pododeljak pod : odeljak.getPododeljak()){
+                                        pododeljakId += 1;
+                                        pod.setId("pododeljak" + pododeljakId);
+
+                                        if(pod.getClan() != null){
+                                            int clanId = 0;
+                                            for(Clan c : pod.getClan()){
+                                                clanId +=1;
+                                                c.setBr(clanId);
+                                                c.setId("clan" + (clanId));
+
+                                                updateIdAndBrojCLAN(c);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

@@ -98,58 +98,7 @@ public class AktController {
 
     }
 
-    // hardcode-ovano da se ucita iz baze akt sa id-om /akt/akt1.xml!
-    @RequestMapping(value = "/jedan", method = RequestMethod.GET)
-    public ResponseEntity findByIdAct()
-            throws JAXBException, IOException, SAXException {
 
-        DatabaseClient client;
-        Util.ConnectionProperties props = null;
-        try {
-            props = Util.loadProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Initialize the database client
-        client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
-
-
-        // Create a document manager to work with XML files.
-        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
-
-        // A JAXB handle to receive the document's content.
-        JAXBContext context = JAXBContext.newInstance("com.tim_wro.skupstina.model");
-        JAXBHandle<Akt> handle = new JAXBHandle<Akt>(context);
-
-        // A metadata handle for metadata retrieval
-        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
-
-        // A document URI identifier.
-        String docId = "/akt/akt1.xml";
-
-        // Write the document to the database
-        System.out.println("[INFO] Retrieving \"" + docId + "\" from "
-                + (props.database.equals("") ? "default" : props.database)
-                + " database.");
-
-        xmlManager.read(docId, metadata, handle);
-
-        // Retrieving a Act instance
-        Akt a = handle.get();
-
-        // Reading metadata
-        System.out.println("[INFO] Assigned collections: " + metadata.getCollections());
-
-        // Serializing DOM tree to standard output.
-        System.out.println("[INFO] Retrieved content:");
-        System.out.println(a.toString());
-
-        // Release the client
-        client.release();
-
-        System.out.println("[INFO] End.");
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping("/svi")
     public ResponseEntity getAll() throws JAXBException {
