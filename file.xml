@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="dsf" datumObjave="Thu Sep 07 2017 23:01:04 GMT+0200 (Central Europe Daylight Time)" broj="asfd" naziv="a2" kreirao="a" sednicaID="" aktID="akta8f5faf3-1df8-45ad-9d14-3016adb40840" id="amdc141077f-c6fb-474b-9d5e-a19d6366cbe1">
-    <stanje>ZAKAZAN</stanje>
-    <za>0</za>
-    <protiv>0</protiv>
-    <suzdrzani>0</suzdrzani>
-    <obrazlozenje>fd</obrazlozenje>
-    <stavke>
-        <stavkaAmandmana tagIzmene="clan" tipIzmene="BRISANJE" idPodakta="clan1"/>
-    </stavke>
-</amandman>
+<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt11c276ec-70a4-47f3-99c3-f2d3c3591ed0" naziv="b" drzava="sdf" regija="asf" grad="afs" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+    <preambula>
+        <pravni_osnov>afs</pravni_osnov>
+        <organ>asf</organ>
+        <oblast>Skolstvo</oblast>
+    </preambula>
+    <datum_izglasan>2017-09-15Z</datum_izglasan>
+    <predlozen>true</predlozen>
+    <za>200</za>
+    <protiv>50</protiv>
+    <suzdrzani>50</suzdrzani>
+    <stanje>u_celosti</stanje>
+    <clan naziv="sf" br="1" id="clan1"/>
+</akt>
