@@ -288,8 +288,6 @@ public class AktController {
         return response;
     }
 
-
-
 }
 
 

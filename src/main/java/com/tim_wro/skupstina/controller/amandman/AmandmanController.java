@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -136,13 +137,51 @@ public class AmandmanController {
     }
 
     @PostMapping("/obrisi")
-    public ResponseEntity delete(@RequestBody Amandman amandman) throws FileNotFoundException {
+    public ResponseEntity delete(@RequestBody Amandman amandman) throws FileNotFoundException, JAXBException {
+
+        Akt akt = aktService.getById(amandman.getAktID());
+        List<String> amandmaniAkta = akt.getAmandmanID();
+        for(int i = 0; i < amandmaniAkta.size(); i++){
+            if(amandmaniAkta.get(i).equals(amandman.getId())){
+                amandmaniAkta.remove(i);
+                aktService.updateAkt(akt);
+                break;
+            }
+        }
 
         amandmanService.deleteFromDB(amandman);
-
-
+        
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(amandman.toString()), HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("/svi")
+    public ResponseEntity getAll() throws JAXBException {
+        System.out.println("pre aktService.getAll();");
+        List<Amandman> lista = amandmanService.getAll();
+        System.out.println("posle aktService.getAll();");
+        return new ResponseEntity<>(lista,HttpStatus.OK);
+    }
+
+    @GetMapping("/svi/{korisnickoIme}")
+    public ResponseEntity getAllFormUser(@PathVariable String korisnickoIme){
+        List<Amandman> lista = amandmanService.getAll();
+        List<Amandman> retVal = new ArrayList<>();
+        for(Amandman a : lista){
+            if(a.getKreirao().equals(korisnickoIme)){
+                retVal.add(a);
+            }
+        }
+        return new ResponseEntity<>(retVal, HttpStatus.OK);
+    }
+
+    @GetMapping("/primeni/{amdID}")
+    public ResponseEntity applyAmandman(@PathVariable String amdID) throws JAXBException, FileNotFoundException {
+        System.out.println("amdID = " + amdID);
+        Amandman amd = amandmanService.getOne(amdID);
+        amandmanService.applyAmandman(amd);
+
+        return new ResponseEntity<>( HttpStatus.OK);
 
     }
 }

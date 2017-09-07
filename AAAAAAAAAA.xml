@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sednica xmlns="http://www.skustinans.rs/sednice" xmlns:a="http://www.skustinans.rs/akti" xmlns:ns2="http://www.skustinans.rs/akti" xmlns:ns3="http://www.skustinans.rs/amandmani" xmlns:prop="http://marklogic.com/xdmp/property" xmlns:rapi="http://marklogic.com/rest-api" xmlns:s="http://www.skustinans.rs/sednice" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" brojPrisutnih="0" datum="2017-09-14Z" id="sedn40ac343c-e734-4267-beaf-d41fffa9c954" korisnickoIme="p" naziv="Sednica o zakoniku o krivicnom postupku" redniBroj="11-2222">
+    <stanje>zakazana</stanje>
+    <ns2:akt drzava="Srbija" grad="Novi Sad" id="akt2ca16857-adbe-44dc-98b9-bd024c043886" kreirao="a" naziv="ZAKONIK  O KRIVIČNOM POSTUPKU" regija="Vojvodina">
+        <ns2:preambula>
+            <ns2:pravni_osnov>Ovaj zakon donosi se u skladu sa odredbom 22.</ns2:pravni_osnov>
+            <ns2:organ>SKupstina Vojvodine</ns2:organ>
+            <ns2:oblast>Pravosudje</ns2:oblast>
+        </ns2:preambula>
+        <ns2:predlozen>true</ns2:predlozen>
+        <ns2:za>0</ns2:za>
+        <ns2:protiv>0</ns2:protiv>
+        <ns2:suzdrzani>0</ns2:suzdrzani>
+        <ns2:stanje>u_proceduri</ns2:stanje>
+        <ns2:clan br="1" id="clan1" naziv="Prvi clan">
+            
+            <ns2:stav id="stav2">
+                <ns2:sadrzaj>Ovim zakonikom utvrđuju se i pravila o uslovnom otpustu, rehabilitaciji, prestanku mere bezbednosti i pravnih posledica osude, ostvarivanju prava lica neosnovano lišenog slobode i neosnovano osuđenog, oduzimanju imovinske koristi, rešavanju imovinskopravnog zahteva i izdavanju poternice i objave</ns2:sadrzaj>
+            </ns2:stav>
+        </ns2:clan>
+        <ns2:clan br="2" id="clan2" naziv="Značenje izraza">
+            
+        </ns2:clan>
+    </ns2:akt>
+</sednica>

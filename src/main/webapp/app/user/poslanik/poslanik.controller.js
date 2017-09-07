@@ -72,17 +72,36 @@
                 });
         }
 
+
         // svi amandmani od tog korisnika i koji su zakazani
         function getAllAmandmani() {
             $http.get('/api/amandman/svi_zakazani')
                 .then(function (amandmani) {
                     vm.amandmani = amandmani.data;
                     console.log("svi amandmani ");
+                }, function (response) {
+                    alert(response.data.response);
+                });
+
+        };
+
+   /*     function getAllAmandmani() {
+            $http.get('/api/amandman/svi/'+JSON.parse($window.localStorage['loggedUser']).korisnickoIme)
+                .then(function (amd) {
+
+                    vm.amandmani = amd.data;
 
                 }, function (response) {
                     alert(response.data.response);
                 });
-        }
+        }*/
+
+  /*      function daliAktPripadaSednici(sednica, aktId){
+
+                }, function (response) {
+                    alert(response.data.response);
+                });
+        }*/
 
         function pronadjiSednicu(sednice, aktId) {
 
