@@ -19,7 +19,10 @@
                     <xs:element ref="a:glava"/>
                 </xs:choice>
             </xs:sequence>
+<<<<<<< HEAD
+=======
             <xs:attribute name="tagIzmene" type="xs:string"/>
+>>>>>>> 595db588334e43f990662fecc88e354b7de0ed4c
             <xs:attribute name="tipIzmene" type="amd:tipIzmene"/>
             <xs:attribute name="mestoIzmene" type="xs:int"/>
             <xs:attribute name="idPodakta" type="xs:string"/>
@@ -29,6 +32,12 @@
         <xs:complexType>
             <xs:sequence maxOccurs="1">
                 <xs:element name="stanje" type="amd:stanjeAmandmana"/>
+<<<<<<< HEAD
+                <xs:element minOccurs="1" name="za" type="xs:integer"/>
+                <xs:element name="protiv" type="xs:integer"/>
+                <xs:element form="qualified" name="suzdrzani" type="xs:integer"/>
+=======
+>>>>>>> 595db588334e43f990662fecc88e354b7de0ed4c
                 <xs:element ref="amd:obrazlozenje"/>
                 <xs:element name="stavke">
                     <xs:complexType>

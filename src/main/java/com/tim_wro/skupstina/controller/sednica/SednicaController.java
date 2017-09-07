@@ -12,8 +12,10 @@ import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 import com.tim_wro.skupstina.controller.akt.AktController;
 import com.tim_wro.skupstina.dto.FirstVotingDTO;
 import com.tim_wro.skupstina.dto.PredlogAktaDTO;
+import com.tim_wro.skupstina.dto.SecondVotingDTO;
 import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.services.AktService;
+import com.tim_wro.skupstina.services.AmandmanService;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.Connection;
@@ -52,6 +54,9 @@ public class SednicaController {
 
     @Autowired
     private AktController aktController;
+
+    @Autowired
+    private AmandmanService amandmanService;
 
     @Autowired
     public SednicaController(SednicaService sednicaService){
@@ -235,8 +240,9 @@ public class SednicaController {
 
     }
 
+
     @RequestMapping(value = "/voting/first_voting", method = RequestMethod.POST)
-    public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
+    public ResponseEntity votingOne(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException, FileNotFoundException {
 
 
         boolean izglasanAkt = sednicaService.checkIfIzglasan(firstVotingDTO);
@@ -250,6 +256,90 @@ public class SednicaController {
                 if (a.getId().equals(akt.getId())) {
 
                     a.setStanje(StanjeAkta.U_NACELU);
+                }
+            }
+        }else{
+            for(int i = 0; i<aktiSednice.size(); i++){
+                if(aktiSednice.get(i).getId().equals(akt.getId())){
+
+                    // pobrisi amandmane nakacene na taj akt
+                    List<String> amandmaniAkta = akt.getAmandmanID();
+                    for(String amandmanID : amandmaniAkta){
+                        Amandman a = amandmanService.findById(amandmanID);
+                        amandmanService.deleteFromDB(a);
+                    }
+                    aktiSednice.remove(i);
+                }
+            }
+        }
+
+        sednicaService.updateSednica(s);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/voting/second_voting", method = RequestMethod.POST)
+    public ResponseEntity votingSecond(@RequestBody SecondVotingDTO secondVotingDTO) throws JAXBException {
+
+        boolean izglasanAmandman = sednicaService.checkIfIzglasanAmandman(secondVotingDTO);
+
+        Amandman amandman = amandmanService.findById(secondVotingDTO.getAmandmanID());
+
+        Akt akt = aktService.getById(amandman.getAktID());
+
+        Sednica s = sednicaService.findById(secondVotingDTO.getSednicaID());
+        List<Akt> listaAkata = s.getAkt();
+
+
+        if(izglasanAmandman){
+            amandman.setStanje(StanjeAmandmana.PRIHVACEN);
+        }else{
+
+            amandman.setStanje(StanjeAmandmana.ODBIJEN);
+            // obrisi je iz liste sednica
+            for(int i = 0; i < listaAkata.size(); i++)
+            {
+                if(listaAkata.get(i).getId().equals(akt.getId())){
+                    listaAkata.remove(i);
+                    sednicaService.updateSednica(s);
+                }
+
+            }
+
+            List<String> amandmaniAkta = akt.getAmandmanID();
+            for(int i = 0; i < amandmaniAkta.size(); i++){
+                if(amandmaniAkta.get(i).equals(amandman.getId())){
+                    amandmaniAkta.remove(i);
+                    System.out.println("amandmani akt " + akt.getId() + amandmaniAkta);
+                    s.getAkt().add(akt);
+                    break;
+                }
+            }
+        }
+
+        amandmanService.updateAmandman(amandman);
+        sednicaService.updateSednica(s);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage("Success"), HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/voting/third_voting", method = RequestMethod.POST)
+    public ResponseEntity votingThird(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
+
+
+        boolean izglasanAkt = sednicaService.checkIfIzglasan(firstVotingDTO);
+
+        Akt akt = aktService.getById(firstVotingDTO.getAktID());
+        Sednica s = sednicaService.findById(firstVotingDTO.getSednicaID());
+        List<Akt> aktiSednice = s.getAkt();
+
+        if(izglasanAkt){
+            for(Akt a : aktiSednice) {
+                if (a.getId().equals(akt.getId())) {
+
+                    a.setStanje(StanjeAkta.U_CELOSTI);
                 }
             }
         }else{

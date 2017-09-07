@@ -1,9 +1,13 @@
 package com.tim_wro.skupstina.controller.amandman;
 
+import com.tim_wro.skupstina.dto.PredlogAmandmanaDTO;
+import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Amandman;
+import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.model.StanjeAmandmana;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.AmandmanService;
+import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,10 +34,23 @@ public class AmandmanController {
     @Autowired
     private AktService aktService;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Amandman amd) throws FileNotFoundException {
 
         amd.setId("amd"+UUID.randomUUID().toString());
+
+        String aktID = amd.getAktID();
+        Akt akt = aktService.getById(aktID);
+
+        akt.getAmandmanID().add(amd.getId());
+        try {
+            aktService.updateAkt(akt);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
 
 
         //marshalling
@@ -76,6 +93,68 @@ public class AmandmanController {
         return new ResponseEntity<>(zakazaniAmandmani,HttpStatus.OK);
     }
 
+    // vraca listu akata u proceduri odredjenog usera
+    @RequestMapping(value = "/svi_zakazani", method = RequestMethod.GET)
+    public ResponseEntity getAllByUser(@RequestHeader("X-Auth-Token") String token) throws JAXBException {
+
+        Korisnik k = userService.findByToken(token);
+
+        List<Amandman> amandmaniUsera = amandmanService.getByUser(k.getKorisnickoIme());
+        List<Amandman> zakazaniAmandmani = new ArrayList<>();
+        for(Amandman a : amandmaniUsera){
+            if(a.getStanje() == StanjeAmandmana.ZAKAZAN){
+                zakazaniAmandmani.add(a);
+            }
+        }
+        return new ResponseEntity<>(zakazaniAmandmani,HttpStatus.OK);
+    }
+
+    // fizicki brise predlozeni amandman na akt i uklanje njegov id iz akta
+    @RequestMapping(value = "/otkazi", method = RequestMethod.POST)
+    public ResponseEntity otkaziAmandman(@RequestBody PredlogAmandmanaDTO predlogAmandmanaDTO) throws JAXBException, FileNotFoundException {
+
+        /////////////////////////////////////////////////////////////////
+        ///// izbaciti id amandmana iz liste idava amandmana na aktu
+        Akt akt = aktService.getById(predlogAmandmanaDTO.getAktID());
+        List<String> amandmaniAkta = akt.getAmandmanID();
+
+        for(int i = 0; i<amandmaniAkta.size(); i++){
+            if(amandmaniAkta.get(i).equals(predlogAmandmanaDTO.getAmandmanID())){
+                amandmaniAkta.remove(i);
+            }
+        }
+
+        aktService.updateAkt(akt);
+
+        ////////////////////////////////////////////////////////////////
+        ///// fizicki ukloniti amandman
+
+        Amandman amd = amandmanService.findById(predlogAmandmanaDTO.getAmandmanID());
+        amandmanService.deleteFromDB(amd);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
+
+    }
+
+    @PostMapping("/obrisi")
+    public ResponseEntity delete(@RequestBody Amandman amandman) throws FileNotFoundException, JAXBException {
+
+        Akt akt = aktService.getById(amandman.getAktID());
+        List<String> amandmaniAkta = akt.getAmandmanID();
+        for(int i = 0; i < amandmaniAkta.size(); i++){
+            if(amandmaniAkta.get(i).equals(amandman.getId())){
+                amandmaniAkta.remove(i);
+                aktService.updateAkt(akt);
+                break;
+            }
+        }
+
+        amandmanService.deleteFromDB(amandman);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(amandman.toString()), HttpStatus.CREATED);
+
+    }
+
     @GetMapping("/svi")
     public ResponseEntity getAll() throws JAXBException {
         System.out.println("pre aktService.getAll();");
@@ -103,5 +182,6 @@ public class AmandmanController {
         amandmanService.applyAmandman(amd);
 
         return new ResponseEntity<>( HttpStatus.OK);
+
     }
 }

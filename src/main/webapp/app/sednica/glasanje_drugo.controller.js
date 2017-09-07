@@ -5,15 +5,15 @@
     angular.module("skupstinaNS")
         .controller("SecondVotingController", secondVotingController);
 
-    function secondVotingController($scope,$http, $window,  $stateParams) {
+    function secondVotingController($scope,$http, $window, $state, $stateParams) {
         var vm = this;
         vm.getZakazaniAmandmani = getZakazaniAmandmani;
         vm.goToThirdVoting = goToThirdVoting;
         vm.id = $stateParams.sednicaID;
-        vm.brojPrisutnih = $stateParams.brojPrisutnih;
+  //     vm.brojPrisutnih = $stateParams.brojPrisutnih;
 
         console.log("Dosao id sednice u drugo glasanje" + vm.id);
-        console.log("Dosao broj prisutnih u drugo glasanje" + vm.brojPrisutnih);
+   //     console.log("Dosao broj prisutnih u drugo glasanje" + vm.brojPrisutnih);
 
         getZakazaniAmandmani(vm.id);
 
@@ -21,7 +21,6 @@
             vm.voting2 = {
                 sednicaID : vm.id,
                 amandmanID : a.id,
-                brojPrisutnih: vm.brojPrisutnih,
                 za: parseInt(a.za),
                 protiv: parseInt(a.protiv),
                 suzdrzani: parseInt(a.suzdrzani)
@@ -51,7 +50,7 @@
         }
 
         function goToThirdVoting() {
-            $state.go('thirdVoting', {sednicaID:vm.id}, {brojPrisutnih:parseInt(vm.sednicaData.brojPrisutnih)});
+            $state.go('thirdVoting', {sednicaID:vm.id});
         }
     }
 

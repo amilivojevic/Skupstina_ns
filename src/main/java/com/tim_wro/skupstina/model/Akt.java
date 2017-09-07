@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -27,12 +28,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://www.skustinans.rs/akti}preambula"/>
+ *         &lt;element name="datum_izglasan" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="predlozen" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="za" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="stanje" type="{http://www.skustinans.rs/akti}stanje_akta"/>
- *         &lt;element ref="{http://www.skustinans.rs/amandmani}amandman" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="amandmanID" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0" form="qualified"/>
  *         &lt;choice>
  *           &lt;sequence maxOccurs="unbounded" minOccurs="2">
  *             &lt;element ref="{http://www.skustinans.rs/akti}deo"/>
@@ -58,12 +60,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "preambula",
+    "datumIzglasan",
     "predlozen",
     "za",
     "protiv",
     "suzdrzani",
     "stanje",
-    "amandman",
+    "amandmanID",
     "deo",
     "clan"
 })
@@ -72,6 +75,9 @@ public class Akt {
 
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     protected Preambula preambula;
+    @XmlElement(name = "datum_izglasan", namespace = "http://www.skustinans.rs/akti", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datumIzglasan;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected boolean predlozen;
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
@@ -83,8 +89,8 @@ public class Akt {
     @XmlElement(namespace = "http://www.skustinans.rs/akti", required = true)
     @XmlSchemaType(name = "string")
     protected StanjeAkta stanje;
-    @XmlElement(namespace = "http://www.skustinans.rs/amandmani")
-    protected List<Amandman> amandman;
+    @XmlElement(namespace = "http://www.skustinans.rs/akti")
+    protected List<String> amandmanID;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
     protected List<Deo> deo;
     @XmlElement(namespace = "http://www.skustinans.rs/akti")
@@ -127,6 +133,30 @@ public class Akt {
      */
     public void setPreambula(Preambula value) {
         this.preambula = value;
+    }
+
+    /**
+     * Gets the value of the datumIzglasan property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatumIzglasan() {
+        return datumIzglasan;
+    }
+
+    /**
+     * Sets the value of the datumIzglasan property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDatumIzglasan(XMLGregorianCalendar value) {
+        this.datumIzglasan = value;
     }
 
     /**
@@ -242,32 +272,32 @@ public class Akt {
     }
 
     /**
-     * Gets the value of the amandman property.
+     * Gets the value of the amandmanID property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the amandman property.
+     * This is why there is not a <CODE>set</CODE> method for the amandmanID property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAmandman().add(newItem);
+     *    getAmandmanID().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Amandman }
+     * {@link String }
      * 
      * 
      */
-    public List<Amandman> getAmandman() {
-        if (amandman == null) {
-            amandman = new ArrayList<Amandman>();
+    public List<String> getAmandmanID() {
+        if (amandmanID == null) {
+            amandmanID = new ArrayList<String>();
         }
-        return this.amandman;
+        return this.amandmanID;
     }
 
     /**

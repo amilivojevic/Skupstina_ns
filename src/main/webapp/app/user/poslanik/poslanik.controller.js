@@ -6,9 +6,9 @@
         var vm = this;
         vm.getAllAkti = getAllAkti;
         vm.getSednice = getSednice;
+        vm.getAllAmandmani = getAllAmandmani;
 
         getAllAmandmani();
-
         getAllAkti();
 
         vm.userData = angular.fromJson($window.localStorage['loggedUser']);
@@ -72,7 +72,20 @@
                 });
         }
 
+
+        // svi amandmani od tog korisnika i koji su zakazani
         function getAllAmandmani() {
+            $http.get('/api/amandman/svi_zakazani')
+                .then(function (amandmani) {
+                    vm.amandmani = amandmani.data;
+                    console.log("svi amandmani ");
+                }, function (response) {
+                    alert(response.data.response);
+                });
+
+        };
+
+   /*     function getAllAmandmani() {
             $http.get('/api/amandman/svi/'+JSON.parse($window.localStorage['loggedUser']).korisnickoIme)
                 .then(function (amd) {
 
@@ -81,11 +94,14 @@
                 }, function (response) {
                     alert(response.data.response);
                 });
-        }
+        }*/
 
-        function daliAktPripadaSednici(sednica, aktId){
+  /*      function daliAktPripadaSednici(sednica, aktId){
 
-        }
+                }, function (response) {
+                    alert(response.data.response);
+                });
+        }*/
 
         function pronadjiSednicu(sednice, aktId) {
 
@@ -153,6 +169,23 @@
             console.log("novi predlog: " + JSON.stringify(vm.predlozen));
 
             $http.post('/api/sednica/otkazi', vm.predlozen).then(function (response) {
+
+                $scope.redirect2();
+
+            },function(response){
+                alert("Registration failed");
+            });
+        }
+
+        vm.otkaziAmandman = function (a) {
+
+            vm.predlozenAmandman = {
+                amandmanID: a.id,
+                aktID: a.aktID
+
+            }
+
+            $http.post('/api/amandman/otkazi', vm.predlozenAmandman).then(function (response) {
 
                 $scope.redirect2();
 

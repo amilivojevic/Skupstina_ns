@@ -1,6 +1,7 @@
 
 package com.tim_wro.skupstina.model;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,6 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="stanje" type="{http://www.skustinans.rs/amandmani}stanjeAmandmana"/>
+ *         &lt;element name="za" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="protiv" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="suzdrzani" type="{http://www.w3.org/2001/XMLSchema}integer" form="qualified"/>
  *         &lt;element ref="{http://www.skustinans.rs/amandmani}obrazlozenje"/>
  *         &lt;element name="stavke">
  *           &lt;complexType>
@@ -57,6 +61,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "stanje",
+    "za",
+    "protiv",
+    "suzdrzani",
     "obrazlozenje",
     "stavke"
 })
@@ -66,6 +73,12 @@ public class Amandman {
     @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
     @XmlSchemaType(name = "token")
     protected StanjeAmandmana stanje;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+    protected BigInteger za;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+    protected BigInteger protiv;
+    @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
+    protected BigInteger suzdrzani;
     @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
     protected String obrazlozenje;
     @XmlElement(namespace = "http://www.skustinans.rs/amandmani", required = true)
@@ -116,6 +129,78 @@ public class Amandman {
      */
     public void setStanje(StanjeAmandmana value) {
         this.stanje = value;
+    }
+
+    /**
+     * Gets the value of the za property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getZa() {
+        return za;
+    }
+
+    /**
+     * Sets the value of the za property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setZa(BigInteger value) {
+        this.za = value;
+    }
+
+    /**
+     * Gets the value of the protiv property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getProtiv() {
+        return protiv;
+    }
+
+    /**
+     * Sets the value of the protiv property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setProtiv(BigInteger value) {
+        this.protiv = value;
+    }
+
+    /**
+     * Gets the value of the suzdrzani property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getSuzdrzani() {
+        return suzdrzani;
+    }
+
+    /**
+     * Sets the value of the suzdrzani property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setSuzdrzani(BigInteger value) {
+        this.suzdrzani = value;
     }
 
     /**

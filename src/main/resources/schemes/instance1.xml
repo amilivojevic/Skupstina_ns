@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:akt xmlns:a="http://www.skustinans.rs/akti"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID000" naziv="I9" drzava="dQ" regija="IPP6olVADZMgm3b_PTskZ3l_" grad="T7QK7-GJgu6WX0KFX7P_q_UD3thR"
+     kreirao="jAjPjl">
+    <a:preambula>
+        <a:pravni_osnov>jpmpbt5USAknugPiyv3VxX</a:pravni_osnov>
+        <a:organ>gq5fTd4</a:organ>
+        <a:oblast>Ostalo</a:oblast>
+    </a:preambula>
+    <a:predlozen>false</a:predlozen>
+    <a:za>-213088281</a:za>
+    <a:protiv>1097906366</a:protiv>
+    <a:suzdrzani>1669159889</a:suzdrzani>
+    <a:stanje>u_nacelu</a:stanje>
+    <a:amandmanID>WRoPwtJvo6b6H5SQnz</a:amandmanID>
+    <a:amandmanID>QvoHX.4Xv1t1zYIwMENC.TdonU1</a:amandmanID>
+    <a:clan naziv="s4yVcTO3s" br="1510326209" id="ID001">
+        <a:stav id="ID002">
+            <a:sadrzaj>GxxM-kxNM2XCfCjVDOnzUI</a:sadrzaj>
+        </a:stav>
+        <a:stav id="ID003">
+            <a:sadrzaj>Zt.w136AWGvruPxlZRcaQAG1YW</a:sadrzaj>
+        </a:stav>
+    </a:clan>
+    <a:clan naziv="J2hpshn" br="1831153808" id="ID004">
+        <a:stav id="ID005">
+            <a:tacka br="898378087" id="ID006">
+                <a:podtacka br="2122912400" id="ID007">
+                    <a:alineja id="ID008">FJDUOnTbFOGA6rJmt0</a:alineja>
+                    <a:alineja id="ID009">dNwlH7TI8ns7pCL3Vh-</a:alineja>
+                </a:podtacka>
+                <a:podtacka br="1303171436" id="ID010">
+                    <a:alineja id="ID011">U1iRvRplM6lnJ2YFn</a:alineja>
+                    <a:alineja id="ID012">XD619Npqph-NhS.-lr47fow5H3y8</a:alineja>
+                </a:podtacka>
+            </a:tacka>
+            <a:tacka br="1590343889" id="ID013">
+                <a:sadrzaj>OVvKY1dP2rYHnnj2R</a:sadrzaj>
+            </a:tacka>
+        </a:stav>
+        <a:stav id="ID014">
+            <a:sadrzaj>W9lXupxGaLEv-nPLRjfLOiZz9CH</a:sadrzaj>
+        </a:stav>
+    </a:clan>
+</a:akt>
