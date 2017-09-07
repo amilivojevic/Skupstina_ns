@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a:akt xmlns:a="http://www.skustinans.rs/akti"
+       xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/resources/schemes/akt.xsd" id="ID000" naziv="Fzxvs" drzava="ffOfPIyw0u_EUMa7P" regija="khELhXKciSYJV" grad="WU-Kk" kreirao="l_Rahou7wBxbOGrT1">
+    <a:preambula>
+        <a:pravni_osnov>tfD3f-JO2Z5eC6Ptej-ok2_PL-gQ</a:pravni_osnov>
+        <a:organ>i</a:organ>
+        <a:oblast>Vojska</a:oblast>
+    </a:preambula>
+    <a:predlozen>true</a:predlozen>
+    <a:za>1227312076</a:za>
+    <a:protiv>-980127408</a:protiv>
+    <a:suzdrzani>-545244239</a:suzdrzani>
+    <a:stanje>u_proceduri</a:stanje>
+    <a:amandmanID>uLU03a0.Sbxdao3y4i4Gh6p</a:amandmanID>
+    <a:amandmanID>QODh</a:amandmanID>
+    <a:clan naziv="A0iGBK4QHlj4Es_jsGnBFfefY9qvk" br="2006412665" id="ID001">
+        <a:stav id="ID002">
+            <a:sadrzaj>yi7ciyG4uzisI</a:sadrzaj>
+        </a:stav>
+        <a:stav id="ID003">
+            <a:sadrzaj>sq0MJzv9mL2Xth</a:sadrzaj>
+        </a:stav>
+    </a:clan>
+    <a:clan naziv="zSos" br="436873790" id="ID004">
+        <a:stav id="ID005">
+            <a:tacka br="1880244262" id="ID006">
+                <a:sadrzaj>j</a:sadrzaj>
+            </a:tacka>
+            <a:tacka br="947396575" id="ID007">
+                <a:sadrzaj>yY7.</a:sadrzaj>
+            </a:tacka>
+        </a:stav>
+        <a:stav id="ID008">
+            <a:tacka br="428501732" id="ID009">
+                <a:sadrzaj>yW_.3fUhut91</a:sadrzaj>
+            </a:tacka>
+            <a:tacka br="1947502733" id="ID010">
+                <a:sadrzaj>cIG1P9pA</a:sadrzaj>
+            </a:tacka>
+        </a:stav>
+    </a:clan>
+</a:akt>
