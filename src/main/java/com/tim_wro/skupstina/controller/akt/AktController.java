@@ -11,10 +11,13 @@ import com.tim_wro.skupstina.model.Korisnik;
 import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.UserService;
+import com.tim_wro.skupstina.util.FOPReporter;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import com.tim_wro.skupstina.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
@@ -26,6 +29,7 @@ import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -189,6 +193,103 @@ public class AktController {
 
         return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
+
+
+    @RequestMapping(value ="/download-pdf/{id}", method=RequestMethod.GET)
+    public ResponseEntity<byte[]> downloadPDF(@PathVariable("id") String id) throws Exception {
+
+
+        FOPReporter fopReporter = new FOPReporter();
+
+        Akt akt =  aktService.getById(id);
+        String docId = "/akt/" + akt.getId() + ".xml";
+        String patch = "";
+
+        //marshalling
+        JAXBContext jaxbContext = null;
+        try {
+
+            jaxbContext = JAXBContext.newInstance(Akt.class);
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(akt, sw);
+
+            patch = sw.toString();
+            System.out.println("patch " + patch);
+
+
+            try {
+                sw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+
+        byte[] contents =   fopReporter.generatePDF(patch);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        String filename = "output.pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
+        return response;
+    }
+
+    @RequestMapping(value ="/download-xhtml/{id}", method=RequestMethod.GET)
+    public ResponseEntity<String> downloadXHTML(@PathVariable("id") String id) throws Exception {
+
+
+        FOPReporter fopReporter = new FOPReporter();
+
+        Akt akt =  aktService.getById(id);
+
+        String patch = "";
+
+        //marshalling
+        JAXBContext jaxbContext = null;
+        try {
+
+            jaxbContext = JAXBContext.newInstance(Akt.class);
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(akt, sw);
+
+            patch = sw.toString();
+            System.out.println("patch " + patch);
+
+
+            try {
+                sw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+
+        String contents =   fopReporter.generateHTML(patch);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("text/html"));
+        ResponseEntity<String> response = new ResponseEntity<String>(contents, headers, HttpStatus.OK);
+        return response;
+    }
+
+
+
 }
 
 
