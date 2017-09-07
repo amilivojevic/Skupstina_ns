@@ -12,6 +12,8 @@ import com.marklogic.client.io.marker.DocumentPatchHandle;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Amandman;
+import com.tim_wro.skupstina.model.StavkaAmandmana;
+import com.tim_wro.skupstina.model.TipIzmene;
 import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.util.Connection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,7 @@ public class AmandmanService {
 
     @Autowired
     private SednicaService sednicaService;
+
 
     public void updateAmandman(Amandman amandman) throws JAXBException {
 
@@ -114,6 +117,20 @@ public class AmandmanService {
         client.release();
     }
 
+
+    public void applyAmandman(Amandman amd, Akt akt) {
+        for (StavkaAmandmana stavka : amd.getStavke().getStavkaAmandmana()) {
+            if (stavka.getTipIzmene() == TipIzmene.BRISANJE) {
+
+            } else if (stavka.getTipIzmene() == TipIzmene.DODAVANJE) {
+                System.out.println("");
+            } else if (stavka.getTipIzmene() == TipIzmene.IZMENA) {
+
+            }
+
+        }
+    }
+
     public List<Amandman> getBySednicaRedniBroj(String id) throws JAXBException {
 
         Sednica sednica = sednicaService.findById(id);
@@ -136,6 +153,7 @@ public class AmandmanService {
         System.out.println("amandmani od te sednice " + amandmaniOdSednice);
 
         return amandmaniOdSednice;
+
     }
 
     public Amandman findById(String id) throws JAXBException {
