@@ -89,13 +89,7 @@ public class AmandmanService {
         client.release();
     }
 
-    private void saveMetadata(ByteArrayOutputStream metadataResult, DatabaseClient client) {
-        GraphManager graphManager = client.newGraphManager();
-        String content = metadataResult.toString();
 
-        StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
-        graphManager.merge("/amandman/metadata", stringHandle);
-    }
 
 
     public void updateAmandman(Amandman amandman) throws JAXBException {
@@ -238,9 +232,28 @@ public class AmandmanService {
 
 
             } else if (stavka.getTipIzmene() == TipIzmene.DODAVANJE) {
-                System.out.println("JOS UVEK NE RADI");
+
+                for ( int br=0; br< aktDoc.getElementsByTagName(stavka.getTagIzmene()).getLength(); br++) {
+                    NamedNodeMap attributes = aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).getAttributes();
+                    Node attr = attributes.getNamedItem("id");
+                    if(attr != null && attr.getTextContent().equals(stavka.getIdPodakta())) {
+                        System.out.println("****** " + attr.getTextContent() + "   br = " + br);
+
+                        aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).appendChild(new N)
+                    }
+                }
+
+
+
             } else if (stavka.getTipIzmene() == TipIzmene.IZMENA) {
-                System.out.println("JOS UVEK NE RADI");
+                for ( int br=0; br< aktDoc.getElementsByTagName(stavka.getTagIzmene()).getLength(); br++) {
+                    NamedNodeMap attributes = aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).getAttributes();
+                    Node attr = attributes.getNamedItem("id");
+                    if(attr != null && attr.getTextContent().equals(stavka.getIdPodakta())) {
+
+                        aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).setNodeValue(stavka.getSadrzaj());
+                    }
+                }
             }
 
         }

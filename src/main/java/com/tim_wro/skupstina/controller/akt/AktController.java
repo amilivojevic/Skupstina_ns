@@ -4,7 +4,9 @@ import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
+import com.marklogic.client.io.Format;
 import com.marklogic.client.io.JAXBHandle;
+import com.marklogic.client.semantics.RDFMimeTypes;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Korisnik;
@@ -14,6 +16,7 @@ import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.FOPReporter;
+import com.tim_wro.skupstina.util.MetadataExtractor;
 import com.tim_wro.skupstina.util.ResponseMessage;
 import com.tim_wro.skupstina.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import org.xml.sax.SAXException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -183,7 +187,7 @@ public class AktController {
 
     @RequestMapping(value = "/trazi/naziv/{naziv}", method=RequestMethod.GET)
     public ResponseEntity searchByNaziv(@PathVariable String naziv){
-        System.out.println("usao u kontroler");
+
         aktService.getByNaziv(naziv);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -281,6 +285,12 @@ public class AktController {
         headers.setContentType(MediaType.parseMediaType("text/html"));
         ResponseEntity<String> response = new ResponseEntity<String>(contents, headers, HttpStatus.OK);
         return response;
+    }
+
+    @GetMapping(value = "/export/rdf/{aktId}")
+    public ResponseEntity exportMetadataAsRdf(@PathVariable  String aktId) throws FileNotFoundException, TransformerException {
+        final String metadata = aktService.exportMetadataAs(RDFMimeTypes.RDFXML, Format.XML, "/akt/metadata/"+aktId);
+        return new ResponseEntity<>(metadata, HttpStatus.OK);
     }
 
 }
