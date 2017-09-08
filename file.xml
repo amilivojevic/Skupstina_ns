@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt55a90f30-aa2a-4b54-9780-4dadb85cbb29" naziv="a" drzava="dsfa" regija="asd" grad="sf" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+<?xml version="1.0" encoding="UTF-8"?><akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" drzava="***AKT ZA SANDRINU SEDNICU" grad="***AKT ZA SANDRINU SEDNICU" id="akt250a96ef-9093-455d-b5dd-82fdbd5b9503" kreirao="a" naziv="***AKT ZA SANDRINU SEDNICU" regija="***AKT ZA SANDRINU SEDNICU" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
     <preambula>
-        <pravni_osnov>sf</pravni_osnov>
-        <organ>asf</organ>
-        <oblast>Skolstvo</oblast>
+        <pravni_osnov>***AKT ZA SANDRINU SEDNICU</pravni_osnov>
+        <organ>***AKT ZA SANDRINU SEDNICU</organ>
+        <oblast>Zdravstvo</oblast>
     </preambula>
-    <predlozen>false</predlozen>
-    <za>0</za>
+    <datum_izglasan>2017-09-14Z</datum_izglasan>
+    <predlozen>true</predlozen>
+    <za>10</za>
     <protiv>0</protiv>
     <suzdrzani>0</suzdrzani>
-    <stanje>u_proceduri</stanje>
-    <clan naziv="dfs" br="1" id="clan1">
-        <stav id="stav1">
-            <sadrzaj>fff</sadrzaj>
+    <stanje>u_celosti</stanje>
+    <amandmanID>amd248e9508-5532-4134-a1cc-620b5bdc0603</amandmanID>
+    <clan br="1" id="clan1" naziv="***AKT ZA SANDRINU SEDNICU">
+        
+        <stav id="stav2">
+            <sadrzaj>***AKT ZA SANDRINU SEDNICU</sadrzaj>
         </stav>
     </clan>
 </akt>

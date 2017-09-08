@@ -176,27 +176,25 @@ public class AmandmanService {
 
     public Amandman getOne(String imeAmandmana) throws JAXBException {
         DatabaseClient client = Connection.getConnection();
-        final XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
-        // A JAXB handle to receive the document's content.
-        JAXBContext context = JAXBContext.newInstance("com.tim_wro.skupstina.model");
-        JAXBHandle<Amandman> handle = new JAXBHandle<Amandman>(context);
+        final XMLDocumentManager documentManager = client.newXMLDocumentManager();
+
+        try {
+            final JAXBContext jaxbContext = JAXBContext.newInstance(Amandman.class);
+            final JAXBHandle<Amandman> handle = new JAXBHandle<>(jaxbContext);
+            String docId = "/amandman/" + imeAmandmana + ".xml";
+            documentManager.read(docId, handle);
+            final Amandman amd = handle.get();
+
+            client.release();
+            return amd;
+        } catch (Exception e) {
+            e.printStackTrace();
+            client.release();
+            return null;
+        }
 
 
-        // A metadata handle for metadata retrieval
-        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
-
-        // A document URI identifier.
-        String docId = "/amandman/" + imeAmandmana + ".xml";
-
-        xmlManager.read(docId, metadata,handle);
-
-        Amandman amd = handle.get();
-
-        // Release the client
-        client.release();
-
-        return amd;
     }
 
     public void applyAmandman(Amandman amd) throws FileNotFoundException {

@@ -353,7 +353,7 @@ public class SednicaController {
                     aktController.create(a);
                     List<String> amandmaniAkta = a.getAmandmanID();
                     for(int i = 0; i < amandmaniAkta.size(); i++){
-
+                        System.out.println("amandmaniAkta.get(i) = " + amandmaniAkta.get(i));
                         amandmanService.applyAmandmanID(amandmaniAkta.get(i));
                     }
 
