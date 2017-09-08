@@ -1,5 +1,6 @@
 package com.tim_wro.skupstina.services;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.DocumentPatchBuilder;
@@ -9,10 +10,7 @@ import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.*;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
-import com.marklogic.client.semantics.GraphManager;
-import com.marklogic.client.semantics.RDFMimeTypes;
-import com.marklogic.client.semantics.SPARQLQueryDefinition;
-import com.marklogic.client.semantics.SPARQLQueryManager;
+import com.marklogic.client.semantics.*;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.repository.AktRepository;
@@ -245,7 +243,7 @@ public class AktService {
         String content = metadataResult.toString();
 
         StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
-        graphManager.merge("/akt/metadata/"+id, stringHandle);
+        graphManager.merge("/akt/metadata", stringHandle);
 
         // Release the client
         client.release();
@@ -358,24 +356,50 @@ public class AktService {
         }
     }
 
-    public void getByNaziv(String naziv){
+    public List<Akt> getByNaziv(String naziv){
         System.out.println("usao u servis");
         DatabaseClient client = Connection.getConnection();
 
         // Create a SPARQL query manager to query RDF datasets
         SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
 
-        // Initialize DOM results handle
-        DOMHandle domResultsHandle = new DOMHandle();
+        // bind obj to 'o' in the query
+        SPARQLQueryDefinition sparqlQuery = sparqlQueryManager.newQueryDefinition("SELECT * FROM </akt/metadata> WHERE { ?s ?p \""+naziv+"\" }");
 
-        // Initialize SPARQL query definition - retrieves all triples from RDF dataset
-        SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition("SELECT * WHERE { ?s ?p 'Akt o firmama' }");
+        // Initialize Jackson results handle
+        JacksonHandle resultsHandle = new JacksonHandle();
+        resultsHandle.setMimetype(SPARQLMimeTypes.SPARQL_JSON);
 
-        System.out.println("[INFO] Showing all of the triples from RDF dataset in XML format\n");
-        domResultsHandle = sparqlQueryManager.executeSelect(query, domResultsHandle);
-        transform(domResultsHandle.get(), System.out);
+        // execute query
+        resultsHandle = sparqlQueryManager.executeSelect(sparqlQuery, resultsHandle);
+
+        // parse query result to list of actIds
+        ArrayList<String> actURIs = handleResults(resultsHandle);
+
+        List<Akt> filtriraniAkti = new ArrayList<>();
+        for (String aktID : actURIs){
+            System.out.println("filt: " + aktID);
+            String[] parts = aktID.split("/");
+            System.out.println("filt: " + aktID);
+            System.out.println("4 = " + parts[4]);
+            String id = parts[4];
+            filtriraniAkti.add(findByURI("/akt/" + id + ".xml"));
+
+        }
+
+        return filtriraniAkti;
     }
 
+    private static ArrayList<String> handleResults(JacksonHandle resultsHandle) {
+        JsonNode tuples = resultsHandle.get().path("results").path("bindings");
+
+        ArrayList<String> actIds = new ArrayList<String>();
+        for ( JsonNode row : tuples ) {
+            String subject = row.path("s").path("value").asText();
+            actIds.add(subject);
+        }
+        return actIds;
+    }
 
 
     private void updateIdAndBrojCLAN(Clan c){
@@ -515,32 +539,6 @@ public class AktService {
         return content;
     }
 
-    private static void transform(Node node, OutputStream out) {
-        try {
 
-            // Kreiranje instance objekta zaduzenog za serijalizaciju DOM modela
-            Transformer transformer = transformerFactory.newTransformer();
-
-            // Indentacija serijalizovanog izlaza
-            transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-            // Nad "source" objektom (DOM stablo) vrši se transformacija
-            DOMSource source = new DOMSource(node);
-
-            // Rezultujući stream (argument metode)
-            StreamResult result = new StreamResult(out);
-
-            // Poziv metode koja vrši opisanu transformaciju
-            transformer.transform(source, result);
-
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerFactoryConfigurationError e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

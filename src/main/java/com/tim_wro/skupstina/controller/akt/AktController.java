@@ -189,8 +189,8 @@ public class AktController {
     @RequestMapping(value = "/trazi/naziv/{naziv}", method=RequestMethod.GET)
     public ResponseEntity searchByNaziv(@PathVariable String naziv){
 
-        aktService.getByNaziv(naziv);
-        return new ResponseEntity(HttpStatus.OK);
+        List<Akt> rez = aktService.getByNaziv(naziv);
+        return new ResponseEntity(rez,HttpStatus.OK);
     }
 
 
@@ -290,7 +290,7 @@ public class AktController {
 
     @GetMapping(value = "/export/rdf/{aktId}")
     public ResponseEntity exportMetadataAsRdf(@PathVariable  String aktId) throws FileNotFoundException, TransformerException {
-        final String metadata = aktService.exportMetadataAs(RDFMimeTypes.RDFXML, Format.XML, "/akt/metadata/"+aktId+".xml");
+        final String metadata = aktService.exportMetadataAs(RDFMimeTypes.RDFXML, Format.XML, "/akt/metadata");
         return new ResponseEntity<>(metadata, HttpStatus.OK);
     }
 

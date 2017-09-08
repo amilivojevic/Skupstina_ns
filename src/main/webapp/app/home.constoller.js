@@ -43,10 +43,11 @@
         }
 
         function traziPoNazivu(naziv){
-            console.log("AAAAAAAAAAAAAA");
             $http.get('/api/akt/trazi/naziv/'+naziv)
-                .then(function(akt) {
+                .then(function(filtrirani) {
                     console.log("pretrazivanje po nazivu...");
+                    vm.akti = filtrirani.data;
+                    console.log("reyultat: ",filtrirani.data)
                 }, function(response) {
                     alert(response.data.response);
                 });

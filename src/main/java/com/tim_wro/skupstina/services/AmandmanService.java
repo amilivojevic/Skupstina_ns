@@ -49,6 +49,9 @@ public class AmandmanService {
     @Autowired
     private SednicaService sednicaService;
 
+    @Autowired
+    private AktService aktService;
+
     public static final String RDF_XSL = "src/main/resources/xsl/amandman.xsl";
 
     private static TransformerFactory transformerFactory;
@@ -197,7 +200,7 @@ public class AmandmanService {
 
     }
 
-    public void applyAmandman(Amandman amd) throws FileNotFoundException {
+    public void applyAmandman(Amandman amd) throws Exception {
 
         //dobavljanje akt Document objekta
         DatabaseClient client = Connection.getConnection();
@@ -205,7 +208,6 @@ public class AmandmanService {
         DOMHandle content = new DOMHandle();
 
         DocumentMetadataHandle metadata = new DocumentMetadataHandle();
-        String sednicaID = sednicaService.getSednicaIDByAktID(amd.getAktID());
         xmlManager.read("/akt/"+amd.getAktID()+".xml", metadata, content);
         Document aktDoc = content.get();
 
@@ -248,8 +250,9 @@ public class AmandmanService {
                     NamedNodeMap attributes = aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).getAttributes();
                     Node attr = attributes.getNamedItem("id");
                     if(attr != null && attr.getTextContent().equals(stavka.getIdPodakta())) {
-
-                        aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).setNodeValue(stavka.getSadrzaj());
+                        System.out.println("****** " + attr.getTextContent() + "   br = " + br);
+                        aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).getChildNodes().item(0)
+                                .setNodeValue(stavka.getSadrzaj());
                     }
                 }
             }
@@ -277,7 +280,7 @@ public class AmandmanService {
         }
 
         //overwrite
-        sednicaService.writeInMarkLogicDB(updated,sednicaID);
+        aktService.writeInMarkLogicDB(updated,amd.getAktID());
 
         client.release();
 
@@ -407,7 +410,7 @@ public class AmandmanService {
 
     }
 
-    public void applyAmandmanID(String id) throws FileNotFoundException, JAXBException {
+    public void applyAmandmanID(String id) throws Exception {
 
         Amandman amd = getOne(id);
         applyAmandman(amd);
