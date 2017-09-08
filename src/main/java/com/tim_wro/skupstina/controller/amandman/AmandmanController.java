@@ -175,13 +175,4 @@ public class AmandmanController {
         return new ResponseEntity<>(retVal, HttpStatus.OK);
     }
 
-    @GetMapping("/primeni/{amdID}")
-    public ResponseEntity applyAmandman(@PathVariable String amdID) throws JAXBException, FileNotFoundException {
-        System.out.println("amdID = " + amdID);
-        Amandman amd = amandmanService.getOne(amdID);
-        amandmanService.applyAmandman(amd);
-
-        return new ResponseEntity<>( HttpStatus.OK);
-
-    }
 }

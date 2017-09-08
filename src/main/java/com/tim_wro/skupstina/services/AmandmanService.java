@@ -21,6 +21,8 @@ import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.util.Connection;
 import com.tim_wro.skupstina.util.MetadataExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -385,6 +387,14 @@ public class AmandmanService {
         xmlManager.delete(docId);
 
         client.release();
+
+    }
+
+    public void applyAmandmanID(String id) throws FileNotFoundException, JAXBException {
+
+        Amandman amd = getOne(id);
+        applyAmandman(amd);
+
 
     }
 
