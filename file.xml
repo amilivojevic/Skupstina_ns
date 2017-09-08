@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="aktffb01cc1-70ea-469d-b987-c9b3902c82fd" naziv="xz\" drzava="dsa" regija="dsa" grad="sda" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
     <preambula>
         <pravni_osnov>sa</pravni_osnov>
@@ -25,4 +26,19 @@
             </tacka>
         </stav>
     </clan>
+=======
+<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt11c276ec-70a4-47f3-99c3-f2d3c3591ed0" naziv="b" drzava="sdf" regija="asf" grad="afs" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+    <preambula>
+        <pravni_osnov>afs</pravni_osnov>
+        <organ>asf</organ>
+        <oblast>Skolstvo</oblast>
+    </preambula>
+    <datum_izglasan>2017-09-15Z</datum_izglasan>
+    <predlozen>true</predlozen>
+    <za>200</za>
+    <protiv>50</protiv>
+    <suzdrzani>50</suzdrzani>
+    <stanje>u_celosti</stanje>
+    <clan naziv="sf" br="1" id="clan1"/>
+>>>>>>> c18163f2e28a793e68c3c8d5e5b827a6047f16c0
 </akt>

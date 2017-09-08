@@ -328,26 +328,62 @@ public class SednicaController {
     }
 
     @RequestMapping(value = "/voting/third_voting", method = RequestMethod.POST)
-    public ResponseEntity votingThird(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException {
+    public ResponseEntity votingThird(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException, FileNotFoundException {
 
 
-        boolean izglasanAkt = sednicaService.checkIfIzglasan(firstVotingDTO);
+        boolean izglasanAkt = sednicaService.checkIfIzglasanThird(firstVotingDTO);
+        System.out.println("vratio izglasan " + izglasanAkt);
 
         Akt akt = aktService.getById(firstVotingDTO.getAktID());
         Sednica s = sednicaService.findById(firstVotingDTO.getSednicaID());
         List<Akt> aktiSednice = s.getAkt();
 
-        if(izglasanAkt){
-            for(Akt a : aktiSednice) {
-                if (a.getId().equals(akt.getId())) {
+        Akt a = new Akt();
 
+        if(izglasanAkt) {
+
+            //    for (Akt a : aktiSednice) {
+
+            for (int j = 0; j < aktiSednice.size(); j++){
+                a = aktService.getById(aktiSednice.get(j).getId());
+                if (a.getId().equals(akt.getId())) {
                     a.setStanje(StanjeAkta.U_CELOSTI);
+                    a.setDatumIzglasan(s.getDatum());
+
+                    aktController.create(a);
+
+                    // obrisi je iz liste sednica
+                    for (int i = 0; i < aktiSednice.size(); i++) {
+                        if (aktiSednice.get(i).getId().equals(akt.getId())) {
+                            aktiSednice.remove(i);
+                            sednicaService.updateSednica(s);
+                            break;
+                        }
+
+                    }
                 }
             }
-        }else{
-            for(int i = 0; i<aktiSednice.size(); i++){
-                if(aktiSednice.get(i).getId().equals(akt.getId())){
-                    aktiSednice.remove(i);
+        }
+        else{
+     //       for(Akt a1 : aktiSednice) {
+            for (int j = 0; j < aktiSednice.size(); j++){
+                a = aktService.getById(aktiSednice.get(j).getId());
+                if (a.getId().equals(akt.getId())) {
+                    a.setStanje(StanjeAkta.ODBIJEN);
+                    a.setDatumIzglasan(s.getDatum());
+
+                    aktController.create(a);
+
+                    // obrisi je iz liste sednica
+                    for(int i = 0; i < aktiSednice.size(); i++)
+                    {
+                        if(aktiSednice.get(i).getId().equals(akt.getId())){
+                            aktiSednice.remove(i);
+                            sednicaService.updateSednica(s);
+                        }
+
+                    }
+
                 }
             }
         }
@@ -358,12 +394,23 @@ public class SednicaController {
 
     }
 
-
     @PostMapping("/aktiviraj/{redniBroj}")
     public ResponseEntity aktiviraj(@PathVariable("redniBroj") String redniBroj) throws JAXBException {
 
         Sednica sednica = sednicaService.findById(redniBroj);
         sednica.setStanje(StanjeSednice.AKTIVNA);
+        sednicaService.updateSednica(sednica);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+
+    }
+
+    @PostMapping("/zavrsi/{id}")
+    public ResponseEntity zavrsi(@PathVariable("id") String id) throws JAXBException {
+
+        Sednica sednica = sednicaService.findById(id);
+        System.out.println("Nasao sednicu sa rbr " + sednica.toString());
+        sednica.setStanje(StanjeSednice.ZAVRSENA);
         sednicaService.updateSednica(sednica);
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);

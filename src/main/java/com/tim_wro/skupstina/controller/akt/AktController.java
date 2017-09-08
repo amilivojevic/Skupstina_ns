@@ -58,8 +58,13 @@ public class AktController {
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Akt akt) throws Exception {
 
-        akt.setId("akt"+UUID.randomUUID().toString());
-        aktService.updateIdAndBroj(akt);
+        if(akt.getId() != null){
+            aktService.updateIdAndBroj(akt);
+        }
+        else{
+            akt.setId("akt"+UUID.randomUUID().toString());
+            aktService.updateIdAndBroj(akt);
+        }
 
         //marshalling
         File file = new File("file.xml");
@@ -87,7 +92,6 @@ public class AktController {
         aktService.writeInMarkLogicDB(file, akt.getId());
 
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(akt.toString()), HttpStatus.CREATED);
-
 
     }
 

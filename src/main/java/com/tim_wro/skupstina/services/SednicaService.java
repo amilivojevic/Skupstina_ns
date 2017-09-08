@@ -295,6 +295,43 @@ public class SednicaService {
 
     }
 
+    // vraca true ako je akt izglasan, false ako ne
+    public boolean checkIfIzglasanThird(FirstVotingDTO firstVotingDTO) {
+
+        try {
+
+            Akt akt = aktService.getById(firstVotingDTO.getAktID());
+            Sednica sednica = null;
+
+            sednica = findById(firstVotingDTO.getSednicaID());
+            List<Akt> aktiSednice = sednica.getAkt();
+            for(Akt a : aktiSednice){
+                if(a.getId().equals(akt.getId())){
+                    a.setZa(BigInteger.valueOf(firstVotingDTO.getZa()));
+                    a.setProtiv(BigInteger.valueOf(firstVotingDTO.getProtiv()));
+                    a.setSuzdrzani(BigInteger.valueOf(firstVotingDTO.getSuzdrzani()));
+
+                    int kvalifikovanaVecinaInt = sednica.getBrojPrisutnih().intValue();
+                    int za = a.getZa().intValue();
+
+                    updateSednica(sednica);
+
+
+                    return ((double)za) > ((double) kvalifikovanaVecinaInt / 2.0);
+
+                }
+            }
+
+            throw new IllegalArgumentException("Los akt id");
+
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
     // vraca true ako je amandman izglasan, false ako ne
     public boolean checkIfIzglasanAmandman(SecondVotingDTO secondVotingDTO) {
 
