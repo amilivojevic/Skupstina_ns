@@ -8,8 +8,10 @@ import com.marklogic.client.io.JAXBHandle;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Korisnik;
+import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.services.AktService;
+import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.services.UserService;
 import com.tim_wro.skupstina.util.FOPReporter;
 import com.tim_wro.skupstina.util.ResponseMessage;
@@ -54,6 +56,9 @@ public class AktController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SednicaService sednicaService;
 
     @PostMapping("/novi")
     public ResponseEntity create(@RequestBody Akt akt) throws FileNotFoundException {

@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt11c276ec-70a4-47f3-99c3-f2d3c3591ed0" naziv="b" drzava="sdf" regija="asf" grad="afs" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt42796e5f-4d19-468b-8193-f9bf196c286c" naziv="ЈЕДИНСТВЕНА МЕТОДОЛОШКА ПРАВИЛА ЗА ИЗРАДУ ПРОПИСА*" drzava="Србија" regija="Војводина" grad="Нови Сад" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
     <preambula>
-        <pravni_osnov>afs</pravni_osnov>
-        <organ>asf</organ>
-        <oblast>Skolstvo</oblast>
+        <pravni_osnov>На основу члана 8. став 2. Закона о Народној скупштини
+(„Службени гласник РС“, број 9/10) и члана 45. Пословника Народне
+скупштине Републике Србије („Службени гласник РС“, број 14/09 –
+пречишћен текст),</pravni_osnov>
+        <organ>Законодавни одбор Народне скупштине Републике Србије, на седници одржаној 30. марта 2010. године, донео је</organ>
+        <oblast>Zdravstvo</oblast>
     </preambula>
-    <datum_izglasan>2017-09-15Z</datum_izglasan>
-    <predlozen>true</predlozen>
-    <za>200</za>
-    <protiv>50</protiv>
-    <suzdrzani>50</suzdrzani>
-    <stanje>u_celosti</stanje>
-    <clan naziv="sf" br="1" id="clan1"/>
+    <predlozen>false</predlozen>
+    <za>0</za>
+    <protiv>0</protiv>
+    <suzdrzani>0</suzdrzani>
+    <stanje>u_proceduri</stanje>
+    <clan naziv="Предмет" br="1" id="clan1">
+        <stav id="stav1">
+            <sadrzaj>Овим актом утврђују се јединствена методолошка правила за
+израду прописа које доноси Народна скупштина.</sadrzaj>
+        </stav>
+    </clan>
+    <clan naziv="Обим примене" br="2" id="clan2">
+        <stav id="stav1">
+            <sadrzaj>Правила која су утврђена овим актом примењују се на израду
+закона, одлука и Пословника Народне скупштине, а сходно се примењују и
+на друге опште акте које доноси Народна скупштина.</sadrzaj>
+        </stav>
+        <stav id="stav2">
+            <tacka br="1" id="tacka2">
+                <sadrzaj>Ако се прописом уређују питања која захтевају његову посебну
+структуру или форму, предлагач прописа може одступити од правила која су
+утврђена овим актом, али је дужан да разлоге за то посебно образложи.
+* “</sadrzaj>
+            </tacka>
+            <tacka br="3" id="tacka4">
+                <podtacka br="1" id="podtacka2">
+                    <sadrzaj>Прописи које доноси Народна скупштина, изузев закона,
+садрже и преамбулу (визу).</sadrzaj>
+                </podtacka>
+                <podtacka br="3" id="podtacka4">
+                    <sadrzaj>Назив је основни елемент за идентификацију прописа и садржи
+основне информације о материји која се прописом уређује.</sadrzaj>
+                </podtacka>
+            </tacka>
+        </stav>
+    </clan>
 </akt>
