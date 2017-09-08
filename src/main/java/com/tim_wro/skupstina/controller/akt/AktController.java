@@ -6,6 +6,10 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.Format;
 import com.marklogic.client.io.JAXBHandle;
+import com.marklogic.client.io.SearchHandle;
+import com.marklogic.client.query.MatchDocumentSummary;
+import com.marklogic.client.query.QueryManager;
+import com.marklogic.client.query.StringQueryDefinition;
 import com.marklogic.client.semantics.RDFMimeTypes;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.Akt;
@@ -15,10 +19,7 @@ import com.tim_wro.skupstina.model.StanjeAkta;
 import com.tim_wro.skupstina.services.AktService;
 import com.tim_wro.skupstina.services.SednicaService;
 import com.tim_wro.skupstina.services.UserService;
-import com.tim_wro.skupstina.util.FOPReporter;
-import com.tim_wro.skupstina.util.MetadataExtractor;
-import com.tim_wro.skupstina.util.ResponseMessage;
-import com.tim_wro.skupstina.util.Util;
+import com.tim_wro.skupstina.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -291,6 +292,47 @@ public class AktController {
     public ResponseEntity exportMetadataAsRdf(@PathVariable  String aktId) throws FileNotFoundException, TransformerException {
         final String metadata = aktService.exportMetadataAs(RDFMimeTypes.RDFXML, Format.XML, "/akt/metadata/"+aktId);
         return new ResponseEntity<>(metadata, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/trazi/sadrzaj/{sadrzaj}")
+    public ResponseEntity filterSadrzaj(@PathVariable  String sadrzaj) throws FileNotFoundException, TransformerException {
+        DatabaseClient client = Connection.getConnection();
+
+        // Initialize query manager
+        QueryManager queryManager = client.newQueryManager();
+
+        // Query definition is used to specify Google-style query string
+        StringQueryDefinition queryDefinition = queryManager.newStringDefinition();
+
+        // Set the criteria
+        queryDefinition.setCriteria(sadrzaj);
+        //queryDefinition.setCriteria("sadrzaj:\"qqqqqqqqqqqqqqqq\"");
+
+        // Search within a specific collection
+        queryDefinition.setCollections("akti");
+
+        // Perform search
+        SearchHandle results = queryManager.search(queryDefinition, new SearchHandle());
+
+        MatchDocumentSummary matches[] = results.getMatchResults();
+        MatchDocumentSummary result;
+
+        final List<Akt> akti = new ArrayList<>();
+        for (MatchDocumentSummary matche : matches) {
+            result = matche;
+            String uriOfAct = result.getUri();
+            System.out.println("Pronadjen akt, URI = " + uriOfAct);
+
+            Akt a = aktService.findByURI(uriOfAct);
+            System.out.println("akt: " + a.toString());
+            akti.add(a);
+        }
+
+        client.release();
+
+
+
+        return new ResponseEntity<>(akti,HttpStatus.OK);
     }
 
 }

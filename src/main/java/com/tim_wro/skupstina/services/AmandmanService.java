@@ -239,7 +239,7 @@ public class AmandmanService {
                     if(attr != null && attr.getTextContent().equals(stavka.getIdPodakta())) {
                         System.out.println("****** " + attr.getTextContent() + "   br = " + br);
 
-                        aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).appendChild(new N)
+                        //aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).appendChild(new N)
                     }
                 }
 

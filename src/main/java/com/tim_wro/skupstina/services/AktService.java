@@ -337,6 +337,27 @@ public class AktService {
 
     }
 
+    public Akt findByURI(String uri) {
+
+        DatabaseClient client = Connection.getConnection();
+        final XMLDocumentManager documentManager = client.newXMLDocumentManager();
+
+        try {
+            final JAXBContext jaxbContext = JAXBContext.newInstance(Akt.class);
+            final JAXBHandle<Akt> handle = new JAXBHandle<>(jaxbContext);
+            System.out.println("***URI: " +uri );
+            documentManager.read(uri, handle);
+            final Akt act = handle.get();
+
+            client.release();
+            return act;
+        } catch (Exception e) {
+            e.printStackTrace();
+            client.release();
+            return null;
+        }
+    }
+
     public void getByNaziv(String naziv){
         System.out.println("usao u servis");
         DatabaseClient client = Connection.getConnection();

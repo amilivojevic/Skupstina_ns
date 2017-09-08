@@ -7,6 +7,10 @@
         var vm = this;
         vm.amdSelected = null;
         vm.traziPoNazivu = traziPoNazivu;
+        vm.traziPoSadrzaju = traziPoSadrzaju;
+        vm.traziPoStanju = traziPoStanju;
+        vm.traziPoOblasti = traziPoOblasti;
+
         vm.naziv = "";
 
         vm.applyAmandam = applyAmandam;
@@ -43,6 +47,34 @@
             $http.get('/api/akt/trazi/naziv/'+naziv)
                 .then(function(akt) {
                     console.log("pretrazivanje po nazivu...");
+                }, function(response) {
+                    alert(response.data.response);
+                });
+        }
+
+        function traziPoSadrzaju(sadrzaj){
+            $http.get('/api/akt/trazi/sadrzaj/'+sadrzaj)
+                .then(function(akti) {
+                    console.log("pretrazivanje po sadrzaju...",akti.data);
+                    vm.akti = akti.data;
+                }, function(response) {
+                    alert(response.data.response);
+                });
+        }
+        function traziPoStanju(sadrzaj){
+            $http.get('/api/akt/trazi/sadrzaj/'+sadrzaj)
+                .then(function(akti) {
+                    console.log("pretrazivanje po sadrzaju...",akti.data);
+                    vm.akti = akti.data;
+                }, function(response) {
+                    alert(response.data.response);
+                });
+        }
+        function traziPoOblasti(sadrzaj){
+            $http.get('/api/akt/trazi/sadrzaj/'+sadrzaj)
+                .then(function(akti) {
+                    console.log("pretrazivanje po sadrzaju...",akti.data);
+                    vm.akti = akti.data;
                 }, function(response) {
                     alert(response.data.response);
                 });
