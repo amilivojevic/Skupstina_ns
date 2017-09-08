@@ -212,8 +212,8 @@ public class AmandmanService {
 
         DocumentMetadataHandle metadata = new DocumentMetadataHandle();
         String sednicaID = sednicaService.getSednicaIDByAktID(amd.getAktID());
-        xmlManager.read("/sednica/"+sednicaID+".xml", metadata, content);
-        Document sednicaDoc = content.get();
+        xmlManager.read("/akt/"+amd.getAktID()+".xml", metadata, content);
+        Document aktDoc = content.get();
 
 
 
@@ -221,15 +221,14 @@ public class AmandmanService {
             if (stavka.getTipIzmene() == TipIzmene.BRISANJE) {
 
 
-                for ( int br=0; br< sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).getLength(); br++) {
-                    NamedNodeMap attributes = sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br).getAttributes();
+                for ( int br=0; br< aktDoc.getElementsByTagName(stavka.getTagIzmene()).getLength(); br++) {
+                    NamedNodeMap attributes = aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).getAttributes();
                     Node attr = attributes.getNamedItem("id");
                     if(attr != null && attr.getTextContent().equals(stavka.getIdPodakta())) {
                         System.out.println("****** " + attr.getTextContent() + "   br = " + br);
 
-                        //transform(sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br), System.out);
-                        sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br).getParentNode().removeChild(
-                                sednicaDoc.getElementsByTagName("ns2:"+stavka.getTagIzmene()).item(br)
+                        aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br).getParentNode().removeChild(
+                                aktDoc.getElementsByTagName(stavka.getTagIzmene()).item(br)
                         );
                     }
                 }
@@ -245,7 +244,7 @@ public class AmandmanService {
         }
 
         //prikaz nove sednice (promenjen akt) na System.out
-        transform(sednicaDoc.getElementsByTagName("sednica").item(0), System.out);
+        transform(aktDoc.getElementsByTagName("akt").item(0), System.out);
 
         //kreiranje novog xml-a
         Transformer transformer = null;
@@ -256,7 +255,7 @@ public class AmandmanService {
         }
         File updated = new File("file.xml");
         Result output = new StreamResult(updated);
-        Source input = new DOMSource(sednicaDoc);
+        Source input = new DOMSource(aktDoc);
 
         try {
             transformer.transform(input, output);
