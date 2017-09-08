@@ -166,9 +166,11 @@ public class SednicaController {
         List<Sednica> sedniceUsera = sednicaService.getByUser(k.getKorisnickoIme());
         System.out.println("sednice od usera "+sedniceUsera);
         List<Sednica> zakazaneSednice = new ArrayList<>();
-        for(Sednica s : sedniceUsera){
-            if(s.getStanje() == StanjeSednice.ZAKAZANA){
-                zakazaneSednice.add(s);
+        if(zakazaneSednice.size() != 0) {
+            for (Sednica s : sedniceUsera) {
+                if (s.getStanje() == StanjeSednice.ZAKAZANA) {
+                    zakazaneSednice.add(s);
+                }
             }
         }
         System.out.println("zakazane sednice " + zakazaneSednice);
@@ -414,6 +416,17 @@ public class SednicaController {
         return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
 
     }
+
+ /*   @PostMapping("/obrisi/{redniBroj}")
+    public ResponseEntity obrisiSednicu(@PathVariable("redniBroj") String redniBroj) throws JAXBException, FileNotFoundException {
+
+        Sednica sednica = sednicaService.findById(redniBroj);
+
+        sednicaService.deleteFromDB(sednica);
+
+        return new ResponseEntity<ResponseMessage>(new ResponseMessage(sednica.toString()), HttpStatus.CREATED);
+
+    } */
 
     @PostMapping("/zavrsi/{id}")
     public ResponseEntity zavrsi(@PathVariable("id") String id) throws JAXBException {

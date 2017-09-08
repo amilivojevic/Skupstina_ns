@@ -40,6 +40,18 @@
                 });
         }
 
+        vm.obrisiSednicu = function(redniBroj){
+            //$window.location.href = "http://" + $window.location.host + "/#!/activateSednica";
+            $http.post('/api/sednica/obrisi/'+redniBroj).then(function (response) {
+
+         //       console.log("Sa prof predsednika salje id sednice prilikom aktiviranja: !" + redniBroj);
+                $state.go('predsednik');
+            })
+                .catch(function () {
+                    console.log("Neka greska!");
+                });
+        }
+
         vm.korisnickoIme = vm.userData.korisnickoIme;
         console.log("korisnicko ime" + vm.korisnickoIme);
         function getAllSednice() {

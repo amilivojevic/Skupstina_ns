@@ -358,4 +358,18 @@ public class SednicaService {
 
     }
 
+    public void deleteFromDB(Sednica sednica) throws FileNotFoundException {
+
+        DatabaseClient client = Connection.getConnection();
+
+        XMLDocumentManager xmlManager = client.newXMLDocumentManager();
+
+        String docId = "/sednica/" + sednica.getId() + ".xml";
+
+        xmlManager.delete(docId);
+
+        client.release();
+
+    }
+
 }
