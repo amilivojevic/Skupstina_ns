@@ -502,14 +502,6 @@ public class AktService {
 
     }
 
-    /**
-     * Serializes DOM tree to an arbitrary OutputStream.
-     *
-     * @param node a node to be serialized
-     * @param out an output stream to write the serialized
-     * DOM representation to
-     *
-     */
 
 
     public String exportMetadataAs(String mimeType, Format format, String namedGraphUri) throws TransformerException, FileNotFoundException {

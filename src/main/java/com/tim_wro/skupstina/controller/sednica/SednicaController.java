@@ -377,6 +377,8 @@ public class SednicaController {
                     a.setStanje(StanjeAkta.ODBIJEN);
                     a.setDatumIzglasan(s.getDatum());
 
+                    //preciscavanje
+                    aktService.updateIdAndBroj(a);
                     aktController.create(a);
                     List<String> amandmaniAkta = a.getAmandmanID();
                     for(int i = 0; i < amandmaniAkta.size(); i++){
