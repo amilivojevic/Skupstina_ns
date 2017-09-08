@@ -328,7 +328,7 @@ public class SednicaController {
     }
 
     @RequestMapping(value = "/voting/third_voting", method = RequestMethod.POST)
-    public ResponseEntity votingThird(@RequestBody FirstVotingDTO firstVotingDTO) throws JAXBException, FileNotFoundException {
+    public ResponseEntity votingThird(@RequestBody FirstVotingDTO firstVotingDTO) throws Exception {
 
 
         boolean izglasanAkt = sednicaService.checkIfIzglasanThird(firstVotingDTO);
@@ -351,6 +351,11 @@ public class SednicaController {
                     a.setDatumIzglasan(s.getDatum());
 
                     aktController.create(a);
+                    List<String> amandmaniAkta = a.getAmandmanID();
+                    for(int i = 0; i < amandmaniAkta.size(); i++){
+
+                        amandmanService.applyAmandmanID(amandmaniAkta.get(i));
+                    }
 
                     // obrisi je iz liste sednica
                     for (int i = 0; i < aktiSednice.size(); i++) {
@@ -373,6 +378,10 @@ public class SednicaController {
                     a.setDatumIzglasan(s.getDatum());
 
                     aktController.create(a);
+                    List<String> amandmaniAkta = a.getAmandmanID();
+                    for(int i = 0; i < amandmaniAkta.size(); i++){
+                        amandmanService.applyAmandmanID(amandmaniAkta.get(i));
+                    }
 
                     // obrisi je iz liste sednica
                     for(int i = 0; i < aktiSednice.size(); i++)
