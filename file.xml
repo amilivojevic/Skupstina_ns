@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="aktaa183fa4-1ecf-42de-b07e-9d433bfb5173" naziv="a" drzava="asfd" regija="asf" grad="asf" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+    <preambula>
+        <pravni_osnov>asf</pravni_osnov>
+        <organ>safd</organ>
+        <oblast>Skolstvo</oblast>
+    </preambula>
+    <datum_izglasan>2017-09-19Z</datum_izglasan>
+    <predlozen>true</predlozen>
+    <za>300</za>
+    <protiv>0</protiv>
+    <suzdrzani>0</suzdrzani>
+    <stanje>u_celosti</stanje>
+    <clan naziv="sf" br="1" id="clan1"/>
+</akt>

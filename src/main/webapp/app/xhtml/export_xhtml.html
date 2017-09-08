@@ -1,0 +1,54 @@
+<div class="container">
+    <form class="form-horizontal" ng-submit="poslanikCtrl.change()" >
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend  class="text-center">Izvezi akt u XHTML</legend>
+
+            </br>
+
+            <div class="col-xs-6  col-xs-offset-3" align="Center" ng-bind-html="exportXHTMLCtrl.userHtml" ></div>
+
+            <div class="clearfix"> </div>
+
+            <legend  class="text-center"></legend>
+
+            <div class="tab-content" >
+                </br>
+
+                <div id="mojiakti" class="tab-pane fade in active">
+                    <div align="Center" >
+
+                        <div class="col-xs-6  col-xs-offset-3" align="Center" >
+                            <div style="padding-bottom: 5%" ></div>
+                            <div ng-repeat="a in exportXHTMLCtrl.akti">
+                                <div class="well" align="Center">
+                                    <b>{{a.naziv}}</b><br>
+                                    {{a.preambula.oblast}}</br>
+                                    drzava: {{a.drzava}}</br>
+                                    regija: {{a.regija}}</br>
+                                    grad: {{a.grad}}
+                                    id: {{a.id}}
+                                    predlozen: {{a.predlozen}}
+                                </div>
+
+                                <div class="form-group">
+                                    <div ng-if="a.stanje == 'U_CELOSTI'">
+                                        <button name="submit" ng-click="exportXHTMLCtrl.stampajXHTML(a.id)" class="btn btn-primary">Preuzmi</button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+
+</div>

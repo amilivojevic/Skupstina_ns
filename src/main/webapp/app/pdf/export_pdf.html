@@ -1,0 +1,47 @@
+<div class="container">
+    <form class="form-horizontal" ng-submit="poslanikCtrl.change()" >
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend  class="text-center">Izvezi akt u PDF</legend>
+
+            </br></br>
+
+
+            <div class="tab-content" >
+                </br>
+
+                <div id="mojiakti" class="tab-pane fade in active">
+                    <div align="Center" >
+
+                        <div class="col-xs-6  col-xs-offset-3" align="Center" >
+                            <div style="padding-bottom: 5%" ></div>
+                            <div ng-repeat="a in exportPDFCtrl.akti">
+                                <div class="well" align="Center">
+                                    <b>{{a.naziv}}</b><br>
+                                    {{a.preambula.oblast}}</br>
+                                    drzava: {{a.drzava}}</br>
+                                    regija: {{a.regija}}</br>
+                                    grad: {{a.grad}}
+                                    id: {{a.id}}
+                                    predlozen: {{a.predlozen}}
+                                </div>
+
+                                <div class="form-group">
+                                    <div ng-if="a.stanje == 'U_CELOSTI'">
+                                        <button class="btn btn-primary"><a style="color: white;" ng-href="http://localhost:8080/api/akt/download-pdf/{{a.id}}">Preuzmi</a></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+
+</div>

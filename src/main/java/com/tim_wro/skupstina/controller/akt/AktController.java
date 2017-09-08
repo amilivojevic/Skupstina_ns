@@ -166,6 +166,21 @@ public class AktController {
         return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
 
+    // vraca listu akata u celosti odredjenog usera
+    @RequestMapping(value = "/svi_u_celosti", method = RequestMethod.GET)
+    public ResponseEntity getAllUCelosti()  {
+
+        List<Akt> akti = aktService.getAll();
+        List<Akt> aktiUCelosti = new ArrayList<>();
+
+        for(Akt a : akti){
+            if(a.getStanje() == StanjeAkta.U_CELOSTI){
+                aktiUCelosti.add(a);
+            }
+        }
+        return new ResponseEntity<>(aktiUCelosti,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/trazi/naziv/{naziv}", method=RequestMethod.GET)
     public ResponseEntity searchByNaziv(@PathVariable String naziv){
         System.out.println("usao u kontroler");
@@ -181,6 +196,7 @@ public class AktController {
         FOPReporter fopReporter = new FOPReporter();
 
         Akt akt =  aktService.getById(id);
+//        System.out.println("Stigao akt sa idem" + akt.getId());
         String docId = "/akt/" + akt.getId() + ".xml";
         String patch = "";
 

@@ -88,6 +88,36 @@
                         }
                     }
                 })
+                .state('exportPDF', {
+                    url: '/exportPDF',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/pdf/export_pdf.html',
+                            controller: 'ExportPDFController',
+                            controllerAs: 'exportPDFCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/navbar.html',
+                            controller: 'NavbarController',
+                            controllerAs: 'navbarCtrl'
+                        }
+                    }
+                })
+                .state('exportXHTML', {
+                    url: '/exportXHTML',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/xhtml/export_xhtml.html',
+                            controller: 'ExportXHTMLController',
+                            controllerAs: 'exportXHTMLCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/navbar.html',
+                            controller: 'NavbarController',
+                            controllerAs: 'navbarCtrl'
+                        }
+                    }
+                })
                 .state('predsednik', {
                     url: '/predsednik',
                     views: {
