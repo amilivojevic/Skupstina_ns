@@ -11,6 +11,8 @@ import com.marklogic.client.io.*;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
 import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.client.semantics.RDFMimeTypes;
+import com.marklogic.client.semantics.SPARQLQueryDefinition;
+import com.marklogic.client.semantics.SPARQLQueryManager;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.repository.AktRepository;
@@ -19,12 +21,14 @@ import org.springframework.stereotype.Service;
 
 import com.tim_wro.skupstina.util.*;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
@@ -233,7 +237,6 @@ public class AktService {
 
         //file to string
         String fileContent = new String(Files.readAllBytes(Paths.get("file.xml")));
-        String metadata2 = MetadataExtract.extract(handle.toString(), RDF_XSL);
         ByteArrayOutputStream metadataResult = MetadataExtractor.extractMetadata(fileContent,RDF_XSL);
 
         GraphManager graphManager = client.newGraphManager();
@@ -242,8 +245,7 @@ public class AktService {
         String content = metadataResult.toString();
 
         StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
-        System.out.println("valjda je to metadata: " + stringHandle);
-        graphManager.merge("/akt/metadata/id", stringHandle);
+        graphManager.merge("/akt/metadata/"+id, stringHandle);
 
         // Release the client
         client.release();
@@ -334,6 +336,26 @@ public class AktService {
         return null;
 
     }
+
+    public void getByNaziv(String naziv){
+        System.out.println("usao u servis");
+        DatabaseClient client = Connection.getConnection();
+
+        // Create a SPARQL query manager to query RDF datasets
+        SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
+
+        // Initialize DOM results handle
+        DOMHandle domResultsHandle = new DOMHandle();
+
+        // Initialize SPARQL query definition - retrieves all triples from RDF dataset
+        SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition("SELECT * WHERE { ?s ?p 'Akt o firmama' }");
+
+        System.out.println("[INFO] Showing all of the triples from RDF dataset in XML format\n");
+        domResultsHandle = sparqlQueryManager.executeSelect(query, domResultsHandle);
+        transform(domResultsHandle.get(), System.out);
+    }
+
+
 
     private void updateIdAndBrojCLAN(Clan c){
         if(c.getStav() != null){
@@ -459,5 +481,40 @@ public class AktService {
 
     }
 
+    /**
+     * Serializes DOM tree to an arbitrary OutputStream.
+     *
+     * @param node a node to be serialized
+     * @param out an output stream to write the serialized
+     * DOM representation to
+     *
+     */
+    private static void transform(Node node, OutputStream out) {
+        try {
+
+            // Kreiranje instance objekta zaduzenog za serijalizaciju DOM modela
+            Transformer transformer = transformerFactory.newTransformer();
+
+            // Indentacija serijalizovanog izlaza
+            transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            // Nad "source" objektom (DOM stablo) vrši se transformacija
+            DOMSource source = new DOMSource(node);
+
+            // Rezultujući stream (argument metode)
+            StreamResult result = new StreamResult(out);
+
+            // Poziv metode koja vrši opisanu transformaciju
+            transformer.transform(source, result);
+
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerFactoryConfigurationError e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

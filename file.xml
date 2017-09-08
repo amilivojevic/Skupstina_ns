@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="akt087646cd-1e4e-4f52-8428-6e347780743e" naziv="f" drzava="f" regija="f" grad="f" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
+<akt xmlns="http://www.skustinans.rs/akti" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="aktffb01cc1-70ea-469d-b987-c9b3902c82fd" naziv="xz\" drzava="dsa" regija="dsa" grad="sda" kreirao="a" xsi:schemaLocation="http://www.skustinans.rs/akti file:/C:/Users/Nina/Desktop/XML/Skupstina_ns/src/main/java/com/tim_wro/skupstina/model/akt_backup.xsd">
     <preambula>
-        <pravni_osnov>f</pravni_osnov>
-        <organ>f</organ>
-        <oblast>Vojska</oblast>
+        <pravni_osnov>sa</pravni_osnov>
+        <organ>sda</organ>
+        <oblast>Skolstvo</oblast>
     </preambula>
     <predlozen>false</predlozen>
     <za>0</za>
     <protiv>0</protiv>
     <suzdrzani>0</suzdrzani>
     <stanje>u_proceduri</stanje>
-    <clan naziv="f" br="1" id="clan1">
+    <clan naziv="ds" br="1" id="clan1">
         <stav id="stav1">
-            <sadrzaj>f</sadrzaj>
+            <tacka br="1" id="tacka1">
+                <podtacka br="1" id="podtacka1">
+                    <alineja id="alineja1">aaaaa</alineja>
+                </podtacka>
+                <podtacka br="2" id="podtacka2">
+                    <sadrzaj>d</sadrzaj>
+                </podtacka>
+            </tacka>
+            <tacka br="2" id="tacka2">
+                <sadrzaj>s</sadrzaj>
+            </tacka>
         </stav>
     </clan>
 </akt>

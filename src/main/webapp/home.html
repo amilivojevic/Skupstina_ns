@@ -13,9 +13,9 @@
                     <label class="col-md-4 control-label">Po nazivu:</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input  name="buttondropdown" class="form-control" type="text">
+                            <input  name="buttondropdown" ng-model="homeCtrl.naziv" class="form-control" type="text">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default">
+                                <button type="button" class="btn btn-default" ng-click="homeCtrl.traziPoNazivu(homeCtrl.naziv)">
                                     trazi
                                 </button>
                             </div>

@@ -157,6 +157,13 @@ public class AktController {
         return new ResponseEntity<>(aktiUProceduri,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/trazi/naziv/{naziv}", method=RequestMethod.GET)
+    public ResponseEntity searchByNaziv(@PathVariable String naziv){
+        System.out.println("usao u kontroler");
+        aktService.getByNaziv(naziv);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
     @RequestMapping(value ="/download-pdf/{id}", method=RequestMethod.GET)
     public ResponseEntity<byte[]> downloadPDF(@PathVariable("id") String id) throws Exception {
