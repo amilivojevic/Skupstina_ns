@@ -39,7 +39,7 @@ import java.util.List;
 public class SednicaService {
 
     private SednicaRepository sednicaRepository;
-    public static final String RDF_XSL = "src/main/resources/schemes/sednica.xsl";
+    public static final String RDF_XSL = "src/main/resources/xsl/sednica.xsl";
 
     @Autowired
     public SednicaService(SednicaRepository sednicaRepository) {
@@ -205,6 +205,8 @@ public class SednicaService {
     public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 
+        String collId = "sednice";
+
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
@@ -215,9 +217,12 @@ public class SednicaService {
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
 
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+        metadata.getCollections().add(collId);
+
         // Write the document to the database
         System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
-        xmlManager.write(docId, handle);
+        xmlManager.write(docId, metadata, handle);
 
         // Release the client
         client.release();

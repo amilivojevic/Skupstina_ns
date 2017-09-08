@@ -6,6 +6,8 @@
     function homeController($scope,$http,$window) {
         var vm = this;
         vm.amdSelected = null;
+        vm.traziPoNazivu = traziPoNazivu;
+        vm.naziv = "";
 
         vm.applyAmandam = applyAmandam;
 
@@ -31,6 +33,16 @@
                 .then(function() {
 
                     console.log(JSON.stringify("VALJDA JE DOBRO"));
+                }, function(response) {
+                    alert(response.data.response);
+                });
+        }
+
+        function traziPoNazivu(naziv){
+            console.log("AAAAAAAAAAAAAA");
+            $http.get('/api/akt/trazi/naziv/'+naziv)
+                .then(function(akt) {
+                    console.log("pretrazivanje po nazivu...");
                 }, function(response) {
                     alert(response.data.response);
                 });

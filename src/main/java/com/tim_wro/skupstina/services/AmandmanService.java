@@ -7,19 +7,19 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.eval.EvalResult;
 import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
-import com.marklogic.client.io.InputStreamHandle;
+import com.marklogic.client.io.*;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
+import com.marklogic.client.semantics.GraphManager;
+import com.marklogic.client.semantics.RDFMimeTypes;
 import com.marklogic.client.util.EditableNamespaceContext;
-import com.marklogic.client.io.DOMHandle;
-import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
-import com.marklogic.client.io.JAXBHandle;
 import com.tim_wro.skupstina.model.Akt;
 import com.tim_wro.skupstina.model.Amandman;
 import com.tim_wro.skupstina.model.StavkaAmandmana;
 import com.tim_wro.skupstina.model.TipIzmene;
 import com.tim_wro.skupstina.model.Sednica;
 import com.tim_wro.skupstina.util.Connection;
+import com.tim_wro.skupstina.util.MetadataExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -35,6 +35,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +47,8 @@ public class AmandmanService {
     @Autowired
     private SednicaService sednicaService;
 
+    public static final String RDF_XSL = "src/main/resources/xsl/amandman.xsl";
+
     private static TransformerFactory transformerFactory;
 
     static {
@@ -53,8 +57,10 @@ public class AmandmanService {
     }
 
 
-    public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
+    public void writeInMarkLogicDB(File file, String id) throws Exception {
         DatabaseClient client = Connection.getConnection();
+
+        String collId = "amandmani";
 
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
@@ -64,12 +70,29 @@ public class AmandmanService {
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
 
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+        metadata.getCollections().add(collId);
+
         // Write the document to the database
         System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
-        xmlManager.write(docId, handle);
+        xmlManager.write(docId, metadata, handle);
+
+        //snimanje metapodataka!
+
+        //file to string
+        String fileContent = new String(Files.readAllBytes(Paths.get("file.xml")));
+        ByteArrayOutputStream metadataResult = MetadataExtractor.extractMetadata(fileContent,RDF_XSL);
 
         // Release the client
         client.release();
+    }
+
+    private void saveMetadata(ByteArrayOutputStream metadataResult, DatabaseClient client) {
+        GraphManager graphManager = client.newGraphManager();
+        String content = metadataResult.toString();
+
+        StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
+        graphManager.merge("/amandman/metadata", stringHandle);
     }
 
 

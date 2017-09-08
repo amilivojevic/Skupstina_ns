@@ -7,11 +7,12 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.eval.EvalResult;
 import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
-import com.marklogic.client.io.DOMHandle;
-import com.marklogic.client.io.DocumentMetadataHandle;
-import com.marklogic.client.io.InputStreamHandle;
-import com.marklogic.client.io.JAXBHandle;
+import com.marklogic.client.io.*;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
+import com.marklogic.client.semantics.GraphManager;
+import com.marklogic.client.semantics.RDFMimeTypes;
+import com.marklogic.client.semantics.SPARQLQueryDefinition;
+import com.marklogic.client.semantics.SPARQLQueryManager;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.repository.AktRepository;
@@ -20,14 +21,20 @@ import org.springframework.stereotype.Service;
 
 import com.tim_wro.skupstina.util.*;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +49,7 @@ import java.util.Set;
 public class AktService {
 
 
-    public static final String RDF_XSL = "src/main/resources/schemes/akt.xsl";
+    public static final String RDF_XSL = "src/main/resources/xsl/akt.xsl";
     private static TransformerFactory transformerFactory;
 
 
@@ -204,27 +211,47 @@ public class AktService {
         return doc;
     }
 
-    public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
+    public void writeInMarkLogicDB(File file, String id) throws Exception {
         DatabaseClient client = Connection.getConnection();
+
+        String collId = "akti";
 
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
         // Define a URI value for a document.
         int br = brojAkata() + 1;
-        //String docId = "/akt/akt" + br + ".xml";
         String docId = "/akt/" + id + ".xml";
 
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
 
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+        metadata.getCollections().add(collId);
+
         // Write the document to the database
         System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
-        xmlManager.write(docId, handle);
+        xmlManager.write(docId, metadata, handle);
+
+        //snimanje metapodataka!
+
+        //file to string
+        String fileContent = new String(Files.readAllBytes(Paths.get("file.xml")));
+        ByteArrayOutputStream metadataResult = MetadataExtractor.extractMetadata(fileContent,RDF_XSL);
+
+        GraphManager graphManager = client.newGraphManager();
+        graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
+
+        String content = metadataResult.toString();
+
+        StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
+        graphManager.merge("/akt/metadata/"+id, stringHandle);
 
         // Release the client
         client.release();
     }
+
+
     public void deleteFromDB(Akt akt) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 
@@ -310,27 +337,51 @@ public class AktService {
 
     }
 
+    public void getByNaziv(String naziv){
+        System.out.println("usao u servis");
+        DatabaseClient client = Connection.getConnection();
+
+        // Create a SPARQL query manager to query RDF datasets
+        SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
+
+        // Initialize DOM results handle
+        DOMHandle domResultsHandle = new DOMHandle();
+
+        // Initialize SPARQL query definition - retrieves all triples from RDF dataset
+        SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition("SELECT * WHERE { ?s ?p 'Akt o firmama' }");
+
+        System.out.println("[INFO] Showing all of the triples from RDF dataset in XML format\n");
+        domResultsHandle = sparqlQueryManager.executeSelect(query, domResultsHandle);
+        transform(domResultsHandle.get(), System.out);
+    }
+
+
+
     private void updateIdAndBrojCLAN(Clan c){
         if(c.getStav() != null){
             int stavBr =0;
             for(Stav s : c.getStav()){
-                s.setId("stav" + (++stavBr));
+                stavBr += 1;
+                s.setId("stav" + (stavBr));
 
                 if(s.getTacka() != null){
                     int tackaBr = 0;
                     for(Tacka t : s.getTacka()){
-                        t.setBr(++tackaBr);
-                        t.setId("tacka" + (++tackaBr));
+                        tackaBr += 1;
+                        t.setBr(tackaBr);
+                        t.setId("tacka" + (tackaBr));
 
                         if(t.getPodtacka() != null){
                             int podtackaBr = 0;
                             for(Podtacka pt : t.getPodtacka()){
-                                pt.setBr(++podtackaBr);
-                                pt.setId("podtacka" + (++podtackaBr));
+                                podtackaBr += 1;
+                                pt.setBr(podtackaBr);
+                                pt.setId("podtacka" + (podtackaBr));
 
                                 if(pt.getAlineja() != null){
                                     int alinejaBr = 0;
                                     for(Alineja a : pt.getAlineja()){
+                                        alinejaBr +=1;
                                         a.setId("alineja" + alinejaBr);
                                     }
                                 }
@@ -348,8 +399,9 @@ public class AktService {
         if(akt.getClan() != null){
             int clanId = 0;
             for(Clan c : akt.getClan()){
-                c.setBr(clanId+1);
-                c.setId("clan" + (++clanId));
+                clanId += 1;
+                c.setBr(clanId);
+                c.setId("clan" + (clanId));
 
                 updateIdAndBrojCLAN(c);
             }
@@ -358,21 +410,24 @@ public class AktService {
         if(akt.getDeo() != null){
             int deoBr = 0;
             for(Deo d : akt.getDeo()){
-                d.setBr(++deoBr);
-                d.setId("deo" + (++deoBr));
+                deoBr += 1;
+                d.setBr(deoBr);
+                d.setId("deo" + (deoBr));
 
                 if(d.getGlava() != null){
                     int glavaBr = 0;
                     for(Glava g : d.getGlava()){
-                        g.setBr(++glavaBr);
-                        g.setId("glava" + (++glavaBr));
+                        glavaBr += 1;
+                        g.setBr(glavaBr);
+                        g.setId("glava" + (glavaBr));
 
                         //*******
                         if(g.getClan() != null){
                             int clanId = 0;
                             for(Clan c : g.getClan()){
-                                c.setBr(clanId+1);
-                                c.setId("clan" + (++clanId));
+                                clanId +=1;
+                                c.setBr(clanId);
+                                c.setId("clan" + (clanId));
 
                                 updateIdAndBrojCLAN(c);
                             }
@@ -382,6 +437,42 @@ public class AktService {
 
                         if(g.getOdeljak() != null){
 
+                            int odeljakId = 0;
+                            for(Odeljak odeljak : g.getOdeljak()){
+                                odeljakId += 1;
+                                odeljak.setBr(odeljakId);
+                                odeljak.setId("odeljak" + odeljakId);
+
+                                if(odeljak.getClan() != null){
+                                    int clanId = 0;
+                                    for(Clan c : odeljak.getClan()){
+                                        clanId +=1;
+                                        c.setBr(clanId);
+                                        c.setId("clan" + (clanId));
+
+                                        updateIdAndBrojCLAN(c);
+                                    }
+                                }
+
+                                if(odeljak.getPododeljak() != null){
+                                    int pododeljakId = 0;
+                                    for(Pododeljak pod : odeljak.getPododeljak()){
+                                        pododeljakId += 1;
+                                        pod.setId("pododeljak" + pododeljakId);
+
+                                        if(pod.getClan() != null){
+                                            int clanId = 0;
+                                            for(Clan c : pod.getClan()){
+                                                clanId +=1;
+                                                c.setBr(clanId);
+                                                c.setId("clan" + (clanId));
+
+                                                updateIdAndBrojCLAN(c);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -390,5 +481,40 @@ public class AktService {
 
     }
 
+    /**
+     * Serializes DOM tree to an arbitrary OutputStream.
+     *
+     * @param node a node to be serialized
+     * @param out an output stream to write the serialized
+     * DOM representation to
+     *
+     */
+    private static void transform(Node node, OutputStream out) {
+        try {
+
+            // Kreiranje instance objekta zaduzenog za serijalizaciju DOM modela
+            Transformer transformer = transformerFactory.newTransformer();
+
+            // Indentacija serijalizovanog izlaza
+            transformer.setOutputProperty("{http://xml.apache.org/xalan}indent-amount", "2");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            // Nad "source" objektom (DOM stablo) vrši se transformacija
+            DOMSource source = new DOMSource(node);
+
+            // Rezultujući stream (argument metode)
+            StreamResult result = new StreamResult(out);
+
+            // Poziv metode koja vrši opisanu transformaciju
+            transformer.transform(source, result);
+
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerFactoryConfigurationError e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

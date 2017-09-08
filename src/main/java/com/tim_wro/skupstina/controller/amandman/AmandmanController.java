@@ -38,7 +38,7 @@ public class AmandmanController {
     private UserService userService;
 
     @PostMapping("/novi")
-    public ResponseEntity create(@RequestBody Amandman amd) throws FileNotFoundException {
+    public ResponseEntity create(@RequestBody Amandman amd) throws Exception {
 
         amd.setId("amd"+UUID.randomUUID().toString());
 
