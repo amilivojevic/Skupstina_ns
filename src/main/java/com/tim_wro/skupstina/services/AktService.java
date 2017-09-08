@@ -207,20 +207,24 @@ public class AktService {
     public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 
+        String collId = "akti";
+
         // Create a document manager to work with XML files.
         XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
         // Define a URI value for a document.
         int br = brojAkata() + 1;
-        //String docId = "/akt/akt" + br + ".xml";
         String docId = "/akt/" + id + ".xml";
 
         // Create an input stream handle to hold XML content.
         InputStreamHandle handle = new InputStreamHandle(new FileInputStream(file));
 
+        DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+        metadata.getCollections().add(collId);
+
         // Write the document to the database
         System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
-        xmlManager.write(docId, handle);
+        xmlManager.write(docId, metadata, handle);
 
         // Release the client
         client.release();
