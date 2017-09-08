@@ -278,6 +278,24 @@
                         //          'brojPrisutnih': null
                     }
                 })
+                .state('exportToRDF', {
+                    url: '/exportToRDF',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/rdf/rdf.html',
+                            controller: 'ExportRDFController',
+                            controllerAs: 'exportRDFCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    },  params: {
+
+                        //   'skupstina': null
+                    }
+                })
                 .state('exportToPDF', {
                     url: '/exportToPDF',
                     views: {
@@ -295,7 +313,7 @@
 
                         //   'skupstina': null
                     }
-                })
+                });
 
 
 

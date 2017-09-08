@@ -290,7 +290,7 @@ public class AktController {
 
     @GetMapping(value = "/export/rdf/{aktId}")
     public ResponseEntity exportMetadataAsRdf(@PathVariable  String aktId) throws FileNotFoundException, TransformerException {
-        final String metadata = aktService.exportMetadataAs(RDFMimeTypes.RDFXML, Format.XML, "/akt/metadata/"+aktId);
+        final String metadata = aktService.exportMetadataAs(RDFMimeTypes.RDFXML, Format.XML, "/akt/metadata/"+aktId+".xml");
         return new ResponseEntity<>(metadata, HttpStatus.OK);
     }
 
