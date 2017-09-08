@@ -2,11 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:a="http://www.skustinans.rs/akti"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-
                 version="2.0">
 
-
-    <xsl:variable name="status" select="/*/a:preabula/a:pravniOsnov"/>
 
     <xsl:template match="/">
         <fo:root>
@@ -17,7 +14,7 @@
             </fo:layout-master-set>
 
             <!-- AKT -->
-            <fo:page-sequence master-reference="akt-stranica">
+           <fo:page-sequence master-reference="akt-stranica">
                 <fo:flow flow-name="xsl-region-body">
 
                     <!-- NASLOV AKTA -->
@@ -33,22 +30,22 @@
 
                         <!-- NASLOV DELA -->
                         <fo:block id="{@id}" font-family="Arial" text-align="center" font-size="20px" font-weight="bold" margin-top="50px">
-                            <xsl:value-of select="@redniBroj"/>
+                            <xsl:value-of select="@br"/>
                         </fo:block>
                         <xsl:text>&#xa;</xsl:text>
                         <fo:block font-family="Arial" text-align="center" font-size="18px" font-weight="bold" margin-top="15px">
-                            <xsl:value-of select="@naslov"/>
+                            <xsl:value-of select="@naziv"/>
                         </fo:block>
 
                         <!-- CLANOVI -->
-                        <xsl:apply-templates select="a:clan"/>
+            <!--            <xsl:apply-templates select="akt:Clan"/> -->
 
                         <!-- GLAVE -->
                         <xsl:for-each select="a:glava">
                             <fo:block id="{@id}" font-family="Arial" text-align="center" font-size="18px" margin-top="40px" margin-bottom="10px">
-                                <xsl:value-of select="@redniBroj"/>
+                                <xsl:value-of select="@br"/>
                                 <xsl:text> </xsl:text>
-                                <xsl:value-of select="@naslov"/>
+                                <xsl:value-of select="@naziv"/>
                             </fo:block>
 
                             <xsl:apply-templates select="a:clan"/>
@@ -56,21 +53,20 @@
                             <!-- ODELJCI -->
                             <xsl:for-each select="a:odeljak">
                                 <fo:block id="{@id}" font-family="Arial" text-align="center" font-size="16px" margin-bottom="10px" margin-top="35px">
-                                    <xsl:value-of select="@redniBroj"/>
+                                    <xsl:value-of select="@br"/>
                                     <xsl:text> </xsl:text>
-                                    <xsl:value-of select="@naslov"/>
+                                    <xsl:value-of select="@naziv"/>
                                 </fo:block>
 
-                                <xsl:apply-templates select="akt:Clan"/>
+                                <xsl:apply-templates select="a:clan"/>
 
                                 <!-- PODODELJCI -->
-                                <xsl:for-each select="akt:Pododeljak">
+                                <xsl:for-each select="a:pododeljak">
                                     <fo:block id="{@id}" font-family="Arial" text-align="center" font-size="14px" margin-bottom="20px" margin-top="25px">
-                                        <xsl:value-of select="@redniBroj"/>
                                         <xsl:text> </xsl:text>
-                                        <xsl:value-of select="@naslov"/>
+                                        <xsl:value-of select="@naziv"/>
                                     </fo:block>
-                                    <xsl:apply-templates select="akt:Clan"/>
+                                    <xsl:apply-templates select="a:clan"/>
                                 </xsl:for-each>
 
                             </xsl:for-each>
@@ -84,22 +80,23 @@
         </fo:root>
     </xsl:template>
 
+    <!-- Moj clan -->
     <xsl:template match="a:clan">
 
         <fo:block id="{@id}" font-family="Arial" text-align="center" font-size="13px" margin-top="20px">
             <fo:inline font-weight="bold">
-                <xsl:value-of select="@redniBroj"/>
+                <xsl:value-of select="@br"/>
             </fo:inline>
         </fo:block>
         <xsl:text>&#xa;</xsl:text>
         <fo:block font-family="Arial" text-align="center" font-size="13px" font-weight="bold" margin-top="10px">
-            <xsl:value-of select="@naslov"/>
+            <xsl:value-of select="@naziv"/>
         </fo:block>
 
-        <xsl:for-each select="akt:Stav">
+        <xsl:for-each select="a:stav">
             <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin="10px">
                 <!-- <xsl:apply-templates select="akt:Sadrzaj"/> -->
-                <xsl:apply-templates select="akt:Tacka"/>
+                <xsl:apply-templates select="a:tacka"/>
             </fo:block>
         </xsl:for-each>
     </xsl:template>
@@ -133,14 +130,14 @@
         <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin-bottom="10px" margin-top="10px">
             <xsl:value-of select="@br"/>
             <xsl:text> </xsl:text>
-            <xsl:value-of select="akt:Sadrzaj"/>
-            <xsl:apply-templates select="akt:Podtacka"/>
+            <xsl:value-of select="a:sadrzaj"/>
+            <xsl:apply-templates select="a:podtacka"/>
         </fo:block>
     </xsl:template>
 
     <xsl:template match="a:podtacka">
         <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin-bottom="10px" margin-left="40px" margin-top="10px">
-            <xsl:value-of select="@redniBroj"/>
+            <xsl:value-of select="@br"/>
             <xsl:text> </xsl:text>
             <xsl:value-of select="a:sadrzaj"/>
             <xsl:apply-templates select="a:alineja"/>
@@ -149,7 +146,7 @@
 
     <xsl:template match="a:alineja">
         <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" margin-bottom="10px" margin-left="80px">
-            <xsl:value-of select="a:sadrzaj"/>
+         <!--   <xsl:value-of select="akt:Sadrzaj"/> -->
         </fo:block>
     </xsl:template>
 
