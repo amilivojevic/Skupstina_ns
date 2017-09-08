@@ -489,6 +489,19 @@ public class AktService {
      * DOM representation to
      *
      */
+
+
+    public String exportMetadataAs(String mimeType, Format format, String namedGraphUri) throws TransformerException, FileNotFoundException {
+
+        DatabaseClient client = Connection.getConnection();
+        GraphManager graphManager = client.newGraphManager();
+        String content = graphManager.read(namedGraphUri,
+                new StringHandle().withMimetype(mimeType)).withFormat(format).get();
+        client.release();
+
+        return content;
+    }
+
     private static void transform(Node node, OutputStream out) {
         try {
 

@@ -87,13 +87,7 @@ public class AmandmanService {
         client.release();
     }
 
-    private void saveMetadata(ByteArrayOutputStream metadataResult, DatabaseClient client) {
-        GraphManager graphManager = client.newGraphManager();
-        String content = metadataResult.toString();
 
-        StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
-        graphManager.merge("/amandman/metadata", stringHandle);
-    }
 
 
     public void updateAmandman(Amandman amandman) throws JAXBException {
