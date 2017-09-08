@@ -7,11 +7,10 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.eval.EvalResult;
 import com.marklogic.client.eval.EvalResultIterator;
 import com.marklogic.client.eval.ServerEvaluationCall;
-import com.marklogic.client.io.DOMHandle;
-import com.marklogic.client.io.DocumentMetadataHandle;
-import com.marklogic.client.io.InputStreamHandle;
-import com.marklogic.client.io.JAXBHandle;
+import com.marklogic.client.io.*;
 import com.marklogic.client.io.marker.DocumentPatchHandle;
+import com.marklogic.client.semantics.GraphManager;
+import com.marklogic.client.semantics.RDFMimeTypes;
 import com.marklogic.client.util.EditableNamespaceContext;
 import com.tim_wro.skupstina.model.*;
 import com.tim_wro.skupstina.repository.AktRepository;
@@ -26,8 +25,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +45,7 @@ import java.util.Set;
 public class AktService {
 
 
-    public static final String RDF_XSL = "src/main/resources/schemes/akt.xsl";
+    public static final String RDF_XSL = "src/main/resources/xsl/akt.xsl";
     private static TransformerFactory transformerFactory;
 
 
@@ -204,7 +207,7 @@ public class AktService {
         return doc;
     }
 
-    public void writeInMarkLogicDB(File file, String id) throws FileNotFoundException {
+    public void writeInMarkLogicDB(File file, String id) throws Exception {
         DatabaseClient client = Connection.getConnection();
 
         String collId = "akti";
@@ -226,9 +229,27 @@ public class AktService {
         System.out.println("[INFO] Inserting \"" + docId + "\" to \" database.");
         xmlManager.write(docId, metadata, handle);
 
+        //snimanje metapodataka!
+
+        //file to string
+        String fileContent = new String(Files.readAllBytes(Paths.get("file.xml")));
+        String metadata2 = MetadataExtract.extract(handle.toString(), RDF_XSL);
+        ByteArrayOutputStream metadataResult = MetadataExtractor.extractMetadata(fileContent,RDF_XSL);
+
+        GraphManager graphManager = client.newGraphManager();
+        graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
+
+        String content = metadataResult.toString();
+
+        StringHandle stringHandle = new StringHandle(content).withMimetype(RDFMimeTypes.RDFXML);
+        System.out.println("valjda je to metadata: " + stringHandle);
+        graphManager.merge("/akt/metadata/id", stringHandle);
+
         // Release the client
         client.release();
     }
+
+
     public void deleteFromDB(Akt akt) throws FileNotFoundException {
         DatabaseClient client = Connection.getConnection();
 

@@ -39,7 +39,7 @@ import java.util.List;
 public class SednicaService {
 
     private SednicaRepository sednicaRepository;
-    public static final String RDF_XSL = "src/main/resources/schemes/sednica.xsl";
+    public static final String RDF_XSL = "src/main/resources/xsl/sednica.xsl";
 
     @Autowired
     public SednicaService(SednicaRepository sednicaRepository) {

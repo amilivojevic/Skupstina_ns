@@ -56,7 +56,7 @@ public class AktController {
     private UserService userService;
 
     @PostMapping("/novi")
-    public ResponseEntity create(@RequestBody Akt akt) throws FileNotFoundException {
+    public ResponseEntity create(@RequestBody Akt akt) throws Exception {
 
         akt.setId("akt"+UUID.randomUUID().toString());
         aktService.updateIdAndBroj(akt);
