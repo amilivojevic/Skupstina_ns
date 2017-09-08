@@ -78,7 +78,8 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">
                                             <div align = "Left" >
-                                                <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                <textarea ng-model="addAmdCtrl.novi2"></textarea>
+                                                <button ng-click="addAmdCtrl.novi(addAmdCtrl.akt.id,'akt',addAmdCtrl.novi2)" class="btn btn-default btn-xs">
                                                     <span class="glyphicon glyphicon-plus"></span>Dodavanje clana
                                                 </button>
                                             </div>
@@ -103,8 +104,10 @@
                                                 <!--dugme za dodavanje stava-->
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label" for="submit">
+
                                                         <div  align = "Center" >
-                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                            <textarea ng-model="addAmdCtrl.novi3"></textarea>
+                                                            <button ng-click="addAmdCtrl.novi(c.id,'clan',addAmdCtrl.novi3)" class="btn btn-default btn-xs">
                                                                 <span class="glyphicon glyphicon-plus"></span>Dodavanje stava
                                                             </button>
                                                         </div>
@@ -138,7 +141,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control-label">
                                                                         <div  align = "Center" >
-                                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                            <button ng-click="addAmdCtrl.menjanje(s.id,s.sadrzaj,'stav')" class="btn btn-default btn-xs">
                                                                                 <span class="glyphicon glyphicon-plus"></span>Menjanje sadrzaja
                                                                             </button>
                                                                         </div>
@@ -153,7 +156,8 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-4 control-label" for="submit">
                                                                         <div  align = "Center" >
-                                                                            <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                            <textarea ng-model="addAmdCtrl.novi4"></textarea>
+                                                                            <button ng-click="addAmdCtrl.novi(s.id,'stav',addAmdCtrl.novi4)" class="btn btn-default btn-xs">
                                                                                 <span class="glyphicon glyphicon-plus"></span>Dodavanje tacke
                                                                             </button>
                                                                         </div>
@@ -231,7 +235,7 @@
                                                                             <div class="form-group">
                                                                                 <label class="col-md-4 control-label">
                                                                                     <div  align = "Center" >
-                                                                                        <button ng-click="addAmdCtrl.novi()" class="btn btn-default btn-xs">
+                                                                                        <button ng-click="addAmdCtrl.menjanje(t.id,t.sadrzaj,'tacka')" class="btn btn-default btn-xs">
                                                                                             <span class="glyphicon glyphicon-plus"></span>Menjanje sadrzaja
                                                                                         </button>
                                                                                     </div>

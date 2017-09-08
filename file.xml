@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<amandman xmlns="http://www.skustinans.rs/amandmani" xmlns:ns2="http://www.skustinans.rs/akti" pravniOsnov="v" datumObjave="Fri Sep 08 2017 07:05:48 GMT+0200 (Central Europe Daylight Time)" broj="v" naziv="v" kreirao="a" sednicaID="" aktID="akt1248dcf9-004c-4f9a-8478-7cb0f4ff1069" id="amd8649657d-e5b9-46b2-9e81-dc11e2a6c3be">
+    <stanje>ZAKAZAN</stanje>
+    <za>0</za>
+    <protiv>0</protiv>
+    <suzdrzani>0</suzdrzani>
+    <obrazlozenje>v</obrazlozenje>
+    <stavke>
+        <stavkaAmandmana tagIzmene="clan" tipIzmene="DODAVANJE" idPodakta="akt1248dcf9-004c-4f9a-8478-7cb0f4ff1069">
+            <ns2:clan br="0" id="stav1"/>
+        </stavkaAmandmana>
+    </stavke>
+</amandman>

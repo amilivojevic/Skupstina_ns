@@ -8,6 +8,7 @@
         vm.dodajStavku = dodajStavku;
         vm.novi = novi;
         vm.brisanje = brisanje;
+        vm.menjanje = menjanje;
         vm.selektovan = false;
         vm.aktSelected = null;
 
@@ -32,8 +33,51 @@
 
 
 
-        function novi(){
-            alert("JOS NE RADI DODAVANJE NICEGA!");
+        function novi(id,tag,novi){
+
+            if(tag==="akt"){
+                vm.novaStavka = {
+                    "tipIzmene" : "DODAVANJE",
+                    "idPodakta" : id,
+                    "clan" : JSON.parse(novi),
+                    "tagIzmene" : tag
+                }
+            }
+            else if(tag==="clan"){
+                vm.novaStavka = {
+                    "tipIzmene" : "DODAVANJE",
+                    "idPodakta" : id,
+                    "stav" : JSON.parse(novi),
+                    "tagIzmene" : tag
+                }
+            }
+            else if(tag==="stav"){
+                vm.novaStavka = {
+                    "tipIzmene" : "DODAVANJE",
+                    "idPodakta" : id,
+                    "tacka" : JSON.parse(novi),
+                    "tagIzmene" : tag
+                }
+            }
+
+
+
+            vm.amandman.stavke.stavkaAmandmana.push(vm.novaStavka);
+
+            console.log("NAPRAVLJENA NOVA STAVKA AMANDMANA (izmena): ",vm.novaStavka);
+        }
+
+        function menjanje(id,noviSadrzaj,tag){
+            vm.novaStavka = {
+                "tipIzmene" : "IZMENA",
+                "idPodakta" : id,
+                "sadrzaj" : noviSadrzaj,
+                "tagIzmene" : tag
+            }
+
+            vm.amandman.stavke.stavkaAmandmana.push(vm.novaStavka);
+
+            console.log("NAPRAVLJENA NOVA STAVKA AMANDMANA (izmena): ",vm.novaStavka);
         }
 
         function brisanje(id,tag){
