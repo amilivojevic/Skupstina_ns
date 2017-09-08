@@ -118,6 +118,36 @@
                         }
                     }
                 })
+                .state('exportPDFPredsednik', {
+                    url: '/exportPDFPredsednik',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/pdf/export_pdf_predsednik.html',
+                            controller: 'ExportPDFPredsednikController',
+                            controllerAs: 'exportPDFPredsednikCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    }
+                })
+                .state('exportXHTMLPredsednik', {
+                    url: '/exportXHTMLPredsednik',
+                    views: {
+                        'content': {
+                            templateUrl: 'app/xhtml/export_xhtml_predsednik.html',
+                            controller: 'ExportXHTMLPredsednikController',
+                            controllerAs: 'exportXHTMLPredsednikCtrl'
+                        },
+                        'navbar': {
+                            templateUrl: 'app/navbar/predsednik_navbar.html',
+                            controller: 'NavbarPredsednikController',
+                            controllerAs: 'navbarPredsednikCtrl'
+                        }
+                    }
+                })
                 .state('predsednik', {
                     url: '/predsednik',
                     views: {
